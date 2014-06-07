@@ -5,6 +5,7 @@ import org.lwjgl.input.Keyboard;
 /**
  * Created by Nick on 6/6/14.
  */
+
 public class KeyboardHandler {
 
 	public static boolean isShiftDown() {
@@ -17,6 +18,9 @@ public class KeyboardHandler {
 
 	public static boolean isVDown() {
 		return Keyboard.isKeyDown(Keyboard.KEY_V);
+	}
+	public static boolean isCDown() {
+		return Keyboard.isKeyDown(Keyboard.KEY_C);
 	}
 
 }

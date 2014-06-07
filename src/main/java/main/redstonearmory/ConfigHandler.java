@@ -36,7 +36,7 @@ public class ConfigHandler {
 		ItemInfo.MATERIAL_GELID_ENDERIUM_ID = config.getItem(itemId, ItemInfo.MATERIAL_GELID_ENDERIUM_KEY, ItemInfo.MATERIAL_GELID_ENDERIUM_DEFAULT).getInt() - 256;
 
 		//tools
-
+		ItemInfo.AXE_GELID_ENDERIUM_ID = config.getItem(itemId, ItemInfo.AXE_GELID_ENDERIUM_KEY, ItemInfo.AXE_GELID_ENDERIUM_DEFAULT).getInt() - 256;
 
 		//blocks
 		BlockInfo.INGOT_STORAGE_ID = config.getBlock(blockId, BlockInfo.INGOT_STORAGE_KEY, BlockInfo.INGOT_STORAGE_DEFAULT).getInt();

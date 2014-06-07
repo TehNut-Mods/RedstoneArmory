@@ -31,4 +31,7 @@ public class TextHelper {
 	public static final String ITALIC = (char) 167 + "o";
 	public static final String END = (char) 167 + "r";
 
+	/** Useful Tooltips **/
+	public static String shiftForMoreInfo = WHITE + ITALIC + "Press Shift for more information";
+
 }

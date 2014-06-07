@@ -9,9 +9,7 @@ asm/*
 *.iws
 *.psd
 /bin
-
 *.psd
-
 *.classpath
 *.project
 /bin
