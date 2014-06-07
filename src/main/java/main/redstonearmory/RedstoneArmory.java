@@ -1,6 +1,8 @@
 package main.redstonearmory;
 
 import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -13,6 +15,7 @@ import main.redstonearmory.items.ItemRecipeRegistry;
 import main.redstonearmory.items.ItemRegistry;
 import main.redstonearmory.proxies.CommonProxy;
 import main.redstonearmory.util.CapeHandler;
+import main.redstonearmory.util.OreDictHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
 
@@ -22,29 +25,32 @@ import java.util.logging.Logger;
 /**
  * Created by Nick on 6/6/14.
  */
+
 @Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION)
 public class RedstoneArmory {
 
 	public static CreativeTabs tabRedstoneArmory = new CreativeTabRedstoneArmory(ModInformation.ID + ".creativetab.name");
 	public static Logger logger = LogManager.getLogManager().getLogger(ModInformation.NAME);
 
-	@Mod.Instance(ModInformation.ID)
+	@Instance(ModInformation.ID)
 	public static RedstoneArmory instance;
 
 	@SidedProxy(clientSide = "main.redstonearmory.proxies.ClientProxy", serverSide = "main.redstonearmory.proxies.CommonProxy")
 	public static CommonProxy proxy;
 
-	@Mod.EventHandler
+	@EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		ConfigHandler.registerConfig(event.getSuggestedConfigurationFile());
 
-		BlockRegistry.registerFullBlocks();
+		OreDictHandler.registerFulloreDict();
+
+		BlockRegistry.registerBlocks();
 		BlockRecipeRegistry.registerRecipes();
 		ItemRegistry.registerItems();
 		ItemRecipeRegistry.registerFullRecipes();
 	}
 
-	@Mod.EventHandler
+	@EventHandler
 	public void init(FMLInitializationEvent event) {
 		if (event.getSide() == Side.CLIENT) {
 			MinecraftForge.EVENT_BUS.register(new CapeHandler());
@@ -52,7 +58,7 @@ public class RedstoneArmory {
 
 	}
 
-	@Mod.EventHandler
+	@EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 
 	}

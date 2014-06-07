@@ -10,18 +10,9 @@ public class BlockRegistry {
 
 	public static Block ingotStorage;
 
-	private static void registerBlocks() {
+	public static void registerBlocks() {
 		ingotStorage = new BlockIngotStorage(BlockInfo.INGOT_STORAGE_ID);
 		GameRegistry.registerBlock(ingotStorage, BlockInfo.INGOT_STORAGE_KEY);
-	}
-
-	private static void registerNames() {
-//		LanguageRegistry.addName(ingotStorage, BlockInfo.INGOT_STORAGE_NAME);
-	}
-
-	public static void registerFullBlocks() {
-		registerBlocks();
-		registerNames();
 	}
 
 }

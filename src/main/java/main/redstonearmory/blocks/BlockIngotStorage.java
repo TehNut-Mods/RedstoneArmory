@@ -31,4 +31,10 @@ public class BlockIngotStorage extends Block {
 		icon = register.registerIcon("redstonearmory:Block_GelidEnderium");
 	}
 
+	@SideOnly(Side.CLIENT)
+	@Override
+	public Icon getIcon(int side, int meta) {
+		return icon;
+	}
+
 }

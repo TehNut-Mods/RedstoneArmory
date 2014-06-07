@@ -5,3 +5,5 @@ itemGroup.redstonearmory.creativetab.name=Redstone Armory
 tile.redstonearmory.blocks.enderium.gelid.name=Block of Gelid Enderium
 
 //ITEMS
+item.redstonearmory.items.ingot.gelidenderium.name=Gelid Enderium Ingot
+item.redstonearmory.items.nugget.gelidenderium.name=Gelid Enderium Nugget
