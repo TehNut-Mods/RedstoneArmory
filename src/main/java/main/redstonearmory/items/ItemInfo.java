@@ -2,25 +2,15 @@ package main.redstonearmory.items;
 
 public class ItemInfo {
 
-	public static int INGOT_GELID_ENDERIUM_ID;
-	public static final int INGOT_GELID_ENDERIUM_DEFAULT = 10075;
-	public static final String INGOT_GELID_ENDERIUM_KEY = "ingotGelidEnderium";
-	public static final String INGOT_GELID_ENDERIUM_UNLOCALIZED_NAME = "items.ingot.gelidenderium";
-
-	public static int NUGGET_GELID_ENDERIUM_ID;
-	public static final int NUGGET_GELID_ENDERIUM_DEFAULT = 10076;
-	public static final String NUGGET_GELID_ENDERIUM_KEY = "nuggetGelidEnderium";
-	public static final String NUGGET_GELID_ENDERIUM_UNLOCALIZED_NAME = "items.nugget.gelidenderium";
-
 	public static int MATERIAL_GELID_ENDERIUM_ID;
 	public static final int MATERIAL_GELID_ENDERIUM_DEFAULT = 10077;
 	public static final String MATERIAL_GELID_ENDERIUM_KEY = "materialGelidEnderium";
-	public static final String MATERIAL_GELID_ENDERIUM_UNLOCALIZED_NAME = "items.material.gelidenderium";
+	public static final String MATERIAL_GELID_ENDERIUM_UNLOCALIZED_NAME = ".items.material.gelidenderium";
 
 	public static int AXE_GELID_ENDERIUM_ID;
 	public static final int AXE_GELID_ENDERIUM_DEFAULT = 10078;
 	public static final String AXE_GELID_ENDERIUM_KEY = "axeGelidEnderium";
-	public static final String AXE_GELID_ENDERIUM_UNLOCALIZED_NAME = ".items.tools.axeGelidEnderium";
+	public static final String AXE_GELID_ENDERIUM_UNLOCALIZED_NAME = ".items.tools.gelidenderium.axe";
 
 	public static int BATTLEWRENCH_GELID_ENDERIUM_ID;
 	public static final int BATTLEWRENCH_GELID_ENDERIUM_DEFAULT = 10079;

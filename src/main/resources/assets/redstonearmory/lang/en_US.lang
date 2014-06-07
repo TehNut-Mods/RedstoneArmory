@@ -5,10 +5,9 @@ itemGroup.redstonearmory.creativetab.name=Redstone Armory
 tile.redstonearmory.blocks.enderium.gelid.name=Block of Gelid Enderium
 
 //ITEMS
-item.redstonearmory.items.ingot.gelidenderium.name=Gelid Enderium Ingot
-item.redstonearmory.items.nugget.gelidenderium.name=Gelid Enderium Nugget
-item.redstonearmory.itemGelidEnderiumMaterials.ingotGelidEnderium.name=Gelid Enderium Ingot
-item.redstonearmory.itemGelidEnderiumMaterials.nuggetGelidEnderium.name=Gelid Enderium Nugget
+item.redstonearmory.items.material.gelidenderium.ingot.name=Gelid Enderium Ingot
+item.redstonearmory.items.material.gelidenderium.nugget.name=Gelid Enderium Nugget
+item.redstonearmory.items.material.gelidenderium.nothing.name=Anti-Derp Protocol
 
 //TOOLS
-item.redstonearmory.
+item.redstonearmory.items.tools.gelidenderium.axe.name=Gelid Enderium Axe

@@ -28,11 +28,11 @@ public class ItemGelidEnderiumMaterials extends Item {
 		String name = "";
 		switch (itemstack.getItemDamage()) {
 			case 0: {
-				name = "ingotGelidEnderium";
+				name = "ingot";
 				break;
 			}
 			case 1: {
-				name = "nuggetGelidEndeirum";
+				name = "nugget";
 				break;
 			}
 			default:

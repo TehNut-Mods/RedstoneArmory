@@ -27,8 +27,6 @@ public class ConfigHandler {
 		config.load();
 
 		//materials
-		ItemInfo.INGOT_GELID_ENDERIUM_ID = config.getItem(itemId, ItemInfo.INGOT_GELID_ENDERIUM_KEY, ItemInfo.INGOT_GELID_ENDERIUM_DEFAULT).getInt() - 256;
-		ItemInfo.NUGGET_GELID_ENDERIUM_ID = config.getItem(itemId, ItemInfo.NUGGET_GELID_ENDERIUM_KEY, ItemInfo.NUGGET_GELID_ENDERIUM_DEFAULT).getInt() - 256;
 		ItemInfo.MATERIAL_GELID_ENDERIUM_ID = config.getItem(itemId, ItemInfo.MATERIAL_GELID_ENDERIUM_KEY, ItemInfo.MATERIAL_GELID_ENDERIUM_DEFAULT).getInt() - 256;
 
 		//tools
