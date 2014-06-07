@@ -1,9 +1,5 @@
 package main.redstonearmory.items;
 
-/**
- * Created by Nick on 6/6/14.
- */
-
 public class ItemInfo {
 
 	public static int INGOT_GELID_ENDERIUM_ID;

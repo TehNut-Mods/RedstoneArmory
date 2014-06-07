@@ -22,44 +22,40 @@ import net.minecraftforge.common.MinecraftForge;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-/**
- * Created by Nick on 6/6/14.
- */
-
 @Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION)
 public class RedstoneArmory {
 
-	public static CreativeTabs tabRedstoneArmory = new CreativeTabRedstoneArmory(ModInformation.ID + ".creativetab.name");
-	public static Logger logger = LogManager.getLogManager().getLogger(ModInformation.NAME);
+    public static CreativeTabs tabRedstoneArmory = new CreativeTabRedstoneArmory(ModInformation.ID + ".creativetab.name");
+    public static Logger logger = LogManager.getLogManager().getLogger(ModInformation.NAME);
 
-	@Instance(ModInformation.ID)
-	public static RedstoneArmory instance;
+    @Instance(ModInformation.ID)
+    public static RedstoneArmory instance;
 
-	@SidedProxy(clientSide = "main.redstonearmory.proxies.ClientProxy", serverSide = "main.redstonearmory.proxies.CommonProxy")
-	public static CommonProxy proxy;
+    @SidedProxy(clientSide = "main.redstonearmory.proxies.ClientProxy", serverSide = "main.redstonearmory.proxies.CommonProxy")
+    public static CommonProxy proxy;
 
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		ConfigHandler.registerConfig(event.getSuggestedConfigurationFile());
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
+        ConfigHandler.registerConfig(event.getSuggestedConfigurationFile());
 
-		OreDictHandler.registerFulloreDict();
+        OreDictHandler.registerFulloreDict();
 
-		BlockRegistry.registerBlocks();
-		BlockRecipeRegistry.registerRecipes();
-		ItemRegistry.registerItems();
-		ItemRecipeRegistry.registerFullRecipes();
-	}
+        BlockRegistry.registerBlocks();
+        BlockRecipeRegistry.registerRecipes();
+        ItemRegistry.registerItems();
+        ItemRecipeRegistry.registerFullRecipes();
+    }
 
-	@EventHandler
-	public void init(FMLInitializationEvent event) {
-		if (event.getSide() == Side.CLIENT) {
-			MinecraftForge.EVENT_BUS.register(new CapeHandler());
-		}
+    @EventHandler
+    public void init(FMLInitializationEvent event) {
+        if (event.getSide() == Side.CLIENT) {
+            MinecraftForge.EVENT_BUS.register(new CapeHandler());
+        }
 
-	}
+    }
 
-	@EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
+    @EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
 
-	}
+    }
 }

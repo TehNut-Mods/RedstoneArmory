@@ -6,10 +6,6 @@ import net.minecraftforge.common.Configuration;
 
 import java.io.File;
 
-/**
- * Created by Nick on 6/6/14.
- */
-
 public class ConfigHandler {
 
 	//Categories

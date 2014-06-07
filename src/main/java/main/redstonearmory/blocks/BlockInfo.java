@@ -1,8 +1,5 @@
 package main.redstonearmory.blocks;
 
-/**
- * Created by Nick on 6/6/14.
- */
 public class BlockInfo {
 
 	public static int INGOT_STORAGE_ID;

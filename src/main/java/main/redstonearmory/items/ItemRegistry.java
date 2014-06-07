@@ -7,10 +7,6 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.EnumHelper;
 
-/**
- * Created by Nick on 6/6/14.
- */
-
 public class ItemRegistry {
 
 	//tool materials

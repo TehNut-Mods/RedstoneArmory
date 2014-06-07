@@ -1,7 +1,7 @@
 package main.redstonearmory.util;
 
 /**
- * Created by Nick on 6/6/14.
+
  */
 public class TextHelper {
 

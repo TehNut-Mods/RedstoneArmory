@@ -8,10 +8,6 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.item.Item;
 import net.minecraft.util.Icon;
 
-/**
- * Created by Nick on 6/6/14.
- */
-
 public class ItemGelidEnderiumIngot extends Item {
 
 	public Icon icon;

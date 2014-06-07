@@ -4,10 +4,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import main.redstonearmory.blocks.BlockRegistry;
 import net.minecraft.item.ItemStack;
 
-/**
- * Created by Nick on 6/6/14.
- */
-
 public class ItemRecipeRegistry {
 
 	private static void registerShapedRecipes() {

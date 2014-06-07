@@ -2,10 +2,6 @@ package main.redstonearmory.util;
 
 import org.lwjgl.input.Keyboard;
 
-/**
- * Created by Nick on 6/6/14.
- */
-
 public class KeyboardHandler {
 
 	public static boolean isShiftDown() {

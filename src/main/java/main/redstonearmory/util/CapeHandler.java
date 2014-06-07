@@ -18,10 +18,6 @@ import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-/**
- * Created by Nick on 6/6/14.
- */
-
 public class CapeHandler {
 
 	private final String serverLocation = "https://raw.githubusercontent.com/TehNut/RedstoneArmory/master/capes/capes.txt";
