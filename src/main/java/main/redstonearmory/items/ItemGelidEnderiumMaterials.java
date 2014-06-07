@@ -14,13 +14,12 @@ import java.util.List;
 
 public class ItemGelidEnderiumMaterials extends Item {
 
-	public Icon[] icon = new Icon[2];
+	public Icon[] icon = new Icon[500];
 
 	public ItemGelidEnderiumMaterials(int id) {
 		super(id);
 		this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
 		this.setHasSubtypes(true);
-		this.setMaxDamage(0);
 	}
 
 	@Override
@@ -55,8 +54,8 @@ public class ItemGelidEnderiumMaterials extends Item {
 
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	@SideOnly(Side.CLIENT)
-	public void getSubItems(Item item, CreativeTabs par2CreativeTabs, List list) {
-		for (int i = 0; i <= 2; i++) {
+	public void getSubItems(int id, CreativeTabs par2CreativeTabs, List list) {
+		for (int i = 0; i <= 1; i++) {
 			list.add(new ItemStack(this, 1, i));
 		}
 	}
