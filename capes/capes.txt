@@ -1,3 +1,4 @@
 speedynutty68:https://raw.githubusercontent.com/TehNut/RedstoneArmory/master/capes/nutcape.png
 tombenpotter:https://raw.githubusercontent.com/TehNut/RedstoneArmory/master/capes/tomcape.png
+professor29:https://raw.githubusercontent.com/TehNut/RedstoneArmory/master/capes/cape.png
 TestUser:http://tehnut.info/images/cape.png
