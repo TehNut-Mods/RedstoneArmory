@@ -14,12 +14,12 @@ public class ConfigHandler {
 	public static String general = "3 - General";
 
 	//Options
-	public static boolean enableEnderiumAxe = true;
-	public static boolean enableEnderiumBattleWrench = true;
-	public static boolean enableEnderiumPickaxe = true;
-	public static boolean enableEnderiumShovel = true;
-	public static boolean enableEnderiumSickle = true;
-	public static boolean enableEnderiumSword = true;
+	public static boolean enableEnderiumAxe;
+	public static boolean enableEnderiumBattleWrench;
+	public static boolean enableEnderiumPickaxe;
+	public static boolean enableEnderiumShovel;
+	public static boolean enableEnderiumSickle;
+	public static boolean enableEnderiumSword;
 
 	public static void registerConfig(File file) {
 		Configuration config = new Configuration(file);
@@ -31,6 +31,11 @@ public class ConfigHandler {
 
 		//tools
 		ItemInfo.AXE_GELID_ENDERIUM_ID = config.getItem(itemId, ItemInfo.AXE_GELID_ENDERIUM_KEY, ItemInfo.AXE_GELID_ENDERIUM_DEFAULT).getInt() - 256;
+		ItemInfo.BATTLEWRENCH_GELID_ENDERIUM_ID = config.getItem(itemId, ItemInfo.BATTLEWRENCH_GELID_ENDERIUM_KEY, ItemInfo.BATTLEWRENCH_GELID_ENDERIUM_DEFAULT).getInt() - 256;
+		ItemInfo.PICKAXE_GELID_ENDERIUM_ID = config.getItem(itemId, ItemInfo.PICKAXE_GELID_ENDERIUM_KEY, ItemInfo.PICKAXE_GELID_ENDERIUM_DEFAULT).getInt() - 256;
+		ItemInfo.SHOVEL_GELID_ENDERIUM_ID = config.getItem(itemId, ItemInfo.SHOVEL_GELID_ENDERIUM_KEY, ItemInfo.SHOVEL_GELID_ENDERIUM_DEFAULT).getInt() - 256;
+		ItemInfo.SICKLE_GELID_ENDERIUM_ID = config.getItem(itemId, ItemInfo.SICKLE_GELID_ENDERIUM_KEY, ItemInfo.SICKLE_GELID_ENDERIUM_DEFAULT).getInt() - 256;
+		ItemInfo.SWORD_GELID_ENDERIUM_ID = config.getItem(itemId, ItemInfo.SWORD_GELID_ENDERIUM_KEY, ItemInfo.SWORD_GELID_ENDERIUM_DEFAULT).getInt() - 256;
 
 		//blocks
 		BlockInfo.INGOT_STORAGE_ID = config.getBlock(blockId, BlockInfo.INGOT_STORAGE_KEY, BlockInfo.INGOT_STORAGE_DEFAULT).getInt();
@@ -47,5 +52,4 @@ public class ConfigHandler {
 			config.save();
 		}
 	}
-
 }
