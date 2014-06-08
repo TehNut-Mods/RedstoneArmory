@@ -84,11 +84,13 @@ public class ItemGelidEnderiumSword extends ItemSword implements IEnergyContaine
 			list.add(TextHelper.LIGHT_GRAY + "Charge: " + RFHelper.getRFStored(container) + " / " + capacity + " RF");
 			list.add(TextHelper.ORANGE + this.cost + " RF Per Use");
 			list.add(TextHelper.blueItalic + "Press " + KeyboardHandler.empowerKey() + " to Empower");
+			list.add(TextHelper.ITALIC + "Also acts as a magnet");
 		} else if(!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems){
 			list.add(TextHelper.LIGHT_GRAY + "Ever wanted the ability to");
 			list.add(TextHelper.LIGHT_GRAY + "suck in nearby items while");
 			list.add(TextHelper.LIGHT_GRAY + "blocking? No? Well now you");
 			list.add(TextHelper.LIGHT_GRAY + "can!");
+			list.add("");
 			list.add(TextHelper.RED + "Empower for more suckage.");
 		}
 	}

@@ -70,6 +70,7 @@ public class ItemGelidEnderiumBattleWrench extends Item implements IEnergyContai
 			list.add(TextHelper.LIGHT_GRAY + "Charge: " + RFHelper.getRFStored(container) + " / " + capacity + " RF");
 			list.add(TextHelper.ORANGE + this.cost + " RF Per Use");
 			list.add(TextHelper.blueItalic + "Press " + KeyboardHandler.empowerKey() + " to Empower");
+			list.add(TextHelper.ITALIC + "Also (attempts to) act as the Tasmanian Devil");
 		} else if(!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems){
 			list.add(TextHelper.LIGHT_GRAY + "I'll write this later...");
 		}

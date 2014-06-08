@@ -19,7 +19,10 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.*;
+import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemSpade;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
@@ -83,6 +86,7 @@ public class ItemGelidEnderiumShovel extends ItemSpade implements IEnergyContain
 			list.add(TextHelper.LIGHT_GRAY + "Charge: " + RFHelper.getRFStored(container) + " / " + capacity + " RF");
 			list.add(TextHelper.ORANGE + this.cost + " RF Per Use");
 			list.add(TextHelper.blueItalic + "Press " + KeyboardHandler.empowerKey() + " to Empower");
+			list.add(TextHelper.ITALIC + "Also acts as bonmeal");
 		} else if(!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems){
 			list.add(TextHelper.LIGHT_GRAY + "Since the standard Fluxed");
 			list.add(TextHelper.LIGHT_GRAY + "Shovel is a hoe, doesn't");

@@ -70,10 +70,13 @@ public class ItemGelidEnderiumSickle extends Item implements IEnergyContainerIte
 			list.add(TextHelper.LIGHT_GRAY + "Charge: " + RFHelper.getRFStored(container) + " / " + capacity + " RF");
 			list.add(TextHelper.ORANGE + this.cost + " RF Per Use");
 			list.add(TextHelper.blueItalic + "Press " + KeyboardHandler.empowerKey() + " to Empower");
+			list.add(TextHelper.ITALIC + "Also acts as a... Oh wait.");
 		} else if(!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems){
 			list.add(TextHelper.LIGHT_GRAY + "It's... Umm...");
 			list.add(TextHelper.LIGHT_GRAY + "The same thing but with more");
 			list.add(TextHelper.LIGHT_GRAY + "energy... Yaay?");
+			list.add("");
+			list.add(TextHelper.RED + "Empower for more... Nothing...");
 		}
 	}
 

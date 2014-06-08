@@ -86,6 +86,7 @@ public class ItemGelidEnderiumAxe extends ItemAxe implements IEnergyContainerIte
 			list.add(TextHelper.LIGHT_GRAY + "Charge: " + RFHelper.getRFStored(container) + " / " + capacity + " RF");
 			list.add(TextHelper.ORANGE + this.cost + " RF Per Use");
 			list.add(TextHelper.blueItalic + "Press " + KeyboardHandler.empowerKey() + " to Empower");
+			list.add(TextHelper.ITALIC + "Also acts as /weather clear");
 		} else if(!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems){
 			list.add(TextHelper.LIGHT_GRAY + "According to Wikipedia,");
 			list.add(TextHelper.LIGHT_GRAY + "axes go with weather.");
