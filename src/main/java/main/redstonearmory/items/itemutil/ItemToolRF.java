@@ -6,6 +6,7 @@ import com.google.common.collect.Multimap;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ConfigHandler;
+import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -45,18 +46,15 @@ public abstract class ItemToolRF extends ItemToolAdv implements IEmpowerableItem
 	public ItemToolRF(EnumToolMaterial toolMaterial) {
 
 		super(0, 0F, toolMaterial);
-		setNoRepair();
-		this.hasSubtypes();
+		this.setNoRepair();
+		this.hasSubtypes = true;
+		this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
+
 	}
 
 	public ItemToolRF(EnumToolMaterial toolMaterial, int harvestLevel) {
 
-		super(0, toolMaterial, harvestLevel);
-		setNoRepair();
-	}
-
-	public boolean hasSubtypes() {
-		return true;
+		super(0, harvestLevel, toolMaterial);
 	}
 
 	@Override

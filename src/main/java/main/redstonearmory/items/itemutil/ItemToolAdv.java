@@ -21,7 +21,6 @@ import java.util.Set;
 
 public abstract class ItemToolAdv extends ItemTool {
 
-	public String repairIngot = "";
 	private final TLinkedHashSet<String> toolClasses = new TLinkedHashSet<String>();
 	private final Set<String> immutableClasses = java.util.Collections.unmodifiableSet(toolClasses);
 
@@ -34,16 +33,9 @@ public abstract class ItemToolAdv extends ItemTool {
 		super(id, baseDamage, toolMaterial, null);
 	}
 
-	public ItemToolAdv(float baseDamage, EnumToolMaterial toolMaterial, int harvestLevel) {
+	public ItemToolAdv( int id, float baseDamage, EnumToolMaterial toolMaterial, Block[] listOfBlocks) {
 
-		this(baseDamage, toolMaterial);
-		this.harvestLevel = harvestLevel;
-	}
-
-	public ItemToolAdv setRepairIngot(String repairIngot) {
-
-		this.repairIngot = repairIngot;
-		return this;
+		this(id, baseDamage, toolMaterial);
 	}
 
 	protected void addToolClass(String string) {
@@ -82,7 +74,6 @@ public abstract class ItemToolAdv extends ItemTool {
 		return false;
 	}
 
-	@Override
 	public float func_150893_a(ItemStack stack, Block block) {
 
 		return (getEffectiveMaterials(stack).contains(block.blockMaterial) || getEffectiveBlocks(stack).contains(block)) ? getEfficiency(stack) : 1.0F;
@@ -96,7 +87,7 @@ public abstract class ItemToolAdv extends ItemTool {
 
 	protected void harvestBlock(World world, int x, int y, int z, EntityPlayer player) {
 
-		Block block = world.getBlock(x, y, z);
+		int block = world.getBlockId(x, y, z);
 
 		if (block.getBlockHardness(world, x, y, z) < 0) {
 			return;
@@ -109,28 +100,26 @@ public abstract class ItemToolAdv extends ItemTool {
 		world.setBlockToAir(x, y, z);
 	}
 
-	protected boolean isValidHarvestMaterial(ItemStack stack, World world, int x, int y, int z) {
+	protected boolean isValidHarvestMaterial(ItemStack stack, World world, int id, int x, int y, int z) {
 
-		return getEffectiveMaterials(stack).contains(world.getBlock(x, y, z).getMaterial());
+		return getEffectiveMaterials(stack).contains(world.getBlockId(x, y, z));
 	}
 
-	@Override
 	public int getHarvestLevel(ItemStack stack, String toolClass) {
 
 		if (harvestLevel != -1) {
 			return harvestLevel;
 		}
-		int level = super.getHarvestLevel(stack, toolClass);
+		int level = getHarvestLevel(stack, toolClass);
 		if (level == -1 && isClassValid(toolClass, stack) && toolClasses.contains(toolClass)) {
 			level = toolMaterial.getHarvestLevel();
 		}
 		return getHarvestLevel(stack, level);
 	}
 
-	@Override
 	public Set<String> getToolClasses(ItemStack stack) {
 
-		return toolClasses.isEmpty() ? super.getToolClasses(stack) : immutableClasses;
+		return toolClasses.isEmpty() ? getToolClasses(stack) : immutableClasses;
 	}
 
 	@Override
@@ -145,7 +134,7 @@ public abstract class ItemToolAdv extends ItemTool {
 				}
 			}
 		}
-		return super.getDigSpeed(stack, block, meta);
+		return getDigSpeed(stack, block, meta);
 	}
 
 }
