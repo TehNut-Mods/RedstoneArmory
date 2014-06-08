@@ -7,6 +7,7 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.relauncher.Side;
 import main.redstonearmory.blocks.BlockRecipeRegistry;
 import main.redstonearmory.blocks.BlockRegistry;
@@ -23,6 +24,7 @@ import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
 @Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION)
+@NetworkMod(channels = ModInformation.CHANNEL, clientSideRequired = true, serverSideRequired = false)
 public class RedstoneArmory {
 
     public static CreativeTabs tabRedstoneArmory = new CreativeTabRedstoneArmory(ModInformation.ID + ".creativetab.name");

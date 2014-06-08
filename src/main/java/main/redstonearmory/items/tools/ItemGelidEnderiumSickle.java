@@ -1,140 +1,96 @@
 package main.redstonearmory.items.tools;
 
-import cofh.api.energy.IEnergyContainerItem;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import main.redstonearmory.ConfigHandler;
-import main.redstonearmory.ModInformation;
-import main.redstonearmory.RedstoneArmory;
-import main.redstonearmory.items.ItemInfo;
-import main.redstonearmory.util.KeyboardHandler;
-import main.redstonearmory.util.RFHelper;
-import main.redstonearmory.util.TextHelper;
-import net.minecraft.client.renderer.texture.IconRegister;
-import net.minecraft.enchantment.Enchantment;
-import net.minecraft.enchantment.EnchantmentHelper;
+import main.redstonearmory.items.itemutil.ItemToolRF;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.Icon;
+import net.minecraft.world.World;
 
-import java.util.List;
+public class ItemGelidEnderiumSickle extends ItemToolRF {
 
-public class ItemGelidEnderiumSickle extends Item implements IEnergyContainerItem {
+	public int radius = 3;
 
-	@SuppressWarnings("unused")
-	private Icon activeIcon;
-	private Icon drainedIcon;
-	public int capacity = 320000;
-	public int cost = 200;
-	public int empoweredCost = 600;
-	public int transferLimit = 1000;
+	public ItemGelidEnderiumSickle(EnumToolMaterial toolMaterial) {
 
-	public ItemGelidEnderiumSickle(int id) {
-		super(id);
-		this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
-		this.setUnlocalizedName(ModInformation.ID + ItemInfo.SICKLE_GELID_ENDERIUM_UNLOCALIZED_NAME);
-		this.setTextureName("redstonearmory:tools/gelidEnderiumSickle_drained");
+		super(toolMaterial);
+
+		damage= 6;
+		maxEnergy = 320000;
+		energyPerUse = 350;
+		energyPerUseCharged = 2000;
+		radius = 4;
+
+		effectiveMaterials.add(Material.leaves);
+		effectiveMaterials.add(Material.plants);
+		effectiveMaterials.add(Material.vine);
+		effectiveMaterials.add(Material.web);
 	}
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void registerIcons(IconRegister iconRegister) {
-		this.itemIcon = iconRegister.registerIcon("redstonearmory:tools/gelidEnderiumSickle");
-		this.activeIcon = iconRegister.registerIcon("redstonearmory:tools/gelidEnderiumSickle_active");
-		this.drainedIcon = iconRegister.registerIcon("redstonearmory:tools/gelidEnderiumSickle_drained");
+	public ItemGelidEnderiumSickle setRadius(int radius) {
+
+		this.radius = radius;
+		return this;
 	}
 
-	@SideOnly(Side.CLIENT)
 	@Override
-	public Icon getIcon(ItemStack container, int renderPass) {
-		if (getEnergyStored(container) < getUsedEnergy(container)) {
-			return drainedIcon;
-		} else
-			return itemIcon;
+	public boolean canHarvestBlock(Block block, ItemStack stack) {
+
+		return block == Block.web || block == Block.vine;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
-	@SideOnly(Side.CLIENT)
-	public void addInformation(ItemStack container, EntityPlayer player, List list, boolean check) {
-		if (container.stackTagCompound == null) {
-			RFHelper.setDefaultEnergyTag(container, 0);
+	protected void harvestBlock(World world, int x, int y, int z, EntityPlayer player) {
+
+		Block block = world.getBlock(x, y, z);
+
+		if (block.getBlockHardness(world, x, y, z) < 0 || block.equals(Block.waterlily)) {
+			return;
 		}
-		if (!KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
-			list.add(TextHelper.shiftForMoreInfo);
-			if(ConfigHandler.addItemLoreToItems) {
-				list.add(TextHelper.controlForLore);
+		int bMeta = world.getBlockMetadata(x, y, z);
+
+		if (block.canHarvestBlock(player, bMeta)) {
+			block.harvestBlock(world, player, x, y, z, bMeta);
+		}
+		if (world.isRemote && block.equals(Block.vine)) {
+			CoreUtils.dropItemStackIntoWorldWithVelocity(new ItemStack(Block.vine), world, x, y, z);
+		}
+		world.setBlockToAir(x, y, z);
+	}
+
+	@Override
+	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase entity) {
+
+		if (!(entity instanceof EntityPlayer)) {
+			return false;
+		}
+		EntityPlayer player = (EntityPlayer) entity;
+
+		if (block.getBlockHardness(world, x, y, z) != 0.0D && !effectiveMaterials.contains(block.getMaterial())) {
+			if (!player.capabilities.isCreativeMode) {
+				useEnergy(stack, false);
 			}
-		} else if(KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
-			list.add(TextHelper.LIGHT_GRAY + "Charge: " + RFHelper.getRFStored(container) + " / " + capacity + " RF");
-			list.add(TextHelper.ORANGE + this.cost + " RF Per Use");
-			list.add(TextHelper.blueItalic + "Press " + KeyboardHandler.empowerKey() + " to Empower");
-			list.add(TextHelper.ITALIC + "Also acts as a... Oh wait.");
-		} else if(!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems){
-			list.add(TextHelper.LIGHT_GRAY + "It's... Umm...");
-			list.add(TextHelper.LIGHT_GRAY + "The same thing but with more");
-			list.add(TextHelper.LIGHT_GRAY + "energy... Yaay?");
-			list.add("");
-			list.add(TextHelper.RED + "Empower for more... Nothing...");
+			return false;
 		}
-	}
+		boolean used = false;
+		int boost = isEmpowered(stack) ? 1 : 0;
 
-	@Override
-	public int getMaxDamage(ItemStack container) {
-		return this.capacity + 1;
-	}
-
-	public boolean showDurabilityBar(ItemStack stack) {
-		return true;
-	}
-
-	@Override
-	public int getDisplayDamage(ItemStack container) {
-		if (container.stackTagCompound == null)
-			RFHelper.setDefaultEnergyTag(container, 0);
-
-		return (this.capacity + 1 - RFHelper.getRFStored(container));
-	}
-
-	@Override
-	public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
-		return RFHelper.receiveEnergy(container, maxReceive, simulate, this.capacity, this.transferLimit);
-	}
-
-	@Override
-	public int extractEnergy(ItemStack container, int maxExtract, boolean simulate) {
-		return RFHelper.extractEnergy(container, maxExtract, simulate);
-	}
-
-	@Override
-	public int getEnergyStored(ItemStack container) {
-		return RFHelper.getRFStored(container);
-	}
-
-	@Override
-	public int getMaxEnergyStored(ItemStack container) {
-		return capacity;
-	}
-
-	@Override
-	public boolean getIsRepairable(ItemStack itemToRepair, ItemStack stack) {
-		return false;
-	}
-
-	public int useEnergy(ItemStack container, boolean simulate) {
-		int unbreaking = EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, container);
-		return extractEnergy(container, (this.cost - (unbreaking * 10)), simulate);
-		// if (PLACEEMPOWEREDTHINGHERE == false) {
-		// return extractEnergy(container, (this.cost - (unbreaking * 10)), simulate);
-		// } else {
-		// return extractEnergy(container, (this.empoweredCost - (unbreaking * 10)), simulate);
-		// }
-	}
-
-	public int getUsedEnergy(ItemStack container) {
-		int unbreaking = EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, container);
-		return (this.cost - (unbreaking * 10));
+		for (int i = x - (radius + boost); i <= x + (radius + boost); i++) {
+			for (int k = z - (radius + boost); k <= z + (radius + boost); k++) {
+				for (int j = y - boost; j <= y + boost; j++) {
+					if (isValidHarvestMaterial(stack, world, i, j, k)) {
+						harvestBlock(world, i, j, k, player);
+						used = true;
+					}
+				}
+			}
+		}
+		if (used) {
+			useEnergy(stack, false);
+		}
+		return used;
 	}
 
 }
