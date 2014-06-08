@@ -20,8 +20,8 @@ item.redstonearmory.items.tools.gelidenderium.sword.name=Gelid Enderium Sword
 
 //TOOL INFO
 info.redstonearmory.tool.gelidenderium.axe=Also serves as '/weather clear'
-info.redstonearmory.tool.gelidenderium.battlewrench=
-info.redstonearmory.tool.gelidenderium.pickaxe=
+info.redstonearmory.tool.gelidenderium.battlewrench=PLACEHOLDER
+info.redstonearmory.tool.gelidenderium.pickaxe=PLACEHOLDER
 info.redstonearmory.tool.gelidenderium.shovel=Also serves as Bonemeal
 info.redstonearmory.tool.gelidenderium.sickle=Also serves as... Oh wait...
 info.redstonearmory.tool.gelidenderium.sword=Also serves as item vaccum
@@ -40,7 +40,7 @@ info.redstonearmory.tool.damageAttack=Attack Damage
 info.redstonearmory.tool.damageFlux=Flux Damage
 
 //CONTROLS
-info.redstonearmory.keys.shift
-info.redstonearmory.keys.control
+info.redstonearmory.keys.shift=Shift
+info.redstonearmory.keys.control=Control
 
 
