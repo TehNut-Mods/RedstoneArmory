@@ -32,6 +32,7 @@ public class TextHelper {
 	public static final String END = (char) 167 + "r";
 
 	/** Useful Tooltips **/
-	public static String shiftForMoreInfo = WHITE + ITALIC + "Press Shift for more information";
-
+	public static String shiftForMoreInfo = YELLOW + ITALIC + "Shift" + END + LIGHT_GRAY + " for more information";
+	public static String controlForLore = YELLOW + ITALIC + "Control" + END + LIGHT_GRAY + " for item lore";
+	public static String blueItalic = BRIGHT_BLUE + ITALIC;
 }

@@ -7,7 +7,6 @@ import main.redstonearmory.ConfigHandler;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.items.ItemInfo;
-import main.redstonearmory.items.ItemRegistry;
 import main.redstonearmory.util.KeyboardHandler;
 import main.redstonearmory.util.RFHelper;
 import main.redstonearmory.util.TextHelper;
@@ -21,14 +20,14 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemAxe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemGelidEnderiumAxe extends ItemAxe implements IEnergyContainerItem {
+public class ItemGelidEnderiumSword extends ItemSword implements IEnergyContainerItem {
 
 	@SuppressWarnings("unused")
 	private Icon activeIcon;
@@ -38,20 +37,19 @@ public class ItemGelidEnderiumAxe extends ItemAxe implements IEnergyContainerIte
 	public int empoweredCost = 600;
 	public int transferLimit = 1000;
 
-	public ItemGelidEnderiumAxe(int id, EnumToolMaterial material) {
+	public ItemGelidEnderiumSword(int id, EnumToolMaterial material) {
 		super(id, material);
-		this.toolMaterial = ItemRegistry.enderium;
 		this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
-		this.setUnlocalizedName(ModInformation.ID + ItemInfo.AXE_GELID_ENDERIUM_UNLOCALIZED_NAME);
-		this.setTextureName("redstonearmory:tools/gelidEnderiumAxe_drained");
+		this.setUnlocalizedName(ModInformation.ID + ItemInfo.SWORD_GELID_ENDERIUM_UNLOCALIZED_NAME);
+		this.setTextureName("redstonearmory:tools/gelidEnderiumSword_drained");
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons(IconRegister iconRegister) {
-		this.itemIcon = iconRegister.registerIcon("redstonearmory:tools/gelidEnderiumAxe");
-		this.activeIcon = iconRegister.registerIcon("redstonearmory:tools/gelidEnderiumAxe_active");
-		this.drainedIcon = iconRegister.registerIcon("redstonearmory:tools/gelidEnderiumAxe_drained");
+		this.itemIcon = iconRegister.registerIcon("redstonearmory:tools/gelidEnderiumSword");
+		this.activeIcon = iconRegister.registerIcon("redstonearmory:tools/gelidEnderiumSword_active");
+		this.drainedIcon = iconRegister.registerIcon("redstonearmory:tools/gelidEnderiumSword_drained");
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -87,18 +85,11 @@ public class ItemGelidEnderiumAxe extends ItemAxe implements IEnergyContainerIte
 			list.add(TextHelper.ORANGE + this.cost + " RF Per Use");
 			list.add(TextHelper.blueItalic + "Press " + KeyboardHandler.empowerKey() + " to Empower");
 		} else if(!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems){
-			list.add(TextHelper.LIGHT_GRAY + "According to Wikipedia,");
-			list.add(TextHelper.LIGHT_GRAY + "axes go with weather.");
-			list.add(TextHelper.LIGHT_GRAY + "Yeah, I didn't believe it,");
-			list.add(TextHelper.LIGHT_GRAY + "either. Anyways, when empowered, the");
-			list.add(TextHelper.LIGHT_GRAY + "axe will allow the player");
-			list.add(TextHelper.LIGHT_GRAY + "to use a large amount of energy");
-			list.add(TextHelper.LIGHT_GRAY + "to rid the world of rain");
-			list.add(TextHelper.LIGHT_GRAY + "as well as spawning lightning bolts");
-			list.add(TextHelper.LIGHT_GRAY + "on the block they interact with.");
-			list.add("");
-			list.add(TextHelper.LIGHT_GRAY + "Careful, though...");
-			list.add(TextHelper.RED + "It's not completely stable. ;)");
+			list.add(TextHelper.LIGHT_GRAY + "Ever wanted the ability to");
+			list.add(TextHelper.LIGHT_GRAY + "suck in nearby items while");
+			list.add(TextHelper.LIGHT_GRAY + "blocking? No? Well now you");
+			list.add(TextHelper.LIGHT_GRAY + "can!");
+			list.add(TextHelper.RED + "Empower for more suckage.");
 		}
 	}
 
@@ -159,13 +150,13 @@ public class ItemGelidEnderiumAxe extends ItemAxe implements IEnergyContainerIte
 		return (this.cost - (unbreaking * 10));
 	}
 
-//	@Override
+	//	@Override
 	public boolean onBlockDestroyed(ItemStack container, World world, Block block, int par4, int par5, int par6, EntityLivingBase entityLiving) {
 		useEnergy(container, false);
 		return true;
 	}
 
-//	@Override
+	//	@Override
 	public float getDigSpeed(ItemStack container) {
 		if (getEnergyStored(container) < getUsedEnergy(container)) {
 			return 0.5F;
