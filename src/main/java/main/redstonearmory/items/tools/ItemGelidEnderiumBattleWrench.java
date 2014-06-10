@@ -5,6 +5,7 @@ import cofh.api.block.IDismantleable;
 import cofh.api.energy.IEnergyContainerItem;
 import cpw.mods.fml.client.FMLClientHandler;
 import ic2.api.tile.IWrenchable;
+import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;

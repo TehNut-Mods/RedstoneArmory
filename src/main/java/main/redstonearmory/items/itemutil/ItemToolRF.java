@@ -98,12 +98,12 @@ public abstract class ItemToolRF extends ItemToolAdv implements IEmpowerableItem
 	}
 
 	@Override
-	public float getDigSpeed(ItemStack stack, Block block, int meta) {
+	public float getStrVsBlock(ItemStack stack, Block block, int meta) {
 
 		if (getEnergyStored(stack) < energyPerUse) {
 			return 1.0F;
 		}
-		return super.getDigSpeed(stack, block, meta);
+		return super.getStrVsBlock(stack, block, meta);
 	}
 
 	@Override

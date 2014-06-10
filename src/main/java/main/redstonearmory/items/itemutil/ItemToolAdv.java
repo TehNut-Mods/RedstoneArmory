@@ -16,6 +16,7 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
 
 import java.util.Set;
 
@@ -87,7 +88,7 @@ public abstract class ItemToolAdv extends ItemTool {
 
 	protected void harvestBlock(World world, int x, int y, int z, EntityPlayer player) {
 
-		int block = world.getBlockId(x, y, z);
+		Block block = Block.blocksList[world.getBlockId(x, y, z)];
 
 		if (block.getBlockHardness(world, x, y, z) < 0) {
 			return;
@@ -123,18 +124,18 @@ public abstract class ItemToolAdv extends ItemTool {
 	}
 
 	@Override
-	public float getDigSpeed(ItemStack stack, Block block, int meta) {
+	public float getStrVsBlock(ItemStack stack, Block block, int meta, String toolClass) {
 
 		for (String type : getToolClasses(stack)) {
 			int level = getHarvestLevel(stack, type);
 
 			if (type.equals(block.getHarvestTool(meta))) {
-				if (block.getHarvestLevel(meta) < level) {
+				if (MinecraftForge.getBlockHarvestLevel(block, meta, toolClass) < level) {
 					return getEfficiency(stack);
 				}
 			}
 		}
-		return getDigSpeed(stack, block, meta);
+		return getStrVsBlock(stack, block, meta);
 	}
 
 }

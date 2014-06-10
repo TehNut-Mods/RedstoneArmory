@@ -3,6 +3,12 @@ package main.redstonearmory.util;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
+/*
+ * DISCLAIMER ABOUT THIS CLASS
+ *
+ * This was originally by the CoFH team for (AFAIK) 1.7. We have backported it for our needs in 1.6.4. 99% of the code is exactly the same.
+ */
+
 public class RFHelper {
 
     public static ItemStack setDefaultEnergyTag(ItemStack container, int energy) {

@@ -1,6 +1,7 @@
 package main.redstonearmory.items.tools;
 
 import main.redstonearmory.items.itemutil.ItemToolRF;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
