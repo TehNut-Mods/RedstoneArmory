@@ -96,8 +96,8 @@ public class ItemGelidEnderiumSword extends ItemSword implements IEmpowerableIte
 		return EnumRarity.uncommon;
 	}
 
-//	@Override
-	public void getSubItems(Item item, CreativeTabs tab, List list) {
+	@Override
+	public void getSubItems(int item, CreativeTabs tab, List list) {
 
 		list.add(RFHelper.setDefaultEnergyTag(new ItemStack(item, 1, 0), 0));
 		list.add(RFHelper.setDefaultEnergyTag(new ItemStack(item, 1, 0), maxEnergy));
