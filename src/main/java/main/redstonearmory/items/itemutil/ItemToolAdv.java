@@ -111,8 +111,10 @@ public abstract class ItemToolAdv extends ItemTool {
             return harvestLevel;
         }
         int level = getHarvestLevel(stack, toolClass);
-        if (level == -1 && isClassValid(toolClass, stack) && toolClasses.contains(toolClass)) {
-            level = toolMaterial.getHarvestLevel();
+        if (toolClasses.size() > 0) {
+            if (level == -1 && isClassValid(toolClass, stack) && toolClasses.contains(toolClass)) {
+                level = toolMaterial.getHarvestLevel();
+            }
         }
         return getHarvestLevel(stack, level);
     }
@@ -125,11 +127,13 @@ public abstract class ItemToolAdv extends ItemTool {
     @Override
     public float getStrVsBlock(ItemStack stack, Block block, int meta) {
 
-        for (String type : getToolClasses(stack)) {
-            int level = getHarvestLevel(stack, type);
+        if (toolClasses.size() > 0) {
+            for (String type : getToolClasses(stack)) {
+                int level = getHarvestLevel(stack, type);
 
-            if (ForgeHooks.isToolEffective(stack, block, meta)) {
-                return getEfficiency(stack);
+                if (ForgeHooks.isToolEffective(stack, block, meta)) {
+                    return getEfficiency(stack);
+                }
             }
         }
         return getStrVsBlock(stack, block, meta);

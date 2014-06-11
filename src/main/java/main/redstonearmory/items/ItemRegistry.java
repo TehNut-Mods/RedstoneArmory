@@ -32,7 +32,7 @@ public class ItemRegistry {
 
 //		//tools
         if (ConfigHandler.enableEnderiumAxe) {
-            axeGelidEnderium = new ItemGelidEnderiumAxe(ItemInfo.AXE_GELID_ENDERIUM_ID, enderium).setUnlocalizedName(ModInformation.ID + ItemInfo.AXE_GELID_ENDERIUM_UNLOCALIZED_NAME);
+            axeGelidEnderium = new ItemGelidEnderiumAxe(ItemInfo.AXE_GELID_ENDERIUM_ID, enderium, Integer.MAX_VALUE).setUnlocalizedName(ModInformation.ID + ItemInfo.AXE_GELID_ENDERIUM_UNLOCALIZED_NAME);
             GameRegistry.registerItem(axeGelidEnderium, ItemInfo.AXE_GELID_ENDERIUM_KEY);
         }
         if (ConfigHandler.enableEnderiumBattleWrench) {
@@ -40,11 +40,11 @@ public class ItemRegistry {
             GameRegistry.registerItem(battleWrenchGelidEnderium, ItemInfo.BATTLEWRENCH_GELID_ENDERIUM_KEY);
         }
         if (ConfigHandler.enableEnderiumPickaxe) {
-            pickaxeGelidEnderium = new ItemGelidEnderiumPickaxe(ItemInfo.PICKAXE_GELID_ENDERIUM_ID, enderium).setUnlocalizedName(ModInformation.ID + ItemInfo.PICKAXE_GELID_ENDERIUM_UNLOCALIZED_NAME);
+            pickaxeGelidEnderium = new ItemGelidEnderiumPickaxe(ItemInfo.PICKAXE_GELID_ENDERIUM_ID, enderium, Integer.MAX_VALUE).setUnlocalizedName(ModInformation.ID + ItemInfo.PICKAXE_GELID_ENDERIUM_UNLOCALIZED_NAME);
             GameRegistry.registerItem(pickaxeGelidEnderium, ItemInfo.PICKAXE_GELID_ENDERIUM_KEY);
         }
         if (ConfigHandler.enableEnderiumShovel) {
-            shovelGelidEnderium = new ItemGelidEnderiumShovel(ItemInfo.SHOVEL_GELID_ENDERIUM_ID, enderium).setUnlocalizedName(ModInformation.ID + ItemInfo.SHOVEL_GELID_ENDERIUM_UNLOCALIZED_NAME);
+            shovelGelidEnderium = new ItemGelidEnderiumShovel(ItemInfo.SHOVEL_GELID_ENDERIUM_ID, enderium, Integer.MAX_VALUE).setUnlocalizedName(ModInformation.ID + ItemInfo.SHOVEL_GELID_ENDERIUM_UNLOCALIZED_NAME);
             GameRegistry.registerItem(shovelGelidEnderium, ItemInfo.SHOVEL_GELID_ENDERIUM_KEY);
         }
         if (ConfigHandler.enableEnderiumSickle) {
