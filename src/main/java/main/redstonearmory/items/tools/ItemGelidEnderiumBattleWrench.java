@@ -3,8 +3,8 @@ package main.redstonearmory.items.tools;
 import buildcraft.api.tools.IToolWrench;
 import cofh.api.block.IDismantleable;
 import cofh.api.energy.IEnergyContainerItem;
-import cpw.mods.fml.client.FMLClientHandler;
 import ic2.api.tile.IWrenchable;
+import main.redstonearmory.util.BlockHelper;
 import net.minecraft.block.Block;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -17,6 +17,8 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import railcraft.api.core.items.IToolCrowbar;
+
+import java.util.List;
 
 public class ItemGelidEnderiumBattleWrench extends ItemGelidEnderiumSword implements IToolCrowbar, IToolWrench, IEnergyContainerItem {
 
@@ -50,7 +52,7 @@ public class ItemGelidEnderiumBattleWrench extends ItemGelidEnderiumSword implem
 		if (!player.capabilities.isCreativeMode && getEnergyStored(stack) < getEnergyPerUse(stack)) {
 			return false;
 		}
-		Block block = world.getBlock(x, y, z);
+		Block block = Block.blocksList[world.getBlockId(x, y, z)];
 
 		if (world.isRemote && player.isSneaking() && block instanceof IDismantleable
 				&& ((IDismantleable) block).canDismantle(player, world, x, y, z)) {
@@ -69,14 +71,14 @@ public class ItemGelidEnderiumBattleWrench extends ItemGelidEnderiumSword implem
 
 				if (!world.isRemote) {
 					String soundName = block.stepSound.getBreakSound();
-					FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.6F));
+					//FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.6F));
 				}
 			} else {
 				world.setBlockMetadataWithNotify(x, y, z, BlockHelper.rotateVanillaBlock(world, block, x, y, z), 3);
 
 				if (!world.isRemote) {
 					String soundName = block.stepSound.getBreakSound();
-					FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.8F));
+					//FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.8F));
 				}
 			}
 			if (!player.capabilities.isCreativeMode) {
@@ -90,7 +92,7 @@ public class ItemGelidEnderiumBattleWrench extends ItemGelidEnderiumSword implem
 			player.swingItem();
 			return world.isRemote;
 		}
-		TileEntity tile = world.getTileEntity(x, y, z);
+		TileEntity tile = world.getBlockTileEntity(x, y, z);
 
 		if (tile instanceof IWrenchable) {
 			IWrenchable wrenchable = (IWrenchable) tile;
@@ -108,7 +110,7 @@ public class ItemGelidEnderiumBattleWrench extends ItemGelidEnderiumSword implem
 				if (dropBlock != null) {
 					world.setBlockToAir(x, y, z);
 					if (world.isRemote) {
-						List<ItemStack> drops = block.getDrops(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+						List<ItemStack> drops = block.getBlockDropped(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
 
 						if (drops.isEmpty()) {
 							drops.add(dropBlock);

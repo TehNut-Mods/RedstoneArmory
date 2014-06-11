@@ -17,7 +17,6 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.EnumToolMaterial;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
@@ -43,9 +42,9 @@ public abstract class ItemToolRF extends ItemToolAdv implements IEmpowerableItem
 
 	public int damage = 0;
 
-	public ItemToolRF(EnumToolMaterial toolMaterial) {
+	public ItemToolRF(int id, EnumToolMaterial toolMaterial) {
 
-		super(0, 0F, toolMaterial);
+		super(id, 0F, toolMaterial);
 		this.setNoRepair();
 		this.hasSubtypes = true;
 		this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
@@ -90,8 +89,8 @@ public abstract class ItemToolRF extends ItemToolAdv implements IEmpowerableItem
 		return EnumRarity.uncommon;
 	}
 
-//	@Override
-	public void getSubItems(Item item, CreativeTabs tab, List list) {
+	@Override
+	public void getSubItems(int item, CreativeTabs tab, List list) {
 
 		list.add(RFHelper.setDefaultEnergyTag(new ItemStack(item, 1, 0), 0));
 		list.add(RFHelper.setDefaultEnergyTag(new ItemStack(item, 1, 0), maxEnergy));

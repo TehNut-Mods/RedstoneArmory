@@ -1,5 +1,6 @@
 package main.redstonearmory.items.tools;
 
+import codechicken.lib.vec.Vector3;
 import cofh.api.energy.IEnergyContainerItem;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;

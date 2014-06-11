@@ -13,11 +13,11 @@ public class CreativeTabRedstoneArmory extends CreativeTabs {
 
 	@Override
 	public ItemStack getIconItemStack() {
-		return new ItemStack(ItemRegistry.axeGelidEnderium, 1, 0);
+		return new ItemStack(ItemRegistry.materialGelidEnderium, 1, 0);
 	}
 
 	@Override
 	public Item getTabIconItem() {
-		return ItemRegistry.axeGelidEnderium;
+		return ItemRegistry.materialGelidEnderium;
 	}
 }
