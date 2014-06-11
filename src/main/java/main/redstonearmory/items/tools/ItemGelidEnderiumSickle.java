@@ -1,16 +1,22 @@
 package main.redstonearmory.items.tools;
 
+import main.redstonearmory.ModInformation;
 import main.redstonearmory.items.itemutil.ItemToolRF;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 public class ItemGelidEnderiumSickle extends ItemToolRF {
+
+	Icon activeIcon;
+	Icon drainedIcon;
 
     public int radius = 3;
 
@@ -35,6 +41,20 @@ public class ItemGelidEnderiumSickle extends ItemToolRF {
         this.radius = radius;
         return this;
     }
+
+	@Override
+	public Icon getIcon(ItemStack stack, int pass) {
+
+		return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
+	}
+
+	@Override
+	public void registerIcons(IconRegister ir) {
+
+		this.itemIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumSickle");
+		this.activeIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumSickle_active");
+		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumSickle_drained");
+	}
 
     @Override
     public boolean canHarvestBlock(Block block, ItemStack stack) {

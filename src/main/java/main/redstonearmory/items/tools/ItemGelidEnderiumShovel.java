@@ -1,14 +1,17 @@
 package main.redstonearmory.items.tools;
 
+import main.redstonearmory.ModInformation;
 import main.redstonearmory.items.itemutil.ItemToolRF;
 import main.redstonearmory.util.KeyboardHandler;
 import main.redstonearmory.util.TextHelper;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
@@ -18,6 +21,9 @@ import net.minecraftforge.event.entity.player.BonemealEvent;
 import java.util.List;
 
 public class ItemGelidEnderiumShovel extends ItemToolRF {
+
+	Icon activeIcon;
+	Icon drainedIcon;
 
     int range = 5;
 
@@ -42,6 +48,20 @@ public class ItemGelidEnderiumShovel extends ItemToolRF {
         this(id ,toolMaterial);
         this.harvestLevel = harvestLevel;
     }
+
+	@Override
+	public Icon getIcon(ItemStack stack, int pass) {
+
+		return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
+	}
+
+	@Override
+	public void registerIcons(IconRegister ir) {
+
+		this.itemIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumShovel");
+		this.activeIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumShovel_active");
+		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumShovel_drained");
+	}
 
     //	@Override
     public boolean func_150897_b(Block block) {

@@ -1,14 +1,17 @@
 package main.redstonearmory.items.tools;
 
+import main.redstonearmory.ModInformation;
 import main.redstonearmory.items.itemutil.ItemToolRF;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.WorldInfo;
@@ -16,6 +19,9 @@ import net.minecraft.world.storage.WorldInfo;
 import java.util.Random;
 
 public class ItemGelidEnderiumAxe extends ItemToolRF {
+
+	Icon activeIcon;
+	Icon drainedIcon;
 
     Random random = new Random();
 
@@ -38,6 +44,20 @@ public class ItemGelidEnderiumAxe extends ItemToolRF {
         this(id, toolMaterial);
         this.harvestLevel = harvestLevel;
     }
+
+	@Override
+	public Icon getIcon(ItemStack stack, int pass) {
+
+		return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
+	}
+
+	@Override
+	public void registerIcons(IconRegister ir) {
+
+		this.itemIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumAxe");
+		this.activeIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumAxe_active");
+		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumAxe_drained");
+	}
 
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World world, int blockID, int x, int y, int z, EntityLivingBase entity) {

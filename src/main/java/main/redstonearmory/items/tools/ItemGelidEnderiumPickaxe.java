@@ -1,20 +1,27 @@
 package main.redstonearmory.items.tools;
 
 import gnu.trove.set.hash.THashSet;
+import main.redstonearmory.ModInformation;
 import main.redstonearmory.items.itemutil.ItemToolRF;
 import main.redstonearmory.util.MathHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 
 import java.util.Random;
 
 public class ItemGelidEnderiumPickaxe extends ItemToolRF {
-    int range = 4;
+
+	Icon activeIcon;
+	Icon drainedIcon;
+
+	int range = 4;
     Random random = new Random();
 
     public THashSet<Block> effectiveBlocksCharged = new THashSet<Block>();
@@ -37,6 +44,20 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
         this(id, toolMaterial);
         this.harvestLevel = harvestLevel;
     }
+
+	@Override
+	public Icon getIcon(ItemStack stack, int pass) {
+
+		return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
+	}
+
+	@Override
+	public void registerIcons(IconRegister ir) {
+
+		this.itemIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumPickaxe");
+		this.activeIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumPickaxe_active");
+		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumPickaxe_drained");
+	}
 
     @Override
     protected THashSet<Block> getEffectiveBlocks(ItemStack stack) {

@@ -4,8 +4,10 @@ import buildcraft.api.tools.IToolWrench;
 import cofh.api.block.IDismantleable;
 import cofh.api.energy.IEnergyContainerItem;
 import ic2.api.tile.IWrenchable;
+import main.redstonearmory.ModInformation;
 import main.redstonearmory.util.BlockHelper;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
@@ -14,6 +16,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import railcraft.api.core.items.IToolCrowbar;
@@ -27,6 +30,20 @@ public class ItemGelidEnderiumBattleWrench extends ItemGelidEnderiumSword implem
 		super(par1, toolMaterial);
 		damage = 6;
 		damageCharged = 3;
+	}
+
+	@Override
+	public Icon getIcon(ItemStack stack, int pass) {
+
+		return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
+	}
+
+	@Override
+	public void registerIcons(IconRegister ir) {
+
+		this.itemIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench");
+		this.activeIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench_active");
+		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench_drained");
 	}
 
 	@Override

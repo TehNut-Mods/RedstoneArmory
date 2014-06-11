@@ -5,18 +5,18 @@ itemGroup.redstonearmory.creativetab.name=Redstone Armory
 tile.redstonearmory.blocks.enderium.gelid.name=Block of Gelid Enderium
 
 //ITEM NAMES
-item.redstonearmory.items.material.gelidenderium.ingot.name=Gelid Enderium Ingot
-item.redstonearmory.items.material.gelidenderium.nugget.name=Gelid Enderium Nugget
-item.redstonearmory.items.material.gelidenderium.gem.name=Gelid Gem
-item.redstonearmory.items.material.gelidenderium.nothing.name=Anti-Derp Protocol
+item.redstonearmory.material.gelidenderium.ingot.name=Gelid Enderium Ingot
+item.redstonearmory.material.gelidenderium.nugget.name=Gelid Enderium Nugget
+item.redstonearmory.material.gelidenderium.gem.name=Gelid Gem
+item.redstonearmory.material.gelidenderium.nothing.name=Anti-Derp Protocol
 
 //TOOL NAMES
-item.redstonearmory.items.tools.gelidenderium.axe.name=Gelid Enderium Axe
-item.redstonearmory.items.tools.gelidenderium.battlewrench.name=Gelid Enderium BattleWrench
-item.redstonearmory.items.tools.gelidenderium.pickaxe.name=Gelid Enderium Pickaxe
-item.redstonearmory.items.tools.gelidenderium.shovel.name=Gelid Enderium Shovel
-item.redstonearmory.items.tools.gelidenderium.sickle.name=Gelid Enderium Sickle
-item.redstonearmory.items.tools.gelidenderium.sword.name=Gelid Enderium Sword
+item.redstonearmory.tool.gelidenderium.axe.name=Gelid Enderium Axe
+item.redstonearmory.tool.gelidenderium.battlewrench.name=Gelid Enderium BattleWrench
+item.redstonearmory.tool.gelidenderium.pickaxe.name=Gelid Enderium Pickaxe
+item.redstonearmory.tool.gelidenderium.shovel.name=Gelid Enderium Shovel
+item.redstonearmory.tool.gelidenderium.sickle.name=Gelid Enderium Sickle
+item.redstonearmory.tool.gelidenderium.sword.name=Gelid Enderium Sword
 
 //TOOL INFO
 info.redstonearmory.tool.gelidenderium.axe=Also serves as '/weather clear'
@@ -40,7 +40,7 @@ info.redstonearmory.tool.damageAttack=Attack Damage
 info.redstonearmory.tool.damageFlux=Flux Damage
 
 //CONTROLS
-info.redstonearmory.keys.shift=Shift
-info.redstonearmory.keys.control=Control
+info.redstonearmory.key.shift=Shift
+info.redstonearmory.key.control=Control
 
 

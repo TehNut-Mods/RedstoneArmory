@@ -17,7 +17,7 @@ public class BlockIngotStorage extends Block {
 	public BlockIngotStorage(int par1) {
 			super(par1, Material.iron);
 			setStepSound(soundMetalFootstep);
-			setUnlocalizedName(ModInformation.ID + ".blocks.enderium.gelid");
+			setUnlocalizedName(ModInformation.ID + ".enderium.gelid");
 			setCreativeTab(RedstoneArmory.tabRedstoneArmory);
 	}
 

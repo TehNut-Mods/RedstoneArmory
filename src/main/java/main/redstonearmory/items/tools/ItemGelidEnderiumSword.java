@@ -7,6 +7,8 @@ import com.google.common.collect.Multimap;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ConfigHandler;
+import main.redstonearmory.ModInformation;
+import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.items.itemutil.IEmpowerableItem;
 import main.redstonearmory.util.*;
 import net.minecraft.block.Block;
@@ -49,6 +51,21 @@ public class ItemGelidEnderiumSword extends ItemSword implements IEmpowerableIte
 		super(par1, toolMaterial);
 		setNoRepair();
 		hasSubtypes();
+		this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
+	}
+
+	@Override
+	public Icon getIcon(ItemStack stack, int pass) {
+
+		return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
+	}
+
+	@Override
+	public void registerIcons(IconRegister ir) {
+
+		this.itemIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumSword");
+		this.activeIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumSword_active");
+		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumSword_drained");
 	}
 
 	protected int useEnergy(ItemStack stack, boolean simulate) {
@@ -255,20 +272,6 @@ public class ItemGelidEnderiumSword extends ItemSword implements IEmpowerableIte
 	public Icon getIconIndex(ItemStack stack) {
 
 		return getIcon(stack, 0);
-	}
-
-	@Override
-	public Icon getIcon(ItemStack stack, int pass) {
-
-		return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
-	}
-
-	@Override
-	public void registerIcons(IconRegister ir) {
-
-		this.itemIcon = ir.registerIcon(this.getIconString());
-		this.activeIcon = ir.registerIcon(this.getIconString() + "_Active");
-		this.drainedIcon = ir.registerIcon(this.getIconString() + "_Drained");
 	}
 
 	/* IEmpowerableItem */
