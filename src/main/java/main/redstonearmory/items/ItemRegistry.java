@@ -30,7 +30,7 @@ public class ItemRegistry {
         materialGelidEnderium = new ItemGelidEnderiumMaterials(ItemInfo.MATERIAL_GELID_ENDERIUM_ID).setUnlocalizedName(ModInformation.ID + ItemInfo.MATERIAL_GELID_ENDERIUM_UNLOCALIZED_NAME);
         GameRegistry.registerItem(materialGelidEnderium, "ItemGelidEnderiumMaterials");
 
-//		//tools
+		//tools
         if (ConfigHandler.enableEnderiumAxe) {
             axeGelidEnderium = new ItemGelidEnderiumAxe(ItemInfo.AXE_GELID_ENDERIUM_ID, enderium, Integer.MAX_VALUE).setUnlocalizedName(ModInformation.ID + ItemInfo.AXE_GELID_ENDERIUM_UNLOCALIZED_NAME);
             GameRegistry.registerItem(axeGelidEnderium, ItemInfo.AXE_GELID_ENDERIUM_KEY);

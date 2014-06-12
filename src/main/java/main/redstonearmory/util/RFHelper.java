@@ -1,5 +1,7 @@
 package main.redstonearmory.util;
 
+import cofh.api.energy.IEnergyContainerItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -62,4 +64,22 @@ public class RFHelper {
     public static int getEnergyStored(ItemStack container) {
         return getRFStored(container);
     }
+
+
+	public static int insertEnergyIntoHeldContainer(EntityPlayer player, int maxReceive, boolean simulate) {
+
+		ItemStack container = player.getCurrentEquippedItem();
+
+		return isEnergyContainerItem(container) ? ((IEnergyContainerItem) container.getItem()).receiveEnergy(container, maxReceive, simulate) : 0;
+	}
+
+	public static boolean isPlayerHoldingEnergyContainerItem(EntityPlayer player) {
+
+		return isEnergyContainerItem(player.getCurrentEquippedItem());
+	}
+
+	public static boolean isEnergyContainerItem(ItemStack container) {
+
+		return container != null && container.getItem() instanceof IEnergyContainerItem;
+	}
 }

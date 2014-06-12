@@ -33,6 +33,7 @@ import java.util.Random;
 
 public class ItemGelidEnderiumSword extends ItemSword implements IEmpowerableItem, IEnergyContainerItem {
 
+	String tool = "sword";
 	Icon activeIcon;
 	Icon drainedIcon;
 
@@ -40,7 +41,7 @@ public class ItemGelidEnderiumSword extends ItemSword implements IEmpowerableIte
 	int radius = 5;
 	public int maxEnergy = 160000;
 	public int maxTransfer = 1600;
-	public int energyPerUse = 200;
+	public int energyPerUse = 350;
 	public int energyPerUseCharged = 800;
 
 	public int damage = 8;
@@ -179,7 +180,7 @@ public class ItemGelidEnderiumSword extends ItemSword implements IEmpowerableIte
 		return 0;
 	}
 
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@SuppressWarnings({"rawtypes", "unchecked"})
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
@@ -188,15 +189,15 @@ public class ItemGelidEnderiumSword extends ItemSword implements IEmpowerableIte
 		}
 		if (!KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
 			list.add(TextHelper.shiftForMoreInfo);
-			if(ConfigHandler.addItemLoreToItems) {
+			if (ConfigHandler.addItemLoreToItems) {
 				list.add(TextHelper.controlForLore);
 			}
-		} else if(KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown()) {
+		} else if (KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown()) {
 			list.add(TextHelper.shiftForMoreInfo);
-			if(ConfigHandler.addItemLoreToItems) {
+			if (ConfigHandler.addItemLoreToItems) {
 				list.add(TextHelper.controlForLore);
 			}
-		} else if(KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
+		} else if (KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
 			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tool.charge") + " " + RFHelper.getRFStored(stack) + " / " + maxEnergy + " " + TextHelper.localize("info.redstonearmory.tool.rf") + TextHelper.END);
 			list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
 			if (isEmpowered(stack)) {
@@ -204,42 +205,11 @@ public class ItemGelidEnderiumSword extends ItemSword implements IEmpowerableIte
 			} else {
 				list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
 			}
-		} else if(!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
-			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tools.default") + TextHelper.END);
+			list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.sword"));
+		} else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
+			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
 		}
 	}
-//
-// @Override
-//	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
-//
-//		if (TextHelper.displayShiftForDetail && !TextHelper.isShiftKeyDown()) {
-//			list.add();
-//		}
-//		if (!TextHelper.isShiftKeyDown()) {
-//			return;
-//		}
-//		if (stack.stackTagCompound == null) {
-//			EnergyHelper.setDefaultEnergyTag(stack, 0);
-//		}
-//		list.add(TextHelper.localize("info.redstonearmory.tool.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + maxEnergy + " RF");
-//
-//		list.add(TextHelper.ORANGE + getEnergyPerUse(stack) + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
-//		if (isEmpowered(stack)) {
-//			list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " "
-//					+ ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOff")
-//					+ TextHelper.END);
-//		} else {
-//			list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " "
-//					+ ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn")
-//					+ TextHelper.END);
-//		}
-//		if (getEnergyStored(stack) >= getEnergyPerUse(stack)) {
-//			list.add("");
-//			list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.redstonearmory.tool.damageAttack") + TextHelper.END);
-//			list.add(TextHelper.BRIGHT_GREEN + "+" + (isEmpowered(stack) ? damageCharged : 1) + " " + TextHelper.localize("info.redstonearmory.tool.damageFlux")
-//					+ TextHelper.END);
-//		}
-//	}
 
 	@Override
 	public int getDisplayDamage(ItemStack stack) {

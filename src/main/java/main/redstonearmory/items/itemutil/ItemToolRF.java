@@ -35,9 +35,11 @@ public abstract class ItemToolRF extends ItemToolAdv implements IEmpowerableItem
     Icon activeIcon;
     Icon drainedIcon;
 
+	String tool = "default";
+
     public int maxEnergy = 160000;
     public int maxTransfer = 1600;
-    public int energyPerUse = 200;
+    public int energyPerUse = 350;
     public int energyPerUseCharged = 800;
 
     public int damage = 0;
@@ -148,8 +150,9 @@ public abstract class ItemToolRF extends ItemToolAdv implements IEmpowerableItem
             } else {
                 list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
             }
+	        list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.default"));
         } else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
-            list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tools.default") + TextHelper.END);
+            list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
         }
     }
 

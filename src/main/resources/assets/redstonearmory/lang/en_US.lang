@@ -2,12 +2,13 @@
 itemGroup.redstonearmory.creativetab.name=Redstone Armory
 
 //BLOCK NAMES
-tile.redstonearmory.blocks.enderium.gelid.name=Block of Gelid Enderium
+tile.redstonearmory.enderium.gelid.name=Block of Gelid Enderium
 
 //ITEM NAMES
 item.redstonearmory.material.gelidenderium.ingot.name=Gelid Enderium Ingot
 item.redstonearmory.material.gelidenderium.nugget.name=Gelid Enderium Nugget
 item.redstonearmory.material.gelidenderium.gem.name=Gelid Gem
+item.redstonearmory.material.gelidenderium.rod.name=Gelid Rod
 item.redstonearmory.material.gelidenderium.nothing.name=Anti-Derp Protocol
 
 //TOOL NAMES
@@ -43,4 +44,11 @@ info.redstonearmory.tool.damageFlux=Flux Damage
 info.redstonearmory.key.shift=Shift
 info.redstonearmory.key.control=Control
 
-
+//LORE
+info.redstonearmory.lore.default=Default Text
+info.redstonearmory.lore.axe=This is an axe.
+info.redstonearmory.lore.battlewrench=This is a battle wrench.
+info.redstonearmory.lore.pickaxe=This is a pickaxe.
+info.redstonearmory.lore.shovel=This is a shovel.
+info.redstonearmory.lore.sickle=This is a sickle.
+info.redstonearmory.lore.sword=This is a sword.

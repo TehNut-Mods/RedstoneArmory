@@ -38,6 +38,10 @@ public class ItemGelidEnderiumMaterials extends Item {
 				name = "gem";
 				break;
 			}
+			case 3: {
+				name = "rod";
+				break;
+			}
 			default:
 				name = "nothing";
 				break;
@@ -55,12 +59,13 @@ public class ItemGelidEnderiumMaterials extends Item {
 		this.icon[0] = ri.registerIcon(ModInformation.ID + ":materials/ingotGelidEnderium");
 		this.icon[1] = ri.registerIcon(ModInformation.ID + ":materials/nuggetGelidEnderium");
 		this.icon[2] = ri.registerIcon(ModInformation.ID + ":materials/gemGelidEnderium");
+		this.icon[3] = ri.registerIcon(ModInformation.ID + ":materials/rodGelidEnderium");
 	}
 
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(int id, CreativeTabs par2CreativeTabs, List list) {
-		for (int i = 0; i <= 2; i++) {
+		for (int i = 0; i <= 3; i++) {
 			list.add(new ItemStack(this, 1, i));
 		}
 	}

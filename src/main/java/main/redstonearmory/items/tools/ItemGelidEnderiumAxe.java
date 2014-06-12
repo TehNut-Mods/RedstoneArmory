@@ -1,7 +1,13 @@
 package main.redstonearmory.items.tools;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import main.redstonearmory.ConfigHandler;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.items.itemutil.ItemToolRF;
+import main.redstonearmory.util.KeyboardHandler;
+import main.redstonearmory.util.RFHelper;
+import main.redstonearmory.util.TextHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -16,12 +22,15 @@ import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.WorldInfo;
 
+import java.util.List;
 import java.util.Random;
 
 public class ItemGelidEnderiumAxe extends ItemToolRF {
 
 	Icon activeIcon;
 	Icon drainedIcon;
+
+	String tool = "axe";
 
     Random random = new Random();
 
@@ -132,4 +141,34 @@ public class ItemGelidEnderiumAxe extends ItemToolRF {
         return true;
     }
 
+	@SuppressWarnings({"rawtypes", "unchecked"})
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
+		if (stack.stackTagCompound == null) {
+			RFHelper.setDefaultEnergyTag(stack, 0);
+		}
+		if (!KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
+			list.add(TextHelper.shiftForMoreInfo);
+			if (ConfigHandler.addItemLoreToItems) {
+				list.add(TextHelper.controlForLore);
+			}
+		} else if (KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown()) {
+			list.add(TextHelper.shiftForMoreInfo);
+			if (ConfigHandler.addItemLoreToItems) {
+				list.add(TextHelper.controlForLore);
+			}
+		} else if (KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
+			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tool.charge") + " " + RFHelper.getRFStored(stack) + " / " + maxEnergy + " " + TextHelper.localize("info.redstonearmory.tool.rf") + TextHelper.END);
+			list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
+			if (isEmpowered(stack)) {
+				list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOff") + TextHelper.END);
+			} else {
+				list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
+			}
+			list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.axe"));
+		} else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
+			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
+		}
+	}
 }
