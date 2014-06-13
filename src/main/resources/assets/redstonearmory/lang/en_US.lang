@@ -35,7 +35,8 @@ info.redstonearmory.tool.chargeOff=to Quell
 info.redstonearmory.tool.energyPerUse=RF Per Use
 info.redstonearmory.tool.charge=Charge
 info.redstonearmory.tool.rf=RF
-info.redstonearmory.tool.info=for more information
+info.redstonearmory.tool.hold=Hold
+info.redstonearmory.tool.info=for Details
 info.redstonearmory.tool.lore=for item lore
 info.redstonearmory.tool.damageAttack=Attack Damage
 info.redstonearmory.tool.damageFlux=Flux Damage
@@ -46,9 +47,9 @@ info.redstonearmory.key.control=Control
 
 //LORE
 info.redstonearmory.lore.default=Default Text
-info.redstonearmory.lore.axe=This is an axe.
-info.redstonearmory.lore.battlewrench=This is a battle wrench.
-info.redstonearmory.lore.pickaxe=This is a pickaxe.
-info.redstonearmory.lore.shovel=This is a shovel.
-info.redstonearmory.lore.sickle=This is a sickle.
-info.redstonearmory.lore.sword=This is a sword.
+info.redstonearmory.lore.axe=According to Wikipedia (IT'S A VALID SOURCE), axes go with weather. Yeah, I didn't believe it, either. Anyways, when empowered, the axe will allow the player to use a large amount of energy to rid the world of rain as well as spawning lightning bolts on the block they right click. Careful, though. It's not completely stable. ;)
+info.redstonearmory.lore.battlewrench=The idea behind the BattleWrench ability is swinging the wrench in a wide arc damaging mobs/players/etc in a 2 (4 if empowered) block radius. In order to "simulate" the swing, the player will be turned slightly as if the momentum moved them. This is not how we intended (wanted the player to spin in a full circle) but this works, too.
+info.redstonearmory.lore.pickaxe=Since it's an ENDERium pickaxe, why not add some ENDER abilities? Instead of breaking stone, it will teleport a 3x3 area of it behind you. However if you mine ores, it will only do the single block.
+info.redstonearmory.lore.shovel=Since the standard Fluxed Shovel is a hoe, doesn't it make sense that this is bonemeal? No? TOO BAD. IT'S BONEMEAL. EMPOWER TO PLACE MOAR BONEMEAL.
+info.redstonearmory.lore.sickle=It's... Umm... The same thing but with more energy... Yaay?
+info.redstonearmory.lore.sword=Ever wanted the ability to suck in nearby items while blocking? No? Well now you can! Empower for more suckage.

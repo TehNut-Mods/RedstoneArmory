@@ -53,11 +53,10 @@ public class RedstoneArmory {
         if (event.getSide() == Side.CLIENT) {
             MinecraftForge.EVENT_BUS.register(new CapeHandler());
         }
-
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-
+	    logger.info("Protip- Don't hold control.");
     }
 }
