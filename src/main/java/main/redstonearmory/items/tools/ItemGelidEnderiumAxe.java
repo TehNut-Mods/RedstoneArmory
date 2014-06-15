@@ -68,31 +68,30 @@ public class ItemGelidEnderiumAxe extends ItemToolRF {
 		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumAxe_drained");
 	}
 
-  public boolean onBlockDestroyed(ItemStack stack, World world, int bId, int x, int y, int z, EntityLivingBase entity)
-  {
-    if (!(entity instanceof EntityPlayer)) {
-      return false;
-    }
-    if (Block.blocksList[bId].getBlockHardness(world, x, y, z) == 0.0D) {
-      return true;
-    }
-    EntityPlayer player = (EntityPlayer)entity;
-    if ((Block.blocksList[bId].blockMaterial == Material.wood) && (isEmpowered(stack))) {
-      for (int i = x - 2; i <= x + 2; i++) {
-        for (int k = z - 2; k <= z + 2; k++) {
-          for (int j = y - 2; j <= y + 2; j++) {
-            if (world.getBlockMaterial(i, j, k) == Material.wood) {
-              harvestBlock(world, i, j, k, player);
-            }
-          }
+    public boolean onBlockDestroyed(ItemStack stack, World world, int bId, int x, int y, int z, EntityLivingBase entity) {
+        if (!(entity instanceof EntityPlayer)) {
+            return false;
         }
-      }
+        if (Block.blocksList[bId].getBlockHardness(world, x, y, z) == 0.0D) {
+            return true;
+        }
+        EntityPlayer player = (EntityPlayer)entity;
+        if ((Block.blocksList[bId].blockMaterial == Material.wood) && isEmpowered(stack)) {
+            for (int i = x - 2; i <= x + 2; i++) {
+                for (int k = z - 2; k <= z + 2; k++) {
+                    for (int j = y - 2; j <= y + 2; j++) {
+                        if (world.getBlockMaterial(i, j, k) == Material.wood) {
+                            harvestBlock(world, i, j, k, player);
+                        }
+                    }
+                }
+            }
+        }
+        if (!player.capabilities.isCreativeMode) {
+            useEnergy(stack, false);
+        }
+        return true;
     }
-    if (!player.capabilities.isCreativeMode) {
-      useEnergy(stack, false);
-    }
-    return true;
-  }
 
 	@Override
 	public float getStrVsBlock(ItemStack stack, Block block, int meta) {
@@ -103,54 +102,46 @@ public class ItemGelidEnderiumAxe extends ItemToolRF {
 		}
 	}
 
-	@Override
-	public boolean onBlockDestroyed(ItemStack stack, World world, int blockID, int x, int y, int z, EntityLivingBase entity) {
-
-		EntityPlayer player = (EntityPlayer) entity;
-
-		if (!player.capabilities.isCreativeMode) {
-			useEnergy(stack, false);
-		}
-
-		return true;
-	}
-
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+		if(!ConfigHandler.disableAxeWeatherClear) {
+	        if (world.isRaining() && isEmpowered(stack) || world.isThundering() && isEmpowered(stack)) {
+	            WorldServer worldserver = MinecraftServer.getServer().worldServers[0];
+	            WorldInfo worldinfo = worldserver.getWorldInfo();
 
-        if (world.isRaining() && isEmpowered(stack) || world.isThundering() && isEmpowered(stack)) {
-            WorldServer worldserver = MinecraftServer.getServer().worldServers[0];
-            WorldInfo worldinfo = worldserver.getWorldInfo();
+	            int i = (300 + (new Random()).nextInt(600)) * 20;
 
-            int i = (300 + (new Random()).nextInt(600)) * 20;
+	            worldinfo.setRaining(false);
+	            worldinfo.setThundering(false);
+	            worldinfo.setRainTime(i);
 
-            worldinfo.setRaining(false);
-            worldinfo.setThundering(false);
-            worldinfo.setRainTime(i);
-
-            if (random.nextInt(50) == 0)
-                world.spawnEntityInWorld(new EntityLightningBolt(world, player.posX, player.posY, player.posZ));
-
-            if (!player.capabilities.isCreativeMode)
-                useEnergy(stack, false);
-            player.swingItem();
-        }
+	            if (random.nextInt(50) == 0) {
+	                world.spawnEntityInWorld(new EntityLightningBolt(world, player.posX, player.posY, player.posZ));
+	            }
+	            if (!player.capabilities.isCreativeMode) {
+		            useEnergy(stack, false);
+	            }
+	            player.swingItem();
+	        }
+	    }
         return stack;
     }
 
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int hitSide, float hitX, float hitY, float hitZ) {
-        if (!(getEnergyStored(stack) < energyPerUse)) {
-            if (!isEmpowered(stack)) {
-                world.spawnEntityInWorld(new EntityLightningBolt(world, x, y, z));
-            } else if (isEmpowered(stack) && getEnergyStored(stack) >= energyPerUseCharged) {
-                for (int i = 0; i <= 10; i++) {
-                    world.spawnEntityInWorld(new EntityLightningBolt(world, x, y, z));
-                    if (random.nextInt(50) == 0)
-                        world.spawnEntityInWorld(new EntityLightningBolt(world, player.posX, player.posY, player.posZ));
-                }
-            }
-        }
+	    if(!ConfigHandler.disableAxeLightning) {
+	        if (!(getEnergyStored(stack) < energyPerUse)) {
+	            if (!isEmpowered(stack)) {
+	                world.spawnEntityInWorld(new EntityLightningBolt(world, x, y, z));
+	            } else if (isEmpowered(stack) && getEnergyStored(stack) >= energyPerUseCharged) {
+	                for (int i = 0; i <= 10; i++) {
+	                    world.spawnEntityInWorld(new EntityLightningBolt(world, x, y, z));
+	                    if (random.nextInt(50) == 0)
+	                        world.spawnEntityInWorld(new EntityLightningBolt(world, player.posX, player.posY, player.posZ));
+	                }
+	            }
+	        }
+	    }
 
         if (!player.capabilities.isCreativeMode)
             useEnergy(stack, false);

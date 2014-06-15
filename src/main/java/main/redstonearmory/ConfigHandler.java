@@ -11,6 +11,7 @@ public class ConfigHandler {
 	//Categories
 	public static String id = "1- ID's";
 	public static String general = "2 - General";
+	public static String abilities = "3 - Abilities";
 
 	//Options
 	public static boolean enableEnderiumAxeCrafting;
@@ -29,6 +30,15 @@ public class ConfigHandler {
 
 	public static String empowerKey;
 	public static boolean addItemLoreToItems;
+
+	//abilities
+	public static boolean disableAxeLightning;
+	public static boolean disableAxeWeatherClear;
+	public static boolean disableAxeMultiBreak;
+	public static boolean disableBattleAxeSpin;
+	public static boolean disablePickaxeEnderDislocation;
+	public static boolean disableShovelMultiBreak;
+	public static boolean disableSwordSuckage;
 
 	public static void registerConfig(File file) {
 		Configuration config = new Configuration(file);
@@ -66,6 +76,14 @@ public class ConfigHandler {
 
 		empowerKey = config.get(general, "empowerKey", "V", "Key to press for empowering. Key names can be found here: http://www.lwjgl.org/javadoc/org/lwjgl/input/Keyboard.html - Do not add the 'KEY_' part.").getString();
 		addItemLoreToItems = config.get(general, "addItemLoreToItems", false, "Adds extra information to the item tooltip (when Control is held) that explains the tool ability in a sarcastic way.").getBoolean(false);
+
+		disableAxeLightning = config.get(abilities, "disableAxeLightning", false, "Disables a main feature of the axe - Summoning lightning on right clicking a block.").getBoolean(false);
+		disableAxeWeatherClear = config.get(abilities, "disableAxeWeatherClear", false, "Disables a main feature of the axe - Clearing weather when stormy/rainy.").getBoolean(false);
+		disableAxeMultiBreak = config.get(abilities, "disableAxeMultiBreak", false, "Disables a main feature of the axe - Breaking a large area of wood materials.").getBoolean(false);
+		disableBattleAxeSpin = config.get(abilities, "disableBattleAxeSpin", false, "Disables a main feature of the battle wrench - Spin attack").getBoolean(false);
+		disablePickaxeEnderDislocation = config.get(abilities, "disablePickaxeEnderDislocation", false, "Disables a main feature of the pickaxe - Moving a 3x3 of blocks instead of breaking them.").getBoolean(false);
+		disableShovelMultiBreak = config.get(abilities, "disableShovelMultiBreak", false, "Disables a main feature of the shovel - Breaking a large area of ground materials.").getBoolean(false);
+		disableSwordSuckage = config.get(abilities, "disableSwordSuckage", false, "Disables a main feature of the sword - Magnet mode while blocking.").getBoolean(false);
 
 		if(config.hasChanged()) {
 			config.save();
