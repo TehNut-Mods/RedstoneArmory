@@ -68,37 +68,31 @@ public class ItemGelidEnderiumAxe extends ItemToolRF {
 		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumAxe_drained");
 	}
 
-//    @Override
-//    public boolean onBlockDestroyed(ItemStack stack, World world, int blockID, int x, int y, int z, EntityLivingBase entity) {
-//
-//        Block block = Block.blocksList[world.getBlockId(x, y, z)];
-//
-//        if (!(entity instanceof EntityPlayer)) {
-//            return false;
-//        }
-//        if (block.getBlockHardness(world, x, y, z) == 0.0D) {
-//            return true;
-//        }
-//        EntityPlayer player = (EntityPlayer) entity;
-//
-		/* THIS DOES NOT WORK IN 1.6. TOM FIX YOUR SHIT. */
-
-//        if (block.blockMaterial == Material.wood && isEmpowered(stack)) {
-//            for (int i = x - 2; i <= x + 2; i++) {
-//                for (int k = z - 2; k <= z + 2; k++) {
-//                    for (int j = y - 2; j <= y + 2; j++) {
-//                        if (Block.blocksList[world.getBlockId(i, j, k)].blockMaterial == Material.wood) {
-//                            harvestBlock(world, i, j, k, player);
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//        if (!player.capabilities.isCreativeMode) {
-//            useEnergy(stack, false);
-//        }
-//        return true;
-//    }
+  public boolean onBlockDestroyed(ItemStack stack, World world, int bId, int x, int y, int z, EntityLivingBase entity)
+  {
+    if (!(entity instanceof EntityPlayer)) {
+      return false;
+    }
+    if (Block.blocksList[bId].getBlockHardness(world, x, y, z) == 0.0D) {
+      return true;
+    }
+    EntityPlayer player = (EntityPlayer)entity;
+    if ((Block.blocksList[bId].blockMaterial == Material.wood) && (isEmpowered(stack))) {
+      for (int i = x - 2; i <= x + 2; i++) {
+        for (int k = z - 2; k <= z + 2; k++) {
+          for (int j = y - 2; j <= y + 2; j++) {
+            if (world.getBlockMaterial(i, j, k) == Material.wood) {
+              harvestBlock(world, i, j, k, player);
+            }
+          }
+        }
+      }
+    }
+    if (!player.capabilities.isCreativeMode) {
+      useEnergy(stack, false);
+    }
+    return true;
+  }
 
 	@Override
 	public float getStrVsBlock(ItemStack stack, Block block, int meta) {
