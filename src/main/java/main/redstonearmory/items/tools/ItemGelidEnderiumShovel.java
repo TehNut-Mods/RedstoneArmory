@@ -77,27 +77,27 @@ public class ItemGelidEnderiumShovel extends ItemToolRF {
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World world, int blockID, int x, int y, int z, EntityLivingBase entity) {
 
-        Block block = Block.blocksList[world.getBlockId(x, y, z)];
-
-        if (!(entity instanceof EntityPlayer)) {
-            return false;
-        }
-        if (block.getBlockHardness(world, x, y, z) == 0.0D) {
-            return true;
-        }
+//        Block block = Block.blocksList[world.getBlockId(x, y, z)];
+//
+//        if (!(entity instanceof EntityPlayer)) {
+//            return false;
+//        }
+//        if (block.getBlockHardness(world, x, y, z) == 0.0D) {
+//            return true;
+//        }
         EntityPlayer player = (EntityPlayer) entity;
-
-        if (effectiveBlocks.contains(block) && isEmpowered(stack)) {
-            for (int i = x - 2; i <= x + 2; i++) {
-                for (int k = z - 2; k <= z + 2; k++) {
-                    for (int j = y - 2; j <= y + 2; j++) {
-                        if (world.getBlockId(i, j, k) == block.blockID) {
-                            harvestBlock(world, i, j, k, player);
-                        }
-                    }
-                }
-            }
-        }
+//
+//        if (effectiveBlocks.contains(block) && isEmpowered(stack)) {
+//            for (int i = x - 2; i <= x + 2; i++) {
+//                for (int k = z - 2; k <= z + 2; k++) {
+//                    for (int j = y - 2; j <= y + 2; j++) {
+//                        if (world.getBlockId(i, j, k) == block.blockID) {
+//                            harvestBlock(world, i, j, k, player);
+//                        }
+//                    }
+//                }
+//            }
+//        }
 
         if (!player.capabilities.isCreativeMode) {
             useEnergy(stack, false);
@@ -253,6 +253,15 @@ public class ItemGelidEnderiumShovel extends ItemToolRF {
             return true;
         }
     }
+
+	@Override
+	public float getStrVsBlock(ItemStack stack, Block block, int meta) {
+		if ((block.blockMaterial == Material.grass || block.blockMaterial == Material.ground || block.blockMaterial == Material.snow || block.blockMaterial == Material.craftedSnow || block.blockMaterial == Material.clay || block.blockMaterial == Material.sand) && getEnergyStored(stack) > energyPerUse) {
+			return 15F;
+		} else {
+			return 1F;
+		}
+	}
 
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	@SideOnly(Side.CLIENT)

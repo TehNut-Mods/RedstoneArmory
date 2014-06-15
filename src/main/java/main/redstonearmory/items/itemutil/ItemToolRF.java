@@ -21,6 +21,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Icon;
+import net.minecraftforge.common.ForgeHooks;
 
 import java.util.List;
 
@@ -97,14 +98,33 @@ public abstract class ItemToolRF extends ItemToolAdv implements IEmpowerableItem
         list.add(RFHelper.setDefaultEnergyTag(new ItemStack(item, 1, 0), maxEnergy));
     }
 
-    @Override
-    public float getStrVsBlock(ItemStack stack, Block block, int meta) {
+//    @Override
+//    public float getStrVsBlock(ItemStack stack, Block block, int meta) {
+//
+//        if (getEnergyStored(stack) < energyPerUse) {
+//            return 1.0F;
+//        }
+//        return super.getStrVsBlock(stack, block, meta);
+//    }
 
-        if (getEnergyStored(stack) < energyPerUse) {
-            return 1.0F;
-        }
-        return super.getStrVsBlock(stack, block, meta);
-    }
+	@Override
+	public float getStrVsBlock(ItemStack stack, Block block, int meta) {
+
+		if (getEnergyStored(stack) > energyPerUse) {
+			if (toolClasses.size() > 0) {
+				for (String type : getToolClasses(stack)) {
+					int level = getHarvestLevel(stack, type);
+
+					if (ForgeHooks.isToolEffective(stack, block, meta)) {
+						return getEfficiency(stack);
+					}
+				}
+			}
+		} else {
+			return 1.0F;
+		}
+		return getEfficiency(stack);
+	}
 
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase player) {

@@ -128,37 +128,46 @@ public class ItemGelidEnderiumSickle extends ItemToolRF {
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World world, int blockId, int x, int y, int z, EntityLivingBase entity) {
 
-        Block block = Block.blocksList[world.getBlockId(x, y, z)];
-
-        if (!(entity instanceof EntityPlayer)) {
-            return false;
-        }
+//        Block block = Block.blocksList[world.getBlockId(x, y, z)];
+//
+//        if (!(entity instanceof EntityPlayer)) {
+//            return false;
+//        }
         EntityPlayer player = (EntityPlayer) entity;
-
-        if (block.getBlockHardness(world, x, y, z) != 0.0D && !effectiveMaterials.contains(block.blockMaterial)) {
-            if (!player.capabilities.isCreativeMode) {
-                useEnergy(stack, false);
-            }
-            return false;
-        }
+//
+//        if (block.getBlockHardness(world, x, y, z) != 0.0D && !effectiveMaterials.contains(block.blockMaterial)) {
+//            if (!player.capabilities.isCreativeMode) {
+//                useEnergy(stack, false);
+//            }
+//            return false;
+//        }
         boolean used = false;
-        int boost = isEmpowered(stack) ? 1 : 0;
-
-        for (int i = x - (radius + boost); i <= x + (radius + boost); i++) {
-            for (int k = z - (radius + boost); k <= z + (radius + boost); k++) {
-                for (int j = y - boost; j <= y + boost; j++) {
-                    if (isValidHarvestMaterial(stack, world, block.blockID, i, j, k)) {
-                        harvestBlock(world, i, j, k, player);
-                        used = true;
-                    }
-                }
-            }
-        }
-        if (used) {
+//        int boost = isEmpowered(stack) ? 1 : 0;
+//
+//        for (int i = x - (radius + boost); i <= x + (radius + boost); i++) {
+//            for (int k = z - (radius + boost); k <= z + (radius + boost); k++) {
+//                for (int j = y - boost; j <= y + boost; j++) {
+//                    if (isValidHarvestMaterial(stack, world, block.blockID, i, j, k)) {
+//                        harvestBlock(world, i, j, k, player);
+//                        used = true;
+//                    }
+//                }
+//            }
+//        }
+        if (used && !player.capabilities.isCreativeMode) {
             useEnergy(stack, false);
         }
         return used;
     }
+
+	@Override
+	public float getStrVsBlock(ItemStack stack, Block block, int meta) {
+		if ((block.blockMaterial == Material.leaves) && getEnergyStored(stack) > energyPerUse) {
+			return 15F;
+		} else {
+			return 1F;
+		}
+	}
 
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	@SideOnly(Side.CLIENT)

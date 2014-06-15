@@ -15,14 +15,13 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemTool;
 import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeHooks;
 
 import java.util.Set;
 
 public abstract class ItemToolAdv extends ItemTool {
 
-    private final TLinkedHashSet<String> toolClasses = new TLinkedHashSet<String>();
-    private final Set<String> immutableClasses = java.util.Collections.unmodifiableSet(toolClasses);
+    public final TLinkedHashSet<String> toolClasses = new TLinkedHashSet<String>();
+    public final Set<String> immutableClasses = java.util.Collections.unmodifiableSet(toolClasses);
 
     protected THashSet<Block> effectiveBlocks = new THashSet<Block>();
     protected THashSet<Material> effectiveMaterials = new THashSet<Material>();
@@ -124,19 +123,19 @@ public abstract class ItemToolAdv extends ItemTool {
         return toolClasses.isEmpty() ? getToolClasses(stack) : immutableClasses;
     }
 
-    @Override
-    public float getStrVsBlock(ItemStack stack, Block block, int meta) {
-
-        if (toolClasses.size() > 0) {
-            for (String type : getToolClasses(stack)) {
-                int level = getHarvestLevel(stack, type);
-
-                if (ForgeHooks.isToolEffective(stack, block, meta)) {
-                    return getEfficiency(stack);
-                }
-            }
-        }
-        return getStrVsBlock(stack, block, meta);
-    }
+//    @Override
+//    public float getStrVsBlock(ItemStack stack, Block block, int meta) {
+//
+//        if (toolClasses.size() > 0) {
+//            for (String type : getToolClasses(stack)) {
+//                int level = getHarvestLevel(stack, type);
+//
+//                if (ForgeHooks.isToolEffective(stack, block, meta)) {
+//                    return getEfficiency(stack);
+//                }
+//            }
+//        }
+//        return getStrVsBlock(stack, block, meta);
+//    }
 
 }

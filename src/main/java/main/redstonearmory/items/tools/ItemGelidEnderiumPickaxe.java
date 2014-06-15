@@ -39,8 +39,10 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
         super(id, toolMaterial);
 
         addToolClass("pickaxe");
-        damage = 4;
-        energyPerUseCharged = 800;
+	    damage = 5;
+	    maxEnergy = 320000;
+	    energyPerUse = 350;
+	    energyPerUseCharged = 800;
 
         effectiveMaterials.add(Material.iron);
         effectiveMaterials.add(Material.anvil);
@@ -97,10 +99,12 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
                                     world.setBlock(i, j, coordZ, block.blockID);
                                     for (int n = 0; n <= 5; n++)
                                         world.spawnParticle("portal", i, j, z, 1, 1, 1);
-                                    if (random.nextInt(10) == 0)
-                                        world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
-                                } else
+                                    if (random.nextInt(10) == 0) {
+	                                    world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
+                                    }
+                                } else {
                                     harvestBlock(world, i, j, z, player);
+                                }
                             } else if (facing == 1) {
                                 int coordX = x + range;
                                 if (world.isAirBlock(coordX, j, k)) {
@@ -110,8 +114,9 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
                                         world.spawnParticle("portal", x, j, k, 1, 1, 1);
                                     if (random.nextInt(10) == 0)
                                         world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
-                                } else
+                                } else {
                                     harvestBlock(world, x, j, k, player);
+                                }
                             } else if (facing == 2) {
                                 int coordZ = z + range;
                                 if (world.isAirBlock(i, j, coordZ)) {
@@ -121,8 +126,9 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
                                         world.spawnParticle("portal", i, j, z, 1, 1, 1);
                                     if (random.nextInt(10) == 0)
                                         world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
-                                } else
-                                    harvestBlock(world, i, j, z, player);
+                                } else {
+	                                harvestBlock(world, i, j, z, player);
+                                }
                             } else if (facing == 3) {
                                 int coordX = x - range;
                                 if (world.isAirBlock(coordX, j, k)) {
@@ -132,8 +138,9 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
                                         world.spawnParticle("portal", x, j, k, 1, 1, 1);
                                     if (random.nextInt(10) == 0)
                                         world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
-                                } else
+                                } else {
                                     harvestBlock(world, x, j, k, player);
+                                }
                             }
                         }
                     }
@@ -149,6 +156,15 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
         }
         return true;
     }
+
+	@Override
+	public float getStrVsBlock(ItemStack stack, Block block, int meta) {
+		if ((block.blockMaterial == Material.rock|| block.blockMaterial == Material.iron || block.blockMaterial == Material.anvil) && getEnergyStored(stack) > energyPerUse) {
+			return 15F;
+		} else {
+			return 1F;
+		}
+	}
 
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	@SideOnly(Side.CLIENT)
