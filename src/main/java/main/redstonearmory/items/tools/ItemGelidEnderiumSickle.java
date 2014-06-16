@@ -65,6 +65,12 @@ public class ItemGelidEnderiumSickle extends ItemToolRF {
 		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumSickle_drained");
 	}
 
+	@SideOnly(Side.CLIENT)
+	@Override
+	public String getItemDisplayName(ItemStack itemStack) {
+		return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
+	}
+
     @Override
     public boolean canHarvestBlock(Block block, ItemStack stack) {
 

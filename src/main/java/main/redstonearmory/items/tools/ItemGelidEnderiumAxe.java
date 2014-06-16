@@ -68,6 +68,12 @@ public class ItemGelidEnderiumAxe extends ItemToolRF {
 		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumAxe_drained");
 	}
 
+	@SideOnly(Side.CLIENT)
+	@Override
+	public String getItemDisplayName(ItemStack itemStack) {
+		return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
+	}
+
     public boolean onBlockDestroyed(ItemStack stack, World world, int bId, int x, int y, int z, EntityLivingBase entity) {
         if (!(entity instanceof EntityPlayer)) {
             return false;

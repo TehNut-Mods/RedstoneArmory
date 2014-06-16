@@ -69,6 +69,12 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
 		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumPickaxe_drained");
 	}
 
+	@SideOnly(Side.CLIENT)
+	@Override
+	public String getItemDisplayName(ItemStack itemStack) {
+		return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
+	}
+
     @Override
     protected THashSet<Block> getEffectiveBlocks(ItemStack stack) {
 

@@ -68,11 +68,11 @@ public class ItemGelidEnderiumShovel extends ItemToolRF {
 		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumShovel_drained");
 	}
 
-    //	@Override
-    public boolean func_150897_b(Block block) {
-
-        return block == Block.snow || block == Block.blockSnow;
-    }
+	@SideOnly(Side.CLIENT)
+	@Override
+	public String getItemDisplayName(ItemStack itemStack) {
+		return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
+	}
 
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World world, int blockID, int x, int y, int z, EntityLivingBase entity) {

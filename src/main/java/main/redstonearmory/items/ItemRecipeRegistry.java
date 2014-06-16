@@ -13,12 +13,10 @@ public class ItemRecipeRegistry {
 		GameRegistry.addRecipe(new ItemStack(ItemRegistry.materialGelidEnderium, 1, 0), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(ItemRegistry.materialGelidEnderium, 1, 1)});
 		//Ingot -> Storage
 		GameRegistry.addRecipe(new ItemStack(BlockRegistry.ingotStorage), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(ItemRegistry.materialGelidEnderium, 1, 0)});
-
+		//Gelid Rod
 		GameRegistry.addRecipe(new ItemStack(ItemRegistry.materialGelidEnderium, 1, 3), new Object[] { "  G", " R ", "G  ", 'R', new ItemStack(Item.blazeRod), 'G', new ItemStack(ItemRegistry.materialGelidEnderium, 1, 2)});
-		GameRegistry.addRecipe(new ItemStack(ItemRegistry.materialGelidEnderium, 1, 3), new Object[] { "G  ", " R ", "  G", 'R', new ItemStack(Item.blazeRod), 'G', new ItemStack(ItemRegistry.materialGelidEnderium, 1, 2)});
 
 		if(ConfigHandler.enableEnderiumAxeCrafting) {
-			GameRegistry.addRecipe(new ItemStack(ItemRegistry.axeGelidEnderium, 1, 0), new Object[] { " II", " TI", " R ", 'R', new ItemStack(ItemRegistry.materialGelidEnderium, 1, 3), 'T', new ItemStack(Item.axeDiamond), 'I', new ItemStack(ItemRegistry.materialGelidEnderium, 1, 0)});
 			GameRegistry.addRecipe(new ItemStack(ItemRegistry.axeGelidEnderium, 1, 0), new Object[] { "II ", "IT ", " R ", 'R', new ItemStack(ItemRegistry.materialGelidEnderium, 1, 3), 'T', new ItemStack(Item.axeDiamond), 'I', new ItemStack(ItemRegistry.materialGelidEnderium, 1, 0)});
 		}
 		if(ConfigHandler.enableEnderiumBattleWrenchCrafting) {

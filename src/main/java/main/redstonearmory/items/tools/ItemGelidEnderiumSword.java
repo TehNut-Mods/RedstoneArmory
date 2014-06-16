@@ -69,6 +69,12 @@ public class ItemGelidEnderiumSword extends ItemSword implements IEmpowerableIte
 		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumSword_drained");
 	}
 
+	@SideOnly(Side.CLIENT)
+	@Override
+	public String getItemDisplayName(ItemStack itemStack) {
+		return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
+	}
+
 	protected int useEnergy(ItemStack stack, boolean simulate) {
 
 		int unbreakingLevel = MathHelper.clampI(EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, stack), 0, 4);

@@ -54,6 +54,12 @@ public class ItemGelidEnderiumBattleWrench extends ItemGelidEnderiumSword implem
 		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench_drained");
 	}
 
+	@SideOnly(Side.CLIENT)
+	@Override
+	public String getItemDisplayName(ItemStack itemStack) {
+		return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
+	}
+
 	@Override
 	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase player) {
 

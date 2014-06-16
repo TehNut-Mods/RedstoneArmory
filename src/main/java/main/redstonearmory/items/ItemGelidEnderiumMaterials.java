@@ -4,6 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
+import main.redstonearmory.util.TextHelper;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -60,6 +61,12 @@ public class ItemGelidEnderiumMaterials extends Item {
 		this.icon[1] = ri.registerIcon(ModInformation.ID + ":materials/nuggetGelidEnderium");
 		this.icon[2] = ri.registerIcon(ModInformation.ID + ":materials/gemGelidEnderium");
 		this.icon[3] = ri.registerIcon(ModInformation.ID + ":materials/rodGelidEnderium");
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public String getItemDisplayName(ItemStack itemStack) {
+		return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
 	}
 
 	@SuppressWarnings({"rawtypes", "unchecked"})
