@@ -33,6 +33,9 @@ public class ItemGelidEnderiumAxe extends ItemAxeRF {
 	String tool = "axe";
     Random random = new Random();
 
+	public int damage = 8;
+	public int damageCharged = 4;
+
     public ItemGelidEnderiumAxe(int id, EnumToolMaterial toolMaterial) {
         super(id, toolMaterial);
         maxEnergy = 320000;
@@ -168,6 +171,9 @@ public class ItemGelidEnderiumAxe extends ItemAxeRF {
 				list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
 			}
 			list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.axe"));
+			list.add(TextHelper.spacer);
+			list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.redstonearmory.tool.damageAttack"));
+			list.add(TextHelper.BRIGHT_GREEN + "+" + damageCharged + " " + TextHelper.localize("info.redstonearmory.tool.damageFlux"));
 		} else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
 			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
 		}

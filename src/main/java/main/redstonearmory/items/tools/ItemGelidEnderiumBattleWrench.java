@@ -43,6 +43,12 @@ public class ItemGelidEnderiumBattleWrench extends ItemWrenchBattleRF {
     int radius = 4;
     Random random = new Random();
 
+	public int maxEnergy = 320000;
+	public int maxTransfer = 1600;
+	public int energyPerUse = 350;
+	public int energyPerUseCharged = 800;
+
+
     public ItemGelidEnderiumBattleWrench(int par1, EnumToolMaterial toolMaterial) {
         super(par1, toolMaterial);
         damage = 6;
@@ -245,6 +251,9 @@ public class ItemGelidEnderiumBattleWrench extends ItemWrenchBattleRF {
             }
             list.remove(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.sword"));
             list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.battlewrench"));
+	        list.add(TextHelper.spacer);
+	        list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.redstonearmory.tool.damageAttack"));
+	        list.add(TextHelper.BRIGHT_GREEN + "+" + damageCharged + " " + TextHelper.localize("info.redstonearmory.tool.damageFlux"));
         } else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
             list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
         }

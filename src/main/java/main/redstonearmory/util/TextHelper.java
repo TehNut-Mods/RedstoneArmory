@@ -33,6 +33,7 @@ public class TextHelper {
 	/** Useful Tooltips **/
 	public static String shiftForMoreInfo = localize("info.redstonearmory.tool.hold") + " " + YELLOW + ITALIC + localize("info.redstonearmory.key.shift") + " " + LIGHT_GRAY + localize("info.redstonearmory.tool.info") + END;
 	public static String controlForLore = localize("info.redstonearmory.tool.hold") + " " + YELLOW + ITALIC + localize("info.redstonearmory.key.control") + " " + LIGHT_GRAY + localize("info.redstonearmory.tool.lore") + END;
+	public static String spacer = " ";
 
 	/** Enable Localizationizing **/
 	public static String localize(String key) {
