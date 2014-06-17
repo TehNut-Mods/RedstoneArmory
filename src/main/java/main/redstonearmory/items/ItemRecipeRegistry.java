@@ -1,5 +1,6 @@
 package main.redstonearmory.items;
 
+import cofh.util.ThermalExpansionHelper;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import main.redstonearmory.ConfigHandler;
@@ -7,6 +8,8 @@ import main.redstonearmory.blocks.BlockRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import redstonearsenal.item.RAItems;
 
 public class ItemRecipeRegistry {
@@ -20,7 +23,8 @@ public class ItemRecipeRegistry {
 		GameRegistry.addRecipe(new ItemStack(ItemRegistry.materialGelidEnderium, 1, 3), new Object[] { "  G", " R ", "G  ", 'R', RAItems.rodObsidianFlux, 'G', new ItemStack(ItemRegistry.materialGelidEnderium, 1, 2)});
 
 		if(!Loader.isModLoaded("ThermalExpansion")) {
-			GameRegistry.addRecipe(new ItemStack(ItemRegistry.materialGelidEnderium, 1, 0), new Object[] { "PSP", "SIS", "PSP", 'P', new ItemStack(Item.enderPearl), 'S', new ItemStack(Block.ice), 'I', RAItems.ingotElectrumFlux});
+			GameRegistry.addRecipe(new ItemStack(ItemRegistry.materialGelidEnderium, 1, 0), new Object[] { "PSP", "SIS", "PSP", 'P', new ItemStack(Item.enderPearl), 'S', new ItemStack(Block.blockSnow), 'I', RAItems.ingotElectrumFlux});
+			GameRegistry.addRecipe(new ItemStack(ItemRegistry.materialGelidEnderium, 1, 2), new Object[] { "PSP", "SGS", "PSP", 'P', new ItemStack(Item.enderPearl), 'S', new ItemStack(Block.ice), 'G', RAItems.gemCrystalFlux});
 		}
 
 		if(ConfigHandler.enableEnderiumAxeCrafting) {
@@ -53,9 +57,10 @@ public class ItemRecipeRegistry {
 
 	private static void registerMachineRecipes() {
 
-	}
-
-	private static void registerSmeltingRecipes() {
+		if(Loader.isModLoaded("ThermalExpansion")) {
+			ThermalExpansionHelper.addTransposerFill(12000, RAItems.gemCrystalFlux, new ItemStack(ItemRegistry.materialGelidEnderium, 1, 2), new FluidStack(FluidRegistry.getFluid("cryotheum"), 1000), false);
+			ThermalExpansionHelper.addTransposerFill(12000, RAItems.ingotElectrumFlux, new ItemStack(ItemRegistry.materialGelidEnderium, 1, 0), new FluidStack(FluidRegistry.getFluid("cryotheum"), 1000), false);
+		}
 
 	}
 
@@ -63,7 +68,6 @@ public class ItemRecipeRegistry {
 		registerMachineRecipes();
 		registerShapedRecipes();
 		registerShaplessRecipes();
-		registerSmeltingRecipes();
 	}
 
 }
