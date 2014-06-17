@@ -52,7 +52,6 @@ public class ItemRecipeRegistry {
 		GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.materialGelidEnderium, 9, 0), new ItemStack(BlockRegistry.ingotStorage));
 		//Ingot -> Nugget
 		GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.materialGelidEnderium, 9, 1), new ItemStack(ItemRegistry.materialGelidEnderium, 1, 0));
-
 	}
 
 	private static void registerMachineRecipes() {
@@ -61,7 +60,6 @@ public class ItemRecipeRegistry {
 			ThermalExpansionHelper.addTransposerFill(12000, RAItems.gemCrystalFlux, new ItemStack(ItemRegistry.materialGelidEnderium, 1, 2), new FluidStack(FluidRegistry.getFluid("cryotheum"), 1000), false);
 			ThermalExpansionHelper.addTransposerFill(12000, RAItems.ingotElectrumFlux, new ItemStack(ItemRegistry.materialGelidEnderium, 1, 0), new FluidStack(FluidRegistry.getFluid("cryotheum"), 1000), false);
 		}
-
 	}
 
 	public static void registerFullRecipes() {
@@ -69,5 +67,4 @@ public class ItemRecipeRegistry {
 		registerShapedRecipes();
 		registerShaplessRecipes();
 	}
-
 }

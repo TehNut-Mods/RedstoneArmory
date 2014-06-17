@@ -52,10 +52,11 @@ public class RedstoneArmory {
         if (event.getSide() == Side.CLIENT) {
             MinecraftForge.EVENT_BUS.register(new CapeHandler());
         }
+	    ItemRecipeRegistry.registerFullRecipes();
     }
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-        ItemRecipeRegistry.registerFullRecipes();
+
     }
 }
