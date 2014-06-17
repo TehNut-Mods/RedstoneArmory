@@ -99,7 +99,7 @@ public abstract class ItemToolAdv extends ItemTool {
         world.setBlockToAir(x, y, z);
     }
 
-    protected boolean isValidHarvestMaterial(ItemStack stack, World world, int id, int x, int y, int z) {
+    protected boolean isValidHarvestMaterial(ItemStack stack, World world, int x, int y, int z) {
 
         return getEffectiveMaterials(stack).contains(world.getBlockId(x, y, z));
     }

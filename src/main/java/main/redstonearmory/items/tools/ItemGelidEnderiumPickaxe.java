@@ -25,11 +25,11 @@ import java.util.Random;
 
 public class ItemGelidEnderiumPickaxe extends ItemToolRF {
 
-	String tool = "pickaxe";
-	Icon activeIcon;
-	Icon drainedIcon;
+    String tool = "pickaxe";
+    Icon activeIcon;
+    Icon drainedIcon;
 
-	int range = 4;
+    int range = 4;
     Random random = new Random();
 
     public THashSet<Block> effectiveBlocksCharged = new THashSet<Block>();
@@ -39,14 +39,15 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
         super(id, toolMaterial);
 
         addToolClass("pickaxe");
-	    damage = 5;
-	    maxEnergy = 320000;
-	    energyPerUse = 350;
-	    energyPerUseCharged = 800;
+        damage = 5;
+        maxEnergy = 320000;
+        energyPerUse = 350;
+        energyPerUseCharged = 800;
 
         effectiveMaterials.add(Material.iron);
         effectiveMaterials.add(Material.anvil);
         effectiveMaterials.add(Material.rock);
+        effectiveMaterials.add(Material.glass);
     }
 
     public ItemGelidEnderiumPickaxe(int id, EnumToolMaterial toolMaterial, int harvestLevel) {
@@ -55,25 +56,25 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
         this.harvestLevel = harvestLevel;
     }
 
-	@Override
-	public Icon getIcon(ItemStack stack, int pass) {
+    @Override
+    public Icon getIcon(ItemStack stack, int pass) {
 
-		return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
-	}
+        return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
+    }
 
-	@Override
-	public void registerIcons(IconRegister ir) {
+    @Override
+    public void registerIcons(IconRegister ir) {
 
-		this.itemIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumPickaxe");
-		this.activeIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumPickaxe_active");
-		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumPickaxe_drained");
-	}
+        this.itemIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumPickaxe");
+        this.activeIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumPickaxe_active");
+        this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumPickaxe_drained");
+    }
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public String getItemDisplayName(ItemStack itemStack) {
-		return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
-	}
+    @SideOnly(Side.CLIENT)
+    @Override
+    public String getItemDisplayName(ItemStack itemStack) {
+        return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
+    }
 
     @Override
     protected THashSet<Block> getEffectiveBlocks(ItemStack stack) {
@@ -82,31 +83,29 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World world, int blockId, int x, int y, int z, EntityLivingBase entity) {
-
-        Block block = Block.blocksList[world.getBlockId(x, y, z)];
+    public boolean onBlockDestroyed(ItemStack stack, World world, int block, int x, int y, int z, EntityLivingBase entity) {
 
         if (!(entity instanceof EntityPlayer)) {
             return false;
         }
         EntityPlayer player = (EntityPlayer) entity;
 
-        if ((block == Block.cobblestone || block == Block.stone || block == Block.sandStone || block == Block.netherrack) && isEmpowered(stack)) {
+        if ((block == Block.cobblestone.blockID || block == Block.stone.blockID || block == Block.sandStone.blockID || block == Block.netherrack.blockID) && isEmpowered(stack)) {
             for (int i = x - 1; i <= x + 1; i++) {
                 for (int k = z - 1; k <= z + 1; k++) {
                     for (int j = y - 1; j <= y + 1; j++) {
                         if (Block.blocksList[world.getBlockId(i, j, k)] == Block.cobblestone || Block.blocksList[world.getBlockId(i, j, k)] == Block.stone || Block.blocksList[world.getBlockId(i, j, k)] == Block.sandStone || Block.blocksList[world.getBlockId(i, j, k)] == Block.netherrack) {
-                            int facing = MathHelper.floor(entity.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+                            int facing = MathHelper.floor(entity.rotationYaw * 4.0F / 360.0F + 0.5D) & 0x3;
 
                             if (facing == 0) {
                                 int coordZ = z - range;
                                 if (world.isAirBlock(i, j, coordZ)) {
                                     world.setBlockToAir(i, j, z);
-                                    world.setBlock(i, j, coordZ, block.blockID);
+                                    world.setBlock(i, j, coordZ, block);
                                     for (int n = 0; n <= 5; n++)
                                         world.spawnParticle("portal", i, j, z, 1, 1, 1);
                                     if (random.nextInt(10) == 0) {
-	                                    world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
+                                        world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
                                     }
                                 } else {
                                     harvestBlock(world, i, j, z, player);
@@ -115,7 +114,7 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
                                 int coordX = x + range;
                                 if (world.isAirBlock(coordX, j, k)) {
                                     world.setBlockToAir(x, j, k);
-                                    world.setBlock(coordX, j, k, block.blockID);
+                                    world.setBlock(coordX, j, k, block);
                                     for (int n = 0; n <= 5; n++)
                                         world.spawnParticle("portal", x, j, k, 1, 1, 1);
                                     if (random.nextInt(10) == 0)
@@ -127,19 +126,19 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
                                 int coordZ = z + range;
                                 if (world.isAirBlock(i, j, coordZ)) {
                                     world.setBlockToAir(i, j, z);
-                                    world.setBlock(i, j, coordZ, block.blockID);
+                                    world.setBlock(i, j, coordZ, block);
                                     for (int n = 0; n <= 5; n++)
                                         world.spawnParticle("portal", i, j, z, 1, 1, 1);
                                     if (random.nextInt(10) == 0)
                                         world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
                                 } else {
-	                                harvestBlock(world, i, j, z, player);
+                                    harvestBlock(world, i, j, z, player);
                                 }
                             } else if (facing == 3) {
                                 int coordX = x - range;
                                 if (world.isAirBlock(coordX, j, k)) {
                                     world.setBlockToAir(x, j, k);
-                                    world.setBlock(coordX, j, k, block.blockID);
+                                    world.setBlock(coordX, j, k, block);
                                     for (int n = 0; n <= 5; n++)
                                         world.spawnParticle("portal", x, j, k, 1, 1, 1);
                                     if (random.nextInt(10) == 0)
@@ -147,6 +146,8 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
                                 } else {
                                     harvestBlock(world, x, j, k, player);
                                 }
+                            } else {
+                                harvestBlock(world, x, y, z, player);
                             }
                         }
                     }
@@ -163,43 +164,43 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
         return true;
     }
 
-	@Override
-	public float getStrVsBlock(ItemStack stack, Block block, int meta) {
-		if ((block.blockMaterial == Material.rock|| block.blockMaterial == Material.iron || block.blockMaterial == Material.anvil) && getEnergyStored(stack) > energyPerUse) {
-			return 15F;
-		} else {
-			return 1F;
-		}
-	}
+    @Override
+    public float getStrVsBlock(ItemStack stack, Block block, int meta) {
+        if ((block.blockMaterial == Material.rock || block.blockMaterial == Material.iron || block.blockMaterial == Material.anvil) && getEnergyStored(stack) > energyPerUse) {
+            return 15F;
+        } else {
+            return 1F;
+        }
+    }
 
-	@SuppressWarnings({"rawtypes", "unchecked"})
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
-		if (stack.stackTagCompound == null) {
-			RFHelper.setDefaultEnergyTag(stack, 0);
-		}
-		if (!KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
-			list.add(TextHelper.shiftForMoreInfo);
-			if (ConfigHandler.addItemLoreToItems) {
-				list.add(TextHelper.controlForLore);
-			}
-		} else if (KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown()) {
-			list.add(TextHelper.shiftForMoreInfo);
-			if (ConfigHandler.addItemLoreToItems) {
-				list.add(TextHelper.controlForLore);
-			}
-		} else if (KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
-			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tool.charge") + " " + RFHelper.getRFStored(stack) + " / " + maxEnergy + " " + TextHelper.localize("info.redstonearmory.tool.rf") + TextHelper.END);
-			list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
-			if (isEmpowered(stack)) {
-				list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOff") + TextHelper.END);
-			} else {
-				list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
-			}
-			list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.pickaxe"));
-		} else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
-			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
-		}
-	}
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
+        if (stack.stackTagCompound == null) {
+            RFHelper.setDefaultEnergyTag(stack, 0);
+        }
+        if (!KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
+            list.add(TextHelper.shiftForMoreInfo);
+            if (ConfigHandler.addItemLoreToItems) {
+                list.add(TextHelper.controlForLore);
+            }
+        } else if (KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown()) {
+            list.add(TextHelper.shiftForMoreInfo);
+            if (ConfigHandler.addItemLoreToItems) {
+                list.add(TextHelper.controlForLore);
+            }
+        } else if (KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
+            list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tool.charge") + " " + RFHelper.getRFStored(stack) + " / " + maxEnergy + " " + TextHelper.localize("info.redstonearmory.tool.rf") + TextHelper.END);
+            list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
+            if (isEmpowered(stack)) {
+                list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOff") + TextHelper.END);
+            } else {
+                list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
+            }
+            list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.pickaxe"));
+        } else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
+            list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
+        }
+    }
 }

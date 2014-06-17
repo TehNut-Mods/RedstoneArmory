@@ -26,9 +26,9 @@ import java.util.List;
 
 public class ItemGelidEnderiumShovel extends ItemToolRF {
 
-	String tool = "shovel";
-	Icon activeIcon;
-	Icon drainedIcon;
+    String tool = "shovel";
+    Icon activeIcon;
+    Icon drainedIcon;
 
     int range = 5;
 
@@ -46,58 +46,59 @@ public class ItemGelidEnderiumShovel extends ItemToolRF {
         effectiveMaterials.add(Material.clay);
         effectiveMaterials.add(Material.craftedSnow);
         effectiveMaterials.add(Material.snow);
+        effectiveMaterials.add(Material.grass);
     }
 
-    public ItemGelidEnderiumShovel(int id,EnumToolMaterial toolMaterial, int harvestLevel) {
+    public ItemGelidEnderiumShovel(int id, EnumToolMaterial toolMaterial, int harvestLevel) {
 
-        this(id ,toolMaterial);
+        this(id, toolMaterial);
         this.harvestLevel = harvestLevel;
     }
 
-	@Override
-	public Icon getIcon(ItemStack stack, int pass) {
+    @Override
+    public Icon getIcon(ItemStack stack, int pass) {
 
-		return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
-	}
+        return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
+    }
 
-	@Override
-	public void registerIcons(IconRegister ir) {
+    @Override
+    public void registerIcons(IconRegister ir) {
 
-		this.itemIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumShovel");
-		this.activeIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumShovel_active");
-		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumShovel_drained");
-	}
+        this.itemIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumShovel");
+        this.activeIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumShovel_active");
+        this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumShovel_drained");
+    }
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public String getItemDisplayName(ItemStack itemStack) {
-		return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
-	}
+    @SideOnly(Side.CLIENT)
+    @Override
+    public String getItemDisplayName(ItemStack itemStack) {
+        return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
+    }
 
     @Override
     public boolean onBlockDestroyed(ItemStack stack, World world, int blockID, int x, int y, int z, EntityLivingBase entity) {
 
-//        Block block = Block.blocksList[world.getBlockId(x, y, z)];
-//
-//        if (!(entity instanceof EntityPlayer)) {
-//            return false;
-//        }
-//        if (block.getBlockHardness(world, x, y, z) == 0.0D) {
-//            return true;
-//        }
+        Block block = Block.blocksList[blockID];
+
+        if (!(entity instanceof EntityPlayer)) {
+            return false;
+        }
+        if (block.getBlockHardness(world, x, y, z) == 0.0D) {
+            return true;
+        }
         EntityPlayer player = (EntityPlayer) entity;
-//
-//        if (effectiveBlocks.contains(block) && isEmpowered(stack)) {
-//            for (int i = x - 2; i <= x + 2; i++) {
-//                for (int k = z - 2; k <= z + 2; k++) {
-//                    for (int j = y - 2; j <= y + 2; j++) {
-//                        if (world.getBlockId(i, j, k) == block.blockID) {
-//                            harvestBlock(world, i, j, k, player);
-//                        }
-//                    }
-//                }
-//            }
-//        }
+
+        if (effectiveMaterials.contains(block.blockMaterial) && isEmpowered(stack)) {
+            for (int i = x - 2; i <= x + 2; i++) {
+                for (int k = z - 2; k <= z + 2; k++) {
+                    for (int j = y - 2; j <= y + 2; j++) {
+                        if (world.getBlockId(i, j, k) == blockID) {
+                            harvestBlock(world, i, j, k, player);
+                        }
+                    }
+                }
+            }
+        }
 
         if (!player.capabilities.isCreativeMode) {
             useEnergy(stack, false);
@@ -129,8 +130,18 @@ public class ItemGelidEnderiumShovel extends ItemToolRF {
             if (!world.isRemote) {
                 world.playAuxSFX(2005, x, y, z, 0);
             }
-
             return true;
+        }
+
+        if (isEmpowered(stack)) {
+            for (int i = 0; i <= 6; i++) {
+                if (applyBonemeal(stack, world, x, y, z, player)) {
+                    if (!world.isRemote) {
+                        world.playAuxSFX(2005, x, y, z, 0);
+                    }
+                    return true;
+                }
+            }
         }
         return false;
     }
@@ -145,7 +156,6 @@ public class ItemGelidEnderiumShovel extends ItemToolRF {
 
         if (event.getResult() == Result.ALLOW) {
             if (!par1World.isRemote) {
-                par0ItemStack.stackSize--;
             }
             return true;
         }
@@ -155,8 +165,6 @@ public class ItemGelidEnderiumShovel extends ItemToolRF {
                 if ((double) par1World.rand.nextFloat() < 0.45D) {
                     ((BlockSapling) Block.sapling).markOrGrowMarked(par1World, par2, par3, par4, par1World.rand);
                 }
-
-                --par0ItemStack.stackSize;
             }
 
             return true;
@@ -168,7 +176,6 @@ public class ItemGelidEnderiumShovel extends ItemToolRF {
                     } else {
                         if (!par1World.isRemote) {
                             ((BlockCrops) Block.blocksList[l]).fertilize(par1World, par2, par3, par4);
-                            --par0ItemStack.stackSize;
                         }
 
                         return true;
@@ -189,7 +196,6 @@ public class ItemGelidEnderiumShovel extends ItemToolRF {
                             if (!par1World.isRemote) {
                                 ++k1;
                                 par1World.setBlockMetadataWithNotify(par2, par3, par4, k1 << 2 | j1, 2);
-                                --par0ItemStack.stackSize;
                             }
 
                             return true;
@@ -198,7 +204,6 @@ public class ItemGelidEnderiumShovel extends ItemToolRF {
                         return false;
                     } else {
                         if (!par1World.isRemote) {
-                            --par0ItemStack.stackSize;
                             label102:
 
                             for (i1 = 0; i1 < 128; ++i1) {
@@ -236,7 +241,6 @@ public class ItemGelidEnderiumShovel extends ItemToolRF {
             } else {
                 if (!par1World.isRemote) {
                     ((BlockStem) Block.blocksList[l]).fertilizeStem(par1World, par2, par3, par4);
-                    --par0ItemStack.stackSize;
                 }
 
                 return true;
@@ -246,51 +250,49 @@ public class ItemGelidEnderiumShovel extends ItemToolRF {
                 if ((double) par1World.rand.nextFloat() < 0.4D) {
                     ((BlockMushroom) Block.blocksList[l]).fertilizeMushroom(par1World, par2, par3, par4, par1World.rand);
                 }
-
-                --par0ItemStack.stackSize;
             }
 
             return true;
         }
     }
 
-	@Override
-	public float getStrVsBlock(ItemStack stack, Block block, int meta) {
-		if ((block.blockMaterial == Material.grass || block.blockMaterial == Material.ground || block.blockMaterial == Material.snow || block.blockMaterial == Material.craftedSnow || block.blockMaterial == Material.clay || block.blockMaterial == Material.sand) && getEnergyStored(stack) > energyPerUse) {
-			return 15F;
-		} else {
-			return 1F;
-		}
-	}
+    @Override
+    public float getStrVsBlock(ItemStack stack, Block block, int meta) {
+        if ((block.blockMaterial == Material.grass || block.blockMaterial == Material.ground || block.blockMaterial == Material.snow || block.blockMaterial == Material.craftedSnow || block.blockMaterial == Material.clay || block.blockMaterial == Material.sand) && getEnergyStored(stack) > energyPerUse) {
+            return 15F;
+        } else {
+            return 1F;
+        }
+    }
 
-	@SuppressWarnings({"rawtypes", "unchecked"})
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
-		if (stack.stackTagCompound == null) {
-			RFHelper.setDefaultEnergyTag(stack, 0);
-		}
-		if (!KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
-			list.add(TextHelper.shiftForMoreInfo);
-			if (ConfigHandler.addItemLoreToItems) {
-				list.add(TextHelper.controlForLore);
-			}
-		} else if (KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown()) {
-			list.add(TextHelper.shiftForMoreInfo);
-			if (ConfigHandler.addItemLoreToItems) {
-				list.add(TextHelper.controlForLore);
-			}
-		} else if (KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
-			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tool.charge") + " " + RFHelper.getRFStored(stack) + " / " + maxEnergy + " " + TextHelper.localize("info.redstonearmory.tool.rf") + TextHelper.END);
-			list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
-			if (isEmpowered(stack)) {
-				list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOff") + TextHelper.END);
-			} else {
-				list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
-			}
-			list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.shovel"));
-		} else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
-			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
-		}
-	}
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
+        if (stack.stackTagCompound == null) {
+            RFHelper.setDefaultEnergyTag(stack, 0);
+        }
+        if (!KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
+            list.add(TextHelper.shiftForMoreInfo);
+            if (ConfigHandler.addItemLoreToItems) {
+                list.add(TextHelper.controlForLore);
+            }
+        } else if (KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown()) {
+            list.add(TextHelper.shiftForMoreInfo);
+            if (ConfigHandler.addItemLoreToItems) {
+                list.add(TextHelper.controlForLore);
+            }
+        } else if (KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
+            list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tool.charge") + " " + RFHelper.getRFStored(stack) + " / " + maxEnergy + " " + TextHelper.localize("info.redstonearmory.tool.rf") + TextHelper.END);
+            list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
+            if (isEmpowered(stack)) {
+                list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOff") + TextHelper.END);
+            } else {
+                list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
+            }
+            list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.shovel"));
+        } else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
+            list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
+        }
+    }
 }

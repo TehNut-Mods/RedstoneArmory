@@ -23,11 +23,11 @@ import java.util.List;
 
 public class ItemGelidEnderiumSickle extends ItemToolRF {
 
-	String tool = "sickle";
-	Icon activeIcon;
-	Icon drainedIcon;
+    String tool = "sickle";
+    Icon activeIcon;
+    Icon drainedIcon;
 
-    public int radius = 3;
+    public int radius;
 
     public ItemGelidEnderiumSickle(int id, EnumToolMaterial toolMaterial) {
 
@@ -51,30 +51,29 @@ public class ItemGelidEnderiumSickle extends ItemToolRF {
         return this;
     }
 
-	@Override
-	public Icon getIcon(ItemStack stack, int pass) {
+    @Override
+    public Icon getIcon(ItemStack stack, int pass) {
 
-		return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
-	}
-
-	@Override
-	public void registerIcons(IconRegister ir) {
-
-		this.itemIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumSickle");
-		this.activeIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumSickle_active");
-		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumSickle_drained");
-	}
-
-	@SideOnly(Side.CLIENT)
-	@Override
-	public String getItemDisplayName(ItemStack itemStack) {
-		return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
-	}
+        return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
+    }
 
     @Override
-    public boolean canHarvestBlock(Block block, ItemStack stack) {
+    public void registerIcons(IconRegister ir) {
 
-        return block == Block.web || block == Block.vine;
+        this.itemIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumSickle");
+        this.activeIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumSickle_active");
+        this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumSickle_drained");
+    }
+
+    @SideOnly(Side.CLIENT)
+    @Override
+    public String getItemDisplayName(ItemStack itemStack) {
+        return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
+    }
+
+    @Override
+    public boolean canHarvestBlock(Block block) {
+        return (block.blockID == Block.web.blockID) || (block.blockID == Block.vine.blockID);
     }
 
     @Override
@@ -132,77 +131,72 @@ public class ItemGelidEnderiumSickle extends ItemToolRF {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World world, int blockId, int x, int y, int z, EntityLivingBase entity) {
-
-//        Block block = Block.blocksList[world.getBlockId(x, y, z)];
-//
-//        if (!(entity instanceof EntityPlayer)) {
-//            return false;
-//        }
+    public boolean onBlockDestroyed(ItemStack stack, World world, int bId, int x, int y, int z, EntityLivingBase entity) {
+        if (!(entity instanceof EntityPlayer)) {
+            return false;
+        }
         EntityPlayer player = (EntityPlayer) entity;
-//
-//        if (block.getBlockHardness(world, x, y, z) != 0.0D && !effectiveMaterials.contains(block.blockMaterial)) {
-//            if (!player.capabilities.isCreativeMode) {
-//                useEnergy(stack, false);
-//            }
-//            return false;
-//        }
+        if ((Block.blocksList[bId].getBlockHardness(world, x, y, z) != 0.0D) && (!effectiveMaterials.contains(Block.blocksList[bId].blockMaterial))) {
+            if (!player.capabilities.isCreativeMode) {
+                useEnergy(stack, false);
+            }
+            return false;
+        }
         boolean used = false;
-//        int boost = isEmpowered(stack) ? 1 : 0;
-//
-//        for (int i = x - (radius + boost); i <= x + (radius + boost); i++) {
-//            for (int k = z - (radius + boost); k <= z + (radius + boost); k++) {
-//                for (int j = y - boost; j <= y + boost; j++) {
-//                    if (isValidHarvestMaterial(stack, world, block.blockID, i, j, k)) {
-//                        harvestBlock(world, i, j, k, player);
-//                        used = true;
-//                    }
-//                }
-//            }
-//        }
-        if (used && !player.capabilities.isCreativeMode) {
+        int boost = isEmpowered(stack) ? 1 : 0;
+        for (int i = x - (this.radius + boost); i <= x + (this.radius + boost); i++) {
+            for (int k = z - (this.radius + boost); k <= z + (this.radius + boost); k++) {
+                for (int j = y - boost; j <= y + boost; j++) {
+                    if (effectiveMaterials.contains(world.getBlockMaterial(i, j, k))) {
+                        harvestBlock(world, i, j, k, player);
+                        used = true;
+                    }
+                }
+            }
+        }
+        if (used) {
             useEnergy(stack, false);
         }
         return used;
     }
 
-	@Override
-	public float getStrVsBlock(ItemStack stack, Block block, int meta) {
-		if ((block.blockMaterial == Material.leaves) && getEnergyStored(stack) > energyPerUse) {
-			return 15F;
-		} else {
-			return 1F;
-		}
-	}
+    @Override
+    public float getStrVsBlock(ItemStack stack, Block block, int meta) {
+        if ((block.blockMaterial == Material.leaves) && getEnergyStored(stack) > energyPerUse) {
+            return 15F;
+        } else {
+            return 1F;
+        }
+    }
 
-	@SuppressWarnings({"rawtypes", "unchecked"})
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
-		if (stack.stackTagCompound == null) {
-			RFHelper.setDefaultEnergyTag(stack, 0);
-		}
-		if (!KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
-			list.add(TextHelper.shiftForMoreInfo);
-			if (ConfigHandler.addItemLoreToItems) {
-				list.add(TextHelper.controlForLore);
-			}
-		} else if (KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown()) {
-			list.add(TextHelper.shiftForMoreInfo);
-			if (ConfigHandler.addItemLoreToItems) {
-				list.add(TextHelper.controlForLore);
-			}
-		} else if (KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
-			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tool.charge") + " " + RFHelper.getRFStored(stack) + " / " + maxEnergy + " " + TextHelper.localize("info.redstonearmory.tool.rf") + TextHelper.END);
-			list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
-			if (isEmpowered(stack)) {
-				list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOff") + TextHelper.END);
-			} else {
-				list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
-			}
-			list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.sickle"));
-		} else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
-			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
-		}
-	}
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
+        if (stack.stackTagCompound == null) {
+            RFHelper.setDefaultEnergyTag(stack, 0);
+        }
+        if (!KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
+            list.add(TextHelper.shiftForMoreInfo);
+            if (ConfigHandler.addItemLoreToItems) {
+                list.add(TextHelper.controlForLore);
+            }
+        } else if (KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown()) {
+            list.add(TextHelper.shiftForMoreInfo);
+            if (ConfigHandler.addItemLoreToItems) {
+                list.add(TextHelper.controlForLore);
+            }
+        } else if (KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
+            list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tool.charge") + " " + RFHelper.getRFStored(stack) + " / " + maxEnergy + " " + TextHelper.localize("info.redstonearmory.tool.rf") + TextHelper.END);
+            list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
+            if (isEmpowered(stack)) {
+                list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOff") + TextHelper.END);
+            } else {
+                list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
+            }
+            list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.sickle"));
+        } else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
+            list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
+        }
+    }
 }
