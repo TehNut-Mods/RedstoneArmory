@@ -85,18 +85,19 @@ public abstract class ItemToolAdv extends ItemTool {
     }
 
     protected void harvestBlock(World world, int x, int y, int z, EntityPlayer player) {
+        if (!world.isRemote) {
+            Block block = Block.blocksList[world.getBlockId(x, y, z)];
 
-        Block block = Block.blocksList[world.getBlockId(x, y, z)];
+            if (block.getBlockHardness(world, x, y, z) < 0) {
+                return;
+            }
+            int bMeta = world.getBlockMetadata(x, y, z);
 
-        if (block.getBlockHardness(world, x, y, z) < 0) {
-            return;
+            if (block.canHarvestBlock(player, bMeta)) {
+                block.harvestBlock(world, player, x, y, z, bMeta);
+            }
+            world.setBlockToAir(x, y, z);
         }
-        int bMeta = world.getBlockMetadata(x, y, z);
-
-        if (block.canHarvestBlock(player, bMeta)) {
-            block.harvestBlock(world, player, x, y, z, bMeta);
-        }
-        world.setBlockToAir(x, y, z);
     }
 
     protected boolean isValidHarvestMaterial(ItemStack stack, World world, int x, int y, int z) {

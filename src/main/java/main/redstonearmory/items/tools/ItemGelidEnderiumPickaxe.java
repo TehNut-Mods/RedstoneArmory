@@ -104,12 +104,12 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
                                     world.setBlock(i, j, coordZ, block);
                                     for (int n = 0; n <= 5; n++)
                                         world.spawnParticle("portal", i, j, z, 1, 1, 1);
-                                    if (random.nextInt(10) == 0) {
+                                    if (random.nextInt(10) == 0)
                                         world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
-                                    }
-                                } else {
-                                    harvestBlock(world, i, j, z, player);
                                 }
+                                // else {
+                                //  harvestBlock(world, i, j, z, player);
+                                //  }
                             } else if (facing == 1) {
                                 int coordX = x + range;
                                 if (world.isAirBlock(coordX, j, k)) {
@@ -119,9 +119,10 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
                                         world.spawnParticle("portal", x, j, k, 1, 1, 1);
                                     if (random.nextInt(10) == 0)
                                         world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
-                                } else {
-                                    harvestBlock(world, x, j, k, player);
                                 }
+                                //else {
+                                //  harvestBlock(world, x, j, k, player);
+                                // }
                             } else if (facing == 2) {
                                 int coordZ = z + range;
                                 if (world.isAirBlock(i, j, coordZ)) {
@@ -131,9 +132,10 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
                                         world.spawnParticle("portal", i, j, z, 1, 1, 1);
                                     if (random.nextInt(10) == 0)
                                         world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
-                                } else {
-                                    harvestBlock(world, i, j, z, player);
                                 }
+                                //else {
+                                //  harvestBlock(world, i, j, z, player);
+                                //}
                             } else if (facing == 3) {
                                 int coordX = x - range;
                                 if (world.isAirBlock(coordX, j, k)) {
@@ -143,9 +145,10 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
                                         world.spawnParticle("portal", x, j, k, 1, 1, 1);
                                     if (random.nextInt(10) == 0)
                                         world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
-                                } else {
-                                    harvestBlock(world, x, j, k, player);
                                 }
+                                // /else {
+                                //  harvestBlock(world, x, j, k, player);
+                                //  }
                             } else {
                                 harvestBlock(world, x, y, z, player);
                             }
