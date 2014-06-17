@@ -57,6 +57,6 @@ public class RedstoneArmory {
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-	    logger.info("Protip- Don't hold control.");
+	 //   logger.info("Protip- Don't hold control.");
     }
 }

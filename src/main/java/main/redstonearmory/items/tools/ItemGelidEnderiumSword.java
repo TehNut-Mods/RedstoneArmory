@@ -9,7 +9,6 @@ import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ConfigHandler;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
-import main.redstonearmory.items.itemutil.IEmpowerableItem;
 import main.redstonearmory.util.*;
 import net.minecraft.block.Block;
 import net.minecraft.client.renderer.texture.IconRegister;
@@ -20,12 +19,16 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.*;
+import net.minecraft.item.EnumRarity;
+import net.minecraft.item.EnumToolMaterial;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemSword;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import redstonearsenal.item.tool.IEmpowerableItem;
 
 import java.util.Iterator;
 import java.util.List;
@@ -268,7 +271,12 @@ public class ItemGelidEnderiumSword extends ItemSword implements IEmpowerableIte
 		return false;
 	}
 
-	/* IEnergyContainerItem */
+    @Override
+    public void onStateChange(EntityPlayer player, ItemStack stack) {
+
+    }
+
+    /* IEnergyContainerItem */
 	@Override
 	public int receiveEnergy(ItemStack container, int maxReceive, boolean simulate) {
 

@@ -22,6 +22,7 @@ import net.minecraft.potion.Potion;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Icon;
 import net.minecraftforge.common.ForgeHooks;
+import redstonearsenal.item.tool.IEmpowerableItem;
 
 import java.util.List;
 
@@ -36,7 +37,7 @@ public abstract class ItemToolRF extends ItemToolAdv implements IEmpowerableItem
     Icon activeIcon;
     Icon drainedIcon;
 
-	String tool = "default";
+    String tool = "default";
 
     public int maxEnergy = 160000;
     public int maxTransfer = 1600;
@@ -56,6 +57,11 @@ public abstract class ItemToolRF extends ItemToolAdv implements IEmpowerableItem
     public ItemToolRF(int id, EnumToolMaterial toolMaterial, int harvestLevel) {
 
         super(id, harvestLevel, toolMaterial);
+    }
+
+    @Override
+    public void onStateChange(EntityPlayer player, ItemStack stack) {
+
     }
 
     @Override
@@ -107,24 +113,24 @@ public abstract class ItemToolRF extends ItemToolAdv implements IEmpowerableItem
 //        return super.getStrVsBlock(stack, block, meta);
 //    }
 
-	@Override
-	public float getStrVsBlock(ItemStack stack, Block block, int meta) {
+    @Override
+    public float getStrVsBlock(ItemStack stack, Block block, int meta) {
 
-		if (getEnergyStored(stack) > energyPerUse) {
-			if (toolClasses.size() > 0) {
-				for (String type : getToolClasses(stack)) {
-					int level = getHarvestLevel(stack, type);
+        if (getEnergyStored(stack) > energyPerUse) {
+            if (toolClasses.size() > 0) {
+                for (String type : getToolClasses(stack)) {
+                    int level = getHarvestLevel(stack, type);
 
-					if (ForgeHooks.isToolEffective(stack, block, meta)) {
-						return getEfficiency(stack);
-					}
-				}
-			}
-		} else {
-			return 1.0F;
-		}
-		return getEfficiency(stack);
-	}
+                    if (ForgeHooks.isToolEffective(stack, block, meta)) {
+                        return getEfficiency(stack);
+                    }
+                }
+            }
+        } else {
+            return 1.0F;
+        }
+        return getEfficiency(stack);
+    }
 
     @Override
     public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase player) {
@@ -170,7 +176,7 @@ public abstract class ItemToolRF extends ItemToolAdv implements IEmpowerableItem
             } else {
                 list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
             }
-	        list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.default"));
+            list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.default"));
         } else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
             list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
         }
