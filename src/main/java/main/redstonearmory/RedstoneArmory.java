@@ -23,7 +23,7 @@ import net.minecraftforge.common.MinecraftForge;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-@Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION)
+@Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION, dependencies = "required-after:Redstone Arsenal")
 @NetworkMod(channels = ModInformation.CHANNEL, clientSideRequired = true, serverSideRequired = false)
 public class RedstoneArmory {
 
@@ -56,6 +56,6 @@ public class RedstoneArmory {
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-	    ItemRecipeRegistry.registerFullRecipes();
+        ItemRecipeRegistry.registerFullRecipes();
     }
 }
