@@ -1,6 +1,0 @@
-From now on, we require trove4j-3.0.3.jar as an external library. Until I figure out how to package that with the dev environment, you're SOL
-unless you have worked with the 1.7 workspace. If you have done that, the .jar, sources.jar, and javadoc.jar can be found in:
-
-C:\Users\USER\.gradle\caches\modules-2\files-2.1\net.sf.trove4j\trove4j\3.0.3\
-
-Link those and you should be good to go.
