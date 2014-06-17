@@ -45,7 +45,6 @@ public class RedstoneArmory {
         BlockRegistry.registerBlocks();
         BlockRecipeRegistry.registerRecipes();
         ItemRegistry.registerItems();
-        ItemRecipeRegistry.registerFullRecipes();
     }
 
     @EventHandler
@@ -57,6 +56,6 @@ public class RedstoneArmory {
 
     @EventHandler
     public void postInit(FMLPostInitializationEvent event) {
-	 //   logger.info("Protip- Don't hold control.");
+	    ItemRecipeRegistry.registerFullRecipes();
     }
 }
