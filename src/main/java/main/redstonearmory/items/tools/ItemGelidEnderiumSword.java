@@ -39,17 +39,18 @@ public class ItemGelidEnderiumSword extends ItemSwordRF {
     Icon drainedIcon;
     Random random = new Random();
     int radius = 5;
-    public int maxEnergy = 320000;
-    public int maxTransfer = 1600;
-    public int energyPerUse = 350;
-    public int energyPerUseCharged = 800;
-    public int damage = 15;
-    public int damageCharged = 8;
 
     public ItemGelidEnderiumSword(int par1, EnumToolMaterial toolMaterial) {
         super(par1, toolMaterial);
         setNoRepair();
         this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
+
+	    maxEnergy = 320000;
+	    maxTransfer = 1600;
+	    energyPerUse = 350;
+	    energyPerUseCharged = 800;
+	    damage = 15;
+	    damageCharged = 8;
     }
 
     @Override
