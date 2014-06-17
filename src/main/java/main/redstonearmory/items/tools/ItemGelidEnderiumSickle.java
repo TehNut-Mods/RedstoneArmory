@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ConfigHandler;
 import main.redstonearmory.ModInformation;
-import main.redstonearmory.items.itemutil.ItemToolRF;
+import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.KeyboardHandler;
 import main.redstonearmory.util.RFHelper;
 import main.redstonearmory.util.TextHelper;
@@ -18,42 +18,38 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import redstonearsenal.item.tool.ItemSickleRF;
 
 import java.util.List;
 
-public class ItemGelidEnderiumSickle extends ItemToolRF {
+public class ItemGelidEnderiumSickle extends ItemSickleRF {
 
     String tool = "sickle";
     Icon activeIcon;
     Icon drainedIcon;
-
     public int radius;
 
     public ItemGelidEnderiumSickle(int id, EnumToolMaterial toolMaterial) {
-
         super(id, toolMaterial);
-
-        damage = 6;
         maxEnergy = 320000;
         energyPerUse = 350;
         energyPerUseCharged = 2000;
         radius = 4;
-
         effectiveMaterials.add(Material.leaves);
         effectiveMaterials.add(Material.plants);
         effectiveMaterials.add(Material.vine);
         effectiveMaterials.add(Material.web);
+
+        this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
     }
 
     public ItemGelidEnderiumSickle setRadius(int radius) {
-
         this.radius = radius;
         return this;
     }
 
     @Override
     public Icon getIcon(ItemStack stack, int pass) {
-
         return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
     }
 
@@ -96,7 +92,6 @@ public class ItemGelidEnderiumSickle extends ItemToolRF {
     }
 
     public static boolean dropItemStackIntoWorldWithVelocity(ItemStack stack, World world, double x, double y, double z) {
-
         return dropItemStackIntoWorld(stack, world, x, y, z, true);
     }
 
@@ -158,15 +153,6 @@ public class ItemGelidEnderiumSickle extends ItemToolRF {
             useEnergy(stack, false);
         }
         return used;
-    }
-
-    @Override
-    public float getStrVsBlock(ItemStack stack, Block block, int meta) {
-        if ((block.blockMaterial == Material.leaves) && getEnergyStored(stack) > energyPerUse) {
-            return 15F;
-        } else {
-            return 1F;
-        }
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})

@@ -13,3 +13,4 @@ asm/*
 *.classpath
 *.project
 /bin
+libs/

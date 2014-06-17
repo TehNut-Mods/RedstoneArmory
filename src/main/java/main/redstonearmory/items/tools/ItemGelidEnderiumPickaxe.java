@@ -2,10 +2,9 @@ package main.redstonearmory.items.tools;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import gnu.trove.set.hash.THashSet;
 import main.redstonearmory.ConfigHandler;
 import main.redstonearmory.ModInformation;
-import main.redstonearmory.items.itemutil.ItemToolRF;
+import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.KeyboardHandler;
 import main.redstonearmory.util.MathHelper;
 import main.redstonearmory.util.RFHelper;
@@ -19,27 +18,21 @@ import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import redstonearsenal.item.tool.ItemPickaxeRF;
 
 import java.util.List;
 import java.util.Random;
 
-public class ItemGelidEnderiumPickaxe extends ItemToolRF {
+public class ItemGelidEnderiumPickaxe extends ItemPickaxeRF {
 
     String tool = "pickaxe";
     Icon activeIcon;
     Icon drainedIcon;
-
     int range = 4;
     Random random = new Random();
 
-    public THashSet<Block> effectiveBlocksCharged = new THashSet<Block>();
-
     public ItemGelidEnderiumPickaxe(int id, EnumToolMaterial toolMaterial) {
-
         super(id, toolMaterial);
-
-        addToolClass("pickaxe");
-        damage = 5;
         maxEnergy = 320000;
         energyPerUse = 350;
         energyPerUseCharged = 800;
@@ -48,17 +41,15 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
         effectiveMaterials.add(Material.anvil);
         effectiveMaterials.add(Material.rock);
         effectiveMaterials.add(Material.glass);
+        this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
     }
 
     public ItemGelidEnderiumPickaxe(int id, EnumToolMaterial toolMaterial, int harvestLevel) {
-
         this(id, toolMaterial);
-        this.harvestLevel = harvestLevel;
     }
 
     @Override
     public Icon getIcon(ItemStack stack, int pass) {
-
         return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
     }
 
@@ -74,12 +65,6 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
     @Override
     public String getItemDisplayName(ItemStack itemStack) {
         return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
-    }
-
-    @Override
-    protected THashSet<Block> getEffectiveBlocks(ItemStack stack) {
-
-        return isEmpowered(stack) ? effectiveBlocksCharged : effectiveBlocks;
     }
 
     @Override
@@ -165,15 +150,6 @@ public class ItemGelidEnderiumPickaxe extends ItemToolRF {
             useEnergy(stack, false);
         }
         return true;
-    }
-
-    @Override
-    public float getStrVsBlock(ItemStack stack, Block block, int meta) {
-        if ((block.blockMaterial == Material.rock || block.blockMaterial == Material.iron || block.blockMaterial == Material.anvil) && getEnergyStored(stack) > energyPerUse) {
-            return 15F;
-        } else {
-            return 1F;
-        }
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})

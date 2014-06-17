@@ -17,12 +17,16 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.0"
-group= "info.tehnut.redstonearmory" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "redstonearmory"
+version = "1.0.0.1"
+group= "" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
+archivesBaseName = "RedstoneArmory"
 
 minecraft {
 	version = "1.6.4-9.11.1.964"
+}
+
+dependencies {
+        compile fileTree(dir: 'libs', include: '*.jar')
 }
 
 processResources

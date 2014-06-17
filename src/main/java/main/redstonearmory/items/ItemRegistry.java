@@ -30,10 +30,14 @@ public class ItemRegistry {
         materialGelidEnderium = new ItemGelidEnderiumMaterials(ItemInfo.MATERIAL_GELID_ENDERIUM_ID).setUnlocalizedName(ModInformation.ID + ItemInfo.MATERIAL_GELID_ENDERIUM_UNLOCALIZED_NAME);
         GameRegistry.registerItem(materialGelidEnderium, "ItemGelidEnderiumMaterials");
 
-		//tools
+        //tools
         if (ConfigHandler.enableEnderiumAxe) {
             axeGelidEnderium = new ItemGelidEnderiumAxe(ItemInfo.AXE_GELID_ENDERIUM_ID, enderium, Integer.MAX_VALUE).setUnlocalizedName(ModInformation.ID + ItemInfo.AXE_GELID_ENDERIUM_UNLOCALIZED_NAME);
             GameRegistry.registerItem(axeGelidEnderium, ItemInfo.AXE_GELID_ENDERIUM_KEY);
+        }
+        if (ConfigHandler.enableEnderiumSword) {
+            swordGelidEnderium = new ItemGelidEnderiumSword(ItemInfo.SWORD_GELID_ENDERIUM_ID, enderium).setUnlocalizedName(ModInformation.ID + ItemInfo.SWORD_GELID_ENDERIUM_UNLOCALIZED_NAME);
+            GameRegistry.registerItem(swordGelidEnderium, ItemInfo.SWORD_GELID_ENDERIUM_KEY);
         }
         if (ConfigHandler.enableEnderiumBattleWrench) {
             battleWrenchGelidEnderium = new ItemGelidEnderiumBattleWrench(ItemInfo.BATTLEWRENCH_GELID_ENDERIUM_ID, enderium).setUnlocalizedName(ModInformation.ID + ItemInfo.BATTLEWRENCH_GELID_ENDERIUM_UNLOCALIZED_NAME);
@@ -50,10 +54,6 @@ public class ItemRegistry {
         if (ConfigHandler.enableEnderiumSickle) {
             sickleGelidEnderium = new ItemGelidEnderiumSickle(ItemInfo.SICKLE_GELID_ENDERIUM_ID, enderium).setUnlocalizedName(ModInformation.ID + ItemInfo.SICKLE_GELID_ENDERIUM_UNLOCALIZED_NAME);
             GameRegistry.registerItem(sickleGelidEnderium, ItemInfo.SICKLE_GELID_ENDERIUM_KEY);
-        }
-        if (ConfigHandler.enableEnderiumSword) {
-            swordGelidEnderium = new ItemGelidEnderiumSword(ItemInfo.SWORD_GELID_ENDERIUM_ID, enderium).setUnlocalizedName(ModInformation.ID + ItemInfo.SWORD_GELID_ENDERIUM_UNLOCALIZED_NAME);
-            GameRegistry.registerItem(swordGelidEnderium, ItemInfo.SWORD_GELID_ENDERIUM_KEY);
         }
     }
 }

@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ConfigHandler;
 import main.redstonearmory.ModInformation;
-import main.redstonearmory.items.itemutil.ItemToolRF;
+import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.KeyboardHandler;
 import main.redstonearmory.util.RFHelper;
 import main.redstonearmory.util.TextHelper;
@@ -21,23 +21,20 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.WorldInfo;
+import redstonearsenal.item.tool.ItemAxeRF;
 
 import java.util.List;
 import java.util.Random;
 
-public class ItemGelidEnderiumAxe extends ItemToolRF {
+public class ItemGelidEnderiumAxe extends ItemAxeRF {
 
 	Icon activeIcon;
 	Icon drainedIcon;
-
 	String tool = "axe";
-
     Random random = new Random();
 
     public ItemGelidEnderiumAxe(int id, EnumToolMaterial toolMaterial) {
-
         super(id, toolMaterial);
-        damage = 6;
         maxEnergy = 320000;
         energyPerUse = 350;
         energyPerUseCharged = 15000;
@@ -46,12 +43,11 @@ public class ItemGelidEnderiumAxe extends ItemToolRF {
         effectiveMaterials.add(Material.plants);
         effectiveMaterials.add(Material.leaves);
         effectiveMaterials.add(Material.vine);
+        this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
     }
 
     public ItemGelidEnderiumAxe(int id, EnumToolMaterial toolMaterial, int harvestLevel) {
-
         this(id, toolMaterial);
-        this.harvestLevel = harvestLevel;
     }
 
 	@Override
@@ -98,15 +94,6 @@ public class ItemGelidEnderiumAxe extends ItemToolRF {
         }
         return true;
     }
-
-	@Override
-	public float getStrVsBlock(ItemStack stack, Block block, int meta) {
-		if ((block.blockMaterial == Material.wood || block.blockMaterial == Material.vine || block.blockMaterial == Material.leaves || block.blockMaterial == Material.cactus ||block.blockMaterial ==  Material.plants) && getEnergyStored(stack) > energyPerUse) {
-			return 15F;
-		} else {
-			return 1F;
-		}
-	}
 
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {

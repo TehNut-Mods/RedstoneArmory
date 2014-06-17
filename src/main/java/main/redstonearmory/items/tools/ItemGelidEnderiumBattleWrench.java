@@ -1,13 +1,12 @@
 package main.redstonearmory.items.tools;
 
-import buildcraft.api.tools.IToolWrench;
 import cofh.api.block.IDismantleable;
-import cofh.api.energy.IEnergyContainerItem;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ic2.api.tile.IWrenchable;
 import main.redstonearmory.ConfigHandler;
 import main.redstonearmory.ModInformation;
+import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.BlockHelper;
 import main.redstonearmory.util.KeyboardHandler;
 import main.redstonearmory.util.RFHelper;
@@ -17,7 +16,6 @@ import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
@@ -28,23 +26,28 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
-import railcraft.api.core.items.IToolCrowbar;
+import redstonearsenal.item.tool.ItemWrenchBattleRF;
 import redstonearsenal.util.Utils;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
-public class ItemGelidEnderiumBattleWrench extends ItemGelidEnderiumSword implements IToolCrowbar, IToolWrench, IEnergyContainerItem {
+public class ItemGelidEnderiumBattleWrench extends ItemWrenchBattleRF {
 
     String tool = "battlewrench";
     int spinDamage = 2;
     int resistanceEffect = 3;
+    Icon activeIcon;
+    Icon drainedIcon;
+    int radius = 4;
+    Random random = new Random();
 
     public ItemGelidEnderiumBattleWrench(int par1, EnumToolMaterial toolMaterial) {
-
         super(par1, toolMaterial);
         damage = 6;
         damageCharged = 3;
+        this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
     }
 
     @Override
@@ -213,68 +216,6 @@ public class ItemGelidEnderiumBattleWrench extends ItemGelidEnderiumSword implem
     public boolean doesSneakBypassUse(World world, int x, int y, int z, EntityPlayer player) {
 
         return true;
-    }
-
-    /* IToolCrowbar */
-    @Override
-    public boolean canWhack(EntityPlayer player, ItemStack crowbar, int x, int y, int z) {
-
-        return getEnergyStored(crowbar) >= getEnergyPerUse(crowbar) || player.capabilities.isCreativeMode;
-    }
-
-    @Override
-    public void onWhack(EntityPlayer player, ItemStack crowbar, int x, int y, int z) {
-
-        if (!player.capabilities.isCreativeMode) {
-            useEnergy(crowbar, false);
-        }
-        player.swingItem();
-    }
-
-    @Override
-    public boolean canLink(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
-
-        return player.isSneaking() && getEnergyStored(crowbar) >= getEnergyPerUse(crowbar) || player.capabilities.isCreativeMode;
-    }
-
-    @Override
-    public void onLink(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
-
-        if (!player.capabilities.isCreativeMode) {
-            useEnergy(crowbar, false);
-        }
-        player.swingItem();
-    }
-
-    @Override
-    public boolean canBoost(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
-
-        return !player.isSneaking() && getEnergyStored(crowbar) >= getEnergyPerUse(crowbar);
-    }
-
-    @Override
-    public void onBoost(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
-
-        if (!player.capabilities.isCreativeMode) {
-            useEnergy(crowbar, false);
-        }
-        player.swingItem();
-    }
-
-    /* IToolWrench */
-    @Override
-    public boolean canWrench(EntityPlayer player, int x, int y, int z) {
-
-        ItemStack stack = player.getCurrentEquippedItem();
-        return getEnergyStored(stack) >= getEnergyPerUse(stack) || player.capabilities.isCreativeMode;
-    }
-
-    @Override
-    public void wrenchUsed(EntityPlayer player, int x, int y, int z) {
-
-        if (!player.capabilities.isCreativeMode) {
-            useEnergy(player.getCurrentEquippedItem(), false);
-        }
     }
 
     @SuppressWarnings({"rawtypes", "unchecked"})

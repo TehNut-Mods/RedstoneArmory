@@ -4,7 +4,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ConfigHandler;
 import main.redstonearmory.ModInformation;
-import main.redstonearmory.items.itemutil.ItemToolRF;
+import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.KeyboardHandler;
 import main.redstonearmory.util.RFHelper;
 import main.redstonearmory.util.TextHelper;
@@ -21,43 +21,38 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.entity.player.BonemealEvent;
+import redstonearsenal.item.tool.ItemShovelRF;
 
 import java.util.List;
 
-public class ItemGelidEnderiumShovel extends ItemToolRF {
+public class ItemGelidEnderiumShovel extends ItemShovelRF {
 
     String tool = "shovel";
     Icon activeIcon;
     Icon drainedIcon;
-
     int range = 5;
 
     public ItemGelidEnderiumShovel(int id, EnumToolMaterial toolMaterial) {
-
         super(id, toolMaterial);
-
-        addToolClass("shovel");
         maxEnergy = 320000;
         energyPerUse = 350;
         energyPerUseCharged = 950;
-
         effectiveMaterials.add(Material.ground);
         effectiveMaterials.add(Material.sand);
         effectiveMaterials.add(Material.clay);
         effectiveMaterials.add(Material.craftedSnow);
         effectiveMaterials.add(Material.snow);
         effectiveMaterials.add(Material.grass);
+
+        this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
     }
 
     public ItemGelidEnderiumShovel(int id, EnumToolMaterial toolMaterial, int harvestLevel) {
-
         this(id, toolMaterial);
-        this.harvestLevel = harvestLevel;
     }
 
     @Override
     public Icon getIcon(ItemStack stack, int pass) {
-
         return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
     }
 
@@ -256,14 +251,6 @@ public class ItemGelidEnderiumShovel extends ItemToolRF {
         }
     }
 
-    @Override
-    public float getStrVsBlock(ItemStack stack, Block block, int meta) {
-        if ((block.blockMaterial == Material.grass || block.blockMaterial == Material.ground || block.blockMaterial == Material.snow || block.blockMaterial == Material.craftedSnow || block.blockMaterial == Material.clay || block.blockMaterial == Material.sand) && getEnergyStored(stack) > energyPerUse) {
-            return 15F;
-        } else {
-            return 1F;
-        }
-    }
 
     @SuppressWarnings({"rawtypes", "unchecked"})
     @SideOnly(Side.CLIENT)
