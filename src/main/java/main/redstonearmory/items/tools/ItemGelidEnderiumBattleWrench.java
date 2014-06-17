@@ -21,259 +21,291 @@ import net.minecraft.entity.item.EntityMinecart;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumToolMaterial;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeDirection;
 import railcraft.api.core.items.IToolCrowbar;
+import redstonearsenal.util.Utils;
 
+import java.util.Iterator;
 import java.util.List;
 
 public class ItemGelidEnderiumBattleWrench extends ItemGelidEnderiumSword implements IToolCrowbar, IToolWrench, IEnergyContainerItem {
 
-	String tool = "battlewrench";
+    String tool = "battlewrench";
+    int spinDamage = 2;
+    int resistanceEffect = 3;
 
-	public ItemGelidEnderiumBattleWrench(int par1, EnumToolMaterial toolMaterial) {
+    public ItemGelidEnderiumBattleWrench(int par1, EnumToolMaterial toolMaterial) {
 
-		super(par1, toolMaterial);
-		damage = 6;
-		damageCharged = 3;
-	}
+        super(par1, toolMaterial);
+        damage = 6;
+        damageCharged = 3;
+    }
 
-	@Override
-	public Icon getIcon(ItemStack stack, int pass) {
+    @Override
+    public Icon getIcon(ItemStack stack, int pass) {
 
-		return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
-	}
+        return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
+    }
 
-	@Override
-	public void registerIcons(IconRegister ir) {
+    @Override
+    public void registerIcons(IconRegister ir) {
 
-		this.itemIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench");
-		this.activeIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench_active");
-		this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench_drained");
-	}
+        this.itemIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench");
+        this.activeIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench_active");
+        this.drainedIcon = ir.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench_drained");
+    }
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public String getItemDisplayName(ItemStack itemStack) {
-		return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
-	}
+    @SideOnly(Side.CLIENT)
+    @Override
+    public String getItemDisplayName(ItemStack itemStack) {
+        return TextHelper.BRIGHT_BLUE + super.getItemDisplayName(itemStack);
+    }
 
-	@Override
-	public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase player) {
+    @Override
+    public boolean hitEntity(ItemStack stack, EntityLivingBase entity, EntityLivingBase player) {
 
-		entity.rotationYaw += 90;
-		entity.rotationYaw %= 360;
-		return super.hitEntity(stack, entity, player);
-	}
+        entity.rotationYaw += 90;
+        entity.rotationYaw %= 360;
+        return super.hitEntity(stack, entity, player);
+    }
 
-	@Override
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int hitSide, float hitX, float hitY, float hitZ) {
+    @Override
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int hitSide, float hitX, float hitY, float hitZ) {
 
-		return true;
-	}
+        return true;
+    }
 
-	@Override
-	public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int hitSide, float hitX, float hitY, float hitZ) {
+    @Override
+    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+        if (isEmpowered(stack)) {
+            radius = 4;
+            spinDamage = 4;
+            resistanceEffect = 4;
+        }
 
-		if (stack.getItemDamage() > 0) {
-			stack.setItemDamage(0);
-		}
-		if (!player.capabilities.isCreativeMode && getEnergyStored(stack) < getEnergyPerUse(stack)) {
-			return false;
-		}
-		Block block = Block.blocksList[world.getBlockId(x, y, z)];
+        AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(player.posX - radius, player.posY - radius, player.posZ - radius, player.posX + radius, player.posY + radius, player.posZ + radius);
+        Iterator iter = world.getEntitiesWithinAABB(EntityLivingBase.class, bb).iterator();
+        player.addPotionEffect(new PotionEffect(Potion.resistance.id, 20, resistanceEffect, false));
+        player.swingItem();
+        if (iter != null) {
+            while (iter.hasNext()) {
+                EntityLivingBase entity = (EntityLivingBase) iter.next();
+                entity.attackEntityFrom(Utils.causePlayerFluxDamage(player), spinDamage);
+                player.setAngles(-180, 10);
+                world.spawnParticle("largeexplode", player.posX, player.posY, player.posZ, 1, 1, 1);
+                if (!player.capabilities.isCreativeMode && random.nextInt(5) == 0)
+                    useEnergy(stack, false);
+            }
+        }
+        return stack;
+    }
 
-		if (world.isRemote && player.isSneaking() && block instanceof IDismantleable
-				&& ((IDismantleable) block).canDismantle(player, world, x, y, z)) {
-			((IDismantleable) block).dismantleBlock(player, world, x, y, z, false);
+    @Override
+    public boolean onItemUseFirst(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int hitSide, float hitX, float hitY, float hitZ) {
 
-			if (!player.capabilities.isCreativeMode) {
-				useEnergy(stack, false);
-			}
-			return true;
-		}
-		if (BlockHelper.canRotate(block)) {
-			int bMeta = world.getBlockMetadata(x, y, z);
+        if (stack.getItemDamage() > 0) {
+            stack.setItemDamage(0);
+        }
+        if (!player.capabilities.isCreativeMode && getEnergyStored(stack) < getEnergyPerUse(stack)) {
+            return false;
+        }
+        Block block = Block.blocksList[world.getBlockId(x, y, z)];
 
-			if (player.isSneaking()) {
-				world.setBlockMetadataWithNotify(x, y, z, BlockHelper.rotateVanillaBlockAlt(world, block, x, y, z), 3);
+        if (world.isRemote && player.isSneaking() && block instanceof IDismantleable
+                && ((IDismantleable) block).canDismantle(player, world, x, y, z)) {
+            ((IDismantleable) block).dismantleBlock(player, world, x, y, z, false);
 
-				if (!world.isRemote) {
-					String soundName = block.stepSound.getBreakSound();
-					//FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.6F));
-				}
-			} else {
-				world.setBlockMetadataWithNotify(x, y, z, BlockHelper.rotateVanillaBlock(world, block, x, y, z), 3);
+            if (!player.capabilities.isCreativeMode) {
+                useEnergy(stack, false);
+            }
+            return true;
+        }
+        if (BlockHelper.canRotate(block)) {
+            int bMeta = world.getBlockMetadata(x, y, z);
 
-				if (!world.isRemote) {
-					String soundName = block.stepSound.getBreakSound();
-					//FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.8F));
-				}
-			}
-			if (!player.capabilities.isCreativeMode) {
-				useEnergy(stack, false);
-			}
-			return world.isRemote;
-		} else if (!player.isSneaking() && block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(hitSide))) {
-			if (!player.capabilities.isCreativeMode) {
-				useEnergy(stack, false);
-			}
-			player.swingItem();
-			return world.isRemote;
-		}
-		TileEntity tile = world.getBlockTileEntity(x, y, z);
+            if (player.isSneaking()) {
+                world.setBlockMetadataWithNotify(x, y, z, BlockHelper.rotateVanillaBlockAlt(world, block, x, y, z), 3);
 
-		if (tile instanceof IWrenchable) {
-			IWrenchable wrenchable = (IWrenchable) tile;
+                if (!world.isRemote) {
+                    String soundName = block.stepSound.getBreakSound();
+                    //FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.6F));
+                }
+            } else {
+                world.setBlockMetadataWithNotify(x, y, z, BlockHelper.rotateVanillaBlock(world, block, x, y, z), 3);
 
-			if (player.isSneaking()) {
-				hitSide = BlockHelper.SIDE_OPPOSITE[hitSide];
-			}
-			if (wrenchable.wrenchCanSetFacing(player, hitSide)) {
-				if (world.isRemote) {
-					wrenchable.setFacing((short) hitSide);
-				}
-			} else if (wrenchable.wrenchCanRemove(player)) {
-				ItemStack dropBlock = wrenchable.getWrenchDrop(player);
+                if (!world.isRemote) {
+                    String soundName = block.stepSound.getBreakSound();
+                    //FMLClientHandler.instance().getClient().getSoundHandler().playSound(new SoundBase(soundName, 1.0F, 0.8F));
+                }
+            }
+            if (!player.capabilities.isCreativeMode) {
+                useEnergy(stack, false);
+            }
+            return world.isRemote;
+        } else if (!player.isSneaking() && block.rotateBlock(world, x, y, z, ForgeDirection.getOrientation(hitSide))) {
+            if (!player.capabilities.isCreativeMode) {
+                useEnergy(stack, false);
+            }
+            player.swingItem();
+            return world.isRemote;
+        }
+        TileEntity tile = world.getBlockTileEntity(x, y, z);
 
-				if (dropBlock != null) {
-					world.setBlockToAir(x, y, z);
-					if (world.isRemote) {
-						List<ItemStack> drops = block.getBlockDropped(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
+        if (tile instanceof IWrenchable) {
+            IWrenchable wrenchable = (IWrenchable) tile;
 
-						if (drops.isEmpty()) {
-							drops.add(dropBlock);
-						} else {
-							drops.set(0, dropBlock);
-						}
-						for (ItemStack drop : drops) {
-							float f = 0.7F;
-							double x2 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
-							double y2 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
-							double z2 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
-							EntityItem entity = new EntityItem(world, x + x2, y + y2, z + z2, drop);
-							entity.delayBeforeCanPickup = 10;
-							world.spawnEntityInWorld(entity);
-						}
-					}
-				}
-			}
-			if (!player.capabilities.isCreativeMode) {
-				useEnergy(stack, false);
-			}
-			return world.isRemote;
-		}
-		return false;
-	}
+            if (player.isSneaking()) {
+                hitSide = BlockHelper.SIDE_OPPOSITE[hitSide];
+            }
+            if (wrenchable.wrenchCanSetFacing(player, hitSide)) {
+                if (world.isRemote) {
+                    wrenchable.setFacing((short) hitSide);
+                }
+            } else if (wrenchable.wrenchCanRemove(player)) {
+                ItemStack dropBlock = wrenchable.getWrenchDrop(player);
 
-	@Override
-	public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean isCurrentItem) {
+                if (dropBlock != null) {
+                    world.setBlockToAir(x, y, z);
+                    if (world.isRemote) {
+                        List<ItemStack> drops = block.getBlockDropped(world, x, y, z, world.getBlockMetadata(x, y, z), 0);
 
-		if (stack.getItemDamage() > 0) {
-			stack.setItemDamage(0);
-		}
-		super.onUpdate(stack, world, entity, slot, isCurrentItem);
-	}
+                        if (drops.isEmpty()) {
+                            drops.add(dropBlock);
+                        } else {
+                            drops.set(0, dropBlock);
+                        }
+                        for (ItemStack drop : drops) {
+                            float f = 0.7F;
+                            double x2 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
+                            double y2 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
+                            double z2 = world.rand.nextFloat() * f + (1.0F - f) * 0.5D;
+                            EntityItem entity = new EntityItem(world, x + x2, y + y2, z + z2, drop);
+                            entity.delayBeforeCanPickup = 10;
+                            world.spawnEntityInWorld(entity);
+                        }
+                    }
+                }
+            }
+            if (!player.capabilities.isCreativeMode) {
+                useEnergy(stack, false);
+            }
+            return world.isRemote;
+        }
+        return false;
+    }
 
-//	@Override
-	public boolean doesSneakBypassUse(World world, int x, int y, int z, EntityPlayer player) {
+    @Override
+    public void onUpdate(ItemStack stack, World world, Entity entity, int slot, boolean isCurrentItem) {
 
-		return true;
-	}
+        if (stack.getItemDamage() > 0) {
+            stack.setItemDamage(0);
+        }
+        super.onUpdate(stack, world, entity, slot, isCurrentItem);
+    }
 
-	/* IToolCrowbar */
-	@Override
-	public boolean canWhack(EntityPlayer player, ItemStack crowbar, int x, int y, int z) {
+    //	@Override
+    public boolean doesSneakBypassUse(World world, int x, int y, int z, EntityPlayer player) {
 
-		return getEnergyStored(crowbar) >= getEnergyPerUse(crowbar) || player.capabilities.isCreativeMode;
-	}
+        return true;
+    }
 
-	@Override
-	public void onWhack(EntityPlayer player, ItemStack crowbar, int x, int y, int z) {
+    /* IToolCrowbar */
+    @Override
+    public boolean canWhack(EntityPlayer player, ItemStack crowbar, int x, int y, int z) {
 
-		if (!player.capabilities.isCreativeMode) {
-			useEnergy(crowbar, false);
-		}
-		player.swingItem();
-	}
+        return getEnergyStored(crowbar) >= getEnergyPerUse(crowbar) || player.capabilities.isCreativeMode;
+    }
 
-	@Override
-	public boolean canLink(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
+    @Override
+    public void onWhack(EntityPlayer player, ItemStack crowbar, int x, int y, int z) {
 
-		return player.isSneaking() && getEnergyStored(crowbar) >= getEnergyPerUse(crowbar) || player.capabilities.isCreativeMode;
-	}
+        if (!player.capabilities.isCreativeMode) {
+            useEnergy(crowbar, false);
+        }
+        player.swingItem();
+    }
 
-	@Override
-	public void onLink(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
+    @Override
+    public boolean canLink(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
 
-		if (!player.capabilities.isCreativeMode) {
-			useEnergy(crowbar, false);
-		}
-		player.swingItem();
-	}
+        return player.isSneaking() && getEnergyStored(crowbar) >= getEnergyPerUse(crowbar) || player.capabilities.isCreativeMode;
+    }
 
-	@Override
-	public boolean canBoost(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
+    @Override
+    public void onLink(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
 
-		return !player.isSneaking() && getEnergyStored(crowbar) >= getEnergyPerUse(crowbar);
-	}
+        if (!player.capabilities.isCreativeMode) {
+            useEnergy(crowbar, false);
+        }
+        player.swingItem();
+    }
 
-	@Override
-	public void onBoost(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
+    @Override
+    public boolean canBoost(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
 
-		if (!player.capabilities.isCreativeMode) {
-			useEnergy(crowbar, false);
-		}
-		player.swingItem();
-	}
+        return !player.isSneaking() && getEnergyStored(crowbar) >= getEnergyPerUse(crowbar);
+    }
 
-	/* IToolWrench */
-	@Override
-	public boolean canWrench(EntityPlayer player, int x, int y, int z) {
+    @Override
+    public void onBoost(EntityPlayer player, ItemStack crowbar, EntityMinecart cart) {
 
-		ItemStack stack = player.getCurrentEquippedItem();
-		return getEnergyStored(stack) >= getEnergyPerUse(stack) || player.capabilities.isCreativeMode;
-	}
+        if (!player.capabilities.isCreativeMode) {
+            useEnergy(crowbar, false);
+        }
+        player.swingItem();
+    }
 
-	@Override
-	public void wrenchUsed(EntityPlayer player, int x, int y, int z) {
+    /* IToolWrench */
+    @Override
+    public boolean canWrench(EntityPlayer player, int x, int y, int z) {
 
-		if (!player.capabilities.isCreativeMode) {
-			useEnergy(player.getCurrentEquippedItem(), false);
-		}
-	}
+        ItemStack stack = player.getCurrentEquippedItem();
+        return getEnergyStored(stack) >= getEnergyPerUse(stack) || player.capabilities.isCreativeMode;
+    }
 
-	@SuppressWarnings({"rawtypes", "unchecked"})
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
-		if (stack.stackTagCompound == null) {
-			RFHelper.setDefaultEnergyTag(stack, 0);
-		}
-		if (!KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
-			list.add(TextHelper.shiftForMoreInfo);
-			if (ConfigHandler.addItemLoreToItems) {
-				list.add(TextHelper.controlForLore);
-			}
-		} else if (KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown()) {
-			list.add(TextHelper.shiftForMoreInfo);
-			if (ConfigHandler.addItemLoreToItems) {
-				list.add(TextHelper.controlForLore);
-			}
-		} else if (KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
-			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tool.charge") + " " + RFHelper.getRFStored(stack) + " / " + maxEnergy + " " + TextHelper.localize("info.redstonearmory.tool.rf") + TextHelper.END);
-			list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
-			if (isEmpowered(stack)) {
-				list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOff") + TextHelper.END);
-			} else {
-				list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
-			}
-			list.remove(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.sword"));
-			list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.battlewrench"));
-		} else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
-			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
-		}
-	}
+    @Override
+    public void wrenchUsed(EntityPlayer player, int x, int y, int z) {
+
+        if (!player.capabilities.isCreativeMode) {
+            useEnergy(player.getCurrentEquippedItem(), false);
+        }
+    }
+
+    @SuppressWarnings({"rawtypes", "unchecked"})
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
+        if (stack.stackTagCompound == null) {
+            RFHelper.setDefaultEnergyTag(stack, 0);
+        }
+        if (!KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
+            list.add(TextHelper.shiftForMoreInfo);
+            if (ConfigHandler.addItemLoreToItems) {
+                list.add(TextHelper.controlForLore);
+            }
+        } else if (KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown()) {
+            list.add(TextHelper.shiftForMoreInfo);
+            if (ConfigHandler.addItemLoreToItems) {
+                list.add(TextHelper.controlForLore);
+            }
+        } else if (KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
+            list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tool.charge") + " " + RFHelper.getRFStored(stack) + " / " + maxEnergy + " " + TextHelper.localize("info.redstonearmory.tool.rf") + TextHelper.END);
+            list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
+            if (isEmpowered(stack)) {
+                list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOff") + TextHelper.END);
+            } else {
+                list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
+            }
+            list.remove(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.sword"));
+            list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.battlewrench"));
+        } else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
+            list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
+        }
+    }
 }
