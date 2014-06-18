@@ -83,12 +83,14 @@ public class ItemGelidEnderiumShovel extends ItemShovelRF {
         }
         EntityPlayer player = (EntityPlayer) entity;
 
-        if (effectiveMaterials.contains(block.blockMaterial) && isEmpowered(stack)) {
-            for (int i = x - 2; i <= x + 2; i++) {
-                for (int k = z - 2; k <= z + 2; k++) {
-                    for (int j = y - 2; j <= y + 2; j++) {
-                        if (world.getBlockId(i, j, k) == blockID) {
-                            harvestBlock(world, i, j, k, player);
+        if (ConfigHandler.disableShovelMultiBreak) {
+            if (effectiveMaterials.contains(block.blockMaterial) && isEmpowered(stack)) {
+                for (int i = x - 2; i <= x + 2; i++) {
+                    for (int k = z - 2; k <= z + 2; k++) {
+                        for (int j = y - 2; j <= y + 2; j++) {
+                            if (world.getBlockId(i, j, k) == blockID) {
+                                harvestBlock(world, i, j, k, player);
+                            }
                         }
                     }
                 }
@@ -120,21 +122,22 @@ public class ItemGelidEnderiumShovel extends ItemShovelRF {
             }
             return true;
         }
-
-        if (applyBonemeal(stack, world, x, y, z, player)) {
-            if (!world.isRemote) {
-                world.playAuxSFX(2005, x, y, z, 0);
+        if (ConfigHandler.disableShovelBonemeal) {
+            if (applyBonemeal(stack, world, x, y, z, player)) {
+                if (!world.isRemote) {
+                    world.playAuxSFX(2005, x, y, z, 0);
+                }
+                return true;
             }
-            return true;
-        }
 
-        if (isEmpowered(stack)) {
-            for (int i = 0; i <= 6; i++) {
-                if (applyBonemeal(stack, world, x, y, z, player)) {
-                    if (!world.isRemote) {
-                        world.playAuxSFX(2005, x, y, z, 0);
+            if (isEmpowered(stack)) {
+                for (int i = 0; i <= 6; i++) {
+                    if (applyBonemeal(stack, world, x, y, z, player)) {
+                        if (!world.isRemote) {
+                            world.playAuxSFX(2005, x, y, z, 0);
+                        }
+                        return true;
                     }
-                    return true;
                 }
             }
         }

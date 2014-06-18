@@ -66,20 +66,20 @@ public class RFHelper {
     }
 
 
-	public static int insertEnergyIntoHeldContainer(EntityPlayer player, int maxReceive, boolean simulate) {
+    public static int insertEnergyIntoHeldContainer(EntityPlayer player, int maxReceive, boolean simulate) {
 
-		ItemStack container = player.getCurrentEquippedItem();
+        ItemStack container = player.getCurrentEquippedItem();
 
-		return isEnergyContainerItem(container) ? ((IEnergyContainerItem) container.getItem()).receiveEnergy(container, maxReceive, simulate) : 0;
-	}
+        return isEnergyContainerItem(container) ? ((IEnergyContainerItem) container.getItem()).receiveEnergy(container, maxReceive, simulate) : 0;
+    }
 
-	public static boolean isPlayerHoldingEnergyContainerItem(EntityPlayer player) {
+    public static boolean isPlayerHoldingEnergyContainerItem(EntityPlayer player) {
 
-		return isEnergyContainerItem(player.getCurrentEquippedItem());
-	}
+        return isEnergyContainerItem(player.getCurrentEquippedItem());
+    }
 
-	public static boolean isEnergyContainerItem(ItemStack container) {
+    public static boolean isEnergyContainerItem(ItemStack container) {
 
-		return container != null && container.getItem() instanceof IEnergyContainerItem;
-	}
+        return container != null && container.getItem() instanceof IEnergyContainerItem;
+    }
 }

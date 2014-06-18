@@ -43,10 +43,10 @@ public class ItemGelidEnderiumBattleWrench extends ItemWrenchBattleRF {
     int radius = 4;
     Random random = new Random();
 
-	public int maxEnergy = 320000;
-	public int maxTransfer = 1600;
-	public int energyPerUse = 350;
-	public int energyPerUseCharged = 800;
+    public int maxEnergy = 320000;
+    public int maxTransfer = 1600;
+    public int energyPerUse = 350;
+    public int energyPerUseCharged = 800;
 
 
     public ItemGelidEnderiumBattleWrench(int par1, EnumToolMaterial toolMaterial) {
@@ -98,18 +98,20 @@ public class ItemGelidEnderiumBattleWrench extends ItemWrenchBattleRF {
             resistanceEffect = 4;
         }
 
-        AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(player.posX - radius, player.posY - radius, player.posZ - radius, player.posX + radius, player.posY + radius, player.posZ + radius);
-        Iterator iter = world.getEntitiesWithinAABB(EntityLivingBase.class, bb).iterator();
-        player.addPotionEffect(new PotionEffect(Potion.resistance.id, 20, resistanceEffect, false));
-        player.swingItem();
-        if (iter != null) {
-            while (iter.hasNext()) {
-                EntityLivingBase entity = (EntityLivingBase) iter.next();
-                entity.attackEntityFrom(Utils.causePlayerFluxDamage(player), spinDamage);
-                player.setAngles(-180, 10);
-                world.spawnParticle("largeexplode", player.posX, player.posY, player.posZ, 1, 1, 1);
-                if (!player.capabilities.isCreativeMode && random.nextInt(5) == 0)
-                    useEnergy(stack, false);
+        if (ConfigHandler.disableBattleWrenchSpin) {
+            AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(player.posX - radius, player.posY - radius, player.posZ - radius, player.posX + radius, player.posY + radius, player.posZ + radius);
+            Iterator iter = world.getEntitiesWithinAABB(EntityLivingBase.class, bb).iterator();
+            player.addPotionEffect(new PotionEffect(Potion.resistance.id, 20, resistanceEffect, false));
+            player.swingItem();
+            if (iter != null) {
+                while (iter.hasNext()) {
+                    EntityLivingBase entity = (EntityLivingBase) iter.next();
+                    entity.attackEntityFrom(Utils.causePlayerFluxDamage(player), spinDamage);
+                    player.setAngles(-180, 10);
+                    world.spawnParticle("largeexplode", player.posX, player.posY, player.posZ, 1, 1, 1);
+                    if (!player.capabilities.isCreativeMode && random.nextInt(5) == 0)
+                        useEnergy(stack, false);
+                }
             }
         }
         return stack;
@@ -251,11 +253,11 @@ public class ItemGelidEnderiumBattleWrench extends ItemWrenchBattleRF {
             }
             list.remove(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.sword"));
             list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.battlewrench"));
-	        list.add(TextHelper.spacer);
-	        list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.redstonearmory.tool.damageAttack"));
-	        if(isEmpowered(stack)) {
-		        list.add(TextHelper.BRIGHT_GREEN + "+" + damageCharged + " " + TextHelper.localize("info.redstonearmory.tool.damageFlux"));
-	        }
+            list.add(TextHelper.spacer);
+            list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.redstonearmory.tool.damageAttack"));
+            if (isEmpowered(stack)) {
+                list.add(TextHelper.BRIGHT_GREEN + "+" + damageCharged + " " + TextHelper.localize("info.redstonearmory.tool.damageFlux"));
+            }
         } else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
             list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
         }

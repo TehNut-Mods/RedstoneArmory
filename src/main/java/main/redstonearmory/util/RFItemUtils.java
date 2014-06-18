@@ -16,53 +16,53 @@ import redstonearsenal.item.tool.IEmpowerableItem;
 
 public class RFItemUtils {
 
-	private RFItemUtils() {
+    private RFItemUtils() {
 
-	}
+    }
 
-	public static boolean isPlayerHoldingEmpowerableItem(EntityPlayer player) {
+    public static boolean isPlayerHoldingEmpowerableItem(EntityPlayer player) {
 
-		Item equipped = player.getCurrentEquippedItem() != null ? player.getCurrentEquippedItem().getItem() : null;
-		return equipped instanceof IEmpowerableItem;
-	}
+        Item equipped = player.getCurrentEquippedItem() != null ? player.getCurrentEquippedItem().getItem() : null;
+        return equipped instanceof IEmpowerableItem;
+    }
 
-	public static boolean isPlayerHoldingEmpoweredItem(EntityPlayer player) {
+    public static boolean isPlayerHoldingEmpoweredItem(EntityPlayer player) {
 
-		Item equipped = player.getCurrentEquippedItem() != null ? player.getCurrentEquippedItem().getItem() : null;
-		return equipped instanceof IEmpowerableItem && ((IEmpowerableItem) equipped).isEmpowered(player.getCurrentEquippedItem());
-	}
+        Item equipped = player.getCurrentEquippedItem() != null ? player.getCurrentEquippedItem().getItem() : null;
+        return equipped instanceof IEmpowerableItem && ((IEmpowerableItem) equipped).isEmpowered(player.getCurrentEquippedItem());
+    }
 
-	public static boolean toggleHeldEmpowerableItemState(EntityPlayer player) {
+    public static boolean toggleHeldEmpowerableItemState(EntityPlayer player) {
 
-		ItemStack equipped = player.getCurrentEquippedItem();
-		IEmpowerableItem empowerableItem = (IEmpowerableItem) equipped.getItem();
+        ItemStack equipped = player.getCurrentEquippedItem();
+        IEmpowerableItem empowerableItem = (IEmpowerableItem) equipped.getItem();
 
-		return empowerableItem.setEmpoweredState(equipped, !empowerableItem.isEmpowered(equipped));
-	}
+        return empowerableItem.setEmpoweredState(equipped, !empowerableItem.isEmpowered(equipped));
+    }
 
-	public static class DamageSourceFlux extends DamageSource {
+    public static class DamageSourceFlux extends DamageSource {
 
-		protected DamageSourceFlux() {
+        protected DamageSourceFlux() {
 
-			super("flux");
-			this.setDamageBypassesArmor();
-		}
-	}
+            super("flux");
+            this.setDamageBypassesArmor();
+        }
+    }
 
-	public static class EntityDamageSourceFlux extends EntityDamageSource {
+    public static class EntityDamageSourceFlux extends EntityDamageSource {
 
-		public EntityDamageSourceFlux(String type, Entity entity) {
+        public EntityDamageSourceFlux(String type, Entity entity) {
 
-			super(type, entity);
-			this.setDamageBypassesArmor();
-		}
-	}
+            super(type, entity);
+            this.setDamageBypassesArmor();
+        }
+    }
 
-	public static DamageSource causePlayerFluxDamage(EntityPlayer entityPlayer) {
+    public static DamageSource causePlayerFluxDamage(EntityPlayer entityPlayer) {
 
-		return new EntityDamageSourceFlux("player", entityPlayer);
-	}
+        return new EntityDamageSourceFlux("player", entityPlayer);
+    }
 
-	public static final DamageSourceFlux flux = new DamageSourceFlux();
+    public static final DamageSourceFlux flux = new DamageSourceFlux();
 
 }

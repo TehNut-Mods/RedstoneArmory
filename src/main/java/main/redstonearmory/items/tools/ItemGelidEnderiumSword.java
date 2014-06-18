@@ -45,12 +45,12 @@ public class ItemGelidEnderiumSword extends ItemSwordRF {
         setNoRepair();
         this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
 
-	    maxEnergy = 320000;
-	    maxTransfer = 1600;
-	    energyPerUse = 350;
-	    energyPerUseCharged = 800;
-	    damage = 15;
-	    damageCharged = 8;
+        maxEnergy = 320000;
+        maxTransfer = 1600;
+        energyPerUse = 350;
+        energyPerUseCharged = 800;
+        damage = 15;
+        damageCharged = 8;
     }
 
     @Override
@@ -117,15 +117,17 @@ public class ItemGelidEnderiumSword extends ItemSwordRF {
         if (isEmpowered(stack))
             radius = 10;
 
-        if (!world.isRemote && entity instanceof EntityPlayer && ((EntityPlayer) entity).isUsingItem()) {
-            AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(entity.posX - radius, entity.posY - radius, entity.posZ - radius, entity.posX + radius, entity.posY + radius, entity.posZ + radius);
-            Iterator iter = world.getEntitiesWithinAABB(EntityItem.class, bb).iterator();
-            if (iter != null) {
-                while (iter.hasNext()) {
-                    EntityItem item = (EntityItem) iter.next();
-                    moveEntity(item, Vector3.fromEntityCenter(entity), 0.1);
-                    if (random.nextInt(10) == 0)
-                        world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
+        if (ConfigHandler.disableSwordSuckage) {
+            if (!world.isRemote && entity instanceof EntityPlayer && ((EntityPlayer) entity).isUsingItem()) {
+                AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(entity.posX - radius, entity.posY - radius, entity.posZ - radius, entity.posX + radius, entity.posY + radius, entity.posZ + radius);
+                Iterator iter = world.getEntitiesWithinAABB(EntityItem.class, bb).iterator();
+                if (iter != null) {
+                    while (iter.hasNext()) {
+                        EntityItem item = (EntityItem) iter.next();
+                        moveEntity(item, Vector3.fromEntityCenter(entity), 0.1);
+                        if (random.nextInt(15) == 0)
+                            world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
+                    }
                 }
             }
         }
@@ -174,11 +176,11 @@ public class ItemGelidEnderiumSword extends ItemSwordRF {
                 list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
             }
             list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.sword"));
-	        list.add(TextHelper.spacer);
-	        list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.redstonearmory.tool.damageAttack"));
-	        if(isEmpowered(stack)) {
-		        list.add(TextHelper.BRIGHT_GREEN + damageCharged + " " + TextHelper.localize("info.redstonearmory.tool.damageFlux"));
-	        }
+            list.add(TextHelper.spacer);
+            list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.redstonearmory.tool.damageAttack"));
+            if (isEmpowered(stack)) {
+                list.add(TextHelper.BRIGHT_GREEN + damageCharged + " " + TextHelper.localize("info.redstonearmory.tool.damageFlux"));
+            }
         } else if (!KeyboardHandler.isShiftDown() && KeyboardHandler.isControlDown() && ConfigHandler.addItemLoreToItems) {
             list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
         }

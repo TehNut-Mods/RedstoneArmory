@@ -24,7 +24,6 @@ import java.util.List;
 public final class BlockHelper {
 
     private BlockHelper() {
-
     }
 
     public static byte[] rotateType = new byte[4096];
