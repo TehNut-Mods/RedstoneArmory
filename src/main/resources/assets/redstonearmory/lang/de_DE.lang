@@ -1,0 +1,55 @@
+//CREATIVE TAB NAME
+itemGroup.redstonearmory.creativetab.name=Redstone Armory
+
+//BLOCK NAMES
+tile.redstonearmory.enderium.gelid.name=Eisiger Enderiumblock
+
+//ITEM NAMES
+item.redstonearmory.material.gelidenderium.ingot.name=Eisiger Enderiumbarren
+item.redstonearmory.material.gelidenderium.nugget.name=Eisiger Enderium Nugget
+item.redstonearmory.material.gelidenderium.gem.name=Eisiger Edelstein
+item.redstonearmory.material.gelidenderium.rod.name=Eisige Rute
+item.redstonearmory.material.gelidenderium.nothing.name=Anti-Derp Protokoll
+
+//TOOL NAMES
+item.redstonearmory.tool.gelidenderium.axe.name=Eisige Enderium Axt
+item.redstonearmory.tool.gelidenderium.battlewrench.name=Eisiger Enderium Kampfschraubenschlüssel
+item.redstonearmory.tool.gelidenderium.pickaxe.name=Eisige Enderium Spitzhacke
+item.redstonearmory.tool.gelidenderium.shovel.name=Eisige Enderium Schaufel
+item.redstonearmory.tool.gelidenderium.sickle.name=Eisige Enderium Sichel
+item.redstonearmory.tool.gelidenderium.sword.name=Eisiges Enderium Schwert
+
+//TOOL INFO
+info.redstonearmory.tool.gelidenderium.axe=Funktioniert auch als '/weather clear'
+info.redstonearmory.tool.gelidenderium.battlewrench=PLACEHOLDER
+info.redstonearmory.tool.gelidenderium.pickaxe=PLACEHOLDER
+info.redstonearmory.tool.gelidenderium.shovel=Funktioniert auch als Knochenmehl
+info.redstonearmory.tool.gelidenderium.sickle=Funktioniert auch als... Oh warte mal...
+info.redstonearmory.tool.gelidenderium.sword=Funktioniert auch um Gegenstände anzuziehen
+
+//TOOLTIPS
+info.redstonearmory.tool.default=Standard Text
+info.redstonearmory.tool.press=Drücke
+info.redstonearmory.tool.chargeOn=um zu ermächtigen
+info.redstonearmory.tool.chargeOff=um zu bändigen
+info.redstonearmory.tool.energyPerUse=RF je Nutzung
+info.redstonearmory.tool.charge=Aufladung:
+info.redstonearmory.tool.rf=RF
+info.redstonearmory.tool.hold=Halte
+info.redstonearmory.tool.info=für Details
+info.redstonearmory.tool.lore=für die Geschichte des Gegenstandes
+info.redstonearmory.tool.damageAttack=Schaden
+info.redstonearmory.tool.damageFlux=Flux Schaden
+
+//CONTROLS
+info.redstonearmory.key.shift=Umschalt
+info.redstonearmory.key.control=Steuerung
+
+//LORE
+info.redstonearmory.lore.default=Standard Text
+info.redstonearmory.lore.axe=Laut Wikipedia (ES IST EINE VERNÜNFTIGE QUELLE), Äxte verändern sich mit dem Wetter. Ja, Ich habe es auch nicht geglaubt. Wie auch immer, wenn die Axt ermächtigt ist erlaubt sie dem Spieler große Energiemengen zu nutzen um die Welt von Regen zu befreien oder auch Blitze zu beschwören auf einen Block den macht Rechtsklickt. Doch nimm dich in Acht, es ist nicht ganz ungefährlich. ;)
+info.redstonearmory.lore.battlewrench=Die Idee hinter dem Kampfschraubenschlüssel ist die Fähigkeit, den Schraubenschlüssel zu schwingen und alles in einem 2 (4 wenn Ermächtigt) Block Radius zu verletzen. Um das "Schwingen" zu simulieren wird der Spieler leicht gedreht, wie von der Kraft des Schwunges. Es war ursprünglich geplant den Spieler einmal komplett zu drehen, aber so geht es auch.
+info.redstonearmory.lore.pickaxe=Es ist eine ENDERium Spitzhacke, warum nicht ein paar ENDER Fähigkeiten? Anstatt Stein abzubauen, teleportiert es einen 3x3 Bereich hinter dich. Wenn du aber Erze abbaust, wird nur ein Block abgebaut.
+info.redstonearmory.lore.shovel=Die normale Fluxierende Schaufel ist eine Hacke, macht es nicht Sinn das diese Knochenmehl ist? Nein? ZU SCHADE. ES IST KNOCHENMEHL. ERMÄCHTIGEN FÜR MEHR KNOCHENMEHL.
+info.redstonearmory.lore.sickle=Es ist... Uhm... dasselbe mit mehr Energie... Yaay?
+info.redstonearmory.lore.sword=Wolltest du jemals die Fähigkeit mit Blocken nahe Gegenstände anzuziehen? Nein? Nun jetzt kannst du es! Ermächtige für mehr Anziehung.
