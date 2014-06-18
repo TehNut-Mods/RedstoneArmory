@@ -39,4 +39,12 @@ public class TextHelper {
 	public static String localize(String key) {
 		return StatCollector.translateToLocal(key);
 	}
+
+	private static String[] splitList(String list, String splitRegex) {
+		return list.split(splitRegex);
+	}
+
+	public static String[] splitList(String list) {
+		return splitList(list, "\\|");
+	}
 }
