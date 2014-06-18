@@ -11,6 +11,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import redstonearsenal.item.RAItems;
+import thermalexpansion.item.TEItems;
 
 public class ItemRecipeRegistry {
 
@@ -58,7 +59,7 @@ public class ItemRecipeRegistry {
 
 		if(Loader.isModLoaded("ThermalExpansion")) {
 			ThermalExpansionHelper.addTransposerFill(12000, RAItems.gemCrystalFlux, new ItemStack(ItemRegistry.materialGelidEnderium, 1, 2), new FluidStack(FluidRegistry.getFluid("cryotheum"), 1000), false);
-			ThermalExpansionHelper.addTransposerFill(12000, RAItems.ingotElectrumFlux, new ItemStack(ItemRegistry.materialGelidEnderium, 1, 0), new FluidStack(FluidRegistry.getFluid("cryotheum"), 1000), false);
+			ThermalExpansionHelper.addTransposerFill(12000, TEItems.ingotEnderium, new ItemStack(ItemRegistry.materialGelidEnderium, 1, 0), new FluidStack(FluidRegistry.getFluid("cryotheum"), 1000), false);
 		}
 	}
 
