@@ -20,12 +20,12 @@ item.redstonearmory.tool.gelidenderium.sickle.name=Gelid Enderium Sickle
 item.redstonearmory.tool.gelidenderium.sword.name=Gelid Enderium Sword
 
 //TOOL INFO
-info.redstonearmory.tool.gelidenderium.axe=Also serves as '/weather clear'
-info.redstonearmory.tool.gelidenderium.battlewrench=PLACEHOLDER
-info.redstonearmory.tool.gelidenderium.pickaxe=PLACEHOLDER
-info.redstonearmory.tool.gelidenderium.shovel=Also serves as Bonemeal
-info.redstonearmory.tool.gelidenderium.sickle=Also serves as... Oh wait...
-info.redstonearmory.tool.gelidenderium.sword=Also serves as item vaccum
+info.redstonearmory.tool.gelidenderium.axe='/weather clear'
+info.redstonearmory.tool.gelidenderium.battlewrench=Tasmanian Devil
+info.redstonearmory.tool.gelidenderium.pickaxe=Ender Dislocation
+info.redstonearmory.tool.gelidenderium.shovel=Bonemeal
+info.redstonearmory.tool.gelidenderium.sickle=Super sekrit
+info.redstonearmory.tool.gelidenderium.sword=Vacuum
 
 //TOOLTIPS
 info.redstonearmory.tool.default=Default text
@@ -40,6 +40,7 @@ info.redstonearmory.tool.info=for Details
 info.redstonearmory.tool.lore=for item lore
 info.redstonearmory.tool.damageAttack=Attack Damage
 info.redstonearmory.tool.damageFlux=Flux Damage
+info.redstonearmory.tool.disabled=Ability disabled by admin
 
 //CONTROLS
 info.redstonearmory.key.shift=Shift

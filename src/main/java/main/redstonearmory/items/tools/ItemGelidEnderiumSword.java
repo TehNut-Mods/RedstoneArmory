@@ -26,6 +26,8 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.Icon;
 import net.minecraft.world.World;
+import org.lwjgl.input.Keyboard;
+import redstonearsenal.core.ProxyClient;
 import redstonearsenal.item.tool.ItemSwordRF;
 
 import java.util.Iterator;
@@ -171,11 +173,15 @@ public class ItemGelidEnderiumSword extends ItemSwordRF {
             list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tool.charge") + " " + RFHelper.getRFStored(stack) + " / " + maxEnergy + " " + TextHelper.localize("info.redstonearmory.tool.rf") + TextHelper.END);
             list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
             if (isEmpowered(stack)) {
-                list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOff") + TextHelper.END);
+                list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + Keyboard.getKeyName(ProxyClient.empower.keyCode) + " " + TextHelper.localize("info.redstonearmory.tool.chargeOff") + TextHelper.END);
             } else {
-                list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + ConfigHandler.empowerKey + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
+                list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + Keyboard.getKeyName(ProxyClient.empower.keyCode) + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
             }
-            list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium.sword"));
+	        if(!ConfigHandler.disableSwordSuckage) {
+		        list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium." + tool));
+	        } else {
+		        list.add(TextHelper.localize("info.redstonearmory.tool.disabled"));
+	        }
             list.add(TextHelper.spacer);
             list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.redstonearmory.tool.damageAttack"));
             if (isEmpowered(stack)) {
