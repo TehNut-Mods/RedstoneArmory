@@ -51,7 +51,7 @@ public class ItemGelidEnderiumSword extends ItemSwordRF {
         maxTransfer = 1600;
         energyPerUse = 350;
         energyPerUseCharged = 800;
-        damage = 15;
+        damage = 0;
         damageCharged = 8;
     }
 
@@ -90,7 +90,6 @@ public class ItemGelidEnderiumSword extends ItemSwordRF {
         if (stack.getItemDamage() > 0) {
             stack.setItemDamage(0);
         }
-
         EntityPlayer thePlayer = (EntityPlayer) player;
         float fallingMult = (player.fallDistance > 0.0F && !player.onGround && !player.isOnLadder() && !player.isInWater()
                 && !player.isPotionActive(Potion.blindness) && player.ridingEntity == null) ? 1.5F : 1.0F;
@@ -104,11 +103,16 @@ public class ItemGelidEnderiumSword extends ItemSwordRF {
         } else {
             entity.attackEntityFrom(DamageSource.causePlayerDamage(thePlayer), 1 * fallingMult);
         }
+
+        if (getEnergyStored(stack) >= energyPerUse) {
+            entity.attackEntityFrom(DamageSource.causePlayerDamage(thePlayer), 15);
+        }
         return true;
     }
 
-    //	@Override
-    public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase entity) {
+    @Override
+    public boolean onBlockDestroyed(ItemStack stack, World world, int blockId, int x, int y, int z, EntityLivingBase entity) {
+        Block block = Block.blocksList[blockId];
         if (block.getBlockHardness(world, x, y, z) != 0.0D) {
             extractEnergy(stack, energyPerUse, false);
         }
@@ -178,13 +182,16 @@ public class ItemGelidEnderiumSword extends ItemSwordRF {
             } else {
                 list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + Keyboard.getKeyName(ProxyClient.empower.keyCode) + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
             }
-	        if(!ConfigHandler.disableSwordSuckage) {
-		        list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium." + tool));
-	        } else {
-		        list.add(TextHelper.localize("info.redstonearmory.tool.disabled"));
-	        }
+            if (!ConfigHandler.disableSwordSuckage) {
+                list.add(TextHelper.WHITE + TextHelper.localize("info.redstonearmory.tool.gelidenderium." + tool));
+            } else {
+                list.add(TextHelper.localize("info.redstonearmory.tool.disabled"));
+            }
             list.add(TextHelper.spacer);
-            list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.redstonearmory.tool.damageAttack"));
+            if (!(getEnergyStored(stack) >= energyPerUse)) {
+                list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.redstonearmory.tool.damageAttack"));
+            } else
+                list.add(TextHelper.LIGHT_BLUE + "+" + 15 + " " + TextHelper.localize("info.redstonearmory.tool.damageAttack"));
             if (isEmpowered(stack)) {
                 list.add(TextHelper.BRIGHT_GREEN + damageCharged + " " + TextHelper.localize("info.redstonearmory.tool.damageFlux"));
             }
@@ -195,7 +202,6 @@ public class ItemGelidEnderiumSword extends ItemSwordRF {
 
     @Override
     public int getDisplayDamage(ItemStack stack) {
-
         if (stack.stackTagCompound == null) {
             EnergyHelper.setDefaultEnergyTag(stack, 0);
         }
@@ -204,13 +210,11 @@ public class ItemGelidEnderiumSword extends ItemSwordRF {
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-
         return 1 + maxEnergy;
     }
 
     @Override
     public boolean isDamaged(ItemStack stack) {
-
         return stack.getItemDamage() != Short.MAX_VALUE;
     }
 }
