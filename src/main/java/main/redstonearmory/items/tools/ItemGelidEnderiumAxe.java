@@ -84,7 +84,7 @@ public class ItemGelidEnderiumAxe extends ItemAxeRF {
         }
         EntityPlayer player = (EntityPlayer) entity;
 
-        if (ConfigHandler.disableAxeMultiBreak) {
+        if (!ConfigHandler.disableAxeMultiBreak) {
             if ((Block.blocksList[bId].blockMaterial == Material.wood) && isEmpowered(stack)) {
                 for (int i = x - 2; i <= x + 2; i++) {
                     for (int k = z - 2; k <= z + 2; k++) {

@@ -124,7 +124,7 @@ public class ItemGelidEnderiumSword extends ItemSwordRF {
         if (isEmpowered(stack))
             radius = 10;
 
-        if (ConfigHandler.disableSwordSuckage) {
+        if (!ConfigHandler.disableSwordSuckage) {
             if (!world.isRemote && entity instanceof EntityPlayer && ((EntityPlayer) entity).isUsingItem()) {
                 AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(entity.posX - radius, entity.posY - radius, entity.posZ - radius, entity.posX + radius, entity.posY + radius, entity.posZ + radius);
                 Iterator iter = world.getEntitiesWithinAABB(EntityItem.class, bb).iterator();

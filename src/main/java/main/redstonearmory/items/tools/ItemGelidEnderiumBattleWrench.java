@@ -100,7 +100,7 @@ public class ItemGelidEnderiumBattleWrench extends ItemWrenchBattleRF {
             resistanceEffect = 4;
         }
 
-        if (ConfigHandler.disableBattleWrenchSpin) {
+        if (!ConfigHandler.disableBattleWrenchSpin) {
             AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(player.posX - radius, player.posY - radius, player.posZ - radius, player.posX + radius, player.posY + radius, player.posZ + radius);
             Iterator iter = world.getEntitiesWithinAABB(EntityLivingBase.class, bb).iterator();
             player.addPotionEffect(new PotionEffect(Potion.resistance.id, 20, resistanceEffect, false));

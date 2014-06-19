@@ -85,7 +85,7 @@ public class ItemGelidEnderiumShovel extends ItemShovelRF {
         }
         EntityPlayer player = (EntityPlayer) entity;
 
-        if (ConfigHandler.disableShovelMultiBreak) {
+        if (!ConfigHandler.disableShovelMultiBreak) {
             if (effectiveMaterials.contains(block.blockMaterial) && isEmpowered(stack)) {
                 for (int i = x - 2; i <= x + 2; i++) {
                     for (int k = z - 2; k <= z + 2; k++) {
@@ -124,7 +124,7 @@ public class ItemGelidEnderiumShovel extends ItemShovelRF {
             }
             return true;
         }
-        if (ConfigHandler.disableShovelBonemeal) {
+        if (!ConfigHandler.disableShovelBonemeal) {
             if (applyBonemeal(stack, world, x, y, z, player)) {
                 if (!world.isRemote) {
                     world.playAuxSFX(2005, x, y, z, 0);

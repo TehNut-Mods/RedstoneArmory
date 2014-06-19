@@ -57,8 +57,8 @@ public class ItemGelidEnderiumMaterials extends Item {
 
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IconRegister ri) {
-		this.icon[0] = ri.registerIcon(ModInformation.ID + ":materials/IngotGelidEnderium");
-		this.icon[1] = ri.registerIcon(ModInformation.ID + ":materials/NuggetGelidEnderium");
+		this.icon[0] = ri.registerIcon(ModInformation.ID + ":materials/ingotGelidEnderium");
+		this.icon[1] = ri.registerIcon(ModInformation.ID + ":materials/nuggetGelidEnderium");
 		this.icon[2] = ri.registerIcon(ModInformation.ID + ":materials/gemGelidEnderium");
 		this.icon[3] = ri.registerIcon(ModInformation.ID + ":materials/rodGelidEnderium");
 	}

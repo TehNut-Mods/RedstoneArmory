@@ -77,7 +77,7 @@ public class ItemGelidEnderiumPickaxe extends ItemPickaxeRF {
         }
         EntityPlayer player = (EntityPlayer) entity;
 
-        if (ConfigHandler.disablePickaxeEnderDislocation) {
+        if (!ConfigHandler.disablePickaxeEnderDislocation) {
             if ((block == Block.cobblestone.blockID || block == Block.stone.blockID || block == Block.sandStone.blockID || block == Block.netherrack.blockID) && isEmpowered(stack)) {
                 for (int i = x - 1; i <= x + 1; i++) {
                     for (int k = z - 1; k <= z + 1; k++) {
