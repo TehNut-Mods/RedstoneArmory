@@ -2,7 +2,6 @@ package main.redstonearmory.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.RFHelper;
 import main.redstonearmory.util.RFItemUtils;
@@ -33,7 +32,6 @@ public class BlockIngotStorage extends Block {
 	public BlockIngotStorage(int par1) {
 		super(par1, Material.iron);
 		setStepSound(soundMetalFootstep);
-		setUnlocalizedName(ModInformation.ID + ".enderium.gelid");
 		setCreativeTab(RedstoneArmory.tabRedstoneArmory);
 		setHardness(4F);
 	}

@@ -90,6 +90,7 @@ public class ItemGelidEnderiumSword extends ItemSwordRF {
         if (stack.getItemDamage() > 0) {
             stack.setItemDamage(0);
         }
+
         EntityPlayer thePlayer = (EntityPlayer) player;
         float fallingMult = (player.fallDistance > 0.0F && !player.onGround && !player.isOnLadder() && !player.isInWater()
                 && !player.isPotionActive(Potion.blindness) && player.ridingEntity == null) ? 1.5F : 1.0F;

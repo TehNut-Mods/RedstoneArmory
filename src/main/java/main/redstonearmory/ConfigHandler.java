@@ -28,7 +28,6 @@ public class ConfigHandler {
     public static boolean enableEnderiumSickle;
     public static boolean enableEnderiumSword;
 
-    public static String empowerKey = "V";
     public static boolean addItemLoreToItems = false;
 
     //abilities
@@ -74,7 +73,6 @@ public class ConfigHandler {
         enableEnderiumSickleCrafting = config.get(general, "enableEnderiumSickleCrafting", true, "Enable crafting of the Gelid Enderium Sickle").getBoolean(enableEnderiumSickleCrafting);
         enableEnderiumSwordCrafting = config.get(general, "enableEnderiumSwordCrafting", true, "Enable crafting of the Gelid Enderium Sword").getBoolean(enableEnderiumSwordCrafting);
 
-//		empowerKey = config.get(general, "empowerKey", "V", "Key to press for empowering. Key names can be found here: http://www.lwjgl.org/javadoc/org/lwjgl/input/Keyboard.html - Do not add the 'KEY_' part.").getString();
 //		addItemLoreToItems = config.get(general, "addItemLoreToItems", false, "Adds extra information to the item tooltip (when Control is held) that explains the tool ability in a sarcastic way.").getBoolean(false);
 
         disableAxeLightning = config.get(abilities, "disableAxeLightning", false, "Disables a main feature of the axe - Summoning lightning on right clicking a block.").getBoolean(disableAxeLightning);
