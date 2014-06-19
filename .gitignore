@@ -14,3 +14,4 @@ asm/*
 *.project
 /bin
 libs/
+MCFPost.txt
