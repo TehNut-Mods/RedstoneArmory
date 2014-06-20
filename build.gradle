@@ -17,9 +17,9 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "1.6.4-1.0.1"
+version = "r1.0-1"
 group= "" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
-archivesBaseName = "redstonearmory"
+archivesBaseName = "RArm"
 
 minecraft {
 	version = "1.6.4-9.11.1.964"
