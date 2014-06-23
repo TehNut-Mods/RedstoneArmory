@@ -1,0 +1,6 @@
+r1.0 1
+*Fix config inversing
+*Fix Gelid Rod texture not registering.
+r1.0 0
+*Initial Release
+*Nothing much else to say here...
