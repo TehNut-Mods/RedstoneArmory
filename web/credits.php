@@ -19,7 +19,7 @@
 				<b>tterrag</b> for lots of help when I was lost.<br>
                 <b>Professor29</b> for ideas and bug hunting.<br>
                 <b>ChickenBones</b> for the some Vector thing that Tom uses for sucking items in. <br>
-                <b>Vazkii</b> for making this site for Botania and making it open source. That's the only reason it's so pretty...<br>
+                <b>Vazkii</b> for making this site for Botania and making it open source. That's the only reason it's so pretty... Original source can be found <a href="https://github.com/Vazkii/Botania" target="_blank">here</a>.<br>
               <b>+More</b> that I'm probably missing.<br>
 			</div>
 		</div>
