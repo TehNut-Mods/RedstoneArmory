@@ -141,16 +141,19 @@ public class ItemGelidEnderiumSickle extends ItemSickleRF {
         }
         boolean used = false;
         int boost = isEmpowered(stack) ? 1 : 0;
-        for (int i = x - (this.radius + boost); i <= x + (this.radius + boost); i++) {
-            for (int k = z - (this.radius + boost); k <= z + (this.radius + boost); k++) {
-                for (int j = y - boost; j <= y + boost; j++) {
-                    if (effectiveMaterials.contains(world.getBlockMaterial(i, j, k))) {
-                        harvestBlock(world, i, j, k, player);
-                        used = true;
-                    }
-                }
-            }
-        }
+	    if(energyPerUse <= getEnergyStored(stack)) {
+		    for (int i = x - (this.radius + boost); i <= x + (this.radius + boost); i++) {
+			    for (int k = z - (this.radius + boost); k <= z + (this.radius + boost); k++) {
+				    for (int j = y - boost; j <= y + boost; j++) {
+					    if (effectiveMaterials.contains(world.getBlockMaterial(i, j, k))) {
+						    harvestBlock(world, i, j, k, player);
+						    used = true;
+					    }
+				    }
+			    }
+		    }
+	    }
+
         if (used) {
             useEnergy(stack, false);
         }
@@ -176,8 +179,11 @@ public class ItemGelidEnderiumSickle extends ItemSickleRF {
             }
         } else if (KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
             list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tool.charge") + " " + RFHelper.getRFStored(stack) + " / " + maxEnergy + " " + TextHelper.localize("info.redstonearmory.tool.rf") + TextHelper.END);
-            list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
-            if (isEmpowered(stack)) {
+	        if(!isEmpowered(stack)) {
+		        list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
+	        } else {
+		        list.add(TextHelper.ORANGE + energyPerUseCharged + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
+	        }            if (isEmpowered(stack)) {
                 list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + Keyboard.getKeyName(ProxyClient.empower.keyCode) + " " + TextHelper.localize("info.redstonearmory.tool.chargeOff") + TextHelper.END);
             } else {
                 list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + Keyboard.getKeyName(ProxyClient.empower.keyCode) + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);

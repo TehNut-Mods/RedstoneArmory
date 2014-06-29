@@ -19,7 +19,6 @@ import net.minecraft.util.Icon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.Event.Result;
 import net.minecraftforge.event.entity.player.BonemealEvent;
 import org.lwjgl.input.Keyboard;
 import redstonearsenal.core.ProxyClient;
@@ -84,20 +83,20 @@ public class ItemGelidEnderiumShovel extends ItemShovelRF {
             return true;
         }
         EntityPlayer player = (EntityPlayer) entity;
+	    if (!ConfigHandler.disableShovelMultiBreak) {
+		    if (effectiveMaterials.contains(block.blockMaterial) && isEmpowered(stack)) {
+			    for (int i = x - 2; i <= x + 2; i++) {
+				    for (int k = z - 2; k <= z + 2; k++) {
+					    for (int j = y - 2; j <= y + 2; j++) {
+						    if (world.getBlockId(i, j, k) == blockID) {
+							    harvestBlock(world, i, j, k, player);
+						    }
+					    }
+				    }
+			    }
+		    }
+	    }
 
-        if (!ConfigHandler.disableShovelMultiBreak) {
-            if (effectiveMaterials.contains(block.blockMaterial) && isEmpowered(stack)) {
-                for (int i = x - 2; i <= x + 2; i++) {
-                    for (int k = z - 2; k <= z + 2; k++) {
-                        for (int j = y - 2; j <= y + 2; j++) {
-                            if (world.getBlockId(i, j, k) == blockID) {
-                                harvestBlock(world, i, j, k, player);
-                            }
-                        }
-                    }
-                }
-            }
-        }
 
         if (!player.capabilities.isCreativeMode) {
             useEnergy(stack, false);
@@ -107,29 +106,27 @@ public class ItemGelidEnderiumShovel extends ItemShovelRF {
 
     @Override
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int hitSide, float hitX, float hitY, float hitZ) {
-        if (!player.canPlayerEdit(x, y, z, hitSide, stack) || !player.capabilities.isCreativeMode && getEnergyStored(stack) < getEnergyPerUse(stack)) {
-            return false;
-        }
-
-        Block block = Block.blocksList[world.getBlockId(x, y, z)];
-        BonemealEvent event = new BonemealEvent(player, world, block.blockID, x, y, z);
-
-        if (MinecraftForge.EVENT_BUS.post(event)) {
-            return false;
-        }
-
-        if (event.getResult() == Result.ALLOW) {
-            if (!player.capabilities.isCreativeMode) {
-                useEnergy(stack, false);
-            }
-            return true;
-        }
         if (!ConfigHandler.disableShovelBonemeal) {
+
+	        if (!player.canPlayerEdit(x, y, z, hitSide, stack) || !player.capabilities.isCreativeMode && getEnergyStored(stack) < getEnergyPerUse(stack)) {
+		        return false;
+	        }
+
+	        Block block = Block.blocksList[world.getBlockId(x, y, z)];
+	        BonemealEvent event = new BonemealEvent(player, world, block.blockID, x, y, z);
+
+	        if (MinecraftForge.EVENT_BUS.post(event)) {
+		        return false;
+	        }
+
             if (applyBonemeal(stack, world, x, y, z, player)) {
                 if (!world.isRemote) {
                     world.playAuxSFX(2005, x, y, z, 0);
                 }
-                return true;
+	            if (!player.capabilities.isCreativeMode) {
+		            useEnergy(stack, false);
+	            }
+	            return true;
             }
 
             if (isEmpowered(stack)) {
@@ -143,21 +140,15 @@ public class ItemGelidEnderiumShovel extends ItemShovelRF {
                 }
             }
         }
-        return false;
+        return true;
     }
 
-    public static boolean applyBonemeal(ItemStack par0ItemStack, World par1World, int par2, int par3, int par4, EntityPlayer player) {
+    public boolean applyBonemeal(ItemStack stack, World par1World, int par2, int par3, int par4, EntityPlayer player) {
         int l = par1World.getBlockId(par2, par3, par4);
 
         BonemealEvent event = new BonemealEvent(player, par1World, l, par2, par3, par4);
         if (MinecraftForge.EVENT_BUS.post(event)) {
             return false;
-        }
-
-        if (event.getResult() == Result.ALLOW) {
-            if (!par1World.isRemote) {
-            }
-            return true;
         }
 
         if (l == Block.sapling.blockID) {
@@ -251,7 +242,6 @@ public class ItemGelidEnderiumShovel extends ItemShovelRF {
                     ((BlockMushroom) Block.blocksList[l]).fertilizeMushroom(par1World, par2, par3, par4, par1World.rand);
                 }
             }
-
             return true;
         }
     }
@@ -276,8 +266,11 @@ public class ItemGelidEnderiumShovel extends ItemShovelRF {
             }
         } else if (KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
             list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tool.charge") + " " + RFHelper.getRFStored(stack) + " / " + maxEnergy + " " + TextHelper.localize("info.redstonearmory.tool.rf") + TextHelper.END);
-            list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
-            if (isEmpowered(stack)) {
+	        if(!isEmpowered(stack)) {
+		        list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
+	        } else {
+		        list.add(TextHelper.ORANGE + energyPerUseCharged + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
+	        }            if (isEmpowered(stack)) {
                 list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + Keyboard.getKeyName(ProxyClient.empower.keyCode) + " " + TextHelper.localize("info.redstonearmory.tool.chargeOff") + TextHelper.END);
             } else {
                 list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + Keyboard.getKeyName(ProxyClient.empower.keyCode) + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);

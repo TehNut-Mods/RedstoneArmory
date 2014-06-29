@@ -175,8 +175,12 @@ public class ItemGelidEnderiumPickaxe extends ItemPickaxeRF {
             }
         } else if (KeyboardHandler.isShiftDown() && !KeyboardHandler.isControlDown()) {
             list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.tool.charge") + " " + RFHelper.getRFStored(stack) + " / " + maxEnergy + " " + TextHelper.localize("info.redstonearmory.tool.rf") + TextHelper.END);
-            list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
-            if (isEmpowered(stack)) {
+            if(!isEmpowered(stack)) {
+	            list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
+            } else {
+	            list.add(TextHelper.ORANGE + energyPerUseCharged + " " + TextHelper.localize("info.redstonearmory.tool.energyPerUse") + TextHelper.END);
+            }
+	        if (isEmpowered(stack)) {
                 list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + Keyboard.getKeyName(ProxyClient.empower.keyCode) + " " + TextHelper.localize("info.redstonearmory.tool.chargeOff") + TextHelper.END);
             } else {
                 list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.redstonearmory.tool.press") + " " + Keyboard.getKeyName(ProxyClient.empower.keyCode) + " " + TextHelper.localize("info.redstonearmory.tool.chargeOn") + TextHelper.END);
