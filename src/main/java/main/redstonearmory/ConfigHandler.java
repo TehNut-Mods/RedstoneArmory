@@ -46,6 +46,7 @@ public class ConfigHandler {
 
         //materials
         ItemInfo.MATERIAL_GELID_ENDERIUM_ID = config.getItem(id, ItemInfo.MATERIAL_GELID_ENDERIUM_KEY, ItemInfo.MATERIAL_GELID_ENDERIUM_DEFAULT).getInt();
+	    ItemInfo.MATERIAL_TESSERACT_ID = config.getItem(id, ItemInfo.MATERIAL_TESSERACT_KEY, ItemInfo.MATERIAL_TESSERACT_DEFAULT).getInt();
 
         //tools
         ItemInfo.AXE_GELID_ENDERIUM_ID = config.getItem(id, ItemInfo.AXE_GELID_ENDERIUM_KEY, ItemInfo.AXE_GELID_ENDERIUM_DEFAULT).getInt();
@@ -55,8 +56,12 @@ public class ConfigHandler {
         ItemInfo.SICKLE_GELID_ENDERIUM_ID = config.getItem(id, ItemInfo.SICKLE_GELID_ENDERIUM_KEY, ItemInfo.SICKLE_GELID_ENDERIUM_DEFAULT).getInt();
         ItemInfo.SWORD_GELID_ENDERIUM_ID = config.getItem(id, ItemInfo.SWORD_GELID_ENDERIUM_KEY, ItemInfo.SWORD_GELID_ENDERIUM_DEFAULT).getInt();
 
+	    //other items
+	    ItemInfo.PORTABLE_TESSERACT_ID = config.getItem(id, ItemInfo.PORTABLE_TESSERACT_KEY, ItemInfo.PORTABLE_TESSERACT_DEFAULT).getInt();
+
         //blocks
         BlockInfo.INGOT_STORAGE_ID = config.getBlock(id, BlockInfo.INGOT_STORAGE_KEY, BlockInfo.INGOT_STORAGE_DEFAULT).getInt();
+	    BlockInfo.COMP_DYNAMO_ID = config.getBlock(id, BlockInfo.COMP_DYNAMO_KEY, BlockInfo.COMP_DYNAMO_DEFAULT).getInt();
 
         //general
         enableEnderiumAxe = config.get(general, "enableEnderiumAxe", true, "Enable registry of the Gelid Enderium Axe. False removes it from the game entirely.").getBoolean(enableEnderiumAxe);

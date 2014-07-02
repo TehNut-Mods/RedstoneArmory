@@ -1,8 +1,26 @@
-//CREATIVE TAB NAME
+//CREATIVE TAB
 itemGroup.redstonearmory.creativetab.name=Redstone Armory
 
 //BLOCK NAMES
 tile.redstonearmory.enderium.gelid.name=Block of Gelid Enderium
+
+//COMPRESSED DYNAMO
+tile.redstonearmory.comp.dynamo.steam.name=Compact Steam Dynamo
+tile.redstonearmory.comp.dynamo.magmatic.name=Compact Magmatic Dynamo
+tile.redstonearmory.comp.dynamo.compression.name=Compact Compression Dynamo
+tile.redstonearmory.comp.dynamo.reactant.name=Compact Reactant Dynamo
+
+//DOUBLE COMPRESSED DYNAMO
+tile.redstonearmory.comp.double.dynamo.steam.name=Dense Steam Dynamo
+tile.redstonearmory.comp.double.dynamo.magmatic.name=Dense Magmatic Dynamo
+tile.redstonearmory.comp.double.dynamo.compression.name=Dense Compression Dynamo
+tile.redstonearmory.comp.double.dynamo.reactant.name=Dense Reactant Dynamo
+
+//TRIPLE COMPRESSED DYNAMO
+tile.redstonearmory.comp.triple.dynamo.steam.name=Steam Dynamo Singularity
+tile.redstonearmory.comp.triple.dynamo.magmatic.name=Magmatic Dynamo Singularity
+tile.redstonearmory.comp.triple.dynamo.compression.name=Compression Dynamo Singularity
+tile.redstonearmory.comp.triple.dynamo.reactant.name=Reactant Dynamo Singularity
 
 //ITEM NAMES
 item.redstonearmory.material.gelidenderium.ingot.name=Gelid Enderium Ingot
@@ -19,7 +37,10 @@ item.redstonearmory.tool.gelidenderium.shovel.name=Gelid Enderium Shovel
 item.redstonearmory.tool.gelidenderium.sickle.name=Gelid Enderium Sickle
 item.redstonearmory.tool.gelidenderium.sword.name=Gelid Enderium Sword
 
-//TOOL INFO
+//OTHER ITEMS
+item.redstonearmory.tool.tesseract.portable.name=Portable Tesseract
+
+//TOOL ABILITY
 info.redstonearmory.tool.gelidenderium.axe='/weather clear'
 info.redstonearmory.tool.gelidenderium.battlewrench=Tasmanian Devil
 info.redstonearmory.tool.gelidenderium.pickaxe=Ender Dislocation
@@ -41,10 +62,16 @@ info.redstonearmory.tool.lore=for item lore
 info.redstonearmory.tool.damageAttack=Attack Damage
 info.redstonearmory.tool.damageFlux=Flux Damage
 info.redstonearmory.tool.disabled=Ability disabled by admin
+info.redstonearmory.tool.tesseract.coords=Location of storage:
+info.redstonearmory.tool.tesseract.usage=an inventory to link.
+info.redstonearmory.tool.tesseract.toggle=Use while sneaking to activate.
+info.redstonearmory.tool.tesseract.info=Activate to transfer items.
+info.redstonearmory.tool.tesseract.hotbar=Must remain in hotbar.
 
 //CONTROLS
 info.redstonearmory.key.shift=Shift
 info.redstonearmory.key.control=Control
+info.redstonearmory.mouse.rc=Right Click
 
 //LORE
 info.redstonearmory.lore.default=Default Text
