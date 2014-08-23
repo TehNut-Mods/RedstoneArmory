@@ -15,6 +15,7 @@ import main.redstonearmory.gui.CreativeTabRedstoneArmory;
 import main.redstonearmory.items.ItemRecipeRegistry;
 import main.redstonearmory.items.ItemRegistry;
 import main.redstonearmory.proxies.CommonProxy;
+import main.redstonearmory.tile.TERegistry;
 import main.redstonearmory.util.CapeHandler;
 import main.redstonearmory.util.OreDictHandler;
 import net.minecraft.creativetab.CreativeTabs;
@@ -40,11 +41,12 @@ public class RedstoneArmory {
     public void preInit(FMLPreInitializationEvent event) {
         ConfigHandler.registerConfig(event.getSuggestedConfigurationFile());
 
-        OreDictHandler.registerFulloreDict();
+	    BlockRegistry.registerBlocks();
+	    BlockRecipeRegistry.registerRecipes();
+	    ItemRegistry.registerItems();
+	    TERegistry.registerTileEntities();
 
-        BlockRegistry.registerBlocks();
-        BlockRecipeRegistry.registerRecipes();
-        ItemRegistry.registerItems();
+	    OreDictHandler.registerFulloreDict();
     }
 
     @EventHandler

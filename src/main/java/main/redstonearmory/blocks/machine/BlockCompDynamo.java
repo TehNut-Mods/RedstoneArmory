@@ -1,68 +1,93 @@
 package main.redstonearmory.blocks.machine;
 
+import cofh.api.energy.IEnergyStorage;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.RedstoneArmory;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Icon;
-import net.minecraft.world.World;
-import net.minecraftforge.common.ForgeDirection;
-import thermalexpansion.block.dynamo.BlockDynamo;
 
 import java.util.List;
 
 @SuppressWarnings("all")
-public class BlockCompDynamo extends BlockDynamo {
+public class BlockCompDynamo extends Block implements IEnergyStorage {
 
-	@SideOnly(Side.CLIENT)
-	private Icon compSteam;
-	@SideOnly(Side.CLIENT)
-	private Icon compCompression;
-	@SideOnly(Side.CLIENT)
-	private Icon compMagmatic;
-	@SideOnly(Side.CLIENT)
-	private Icon compReactant;
+	public int maxStored = 400000;
 
-	public BlockCompDynamo(int id) {
-		super(id);
+	public Icon[] icon = new Icon[4];
+
+	public BlockCompDynamo(int id, Material material) {
+		super(id, material);
 		this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
+		this.setLightOpacity(1);
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerIcons(IconRegister register) {
-		blockIcon = register.registerIcon("redstonearmory:dynamoCompSteam");
-		compSteam = register.registerIcon("redstonearmory:dynamoCompSteam");
-		compMagmatic = register.registerIcon("redstonearmory:dynamoCompMagmatic");
-		compCompression = register.registerIcon("redstonearmory:dynamoCompCompression");
-		compReactant = register.registerIcon("redstonearmory:dynamoCompReactant");
+		icon[0] = register.registerIcon("redstonearmory:dynamo/dynamoCompSteam");
+		icon[1]= register.registerIcon("redstonearmory:dynamo/dynamoCompMagmatic");
+		icon[2] = register.registerIcon("redstonearmory:dynamo/dynamoCompCompression");
+		icon[3] = register.registerIcon("redstonearmory:dynamo/dynamoCompReactant");
 	}
 
 	@SideOnly(Side.CLIENT)
-	public Icon getIcon(int side, int meta) {
-		if (meta == 0) {
-			return compSteam;
-		} else if (meta == 1) {
-			return compCompression;
-		} else if (meta == 2) {
-			return compMagmatic;
-		} else if (meta == 3) {
-			return compReactant;
-		}
-		return compSteam;
+	public int getRenderBlockPass() {
+		return 0;
+	}
+
+	public boolean isOpaqueCube() {
+		return false;
+	}
+
+	public boolean renderAsNormalBlock() {
+		return false;
+	}
+
+	public boolean shouldRenderBlock() {
+		return false;
 	}
 
 	@Override
-	public void getSubBlocks(int block, CreativeTabs tab, List list) {
-		list.add(new ItemStack(block, 1, 0));
-		list.add(new ItemStack(block, 1, 1));
-		list.add(new ItemStack(block, 1, 2));
-		list.add(new ItemStack(block, 1, 3));
+	@SideOnly(Side.CLIENT)
+	public Icon getIcon(int side, int meta) {
+		return this.icon[meta];
 	}
 
-	public boolean isBlockSolidOnSide(World world, int x, int y, int z, ForgeDirection side) {
-		return false;
+	@SideOnly(Side.CLIENT)
+	public void getSubBlocks(Item id, CreativeTabs tab, List list) {
+		for (int i = 0; i < 4; i++) {
+			list.add(new ItemStack(id, 1, i));
+		}
+	}
+
+	@Override
+	public int damageDropped(int meta) {
+		return meta;
+	}
+
+	@Override
+	public int receiveEnergy(int maxReceive, boolean simulate) {
+		return maxReceive;
+	}
+
+	@Override
+	public int extractEnergy(int maxExtract, boolean simulate) {
+		return maxExtract;
+	}
+
+	@Override
+	public int getEnergyStored() {
+		return getMaxEnergyStored();
+	}
+
+	@Override
+	public int getMaxEnergyStored() {
+		return maxStored;
 	}
 }

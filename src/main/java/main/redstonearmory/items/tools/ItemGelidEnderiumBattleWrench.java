@@ -1,6 +1,7 @@
 package main.redstonearmory.items.tools;
 
 import cofh.api.block.IDismantleable;
+import cofh.util.EnergyHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ic2.api.tile.IWrenchable;
@@ -45,17 +46,16 @@ public class ItemGelidEnderiumBattleWrench extends ItemWrenchBattleRF {
     int radius = 4;
     Random random = new Random();
 
-    public int maxEnergy = 320000;
-    public int maxTransfer = 1600;
-    public int energyPerUse = 350;
-    public int energyPerUseCharged = 800;
-
-
     public ItemGelidEnderiumBattleWrench(int par1, EnumToolMaterial toolMaterial) {
         super(par1, toolMaterial);
-        damage = 6;
-        damageCharged = 3;
-        this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
+	    this.setCreativeTab(RedstoneArmory.tabRedstoneArmory);
+
+	    damage = 6;
+	    damageCharged = 3;
+	    maxEnergy = 320000;
+	    maxTransfer = 1600;
+	    energyPerUse = 350;
+	    energyPerUseCharged = 800;
     }
 
     @Override
@@ -109,7 +109,7 @@ public class ItemGelidEnderiumBattleWrench extends ItemWrenchBattleRF {
                 while (iter.hasNext()) {
                     EntityLivingBase entity = (EntityLivingBase) iter.next();
                     entity.attackEntityFrom(Utils.causePlayerFluxDamage(player), spinDamage);
-                    player.setAngles(-180, 10);
+//                    player.setAngles(-180F, 10F);
                     world.spawnParticle("largeexplode", player.posX, player.posY, player.posZ, 1, 1, 1);
                     if (!player.capabilities.isCreativeMode && random.nextInt(5) == 0)
                         useEnergy(stack, false);
@@ -271,4 +271,22 @@ public class ItemGelidEnderiumBattleWrench extends ItemWrenchBattleRF {
             list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.redstonearmory.lore." + tool) + TextHelper.END);
         }
     }
+
+	@Override
+	public int getDisplayDamage(ItemStack stack) {
+		if (stack.stackTagCompound == null) {
+			EnergyHelper.setDefaultEnergyTag(stack, 0);
+		}
+		return 1 + maxEnergy - stack.stackTagCompound.getInteger("Energy");
+	}
+
+	@Override
+	public int getMaxDamage(ItemStack stack) {
+		return 1 + maxEnergy;
+	}
+
+	@Override
+	public boolean isDamaged(ItemStack stack) {
+		return stack.getItemDamage() != Short.MAX_VALUE;
+	}
 }

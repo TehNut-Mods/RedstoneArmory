@@ -2,11 +2,18 @@ package main.redstonearmory.items;
 
 public class ItemInfo {
 
+	//MATERIALS
 	public static int MATERIAL_GELID_ENDERIUM_ID;
 	public static final int MATERIAL_GELID_ENDERIUM_DEFAULT = 10077;
 	public static final String MATERIAL_GELID_ENDERIUM_KEY = "materialGelidEnderium";
 	public static final String MATERIAL_GELID_ENDERIUM_UNLOCALIZED_NAME = ".material.gelidenderium";
 
+	public static int MATERIAL_TESSERACT_ID;
+	public static final int MATERIAL_TESSERACT_DEFAULT = 10085;
+	public static final String MATERIAL_TESSERACT_KEY = "materialTesseract";
+	public static final String MATERIAL_TESSERACT_UNLOCALIZED_NAME = ".material.tesseract.portable";
+
+	//TOOLS
 	public static int AXE_GELID_ENDERIUM_ID;
 	public static final int AXE_GELID_ENDERIUM_DEFAULT = 10078;
 	public static final String AXE_GELID_ENDERIUM_KEY = "axeGelidEnderium";
@@ -36,4 +43,10 @@ public class ItemInfo {
 	public static final int SWORD_GELID_ENDERIUM_DEFAULT = 10083;
 	public static final String SWORD_GELID_ENDERIUM_KEY = "swordGelidEnderium";
 	public static final String SWORD_GELID_ENDERIUM_UNLOCALIZED_NAME = ".tool.gelidenderium.sword";
+
+	//OTHER ITEMS
+	public static int PORTABLE_TESSERACT_ID;
+	public static final int PORTABLE_TESSERACT_DEFAULT = 10084;
+	public static final String PORTABLE_TESSERACT_KEY = "portableTesseract";
+	public static final String PORTABLE_TESSERACT_UNLOCALIZED_NAME = ".tool.tesseract.portable";
 }

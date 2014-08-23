@@ -15,6 +15,7 @@ import thermalexpansion.item.TEItems;
 
 public class ItemRecipeRegistry {
 
+	@SuppressWarnings("all")
 	private static void registerShapedRecipes() {
 		//Nugget -> Ingot
 		GameRegistry.addRecipe(new ItemStack(ItemRegistry.materialGelidEnderium, 1, 0), new Object[] { "XXX", "XXX", "XXX", 'X', new ItemStack(ItemRegistry.materialGelidEnderium, 1, 1)});

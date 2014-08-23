@@ -15,6 +15,7 @@ public class ItemRegistry {
 
     //materials
     public static Item materialGelidEnderium;
+	public static Item materialTesseract;
 
     //tools
     public static Item axeGelidEnderium;
@@ -24,11 +25,16 @@ public class ItemRegistry {
     public static Item sickleGelidEnderium;
     public static Item swordGelidEnderium;
 
+	//other items
+	public static Item portableTesseract;
+
     public static void registerItems() {
 
         //materials
         materialGelidEnderium = new ItemGelidEnderiumMaterials(ItemInfo.MATERIAL_GELID_ENDERIUM_ID).setUnlocalizedName(ModInformation.ID + ItemInfo.MATERIAL_GELID_ENDERIUM_UNLOCALIZED_NAME);
         GameRegistry.registerItem(materialGelidEnderium, "ItemGelidEnderiumMaterials");
+//	    materialTesseract = new ItemTesseractMaterials(ItemInfo.MATERIAL_TESSERACT_ID).setUnlocalizedName(ModInformation.ID + ItemInfo.MATERIAL_TESSERACT_UNLOCALIZED_NAME);
+//	    GameRegistry.registerItem(materialTesseract, "ItemTesseractMaterials");
 
         //tools
         if (ConfigHandler.enableEnderiumAxe) {
@@ -55,5 +61,9 @@ public class ItemRegistry {
             sickleGelidEnderium = new ItemGelidEnderiumSickle(ItemInfo.SICKLE_GELID_ENDERIUM_ID, enderium).setUnlocalizedName(ModInformation.ID + ItemInfo.SICKLE_GELID_ENDERIUM_UNLOCALIZED_NAME);
             GameRegistry.registerItem(sickleGelidEnderium, ItemInfo.SICKLE_GELID_ENDERIUM_KEY);
         }
+
+	    //other tools
+//	    portableTesseract = new ItemPortableTesseract(ItemInfo.PORTABLE_TESSERACT_ID).setUnlocalizedName(ModInformation.ID + ItemInfo.PORTABLE_TESSERACT_UNLOCALIZED_NAME);
+//	    GameRegistry.registerItem(portableTesseract, ItemInfo.PORTABLE_TESSERACT_KEY);
     }
 }
