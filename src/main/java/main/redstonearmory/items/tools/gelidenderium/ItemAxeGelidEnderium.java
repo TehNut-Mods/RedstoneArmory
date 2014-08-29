@@ -10,8 +10,10 @@ import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.KeyboardHelper;
 import main.redstonearmory.util.TextHelper;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -66,33 +68,33 @@ public class ItemAxeGelidEnderium extends ItemAxeRF {
 		this.drainedIcon = iconRegister.registerIcon(ModInformation.ID + ":tools/gelidEnderiumAxe_drained");
 	}
 
-//	public boolean onBlockDestroyed(ItemStack stack, World world, int bId, int x, int y, int z, EntityLivingBase entity) {
-//		if (!(entity instanceof EntityPlayer)) {
-//			return false;
-//		}
-//		if (Block.blocksList[bId].getBlockHardness(world, x, y, z) == 0.0D) {
-//			return true;
-//		}
-//		EntityPlayer player = (EntityPlayer) entity;
-//
-//		if (ConfigHandler.enableAxeMultiBreak) {
-//			if ((Block.blocksList[bId].blockMaterial == Material.wood) && isEmpowered(stack)) {
-//				for (int i = x - 2; i <= x + 2; i++) {
-//					for (int k = z - 2; k <= z + 2; k++) {
-//						for (int j = y - 2; j <= y + 2; j++) {
-//							if (world.getBlockMaterial(i, j, k) == Material.wood) {
-//								harvestBlock(world, i, j, k, player);
-//							}
-//						}
-//					}
-//				}
-//			}
-//		}
-//		if (!player.capabilities.isCreativeMode) {
-//			useEnergy(stack, false);
-//		}
-//		return true;
-//	}
+	@Override
+	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase entity) {
+
+		if (!(entity instanceof EntityPlayer)) {
+			return false;
+		}
+		if (block.getBlockHardness(world, x, y, z) == 0.0D) {
+			return true;
+		}
+		EntityPlayer player = (EntityPlayer) entity;
+
+		if (block.getMaterial() == Material.wood && isEmpowered(stack)) {
+			for (int i = x - 2; i <= x + 2; i++) {
+				for (int k = z - 2; k <= z + 2; k++) {
+					for (int j = y - 2; j <= y + 2; j++) {
+						if (world.getBlock(i, j, k).getMaterial() == Material.wood) {
+							harvestBlock(world, i, j, k, player);
+						}
+					}
+				}
+			}
+		}
+		if (!player.capabilities.isCreativeMode) {
+			useEnergy(stack, false);
+		}
+		return true;
+	}
 
 	@Override
 	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {

@@ -24,13 +24,17 @@ public class ItemBlockIngotStorage extends ItemBlock {
 		String name = "";
 		switch (itemstack.getItemDamage()) {
 			case 0: {
-				name = "enderium.gelid";
+				name = "enderium.gelid.ingot";
+				break;
+			}
+			case 1: {
+				name = "gem.gelid";
 				break;
 			}
 			default:
 				name = "nothing";
 		}
-		return getUnlocalizedName() + ".storage." + name + ".ingot";
+		return getUnlocalizedName() + ".storage." + name;
 	}
 
 	@Override

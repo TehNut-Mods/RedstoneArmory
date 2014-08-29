@@ -52,5 +52,6 @@ public class RedstoneArmory {
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
 
+		ItemRecipeRegistry.registerLateItemRecipes();
 	}
 }

@@ -22,11 +22,14 @@ info.RArm.tooltip.ability=Ability:
 info.RArm.tooltip.ability.axe.weather= /weather clear
 info.RArm.tooltip.ability.axe.break= Mega Break
 info.RArm.tooltip.ability.axe.lightning= Lightning Caller
+info.RArm.tooltip.ability.battlewrench.taz= Tazmanian Devil
 info.RArm.tooltip.ability.pickaxe= Ender Dislocation
 info.RArm.tooltip.ability.shovel.bonemeal= Grow all the things
 info.RArm.tooltip.ability.shovel.break= Mega Break
+info.RArm.tooltip.ability.sickle.sekrit= supah sekrit
 info.RArm.tooltip.ability.sword.magnet= Magnet mode
 
 #Blocks
 tile.RArm.storage.enderium.gelid.ingot.name=Block of Gelid Enderium
+tile.RArm.storage.gem.gelid.name=Gelid Gem Block
 tile.RArm.storage.enderium.gelid.nothing.name=Block of Anti-Derp Protocol

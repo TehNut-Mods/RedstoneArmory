@@ -10,125 +10,84 @@ import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.KeyboardHelper;
 import main.redstonearmory.util.TextHelper;
-import net.minecraft.block.Block;
-import net.minecraft.block.IGrowable;
-import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.entity.player.BonemealEvent;
 import org.lwjgl.input.Keyboard;
-import redstonearsenal.item.tool.ItemShovelRF;
+import redstonearsenal.item.tool.ItemWrenchBattleRF;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Random;
 
-public class ItemShovelGelidEnderium extends ItemShovelRF {
+@SuppressWarnings("all")
+public class ItemBattleWrenchGelidEnderium extends ItemWrenchBattleRF {
 
 	IIcon activeIcon;
 	IIcon drainedIcon;
 
-	public int damage = 6;
-	public int damageCharged = 3;
+	int radius = 2;
+	Random random = new Random();
+	int spinDamage = 2;
+	int resistanceEffect = 1;
 
-	public ItemShovelGelidEnderium(ToolMaterial toolMaterial) {
+	public ItemBattleWrenchGelidEnderium(ToolMaterial toolMaterial) {
 		super(toolMaterial);
 		this.setCreativeTab(RedstoneArmory.tabRArm);
-		this.setUnlocalizedName(ModInformation.ID + ".tool.enderium.gelid.shovel");
+		this.setUnlocalizedName(ModInformation.ID + ".tool.enderium.gelid.battlewrench");
 		this.setNoRepair();
 
+		damage = 7;
+		damageCharged = 4;
 		maxEnergy = 320000;
+		maxTransfer = 1600;
 		energyPerUse = 350;
-		energyPerUseCharged = 600;
-
-		effectiveMaterials.add(Material.ground);
-		effectiveMaterials.add(Material.sand);
-		effectiveMaterials.add(Material.clay);
-		effectiveMaterials.add(Material.craftedSnow);
-		effectiveMaterials.add(Material.snow);
-		effectiveMaterials.add(Material.grass);
+		energyPerUseCharged = 800;
 	}
 
 	@Override
 	public IIcon getIcon(ItemStack stack, int pass) {
+
 		return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
 	}
 
 	@Override
 	public void registerIcons(IIconRegister iconRegister) {
 
-		this.itemIcon = iconRegister.registerIcon(ModInformation.ID + ":tools/gelidEnderiumShovel");
-		this.activeIcon = iconRegister.registerIcon(ModInformation.ID + ":tools/gelidEnderiumShovel_active");
-		this.drainedIcon = iconRegister.registerIcon(ModInformation.ID + ":tools/gelidEnderiumShovel_drained");
+		this.itemIcon = iconRegister.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench");
+		this.activeIcon = iconRegister.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench_active");
+		this.drainedIcon = iconRegister.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench_drained");
 	}
 
 	@Override
-	public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int hitSide, float hitX, float hitY, float hitZ) {
-		if (!player.canPlayerEdit(x, y, z, hitSide, stack) || !player.capabilities.isCreativeMode && getEnergyStored(stack) < getEnergyPerUse(stack)) {
-			return false;
+	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+		if (isEmpowered(stack)) {
+			radius = 4;
+			spinDamage = 4;
+			resistanceEffect = 4;
 		}
 
-		Block block = world.getBlock(x, y, z);
-		BonemealEvent event = new BonemealEvent(player, world, block, x, y, z);
-
-		if (MinecraftForge.EVENT_BUS.post(event)) {
-			return false;
-		}
-
-		if (block instanceof IGrowable) {
-			IGrowable growable = (IGrowable) block;
-
-			if (growable.func_149851_a(world, x, y, z, world.isRemote)) {
-				if (!world.isRemote) {
-					if (growable.func_149852_a(world, world.rand, x, y, z)) {
-						growable.func_149853_b(world, world.rand, x, y, z);
-					}
-
-					if (growable.func_149852_a(world, world.rand, x, y, z) && isEmpowered(stack)) {
-						for (int i = 0; i <= 5; i++) {
-							growable.func_149853_b(world, world.rand, x, y, z);
-						}
-					}
-					if(!player.capabilities.isCreativeMode) {
-						useEnergy(stack, false);
-					}
-				}
-			}
-			return true;
-		}
-		return false;
-	}
-
-	@Override
-	public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase entity) {
-
-		if (!(entity instanceof EntityPlayer)) {
-			return false;
-		}
-		if (block.getBlockHardness(world, x, y, z) == 0.0D) {
-			return true;
-		}
-		EntityPlayer player = (EntityPlayer) entity;
-
-		if (effectiveBlocks.contains(block) && isEmpowered(stack)) {
-			for (int i = x - 2; i <= x + 2; i++) {
-				for (int k = z - 2; k <= z + 2; k++) {
-					for (int j = y - 2; j <= y + 2; j++) {
-						if (world.getBlock(i, j, k) == block) {
-							harvestBlock(world, i, j, k, player);
-						}
-					}
-				}
+		AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(player.posX - radius, player.posY - radius, player.posZ - radius, player.posX + radius, player.posY + radius, player.posZ + radius);
+		Iterator iter = world.getEntitiesWithinAABB(EntityLivingBase.class, bb).iterator();
+		player.addPotionEffect(new PotionEffect(Potion.resistance.id, 20, resistanceEffect, false));
+		player.swingItem();
+		if (iter != null) {
+			while (iter.hasNext()) {
+				EntityLivingBase entity = (EntityLivingBase) iter.next();
+//				entity.attackEntityFrom(Utils.causePlayerFluxDamage(player), spinDamage);
+				player.setAngles(-180, 10);
+				world.spawnParticle("largeexplode", player.posX, player.posY, player.posZ, 1, 1, 1);
+				if (!player.capabilities.isCreativeMode && random.nextInt(5) == 0)
+					useEnergy(stack, false);
 			}
 		}
-
-		if (!player.capabilities.isCreativeMode) {
-			useEnergy(stack, false);
-		}
-		return true;
+		return stack;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -179,11 +138,10 @@ public class ItemShovelGelidEnderium extends ItemShovelRF {
 			list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.cofh.damageAttack") + TextHelper.END);
 			list.add(TextHelper.BRIGHT_GREEN + "+" + (isEmpowered(stack) ? damageCharged : 1) + " " + TextHelper.localize("info.cofh.damageFlux") + TextHelper.END);
 		}
-		if(ConfigHandler.enableAxeMultiBreak) {
-			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.ability") + TextHelper.localize("info.RArm.tooltip.ability.shovel.break"));
-		}
-		if(ConfigHandler.enableAxeLightning) {
-			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.ability") + TextHelper.localize("info.RArm.tooltip.ability.shovel.bonemeal"));
+		if(KeyboardHelper.isShiftDown()) {
+			if(ConfigHandler.enableAxeWeatherClear) {
+				list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.ability") + TextHelper.localize("info.RArm.tooltip.ability.battlewrench.taz"));
+			}
 		}
 	}
 }
