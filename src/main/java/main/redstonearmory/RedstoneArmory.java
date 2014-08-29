@@ -1,64 +1,56 @@
 package main.redstonearmory;
 
 import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.network.NetworkMod;
-import cpw.mods.fml.relauncher.Side;
 import main.redstonearmory.blocks.BlockRecipeRegistry;
 import main.redstonearmory.blocks.BlockRegistry;
-import main.redstonearmory.gui.CreativeTabRedstoneArmory;
+import main.redstonearmory.gui.CreativeTabRArm;
 import main.redstonearmory.items.ItemRecipeRegistry;
 import main.redstonearmory.items.ItemRegistry;
 import main.redstonearmory.proxies.CommonProxy;
-import main.redstonearmory.tile.TERegistry;
-import main.redstonearmory.util.CapeHandler;
 import main.redstonearmory.util.OreDictHandler;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.config.Configuration;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
-
-@Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION, dependencies = "required-after:Redstone Arsenal")
-@NetworkMod(channels = ModInformation.CHANNEL, clientSideRequired = true, serverSideRequired = false)
+@Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION, guiFactory = "main.redstonearmory.gui.ConfigGuiFactory")
 public class RedstoneArmory {
 
-    public static CreativeTabs tabRedstoneArmory = new CreativeTabRedstoneArmory(ModInformation.ID + ".creativetab.name");
-    public static Logger logger = LogManager.getLogManager().getLogger(ModInformation.NAME);
+	@SidedProxy(clientSide = "main.redstonearmory.proxies.ClientProxy", serverSide = "main.redstonearmory.proxies.CommonProxy")
+	public static CommonProxy proxy;
 
-    @Instance(ModInformation.ID)
-    public static RedstoneArmory instance;
+	public static CreativeTabs tabRArm = new CreativeTabRArm(ModInformation.ID + ".creativeTab");
+	public static Logger logger = LogManager.getLogger(ModInformation.NAME);
 
-    @SidedProxy(clientSide = "main.redstonearmory.proxies.ClientProxy", serverSide = "main.redstonearmory.proxies.CommonProxy")
-    public static CommonProxy proxy;
+	@Mod.Instance
+	public static RedstoneArmory instance;
+	public static Configuration config;
 
-    @EventHandler
-    public void preInit(FMLPreInitializationEvent event) {
-        ConfigHandler.registerConfig(event.getSuggestedConfigurationFile());
+	@Mod.EventHandler
+	public void preInit(FMLPreInitializationEvent event) {
 
-	    BlockRegistry.registerBlocks();
-	    BlockRecipeRegistry.registerRecipes();
-	    ItemRegistry.registerItems();
-	    TERegistry.registerTileEntities();
+		config = new Configuration(event.getSuggestedConfigurationFile());
+		ConfigHandler.init(config);
 
-	    OreDictHandler.registerFulloreDict();
-    }
+		ItemRegistry.registerAllItems();
+		BlockRegistry.registerAllBlocks();
 
-    @EventHandler
-    public void init(FMLInitializationEvent event) {
-        if (event.getSide() == Side.CLIENT) {
-            MinecraftForge.EVENT_BUS.register(new CapeHandler());
-        }
-	    ItemRecipeRegistry.registerFullRecipes();
-    }
+		OreDictHandler.registerOreDict();
+	}
 
-    @EventHandler
-    public void postInit(FMLPostInitializationEvent event) {
+	@Mod.EventHandler
+	public void init(FMLInitializationEvent event) {
 
-    }
+		ItemRecipeRegistry.registerItemRecipes();
+		BlockRecipeRegistry.registerBlockRecipes();
+	}
+
+	@Mod.EventHandler
+	public void postInit(FMLPostInitializationEvent event) {
+
+	}
 }

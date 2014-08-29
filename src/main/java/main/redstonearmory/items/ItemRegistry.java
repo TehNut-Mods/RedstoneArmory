@@ -1,69 +1,39 @@
 package main.redstonearmory.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import main.redstonearmory.ConfigHandler;
 import main.redstonearmory.ModInformation;
-import main.redstonearmory.items.tools.*;
-import net.minecraft.item.EnumToolMaterial;
+import main.redstonearmory.items.tools.gelidenderium.ItemAxeGelidEnderium;
+import main.redstonearmory.items.tools.gelidenderium.ItemPickaxeGelidEnderium;
+import main.redstonearmory.items.tools.gelidenderium.ItemShovelGelidEnderium;
+import main.redstonearmory.items.tools.gelidenderium.ItemSwordGelidEnderium;
 import net.minecraft.item.Item;
-import net.minecraftforge.common.EnumHelper;
 
 public class ItemRegistry {
 
-    //tool materials
-    public static EnumToolMaterial enderium = EnumHelper.addToolMaterial("ENDERIUM_TOOLMATERIAL", Integer.MAX_VALUE, 320000, 16.0F, 1.0F, 10);
+	//items
+	public static Item gelidMaterials;
 
-    //materials
-    public static Item materialGelidEnderium;
-	public static Item materialTesseract;
+	public static Item axeGelidEnderium;
+	public static Item pickaxeGelidEnderium;
+	public static Item shovelGelidEnderium;
+	public static Item swordGelidEnderium;
 
-    //tools
-    public static Item axeGelidEnderium;
-    public static Item battleWrenchGelidEnderium;
-    public static Item pickaxeGelidEnderium;
-    public static Item shovelGelidEnderium;
-    public static Item sickleGelidEnderium;
-    public static Item swordGelidEnderium;
+	private static void registerItems() {
 
-	//other items
-	public static Item portableTesseract;
+		gelidMaterials = new ItemGelidMaterials().setUnlocalizedName(ModInformation.ID);
+		GameRegistry.registerItem(gelidMaterials, "ItemGelidMaterials");
 
-    public static void registerItems() {
+		axeGelidEnderium = new ItemAxeGelidEnderium(Item.ToolMaterial.EMERALD);
+		GameRegistry.registerItem(axeGelidEnderium, "ItemAxeGelidEnderium");
+		pickaxeGelidEnderium = new ItemPickaxeGelidEnderium(Item.ToolMaterial.EMERALD);
+		GameRegistry.registerItem(pickaxeGelidEnderium, "ItemPickaxeGelidEnderium");
+		shovelGelidEnderium = new ItemShovelGelidEnderium(Item.ToolMaterial.EMERALD);
+		GameRegistry.registerItem(shovelGelidEnderium, "ItemShovelGelidEnderium");
+		swordGelidEnderium = new ItemSwordGelidEnderium(Item.ToolMaterial.EMERALD);
+		GameRegistry.registerItem(swordGelidEnderium, "ItemSwordGelidEnderium");
+	}
 
-        //materials
-        materialGelidEnderium = new ItemGelidEnderiumMaterials(ItemInfo.MATERIAL_GELID_ENDERIUM_ID).setUnlocalizedName(ModInformation.ID + ItemInfo.MATERIAL_GELID_ENDERIUM_UNLOCALIZED_NAME);
-        GameRegistry.registerItem(materialGelidEnderium, "ItemGelidEnderiumMaterials");
-//	    materialTesseract = new ItemTesseractMaterials(ItemInfo.MATERIAL_TESSERACT_ID).setUnlocalizedName(ModInformation.ID + ItemInfo.MATERIAL_TESSERACT_UNLOCALIZED_NAME);
-//	    GameRegistry.registerItem(materialTesseract, "ItemTesseractMaterials");
-
-        //tools
-        if (ConfigHandler.enableEnderiumAxe) {
-            axeGelidEnderium = new ItemGelidEnderiumAxe(ItemInfo.AXE_GELID_ENDERIUM_ID, enderium, Integer.MAX_VALUE).setUnlocalizedName(ModInformation.ID + ItemInfo.AXE_GELID_ENDERIUM_UNLOCALIZED_NAME);
-            GameRegistry.registerItem(axeGelidEnderium, ItemInfo.AXE_GELID_ENDERIUM_KEY);
-        }
-        if (ConfigHandler.enableEnderiumSword) {
-            swordGelidEnderium = new ItemGelidEnderiumSword(ItemInfo.SWORD_GELID_ENDERIUM_ID, enderium).setUnlocalizedName(ModInformation.ID + ItemInfo.SWORD_GELID_ENDERIUM_UNLOCALIZED_NAME);
-            GameRegistry.registerItem(swordGelidEnderium, ItemInfo.SWORD_GELID_ENDERIUM_KEY);
-        }
-        if (ConfigHandler.enableEnderiumBattleWrench) {
-            battleWrenchGelidEnderium = new ItemGelidEnderiumBattleWrench(ItemInfo.BATTLEWRENCH_GELID_ENDERIUM_ID, enderium).setUnlocalizedName(ModInformation.ID + ItemInfo.BATTLEWRENCH_GELID_ENDERIUM_UNLOCALIZED_NAME);
-            GameRegistry.registerItem(battleWrenchGelidEnderium, ItemInfo.BATTLEWRENCH_GELID_ENDERIUM_KEY);
-        }
-        if (ConfigHandler.enableEnderiumPickaxe) {
-            pickaxeGelidEnderium = new ItemGelidEnderiumPickaxe(ItemInfo.PICKAXE_GELID_ENDERIUM_ID, enderium, Integer.MAX_VALUE).setUnlocalizedName(ModInformation.ID + ItemInfo.PICKAXE_GELID_ENDERIUM_UNLOCALIZED_NAME);
-            GameRegistry.registerItem(pickaxeGelidEnderium, ItemInfo.PICKAXE_GELID_ENDERIUM_KEY);
-        }
-        if (ConfigHandler.enableEnderiumShovel) {
-            shovelGelidEnderium = new ItemGelidEnderiumShovel(ItemInfo.SHOVEL_GELID_ENDERIUM_ID, enderium, Integer.MAX_VALUE).setUnlocalizedName(ModInformation.ID + ItemInfo.SHOVEL_GELID_ENDERIUM_UNLOCALIZED_NAME);
-            GameRegistry.registerItem(shovelGelidEnderium, ItemInfo.SHOVEL_GELID_ENDERIUM_KEY);
-        }
-        if (ConfigHandler.enableEnderiumSickle) {
-            sickleGelidEnderium = new ItemGelidEnderiumSickle(ItemInfo.SICKLE_GELID_ENDERIUM_ID, enderium).setUnlocalizedName(ModInformation.ID + ItemInfo.SICKLE_GELID_ENDERIUM_UNLOCALIZED_NAME);
-            GameRegistry.registerItem(sickleGelidEnderium, ItemInfo.SICKLE_GELID_ENDERIUM_KEY);
-        }
-
-	    //other tools
-//	    portableTesseract = new ItemPortableTesseract(ItemInfo.PORTABLE_TESSERACT_ID).setUnlocalizedName(ModInformation.ID + ItemInfo.PORTABLE_TESSERACT_UNLOCALIZED_NAME);
-//	    GameRegistry.registerItem(portableTesseract, ItemInfo.PORTABLE_TESSERACT_KEY);
-    }
+	public static void registerAllItems() {
+		registerItems();
+	}
 }

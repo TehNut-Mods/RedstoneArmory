@@ -1,20 +1,22 @@
 package main.redstonearmory.blocks;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import main.redstonearmory.ModInformation;
+import main.redstonearmory.items.blocks.ItemBlockIngotStorage;
 import net.minecraft.block.Block;
 
 public class BlockRegistry {
 
-    public static Block ingotStorage;
+	//blocks
+	public static Block ingotStorage;
 
-	public static Block compDynamo;
+	private static void registerBlocks() {
+		ingotStorage = new BlockIngotStorage().setBlockName(ModInformation.ID);
+		GameRegistry.registerBlock(ingotStorage, ItemBlockIngotStorage.class, ingotStorage.getUnlocalizedName());
+	}
 
-    public static void registerBlocks() {
-        ingotStorage = new BlockIngotStorage(BlockInfo.INGOT_STORAGE_ID).setUnlocalizedName(BlockInfo.INGOT_STORAGE_UNLOCALIZED_NAME);
-        GameRegistry.registerBlock(ingotStorage, BlockInfo.INGOT_STORAGE_KEY);
-
-//	    compDynamo = new BlockCompDynamo(BlockInfo.COMP_DYNAMO_ID, Material.iron).setUnlocalizedName(BlockInfo.COMP_DYNAMO_UNLOCALIZED_NAME);
-//	    GameRegistry.registerBlock(compDynamo, ItemBlockCompDynamo.class, BlockInfo.COMP_DYNAMO_KEY);
-    }
+	public static void registerAllBlocks() {
+		registerBlocks();
+	}
 
 }

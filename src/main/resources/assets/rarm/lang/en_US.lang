@@ -1,0 +1,32 @@
+#Creative Tab
+itemGroup.RArm.creativeTab=Redstone Armory
+
+#Items
+item.RArm.material.enderium.gelid.ingot.name=Gelid Enderium Ingot
+item.RArm.material.enderium.gelid.nugget.name=Gelid Enderium Nugget
+item.RArm.material.enderium.gelid.gem.name=Gelid Gem
+item.RArm.material.enderium.gelid.rod.name=Gelid Rod
+item.RArm.material.enderium.gelid.nothing.name=Anti-Derp Protocol
+
+#Tools
+item.RArm.tool.enderium.gelid.axe.name=Gelid Enderium Axe
+item.RArm.tool.enderium.gelid.battlewrench.name=Gelid Enderium Battle-Wrench
+item.RArm.tool.enderium.gelid.pickaxe.name=Gelid Enderium Pickaxe
+item.RArm.tool.enderium.gelid.shovel.name=Gelid Enderium Shovel
+item.RArm.tool.enderium.gelid.sickle.name=Gelid Enderium Sickle
+item.RArm.tool.enderium.gelid.sword.name=Gelid Enderium Sword
+
+#Tool abilities
+#Leave the space before the ability text
+info.RArm.tooltip.ability=Ability:
+info.RArm.tooltip.ability.axe.weather= /weather clear
+info.RArm.tooltip.ability.axe.break= Mega Break
+info.RArm.tooltip.ability.axe.lightning= Lightning Caller
+info.RArm.tooltip.ability.pickaxe= Ender Dislocation
+info.RArm.tooltip.ability.shovel.bonemeal= Grow all the things
+info.RArm.tooltip.ability.shovel.break= Mega Break
+info.RArm.tooltip.ability.sword.magnet= Magnet mode
+
+#Blocks
+tile.RArm.storage.enderium.gelid.ingot.name=Block of Gelid Enderium
+tile.RArm.storage.enderium.gelid.nothing.name=Block of Anti-Derp Protocol
