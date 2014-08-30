@@ -49,7 +49,15 @@ public class ItemRecipeRegistry {
 		if(ConfigHandler.enableGelidSwordCrafting) {
 			GameRegistry.addRecipe(new ItemStack(ItemRegistry.swordGelidEnderium, 1, 0), new Object[] { " I ", " T ", " R ", 'R', new ItemStack(ItemRegistry.gelidMaterials, 1, 3), 'T', RAItems.itemSwordFlux, 'I', new ItemStack(ItemRegistry.gelidMaterials, 1, 0)});
 		}
-	}
+
+		GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 0), new Object[] { "NNN", "GIG", "NNN", 'N', TFItems.nuggetEnderium, 'G', RAItems.gemCrystalFlux, 'I', TFItems.ingotEnderium});
+
+		//Armor recipes
+		GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorEnderiumHelm, 1), new Object[]{"PHP", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 0), 'H', RAItems.armorFluxHelmet});
+		GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorEnderiumChestplate, 1), new Object[] { "P P", "PCP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 0), 'C', RAItems.armorFluxPlate});
+		GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorEnderiumLeggings, 1), new Object[] { "PLP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 0), 'L', RAItems.armorFluxLegs});
+		GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorEnderiumBoots, 1), new Object[] { "PBP", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 0), 'B', RAItems.armorFluxBoots});
+		}
 
 	public static void registerItemRecipes() {
 		registerShapedRecipes();

@@ -8,6 +8,9 @@ item.RArm.material.enderium.gelid.gem.name=Gelid Gem
 item.RArm.material.enderium.gelid.rod.name=Gelid Rod
 item.RArm.material.enderium.gelid.nothing.name=Anti-Derp Protocol
 
+item.RArm.material.enderium.plating.name=Enderium Armor Plating
+item.RArm.material.nothing.plating.name=Anti-Derp Plating Protocol
+
 #Tools
 item.RArm.tool.enderium.gelid.axe.name=Gelid Enderium Axe
 item.RArm.tool.enderium.gelid.battlewrench.name=Gelid Enderium Battle-Wrench
@@ -28,6 +31,12 @@ info.RArm.tooltip.ability.shovel.bonemeal= Grow all the things
 info.RArm.tooltip.ability.shovel.break= Mega Break
 info.RArm.tooltip.ability.sickle.sekrit= supah sekrit
 info.RArm.tooltip.ability.sword.magnet= Magnet mode
+
+#Armor
+item.RArm.armor.enderium.helm.name=Enderium Flux Helmet
+item.RArm.armor.enderium.chestplate.name=Enderium Flux Chestplate
+item.RArm.armor.enderium.leggings.name=Enderium Flux Leggings
+item.RArm.armor.enderium.boots.name=Enderium Flux Boots
 
 #Blocks
 tile.RArm.storage.enderium.gelid.ingot.name=Block of Gelid Enderium
