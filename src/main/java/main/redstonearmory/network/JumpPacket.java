@@ -7,8 +7,10 @@ import io.netty.buffer.ByteBuf;
 import main.redstonearmory.items.armor.ItemPowersuit;
 
 public class JumpPacket implements IMessage, IMessageHandler<JumpPacket, IMessage> {
-
     public boolean isJumping;
+
+    public JumpPacket() {
+    }
 
     public JumpPacket(boolean b) {
         isJumping = b;

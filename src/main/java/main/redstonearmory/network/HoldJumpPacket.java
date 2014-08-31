@@ -7,8 +7,10 @@ import io.netty.buffer.ByteBuf;
 import main.redstonearmory.items.armor.ItemPowersuit;
 
 public class HoldJumpPacket implements IMessage, IMessageHandler<HoldJumpPacket, IMessage> {
-
     public boolean isHoldingJump;
+
+    public HoldJumpPacket() {
+    }
 
     public HoldJumpPacket(boolean b) {
         isHoldingJump = b;

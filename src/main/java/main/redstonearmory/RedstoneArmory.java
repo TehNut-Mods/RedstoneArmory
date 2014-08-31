@@ -45,10 +45,10 @@ public class RedstoneArmory {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
 
-      //  FMLCommonHandler.instance().bus().register(new EventHandler());
+       // FMLCommonHandler.instance().bus().register(new EventHandler());
         ItemRecipeRegistry.registerItemRecipes();
         BlockRecipeRegistry.registerBlockRecipes();
-       // PacketHandler.init();
+        //PacketHandler.init();
     }
 
     @Mod.EventHandler
