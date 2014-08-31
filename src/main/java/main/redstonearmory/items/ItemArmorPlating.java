@@ -31,6 +31,18 @@ public class ItemArmorPlating extends Item {
 				name = "enderium";
 				break;
 			}
+			case 1: {
+				name = "lumium";
+				break;
+			}
+			case 2: {
+				name = "mithril";
+				break;
+			}
+			case 3: {
+				name = "bronze";
+				break;
+			}
 			default:
 				name = "nothing";
 				break;
@@ -45,13 +57,16 @@ public class ItemArmorPlating extends Item {
 
 	@SideOnly(Side.CLIENT)
 	public void registerIcons(IIconRegister iconRegister) {
-		this.icon[0] = iconRegister.registerIcon(ModInformation.ID + ":materials/enderiumPlate");
+		this.icon[0] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateEnderium");
+		this.icon[1] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateLumium");
+		this.icon[2] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateMithril");
+		this.icon[3] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateBronze");
 	}
 
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs creativeTabs, List list) {
-		for (int i = 0; i <= 0; i++) {
+		for (int i = 0; i <= 3; i++) {
 			list.add(new ItemStack(this, 1, i));
 		}
 	}
@@ -59,6 +74,20 @@ public class ItemArmorPlating extends Item {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+
+		switch(itemStack.getItemDamage()) {
+			case 0: {
+				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+			}
+			case 1: {
+				return TextHelper.YELLOW + super.getItemStackDisplayName(itemStack);
+			}
+			case 2: {
+				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+			}
+			default: {
+				return TextHelper.WHITE + super.getItemStackDisplayName(itemStack);
+			}
+		}
 	}
 }

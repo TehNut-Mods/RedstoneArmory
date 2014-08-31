@@ -9,6 +9,9 @@ item.RArm.material.enderium.gelid.rod.name=Gelid Rod
 item.RArm.material.enderium.gelid.nothing.name=Anti-Derp Protocol
 
 item.RArm.material.enderium.plating.name=Enderium Armor Plating
+item.RArm.material.lumium.plating.name=Lumium Armor Plating
+item.RArm.material.mithril.plating.name=Mana Infused Armor Plating
+item.RArm.material.bronze.plating.name=Tinker's Alloy Armor Plating
 item.RArm.material.nothing.plating.name=Anti-Derp Plating Protocol
 
 #Tools
@@ -18,6 +21,7 @@ item.RArm.tool.enderium.gelid.pickaxe.name=Gelid Enderium Pickaxe
 item.RArm.tool.enderium.gelid.shovel.name=Gelid Enderium Shovel
 item.RArm.tool.enderium.gelid.sickle.name=Gelid Enderium Sickle
 item.RArm.tool.enderium.gelid.sword.name=Gelid Enderium Sword
+item.RArm.tool.mithril.scimitar.name=Mith Scimmy
 
 #Tool abilities
 #Leave the space before the ability text
@@ -37,8 +41,16 @@ item.RArm.armor.enderium.helm.name=Enderium Flux Helmet
 item.RArm.armor.enderium.chestplate.name=Enderium Flux Chestplate
 item.RArm.armor.enderium.leggings.name=Enderium Flux Leggings
 item.RArm.armor.enderium.boots.name=Enderium Flux Boots
+item.RArm.armor.lumium.helm.name=Lumium Helmet
+item.RArm.armor.lumium.chestplate.name=Lumium Chestplate
+item.RArm.armor.lumium.leggings.name=Lumium Leggings
+item.RArm.armor.lumium.boots.name=Lumium Boots
 
 #Blocks
 tile.RArm.storage.enderium.gelid.ingot.name=Block of Gelid Enderium
 tile.RArm.storage.gem.gelid.name=Gelid Gem Block
 tile.RArm.storage.enderium.gelid.nothing.name=Block of Anti-Derp Protocol
+
+#Tooltips
+info.RArm.tooltip.scimitar.mithril.selling=selling mith scimmy 20k
+info.RArm.tooltip.scimitar.mithril.doubling=doubling money 1m max

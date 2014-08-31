@@ -18,6 +18,8 @@ public class ConfigHandler {
 	public static boolean enableGelidSickleCrafting;
 	public static boolean enableGelidSwordCrafting;
 	public static boolean enableEnderiumFluxArmorCrafting;
+	public static boolean enableLumiumArmorCrafting;
+	public static boolean enableMithrilScimitarCrafting;
 
 	public static boolean enableAxeWeatherClear;
 	public static boolean enableAxeMultiBreak;
@@ -40,6 +42,8 @@ public class ConfigHandler {
 		enableGelidSickleCrafting = config.get(crafting, "enableGelidSickleCrafting", true).getBoolean(enableGelidSickleCrafting);
 		enableGelidSwordCrafting = config.get(crafting, "enableGelidSwordCrafting", true).getBoolean(enableGelidSwordCrafting);
 		enableEnderiumFluxArmorCrafting = config.get(crafting, "enableEnderiumFluxArmorCrafting", true).getBoolean(enableEnderiumFluxArmorCrafting);
+		enableLumiumArmorCrafting = config.get(crafting, "enableLumiumArmorCrafting", true).getBoolean(enableLumiumArmorCrafting);
+		enableMithrilScimitarCrafting = config.get(crafting, "enableMithrilScimitarCrafting", true).getBoolean(enableMithrilScimitarCrafting);
 
 		enableAxeMultiBreak = config.get(features, "enableAxeMultiBreak", true, "Determines whether to add a multi-break effect to empowered axes. [DEFAULT - TRUE]").getBoolean(enableAxeMultiBreak);
 		enableAxeLightning = config.get(features, "enableAxeLightning", true, "Determines whether to allow the axe to spawn lightning. [DEFAULT - TRUE]").getBoolean(enableAxeLightning);
