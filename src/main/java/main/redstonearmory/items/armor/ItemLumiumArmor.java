@@ -1,19 +1,19 @@
 package main.redstonearmory.items.armor;
 
+import cofh.core.item.ItemArmorAdv;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.TextHelper;
 import net.minecraft.item.EnumRarity;
-import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 
-public class ItemLumiumArmor extends ItemArmor {
+public class ItemLumiumArmor extends ItemArmorAdv {
 
-	public ItemLumiumArmor(ArmorMaterial material, int renderIndex, int type) {
+	public ItemLumiumArmor(ArmorMaterial material, int type) {
 
-		super(material, renderIndex, type);
+		super(material, type);
 		this.isRepairable();
 		this.setCreativeTab(RedstoneArmory.tabRArm);
 
