@@ -17,41 +17,43 @@ import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION, dependencies = ModInformation.REQUIRED,guiFactory = ModInformation.GUIFACTORY)
+@Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION, dependencies = ModInformation.REQUIRED, guiFactory = ModInformation.GUIFACTORY)
 public class RedstoneArmory {
 
-	@SidedProxy(clientSide = ModInformation.CLIENTPROXY, serverSide = ModInformation.COMMONPROXY)
-	public static CommonProxy proxy;
+    @SidedProxy(clientSide = ModInformation.CLIENTPROXY, serverSide = ModInformation.COMMONPROXY)
+    public static CommonProxy proxy;
 
-	public static CreativeTabs tabRArm = new CreativeTabRArm(ModInformation.ID + ".creativeTab");
-	public static Logger logger = LogManager.getLogger(ModInformation.NAME);
+    public static CreativeTabs tabRArm = new CreativeTabRArm(ModInformation.ID + ".creativeTab");
+    public static Logger logger = LogManager.getLogger(ModInformation.NAME);
 
-	@Mod.Instance
-	public static RedstoneArmory instance;
-	public static Configuration config;
+    @Mod.Instance
+    public static RedstoneArmory instance;
+    public static Configuration config;
 
-	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
+    @Mod.EventHandler
+    public void preInit(FMLPreInitializationEvent event) {
 
-		config = new Configuration(event.getSuggestedConfigurationFile());
-		ConfigHandler.init(config);
+        config = new Configuration(event.getSuggestedConfigurationFile());
+        ConfigHandler.init(config);
 
-		ItemRegistry.registerAllItems();
-		BlockRegistry.registerAllBlocks();
+        ItemRegistry.registerAllItems();
+        BlockRegistry.registerAllBlocks();
 
-		OreDictHandler.registerOreDict();
-	}
+        OreDictHandler.registerOreDict();
+    }
 
-	@Mod.EventHandler
-	public void init(FMLInitializationEvent event) {
+    @Mod.EventHandler
+    public void init(FMLInitializationEvent event) {
 
-		ItemRecipeRegistry.registerItemRecipes();
-		BlockRecipeRegistry.registerBlockRecipes();
-	}
+      //  FMLCommonHandler.instance().bus().register(new EventHandler());
+        ItemRecipeRegistry.registerItemRecipes();
+        BlockRecipeRegistry.registerBlockRecipes();
+       // PacketHandler.init();
+    }
 
-	@Mod.EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
+    @Mod.EventHandler
+    public void postInit(FMLPostInitializationEvent event) {
 
-		ItemRecipeRegistry.registerLateItemRecipes();
-	}
+        ItemRecipeRegistry.registerLateItemRecipes();
+    }
 }

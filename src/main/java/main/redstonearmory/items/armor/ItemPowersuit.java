@@ -7,19 +7,22 @@ import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.TextHelper;
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
 import redstonearsenal.item.armor.ItemArmorRF;
 
 import java.util.List;
 
 public class ItemPowersuit extends ItemArmorRF {
+
+    public static boolean isHoldingJump;
+    public static boolean isJumping;
 
     public ItemPowersuit(ArmorMaterial armorMaterial, int type) {
         super(armorMaterial, type);
@@ -56,22 +59,38 @@ public class ItemPowersuit extends ItemArmorRF {
 
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
-        if (world.isRemote) {
-            boolean isJumping = Minecraft.getMinecraft().gameSettings.keyBindJump.isPressed();
-            boolean isHoldingJump = Minecraft.getMinecraft().gameSettings.keyBindJump.getIsKeyPressed();
-            boolean isSneaking = Minecraft.getMinecraft().gameSettings.keyBindSneak.getIsKeyPressed();
-
-            if (isHoldingJump) {
-                player.motionX *= 1.1;
-                player.motionY = 1;
-                player.motionZ *= 1.1;
-            }
+        if (player.fallDistance >= 0 /*&& isInstalled("fallNegate", stack)*/) {
+            player.fallDistance = 0;
         }
+
+        if (isJumping) player.fallDistance = 0;
+
+        if (isHoldingJump /*&& isInstalled("thruster", stack) && !isInstalled("stabilizer", stack)*/) {
+            System.out.println(isHoldingJump);
+            player.motionX *= 1.05;
+            player.motionY = 1;
+            player.motionZ *= 1.05;
+            if (player.motionX >= Math.abs(2)) player.motionX /= 1.1;
+            if (player.motionZ >= Math.abs(2)) player.motionZ /= 1.1;
+        }
+
+        if (isHoldingJump /*&& isInstalled("thruster", stack)*/ && isInstalled("stabilizer", stack)) {
+            player.motionY = 1.2;
+            player.fallDistance = 0;
+        }
+    }
+
+    public boolean isInstalled(String upgrade, ItemStack stack) {
+        if (stack.hasTagCompound()) {
+            NBTTagCompound tag = stack.getTagCompound();
+            return tag.getBoolean(upgrade);
+        }
+        return false;
     }
 
     @Override
     @SideOnly(Side.CLIENT)
-    public String getArmorTexture(ItemStack Stack, Entity entity, int Slot, String type) {
+    public String getArmorTexture(ItemStack stack, Entity entity, int Slot, String type) {
         switch (Slot) {
             case 0: {
                 return ModInformation.ID + ":textures/models/armor/powersuit_1.png";
