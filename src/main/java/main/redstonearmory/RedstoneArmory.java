@@ -17,10 +17,10 @@ import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION, guiFactory = "main.redstonearmory.gui.ConfigGuiFactory")
+@Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION, dependencies = ModInformation.REQUIRED,guiFactory = ModInformation.GUIFACTORY)
 public class RedstoneArmory {
 
-	@SidedProxy(clientSide = "main.redstonearmory.proxies.ClientProxy", serverSide = "main.redstonearmory.proxies.CommonProxy")
+	@SidedProxy(clientSide = ModInformation.CLIENTPROXY, serverSide = ModInformation.COMMONPROXY)
 	public static CommonProxy proxy;
 
 	public static CreativeTabs tabRArm = new CreativeTabRArm(ModInformation.ID + ".creativeTab");

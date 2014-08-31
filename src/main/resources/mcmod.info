@@ -9,8 +9,8 @@
   "updateUrl": "",
   "authorList": ["TehNut, Tombenpotter"],
   "credits": "Team CoFH",
-  "logoFile": "",
+  "logoFile": "/assets/rarm/textures/logo.png",
   "screenshots": [],
-  "dependencies": []
+  "requiredMods": [ "ThermalExpansion", "ThermalFoundation", "RedstoneArsenal" ]
 }
 ]
