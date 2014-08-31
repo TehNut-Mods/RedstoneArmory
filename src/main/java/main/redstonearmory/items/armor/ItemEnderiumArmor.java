@@ -22,17 +22,15 @@ public class ItemEnderiumArmor extends ItemArmorRF {
 	public static final ArmorProperties UNBLOCKABLE = new ArmorProperties(0, 0.0D, 0);
 	public static final ArmorProperties FLUX = new ArmorProperties(0, 0.5D, Integer.MAX_VALUE);
 
-	public int maxEnergy = 1000000;
-	public int maxTransfer = 4500;
-
-	public double absorbRatio = 1.2D;
-	public int energyPerDamage = 200;
-
 	public ItemEnderiumArmor(ArmorMaterial material, int type) {
 
 		super(material, type);
 		this.setNoRepair();
 		this.setCreativeTab(RedstoneArmory.tabRArm);
+        maxEnergy = 1000000;
+        energyPerDamage = 140;
+        absorbRatio = 1.2D;
+        maxTransfer = 4500;
 
 		switch (type) {
 			case 0: {

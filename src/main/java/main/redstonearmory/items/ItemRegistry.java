@@ -3,6 +3,7 @@ package main.redstonearmory.items;
 import cpw.mods.fml.common.registry.GameRegistry;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.items.armor.ItemEnderiumArmor;
+import main.redstonearmory.items.armor.ItemPowersuit;
 import main.redstonearmory.items.tools.gelidenderium.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -28,6 +29,11 @@ public class ItemRegistry {
 	public static Item armorEnderiumChestplate;
 	public static Item armorEnderiumLeggings;
 	public static Item armorEnderiumBoots;
+
+    public static Item armorPowersuitHelm;
+    public static Item armorPowersuitChestplate;
+    public static Item armorPowersuitLeggings;
+    public static Item armorPowersuitBoots;
 
 	private static void registerItems() {
 
@@ -57,6 +63,15 @@ public class ItemRegistry {
 		GameRegistry.registerItem(armorEnderiumLeggings, "ItemEnderiumArmor.Leggings");
 		armorEnderiumBoots = (ItemEnderiumArmor) new ItemEnderiumArmor(ARMOR_MATERIAL_ENDERIUM, 3);
 		GameRegistry.registerItem(armorEnderiumBoots, "ItemEnderiumArmor.Boots");
+
+        armorPowersuitHelm = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 0);
+        GameRegistry.registerItem(armorPowersuitHelm, "ItemPowersuit.Helm");
+        armorPowersuitChestplate = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 0);
+        GameRegistry.registerItem(armorPowersuitChestplate, "ItemPowersuit.Chestplate");
+        armorPowersuitLeggings = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 0);
+        GameRegistry.registerItem(armorPowersuitLeggings, "ItemPowersuit.Leggings");
+        armorPowersuitBoots = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 0);
+        GameRegistry.registerItem(armorPowersuitBoots, "ItemPowersuit.Boots");
 	}
 
 	public static void registerAllItems() {
