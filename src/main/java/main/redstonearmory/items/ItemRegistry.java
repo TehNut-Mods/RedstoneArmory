@@ -4,8 +4,8 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.items.armor.ItemEnderiumArmor;
 import main.redstonearmory.items.armor.ItemLumiumArmor;
+import main.redstonearmory.items.armor.ItemMithrilArmor;
 import main.redstonearmory.items.armor.ItemPowersuit;
-import main.redstonearmory.items.tools.ItemMithScimmy;
 import main.redstonearmory.items.tools.gelidenderium.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -16,6 +16,7 @@ public class ItemRegistry {
 	//materials
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_ENDERIUM = EnumHelper.addArmorMaterial("RA_ENDERIUM", 10, new int[]{3, 8, 6, 3}, 20);
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_LUMIUM = EnumHelper.addArmorMaterial("RA_LUMIUM", 10, new int[]{2, 5, 3, 2}, 20);
+	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_MITHRIL = EnumHelper.addArmorMaterial("RA_MITHRIL", 10, new int[]{3, 6, 4, 3}, 20);
 
 	//items
 	public static Item gelidMaterials;
@@ -27,8 +28,6 @@ public class ItemRegistry {
 	public static Item shovelGelidEnderium;
 	public static Item sickleGelidEnderium;
 	public static Item swordGelidEnderium;
-
-	public static Item mithrilScimitar;
 
 	public static Item armorEnderiumHelm;
 	public static Item armorEnderiumChestplate;
@@ -44,6 +43,11 @@ public class ItemRegistry {
 	public static Item armorLumiumChestplate;
 	public static Item armorLumiumLeggings;
 	public static Item armorLumiumBoots;
+
+	public static Item armorMithrilHelm;
+	public static Item armorMithrilChestplate;
+	public static Item armorMithrilLeggings;
+	public static Item armorMithrilBoots;
 
 	private static void registerItems() {
 
@@ -64,9 +68,6 @@ public class ItemRegistry {
 		GameRegistry.registerItem(sickleGelidEnderium, "ItemSickleGelidEnderium");
 		swordGelidEnderium = new ItemSwordGelidEnderium(Item.ToolMaterial.EMERALD);
 		GameRegistry.registerItem(swordGelidEnderium, "ItemSwordGelidEnderium");
-
-		mithrilScimitar = new ItemMithScimmy(Item.ToolMaterial.EMERALD);
-		GameRegistry.registerItem(mithrilScimitar, "ItemMithScimmy");
 
 		armorEnderiumHelm = (ItemEnderiumArmor) new ItemEnderiumArmor(ARMOR_MATERIAL_ENDERIUM, 0);
 		GameRegistry.registerItem(armorEnderiumHelm, "ItemEnderiumArmor.Helm");
@@ -94,6 +95,15 @@ public class ItemRegistry {
 		GameRegistry.registerItem(armorLumiumLeggings, "ItemLumiumArmor.Leggings");
 		armorLumiumBoots = (ItemLumiumArmor) new ItemLumiumArmor(ARMOR_MATERIAL_LUMIUM, 3);
 		GameRegistry.registerItem(armorLumiumBoots, "ItemLumiumArmor.Boots");
+
+		armorMithrilHelm = (ItemMithrilArmor) new ItemMithrilArmor(ARMOR_MATERIAL_MITHRIL, 0);
+		GameRegistry.registerItem(armorMithrilHelm, "ItemMithrilArmor.Helm");
+		armorMithrilChestplate = (ItemMithrilArmor) new ItemMithrilArmor(ARMOR_MATERIAL_MITHRIL, 1);
+		GameRegistry.registerItem(armorMithrilChestplate, "ItemMithrilArmor.Chestplate");
+		armorMithrilLeggings = (ItemMithrilArmor) new ItemMithrilArmor(ARMOR_MATERIAL_MITHRIL, 2);
+		GameRegistry.registerItem(armorMithrilLeggings, "ItemMithrilArmor.Leggings");
+		armorMithrilBoots = (ItemMithrilArmor) new ItemMithrilArmor(ARMOR_MATERIAL_MITHRIL, 3);
+		GameRegistry.registerItem(armorMithrilBoots, "ItemMithrilArmor.Boots");
 	}
 
 	public static void registerAllItems() {

@@ -17,9 +17,13 @@ public class ConfigHandler {
 	public static boolean enableGelidShovelCrafting;
 	public static boolean enableGelidSickleCrafting;
 	public static boolean enableGelidSwordCrafting;
+
 	public static boolean enableEnderiumFluxArmorCrafting;
+	public static boolean enablePowersuitCrafting;
 	public static boolean enableLumiumArmorCrafting;
-	public static boolean enableMithrilScimitarCrafting;
+	public static boolean enableMithrilArmorCrafting;
+	public static boolean enableTinkersAlloyArmorCrafting;
+	public static boolean enableTuberousArmorCrafting;
 
 	public static boolean enableAxeWeatherClear;
 	public static boolean enableAxeMultiBreak;
@@ -31,7 +35,7 @@ public class ConfigHandler {
 		config.load();
 
 		config.addCustomCategoryComment(balances, "Balancing tweaks to fine tune the mod to how you want. These should be synced between the server and client, but it is not required. Clients will be confused if it isn't.");
-		config.addCustomCategoryComment(crafting, "Toggling of ability to craft items.");
+		config.addCustomCategoryComment(crafting, "Toggling of ability to craft items. All default to true");
 		config.addCustomCategoryComment(features, "Enabling and Disabling of mod features. These should be synced between the server and client, but it is not required. Clients will be confused if it isn't.");
 		config.addCustomCategoryComment(general, "General category for other stuff. These should be synced between the server and client, but it is not required. Clients will be confused if it isn't.");
 
@@ -41,9 +45,13 @@ public class ConfigHandler {
 		enableGelidShovelCrafting = config.get(crafting, "enableGelidShovelCrafting", true).getBoolean(enableGelidShovelCrafting);
 		enableGelidSickleCrafting = config.get(crafting, "enableGelidSickleCrafting", true).getBoolean(enableGelidSickleCrafting);
 		enableGelidSwordCrafting = config.get(crafting, "enableGelidSwordCrafting", true).getBoolean(enableGelidSwordCrafting);
+
 		enableEnderiumFluxArmorCrafting = config.get(crafting, "enableEnderiumFluxArmorCrafting", true).getBoolean(enableEnderiumFluxArmorCrafting);
+		enablePowersuitCrafting = config.get(crafting, "enablePowersuitCrafting", true).getBoolean(enablePowersuitCrafting);
 		enableLumiumArmorCrafting = config.get(crafting, "enableLumiumArmorCrafting", true).getBoolean(enableLumiumArmorCrafting);
-		enableMithrilScimitarCrafting = config.get(crafting, "enableMithrilScimitarCrafting", true).getBoolean(enableMithrilScimitarCrafting);
+		enableMithrilArmorCrafting = config.get(crafting, "enableMithrilArmorCrafting", true).getBoolean(enableMithrilArmorCrafting);
+		enableTinkersAlloyArmorCrafting = config.get(crafting, "enableTinkersAlloyArmorCrafting", true).getBoolean(enableTinkersAlloyArmorCrafting);
+		enableTuberousArmorCrafting = config.get(crafting, "enableTuberousArmorCrafting", true).getBoolean(enableTuberousArmorCrafting);
 
 		enableAxeMultiBreak = config.get(features, "enableAxeMultiBreak", true, "Determines whether to add a multi-break effect to empowered axes. [DEFAULT - TRUE]").getBoolean(enableAxeMultiBreak);
 		enableAxeLightning = config.get(features, "enableAxeLightning", true, "Determines whether to allow the axe to spawn lightning. [DEFAULT - TRUE]").getBoolean(enableAxeLightning);

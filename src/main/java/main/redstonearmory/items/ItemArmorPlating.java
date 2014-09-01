@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ItemArmorPlating extends Item {
 
-	public IIcon[] icon = new IIcon[4];
+	public IIcon[] icon = new IIcon[7];
 
 	public ItemArmorPlating() {
 		this.setCreativeTab(RedstoneArmory.tabRArm);
@@ -43,6 +43,18 @@ public class ItemArmorPlating extends Item {
 				name = "bronze";
 				break;
 			}
+			case 4: {
+				name = "tuberous";
+				break;
+			}
+			case 5: {
+				name = "crafting.empty";
+				break;
+			}
+			case 6: {
+				name = "crafting.full";
+				break;
+			}
 			default:
 				name = "nothing";
 				break;
@@ -61,12 +73,15 @@ public class ItemArmorPlating extends Item {
 		this.icon[1] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateLumium");
 		this.icon[2] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateMithril");
 		this.icon[3] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateBronze");
+		this.icon[4] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateTuberous");
+		this.icon[5] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateCraftingEmpty");
+		this.icon[6] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateCraftingFull");
 	}
 
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs creativeTabs, List list) {
-		for (int i = 0; i <= 3; i++) {
+		for (int i = 0; i <= 6; i++) {
 			list.add(new ItemStack(this, 1, i));
 		}
 	}
