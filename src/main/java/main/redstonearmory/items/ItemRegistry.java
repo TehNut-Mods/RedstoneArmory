@@ -2,10 +2,7 @@ package main.redstonearmory.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import main.redstonearmory.ModInformation;
-import main.redstonearmory.items.armor.ItemEnderiumArmor;
-import main.redstonearmory.items.armor.ItemLumiumArmor;
-import main.redstonearmory.items.armor.ItemMithrilArmor;
-import main.redstonearmory.items.armor.ItemPowersuit;
+import main.redstonearmory.items.armor.*;
 import main.redstonearmory.items.tools.gelidenderium.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
@@ -17,6 +14,7 @@ public class ItemRegistry {
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_ENDERIUM = EnumHelper.addArmorMaterial("RA_ENDERIUM", 10, new int[]{3, 8, 6, 3}, 20);
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_LUMIUM = EnumHelper.addArmorMaterial("RA_LUMIUM", 10, new int[]{2, 5, 3, 2}, 20);
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_MITHRIL = EnumHelper.addArmorMaterial("RA_MITHRIL", 10, new int[]{3, 6, 4, 3}, 20);
+	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_TUBEROUS = EnumHelper.addArmorMaterial("RA_TUBEROUS", 10, new int[]{1, 3, 2, 1}, 20);
 
 	//items
 	public static Item gelidMaterials;
@@ -48,6 +46,11 @@ public class ItemRegistry {
 	public static Item armorMithrilChestplate;
 	public static Item armorMithrilLeggings;
 	public static Item armorMithrilBoots;
+
+	public static Item armorTuberousHelm;
+	public static Item armorTuberousChestplate;
+	public static Item armorTuberousLeggings;
+	public static Item armorTuberousBoots;
 
 	private static void registerItems() {
 
@@ -104,6 +107,15 @@ public class ItemRegistry {
 		GameRegistry.registerItem(armorMithrilLeggings, "ItemMithrilArmor.Leggings");
 		armorMithrilBoots = (ItemMithrilArmor) new ItemMithrilArmor(ARMOR_MATERIAL_MITHRIL, 3);
 		GameRegistry.registerItem(armorMithrilBoots, "ItemMithrilArmor.Boots");
+
+		armorTuberousHelm = (ItemTuberousArmor) new ItemTuberousArmor(ARMOR_MATERIAL_TUBEROUS, 0);
+		GameRegistry.registerItem(armorTuberousHelm, "ItemTuberousArmor.Helm");
+		armorTuberousChestplate = (ItemTuberousArmor) new ItemTuberousArmor(ARMOR_MATERIAL_TUBEROUS, 1);
+		GameRegistry.registerItem(armorTuberousChestplate, "ItemTuberousArmor.Chestplate");
+		armorTuberousLeggings = (ItemTuberousArmor) new ItemTuberousArmor(ARMOR_MATERIAL_TUBEROUS, 2);
+		GameRegistry.registerItem(armorTuberousLeggings, "ItemTuberousArmor.Leggings");
+		armorTuberousBoots = (ItemTuberousArmor) new ItemTuberousArmor(ARMOR_MATERIAL_TUBEROUS, 3);
+		GameRegistry.registerItem(armorTuberousBoots, "ItemTuberousArmor.Boots");
 	}
 
 	public static void registerAllItems() {

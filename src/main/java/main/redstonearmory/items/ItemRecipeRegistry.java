@@ -48,7 +48,10 @@ public class ItemRecipeRegistry {
 			//stuffs
 		}
 		if(ConfigHandler.enableTuberousArmorCrafting) {
-			//stuffs
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousHelm, 1), new Object[]{"PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 4)});
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousChestplate, 1), new Object[] { "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 4)});
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousLeggings, 1), new Object[] { "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 4)});
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousBoots, 1), new Object[] { "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 4)});
 		}
 	}
 

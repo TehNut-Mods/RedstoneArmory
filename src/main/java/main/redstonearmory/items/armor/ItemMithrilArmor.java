@@ -19,6 +19,7 @@ public class ItemMithrilArmor extends ItemArmorAdv {
 
 		super(material, type);
 		this.isRepairable();
+		this.setRepairIngot("ingotMithril");
 		this.setCreativeTab(RedstoneArmory.tabRArm);
 
 		switch (type) {

@@ -53,7 +53,10 @@ item.RArm.armor.mithril.helm.name=Mana Infused Helmet
 item.RArm.armor.mithril.chestplate.name=Mana Infused Chestplate
 item.RArm.armor.mithril.leggings.name=Mana Infused Leggings
 item.RArm.armor.mithril.boots.name=Mana Infused Boots
-
+item.RArm.armor.tuberous.helm.name=Tuberous Helmet
+item.RArm.armor.tuberous.chestplate.name=Tuberous Chestplate
+item.RArm.armor.tuberous.leggings.name=Tuberous Leggings
+item.RArm.armor.tuberous.boots.name=Tuberous Boots
 
 #Blocks
 tile.RArm.storage.enderium.gelid.ingot.name=Block of Gelid Enderium
@@ -61,7 +64,8 @@ tile.RArm.storage.gem.gelid.name=Gelid Gem Block
 tile.RArm.storage.enderium.gelid.nothing.name=Block of Anti-Derp Protocol
 
 #Tooltips
-info.RArm.tooltip.scimitar.mithril.selling=selling mith scimmy 20k
-info.RArm.tooltip.scimitar.mithril.doubling=doubling money 1m max
+info.RArm.tooltip.armor.lumium.shine=Shining bright like a Glowstone
 info.RArm.tooltip.armor.mithril.almost=Looks just like Rune,
 info.RArm.tooltip.armor.mithril.notquite=but not quite...
+info.RArm.tooltip.armor.tuberous.clever.1=Congrats, you have smeared yourself with
+info.RArm.tooltip.armor.tuberous.clever.2=potatoes. You have achieved "Protatotection".

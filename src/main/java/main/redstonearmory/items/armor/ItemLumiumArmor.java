@@ -6,8 +6,11 @@ import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.TextHelper;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+
+import java.util.List;
 
 public class ItemLumiumArmor extends ItemArmorAdv {
 
@@ -15,6 +18,7 @@ public class ItemLumiumArmor extends ItemArmorAdv {
 
 		super(material, type);
 		this.isRepairable();
+		this.setRepairIngot("ingotLumium");
 		this.setCreativeTab(RedstoneArmory.tabRArm);
 
 		switch (type) {
@@ -71,5 +75,12 @@ public class ItemLumiumArmor extends ItemArmorAdv {
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
 		return TextHelper.YELLOW + super.getItemStackDisplayName(itemStack);
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
+		list.add(TextHelper.END);
+		list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.armor.lumium.shine"));
 	}
 }
