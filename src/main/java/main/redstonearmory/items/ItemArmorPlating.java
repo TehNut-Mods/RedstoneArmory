@@ -74,8 +74,8 @@ public class ItemArmorPlating extends Item {
 		this.icon[2] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateMithril");
 		this.icon[3] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateBronze");
 		this.icon[4] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateTuberous");
-		this.icon[5] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateCraftingEmpty");
-		this.icon[6] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateCraftingFull");
+		this.icon[5] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateCrafting_empty");
+		this.icon[6] = iconRegister.registerIcon(ModInformation.ID + ":materials/plateCrafting_full");
 	}
 
 	@SuppressWarnings({"rawtypes", "unchecked"})

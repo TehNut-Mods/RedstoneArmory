@@ -19,8 +19,8 @@ public class BlockIngotStorage extends BlockStorage {
 
 	public BlockIngotStorage() {
 		super();
-		setHardness(25.0F);
-		setResistance(120.0F);
+		this.setHardness(3.0F);
+		this.setResistance(5.0F);
 		setStepSound(soundTypeMetal);
 		this.setCreativeTab(RedstoneArmory.tabRArm);
 	}

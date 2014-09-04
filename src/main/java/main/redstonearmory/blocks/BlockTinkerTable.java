@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
@@ -20,6 +21,8 @@ public class BlockTinkerTable extends Block {
 
 	public BlockTinkerTable(Material material) {
 		super(material);
+		this.setHardness(3.0F);
+		this.setResistance(5.0F);
 		this.setStepSound(soundTypeMetal);
 		this.setCreativeTab(RedstoneArmory.tabRArm);
 		this.setBlockName(ModInformation.ID + ".table.tinker");
@@ -51,6 +54,9 @@ public class BlockTinkerTable extends Block {
 		if(player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemPowersuit && side == 1) {
 			player.swingItem();
 			player.inventory.consumeInventoryItem(player.getHeldItem().getItem());
+		} else {
+			if(!world.isRemote)
+				player.addChatComponentMessage(new ChatComponentTranslation("info.RArm.chat.table.tinker.instruct"));
 		}
 		return false;
 	}

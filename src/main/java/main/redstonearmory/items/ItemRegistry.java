@@ -14,6 +14,7 @@ public class ItemRegistry {
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_ENDERIUM = EnumHelper.addArmorMaterial("RA_ENDERIUM", 10, new int[]{3, 8, 6, 3}, 20);
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_LUMIUM = EnumHelper.addArmorMaterial("RA_LUMIUM", 10, new int[]{2, 5, 3, 2}, 20);
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_MITHRIL = EnumHelper.addArmorMaterial("RA_MITHRIL", 10, new int[]{3, 6, 4, 3}, 20);
+	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_BRONZE = EnumHelper.addArmorMaterial("RA_BRONZE", 10, new int[]{4, 7, 5, 4}, 20);
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_TUBEROUS = EnumHelper.addArmorMaterial("RA_TUBEROUS", 10, new int[]{1, 3, 2, 1}, 20);
 
 	//items
@@ -46,6 +47,11 @@ public class ItemRegistry {
 	public static Item armorMithrilChestplate;
 	public static Item armorMithrilLeggings;
 	public static Item armorMithrilBoots;
+	
+	public static Item armorBronzeHelm;
+	public static Item armorBronzeChestplate;
+	public static Item armorBronzeLeggings;
+	public static Item armorBronzeBoots;
 
 	public static Item armorTuberousHelm;
 	public static Item armorTuberousChestplate;
@@ -107,6 +113,15 @@ public class ItemRegistry {
 		GameRegistry.registerItem(armorMithrilLeggings, "ItemMithrilArmor.Leggings");
 		armorMithrilBoots = (ItemMithrilArmor) new ItemMithrilArmor(ARMOR_MATERIAL_MITHRIL, 3);
 		GameRegistry.registerItem(armorMithrilBoots, "ItemMithrilArmor.Boots");
+
+		armorBronzeHelm = (ItemBronzeArmor) new ItemBronzeArmor(ARMOR_MATERIAL_BRONZE, 0);
+		GameRegistry.registerItem(armorBronzeHelm, "ItemBronzeArmor.Helm");
+		armorBronzeChestplate = (ItemBronzeArmor) new ItemBronzeArmor(ARMOR_MATERIAL_BRONZE, 1);
+		GameRegistry.registerItem(armorBronzeChestplate, "ItemBronzeArmor.Chestplate");
+		armorBronzeLeggings = (ItemBronzeArmor) new ItemBronzeArmor(ARMOR_MATERIAL_BRONZE, 2);
+		GameRegistry.registerItem(armorBronzeLeggings, "ItemBronzeArmor.Leggings");
+		armorBronzeBoots = (ItemBronzeArmor) new ItemBronzeArmor(ARMOR_MATERIAL_BRONZE, 3);
+		GameRegistry.registerItem(armorBronzeBoots, "ItemBronzeArmor.Boots");
 
 		armorTuberousHelm = (ItemTuberousArmor) new ItemTuberousArmor(ARMOR_MATERIAL_TUBEROUS, 0);
 		GameRegistry.registerItem(armorTuberousHelm, "ItemTuberousArmor.Helm");

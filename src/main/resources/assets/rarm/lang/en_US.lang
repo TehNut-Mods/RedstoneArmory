@@ -56,6 +56,10 @@ item.RArm.armor.mithril.helm.name=Mana Infused Helmet
 item.RArm.armor.mithril.chestplate.name=Mana Infused Chestplate
 item.RArm.armor.mithril.leggings.name=Mana Infused Leggings
 item.RArm.armor.mithril.boots.name=Mana Infused Boots
+item.RArm.armor.bronze.helm.name=Tinker's Alloy Helmet
+item.RArm.armor.bronze.chestplate.name=Tinker's Alloy Chestplate
+item.RArm.armor.bronze.leggings.name=Tinker's Alloy Leggings
+item.RArm.armor.bronze.boots.name=Tinker's Alloy Boots
 item.RArm.armor.tuberous.helm.name=Tuberous Helmet
 item.RArm.armor.tuberous.chestplate.name=Tuberous Chestplate
 item.RArm.armor.tuberous.leggings.name=Tuberous Leggings
@@ -73,3 +77,6 @@ info.RArm.tooltip.armor.mithril.almost=Looks just like Rune,
 info.RArm.tooltip.armor.mithril.notquite=but not quite...
 info.RArm.tooltip.armor.tuberous.clever.1=Congrats, you have smeared yourself with
 info.RArm.tooltip.armor.tuberous.clever.2=potatoes. You have achieved "Protatotection".
+
+#Chat Messages
+info.RArm.chat.table.tinker.instruct=Right click top with powersuit to begin upgrading.

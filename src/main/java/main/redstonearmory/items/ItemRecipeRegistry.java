@@ -30,7 +30,10 @@ public class ItemRecipeRegistry {
 			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorEnderiumBoots, 1), new Object[] { "P P", "PBP", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 0), 'B', RAItems.armorFluxBoots});
 		}
 		if(ConfigHandler.enablePowersuitCrafting) {
-			//stuffs
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorPowersuitHelm, 1), new Object[]{"PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 6)});
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorPowersuitChestplate, 1), new Object[] { "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 6)});
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorPowersuitLeggings, 1), new Object[] { "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 6)});
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorPowersuitBoots, 1), new Object[] { "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 6)});
 		}
 		if(ConfigHandler.enableLumiumArmorCrafting) {
 			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorLumiumHelm, 1), new Object[]{"PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 1)});
@@ -45,7 +48,10 @@ public class ItemRecipeRegistry {
 			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorMithrilBoots, 1), new Object[] { "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 2)});
 		}
 		if(ConfigHandler.enableTinkersAlloyArmorCrafting) {
-			//stuffs
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorBronzeHelm, 1), new Object[]{"PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 3)});
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorBronzeChestplate, 1), new Object[] { "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 3)});
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorBronzeLeggings, 1), new Object[] { "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 3)});
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorBronzeBoots, 1), new Object[] { "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 3)});
 		}
 		if(ConfigHandler.enableTuberousArmorCrafting) {
 			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousHelm, 1), new Object[]{"PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 4)});
@@ -68,8 +74,7 @@ public class ItemRecipeRegistry {
 			ThermalExpansionHelper.addTransposerFill(12000, new ItemStack(ItemRegistry.armorPlating, 1, 5), new ItemStack(ItemRegistry.armorPlating, 1, 6), new FluidStack(FluidRegistry.getFluid("mana"), 1000), false);
 		} else {
 			GameRegistry.addRecipe(new ItemStack(ItemRegistry.gelidMaterials, 1, 0), new Object[] { "PSP", "SIS", "PSP", 'P', new ItemStack(Items.ender_pearl), 'S', new ItemStack(Blocks.snow), 'I', RAItems.ingotElectrumFlux });
-			GameRegistry.addRecipe(new ItemStack(ItemRegistry.gelidMaterials, 1, 2), new Object[] { "PSP", "SGS", "PSP", 'P', new ItemStack(Items.ender_pearl), 'S', new ItemStack(Blocks.ice), 'G', RAItems.gemCrystalFlux });
-			GameRegistry.addShapelessRecipe(TFItems.bucketMana, new Object[] { TFItems.bucketCryotheum, TFItems.bucketEnder, TFItems.bucketPyrotheum, TFItems.bucketRedstone, TFItems.bucketCoal, TFItems.bucketGlowstone });
+			GameRegistry.addRecipe(new ItemStack(ItemRegistry.gelidMaterials, 1, 2), new Object[]{"PSP", "SGS", "PSP", 'P', new ItemStack(Items.ender_pearl), 'S', new ItemStack(Blocks.ice), 'G', RAItems.gemCrystalFlux});
 			GameRegistry.addShapelessRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 6), new Object[] { TFItems.bucketMana, new ItemStack(ItemRegistry.armorPlating, 1, 5) });
 		}
 	}
@@ -106,8 +111,13 @@ public class ItemRecipeRegistry {
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 2), new Object[]{"NNN", "GIG", "NNN", 'N', "nuggetMithril", 'G', "dustRedstone", 'I', "ingotMithril"}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 3), new Object[]{"NNN", "GIG", "NNN", 'N', "nuggetBronze", 'G', "dustRedstone", 'I', "ingotBronze"}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 4), new Object[]{"PPP", "DCD", "PPP", 'P', new ItemStack(Items.potato), 'D', "dustRedstone", 'C', TEItems.capacitorPotato}));
+		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 5), new Object[]{"NNN", "GIG", "NNN", 'N', "nuggetIron", 'G', "dustRedstone", 'I', "ingotIron"}));
+
+		//temporary mana bucket recipe until CoFH add one
+		GameRegistry.addShapelessRecipe(TFItems.bucketMana, new Object[]{TFItems.bucketCryotheum, TFItems.bucketEnder, TFItems.bucketPyrotheum, TFItems.bucketRedstone, TFItems.bucketCoal, TFItems.bucketGlowstone});
 	}
 
+	//Internal/vanilla only recipes go here
 	public static void registerItemRecipes() {
 		registerShapedRecipes();
 		registerShaplessRecipes();
