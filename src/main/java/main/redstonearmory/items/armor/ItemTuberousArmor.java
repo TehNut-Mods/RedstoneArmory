@@ -82,7 +82,6 @@ public class ItemTuberousArmor extends ItemArmorAdv {
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
-
 		return EnumRarity.common;
 	}
 

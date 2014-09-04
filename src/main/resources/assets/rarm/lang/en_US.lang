@@ -12,6 +12,9 @@ item.RArm.material.enderium.plating.name=Enderium Armor Plating
 item.RArm.material.lumium.plating.name=Lumium Armor Plating
 item.RArm.material.mithril.plating.name=Mana Infused Armor Plating
 item.RArm.material.bronze.plating.name=Tinker's Alloy Armor Plating
+item.RArm.material.tuberous.plating.name=Mashed Potatoes
+item.RArm.material.crafting.empty.plating.name=Empty Armor Plating
+item.RArm.material.crafting.full.plating.name=Full Armor Plating
 item.RArm.material.nothing.plating.name=Anti-Derp Plating Protocol
 
 #Tools
@@ -62,6 +65,7 @@ item.RArm.armor.tuberous.boots.name=Tuberous Boots
 tile.RArm.storage.enderium.gelid.ingot.name=Block of Gelid Enderium
 tile.RArm.storage.gem.gelid.name=Gelid Gem Block
 tile.RArm.storage.enderium.gelid.nothing.name=Block of Anti-Derp Protocol
+tile.RArm.table.tinker.name=Tinker Table
 
 #Tooltips
 info.RArm.tooltip.armor.lumium.shine=Shining bright like a Glowstone
