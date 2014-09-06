@@ -1,5 +1,6 @@
 package main.redstonearmory;
 
+import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -10,6 +11,8 @@ import main.redstonearmory.blocks.BlockRegistry;
 import main.redstonearmory.gui.CreativeTabRArm;
 import main.redstonearmory.items.ItemRecipeRegistry;
 import main.redstonearmory.items.ItemRegistry;
+import main.redstonearmory.network.EventHandler;
+import main.redstonearmory.network.PacketHandler;
 import main.redstonearmory.proxies.CommonProxy;
 import main.redstonearmory.util.OreDictHandler;
 import net.minecraft.creativetab.CreativeTabs;
@@ -45,10 +48,10 @@ public class RedstoneArmory {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
 
-       // FMLCommonHandler.instance().bus().register(new EventHandler());
+        FMLCommonHandler.instance().bus().register(new EventHandler());
         ItemRecipeRegistry.registerItemRecipes();
         BlockRecipeRegistry.registerBlockRecipes();
-        //PacketHandler.init();
+        PacketHandler.init();
     }
 
     @Mod.EventHandler
