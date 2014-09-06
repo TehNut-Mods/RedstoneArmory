@@ -4,7 +4,8 @@ import cpw.mods.fml.common.network.simpleimpl.IMessage;
 import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
-import main.redstonearmory.items.armor.ItemPowersuit;
+import main.redstonearmory.items.powersuit.ItemPowersuit;
+import main.redstonearmory.items.powersuit.upgrades.BaseUpgrade;
 
 public class HoldJumpPacket implements IMessage, IMessageHandler<HoldJumpPacket, IMessage> {
     public boolean isHoldingJump;
@@ -18,18 +19,18 @@ public class HoldJumpPacket implements IMessage, IMessageHandler<HoldJumpPacket,
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        buf.writeBoolean(isHoldingJump);
+        isHoldingJump = buf.readBoolean();
+        BaseUpgrade.isHoldingJump = isHoldingJump;
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        isHoldingJump = buf.readBoolean();
-        ItemPowersuit.isHoldingJump = isHoldingJump;
+        buf.writeBoolean(isHoldingJump);
     }
 
     @Override
     public IMessage onMessage(HoldJumpPacket message, MessageContext ctx) {
-        ItemPowersuit.isHoldingJump = isHoldingJump;
+        BaseUpgrade.isHoldingJump = isHoldingJump;
         return null;
     }
 }

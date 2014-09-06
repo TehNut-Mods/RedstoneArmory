@@ -3,6 +3,7 @@ package main.redstonearmory.items;
 import cpw.mods.fml.common.registry.GameRegistry;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.items.armor.*;
+import main.redstonearmory.items.powersuit.ItemPowersuit;
 import main.redstonearmory.items.tools.gelidenderium.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;

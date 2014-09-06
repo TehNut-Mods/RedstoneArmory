@@ -1,11 +1,13 @@
-package main.redstonearmory.items.armor;
+package main.redstonearmory.items.powersuit;
 
 import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.StringHelper;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
+import main.redstonearmory.items.powersuit.upgrades.*;
 import main.redstonearmory.util.TextHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -15,13 +17,14 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.world.World;
+import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.event.entity.living.LivingFallEvent;
 import redstonearsenal.item.armor.ItemArmorRF;
 
 import java.util.List;
 
 public class ItemPowersuit extends ItemArmorRF {
 
-    public static boolean isHoldingJump;
     public static boolean isJumping;
 
     public ItemPowersuit(ArmorMaterial armorMaterial, int type) {
@@ -32,6 +35,7 @@ public class ItemPowersuit extends ItemArmorRF {
         energyPerDamage = 1;
         absorbRatio = 1D;
         maxTransfer = 4500;
+        MinecraftForge.EVENT_BUS.register(this);
 
         switch (type) {
             case 0: {
@@ -57,35 +61,57 @@ public class ItemPowersuit extends ItemArmorRF {
         }
     }
 
+    @SubscribeEvent
+    public void onLivingFall(LivingFallEvent event) {
+        if (event.entity instanceof EntityPlayer) {
+            EntityPlayer entity = (EntityPlayer) event.entity;
+            if ((entity.inventory.armorInventory[0] != null) && (entity.inventory.armorInventory[0].getItem() == this)) {
+                FallPreventionUpgrade upgrade = new FallPreventionUpgrade();
+                ItemStack stack = entity.inventory.armorInventory[0];
+                if (isInstalled("FallPrevention", stack)) {
+                    int fallDamage = (int) event.distance - 3;
+                    int realCost = upgrade.energyUsed * fallDamage;
+                    if (realCost <= getEnergyStored(stack)) {
+                        extractEnergy(stack, realCost, false);
+                        event.setCanceled(true);
+                    }
+                }
+            }
+        }
+    }
+
     @Override
     public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
-        if (player.fallDistance >= 0 /*&& isInstalled("fallNegate", stack)*/) {
-            player.fallDistance = 0;
-        }
-
-        if (isJumping) player.fallDistance = 0;
-
-        if (isHoldingJump /*&& isInstalled("thruster", stack) && !isInstalled("stabilizer", stack)*/) {
-            System.out.println(isHoldingJump);
-            player.motionX *= 1.05;
-            player.motionY = 1;
-            player.motionZ *= 1.05;
-            if (player.motionX >= Math.abs(2)) player.motionX /= 1.1;
-            if (player.motionZ >= Math.abs(2)) player.motionZ /= 1.1;
-        }
-
-        if (isHoldingJump /*&& isInstalled("thruster", stack)*/ && isInstalled("stabilizer", stack)) {
-            player.motionY = 1.2;
-            player.fallDistance = 0;
+        switch (this.armorType) {
+            case 0: {
+                break;
+            }
+            case 1: {
+                BasicFlightUpgrade basicFlight = new BasicFlightUpgrade();
+                basicFlight.onUse(world, player, stack);
+                FlightStabilizerUpgrade flightStabilizer = new FlightStabilizerUpgrade();
+                flightStabilizer.onUse(world, player, stack);
+                break;
+            }
+            case 2: {
+                BasicSpeedUpgrade basicSpeed = new BasicSpeedUpgrade();
+                basicSpeed.onUse(world, player, stack);
+                HardenedSpeedUpgrade hardenedSpeed = new HardenedSpeedUpgrade();
+                hardenedSpeed.onUse(world, player, stack);
+                break;
+            }
+            case 3: {
+                break;
+            }
         }
     }
 
     public boolean isInstalled(String upgrade, ItemStack stack) {
-        if (stack.hasTagCompound()) {
-            NBTTagCompound tag = stack.getTagCompound();
-            return tag.getBoolean(upgrade);
-        }
-        return false;
+        if (stack.stackTagCompound == null) stack.stackTagCompound = new NBTTagCompound();
+
+        NBTTagCompound tag = stack.getTagCompound();
+        return tag.getBoolean(upgrade);
+
     }
 
     @Override
@@ -113,6 +139,18 @@ public class ItemPowersuit extends ItemArmorRF {
 
         list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, 0), 0));
         list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, 0), maxEnergy));
+        ItemStack stack = new ItemStack(item, 1, 0);
+        if (stack.stackTagCompound == null) {
+            EnergyHelper.setDefaultEnergyTag(stack, maxEnergy);
+        }
+        NBTTagCompound tag = new NBTTagCompound();
+        tag.setBoolean("ChestplateThruster", true);
+        tag.setBoolean("ChestplateStabilizer", true);
+        tag.setBoolean("FallPrevention", true);
+        tag.setBoolean("BasicSpeed", true);
+        tag.setBoolean("HardenedSpeed", true);
+        stack.setTagCompound(tag);
+        list.add(stack);
     }
 
     @Override
@@ -120,7 +158,7 @@ public class ItemPowersuit extends ItemArmorRF {
 
         if (StringHelper.displayShiftForDetail && !StringHelper.isShiftKeyDown()) {
             list.add(StringHelper.shiftForDetails());
-	        list.add(StringHelper.RED + StringHelper.localize("info.RArm.tooltip.armor.powersuit.ignore"));
+            list.add(StringHelper.RED + StringHelper.localize("info.RArm.tooltip.armor.powersuit.ignore"));
         }
         if (!StringHelper.isShiftKeyDown()) {
             return;
