@@ -1,8 +1,11 @@
 package main.redstonearmory.items.armor;
 
 import cofh.core.item.ItemArmorAdv;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
+import net.minecraft.entity.Entity;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 
@@ -39,25 +42,25 @@ public class ItemBronzeArmor extends ItemArmorAdv {
 		}
 	}
 
-	//	@Override
-	//	@SideOnly(Side.CLIENT)
-	//	public String getArmorTexture(ItemStack Stack, Entity entity, int Slot, String type) {
-	//		switch(Slot) {
-	//			case 0: {
-	//				return ModInformation.ID + ":textures/models/armor/bronzeArmor_1.png";
-	//			}
-	//			case 1: {
-	//				return ModInformation.ID + ":textures/models/armor/bronzeArmor_1.png";
-	//			}
-	//			case 2: {
-	//				return ModInformation.ID + ":textures/models/armor/bronzeArmor_2.png";
-	//			}
-	//			case 3: {
-	//				return ModInformation.ID + ":textures/models/armor/bronzeArmor_1.png";
-	//			}
-	//		}
-	//		return type;
-	//	}
+	@Override
+	@SideOnly(Side.CLIENT)
+	public String getArmorTexture(ItemStack Stack, Entity entity, int Slot, String type) {
+		switch(Slot) {
+			case 0: {
+				return ModInformation.ID + ":textures/models/armor/bronzeArmor_1.png";
+			}
+			case 1: {
+				return ModInformation.ID + ":textures/models/armor/bronzeArmor_1.png";
+			}
+			case 2: {
+				return ModInformation.ID + ":textures/models/armor/bronzeArmor_2.png";
+			}
+			case 3: {
+				return ModInformation.ID + ":textures/models/armor/bronzeArmor_1.png";
+			}
+		}
+		return type;
+	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {

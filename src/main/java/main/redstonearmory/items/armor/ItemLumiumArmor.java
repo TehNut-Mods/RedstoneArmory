@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.TextHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
@@ -45,25 +46,25 @@ public class ItemLumiumArmor extends ItemArmorAdv {
 		}
 	}
 
-//	@Override
-//	@SideOnly(Side.CLIENT)
-//	public String getArmorTexture(ItemStack Stack, Entity entity, int Slot, String type) {
-//		switch(Slot) {
-//			case 0: {
-//				return ModInformation.ID + ":textures/models/armor/lumiumArmor_1.png";
-//			}
-//			case 1: {
-//				return ModInformation.ID + ":textures/models/armor/lumiumArmor_1.png";
-//			}
-//			case 2: {
-//				return ModInformation.ID + ":textures/models/armor/lumiumArmor_2.png";
-//			}
-//			case 3: {
-//				return ModInformation.ID + ":textures/models/armor/lumiumArmor_1.png";
-//			}
-//		}
-//		return type;
-//	}
+	@Override
+	@SideOnly(Side.CLIENT)
+	public String getArmorTexture(ItemStack Stack, Entity entity, int Slot, String type) {
+		switch(Slot) {
+			case 0: {
+				return ModInformation.ID + ":textures/models/armor/lumiumArmor_1.png";
+			}
+			case 1: {
+				return ModInformation.ID + ":textures/models/armor/lumiumArmor_1.png";
+			}
+			case 2: {
+				return ModInformation.ID + ":textures/models/armor/lumiumArmor_2.png";
+			}
+			case 3: {
+				return ModInformation.ID + ":textures/models/armor/lumiumArmor_1.png";
+			}
+		}
+		return type;
+	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {

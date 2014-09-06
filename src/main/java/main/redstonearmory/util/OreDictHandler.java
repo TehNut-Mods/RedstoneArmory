@@ -21,8 +21,8 @@ public class OreDictHandler {
 	public static String platingMithril = "platingMithril";
 	public static String platingBronze = "platingBronze";
 	public static String platingTuberous = "platingTuberous";
-	public static String platingPlatingEmpty = "platingPlatingEmpty";
-	public static String platingPlatingFull = "platingPlatingFull";
+	public static String platingPlatingEmpty = "platingCraftEmpty";
+	public static String platingPlatingFull = "platingCraftFull";
 
 	//blocks
 	//storage
