@@ -25,8 +25,6 @@ import java.util.List;
 
 public class ItemPowersuit extends ItemArmorRF {
 
-    public static boolean isJumping;
-
     public ItemPowersuit(ArmorMaterial armorMaterial, int type) {
         super(armorMaterial, type);
         this.setNoRepair();
@@ -87,17 +85,21 @@ public class ItemPowersuit extends ItemArmorRF {
                 break;
             }
             case 1: {
-                BasicFlightUpgrade basicFlight = new BasicFlightUpgrade();
-                basicFlight.onUse(world, player, stack);
-                FlightStabilizerUpgrade flightStabilizer = new FlightStabilizerUpgrade();
-                flightStabilizer.onUse(world, player, stack);
+                FlightUpgradeMk1 flightMk1 = new FlightUpgradeMk1();
+                flightMk1.onUse(world, player, stack);
+                FlightUpgradeMk2 flightMk2 = new FlightUpgradeMk2();
+                flightMk2.onUse(world, player, stack);
+                FlightUpgradeMk3 flightMk3 = new FlightUpgradeMk3();
+                flightMk3.onUse(world, player, stack);
                 break;
             }
             case 2: {
-                BasicSpeedUpgrade basicSpeed = new BasicSpeedUpgrade();
-                basicSpeed.onUse(world, player, stack);
-                HardenedSpeedUpgrade hardenedSpeed = new HardenedSpeedUpgrade();
-                hardenedSpeed.onUse(world, player, stack);
+                SpeedUpgradeMk1 speedMk1 = new SpeedUpgradeMk1();
+                speedMk1.onUse(world, player, stack);
+                SpeedUpgradeMk2 speedMk2 = new SpeedUpgradeMk2();
+                speedMk2.onUse(world, player, stack);
+                SpeedUpgradeMk3 speedMk3 = new SpeedUpgradeMk3();
+                speedMk3.onUse(world, player, stack);
                 break;
             }
             case 3: {
@@ -144,11 +146,14 @@ public class ItemPowersuit extends ItemArmorRF {
             EnergyHelper.setDefaultEnergyTag(stack, maxEnergy);
         }
         NBTTagCompound tag = new NBTTagCompound();
-        tag.setBoolean("ChestplateThruster", true);
-        tag.setBoolean("ChestplateStabilizer", true);
+        tag.setInteger("Energy", maxEnergy / 2);
+        tag.setBoolean("FlightMk1", true);
+        tag.setBoolean("FlightMk2", true);
+        tag.setBoolean("FlightMk3", true);
         tag.setBoolean("FallPrevention", true);
-        tag.setBoolean("BasicSpeed", true);
-        tag.setBoolean("HardenedSpeed", true);
+        tag.setBoolean("SpeedMk1", true);
+        tag.setBoolean("SpeedMk2", true);
+        tag.setBoolean("SpeedMk3", true);
         stack.setTagCompound(tag);
         list.add(stack);
     }

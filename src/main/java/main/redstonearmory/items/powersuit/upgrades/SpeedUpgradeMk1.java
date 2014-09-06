@@ -4,19 +4,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class FlightStabilizerUpgrade extends BasicFlightUpgrade {
+public class SpeedUpgradeMk1 extends BaseUpgrade {
 
-    public FlightStabilizerUpgrade() {
-        energyUsed = 150;
-        type = chestplateType;
+    public SpeedUpgradeMk1() {
+        energyUsed = 5;
+        type = leggingsType;
     }
 
     @Override
     public void onUse(World world, EntityPlayer player, ItemStack stack) {
-        if (isHoldingJump && isInstalled("ChestplateThruster", stack) && isInstalled("ChestplateStabilizer", stack)) {
+        if (isInstalled("SpeedMk1", stack) && player.moveForward > 0F) {
             if (energyUsed <= getEnergyStored(stack)) {
-                player.motionY += 0.1;
-                player.fallDistance = 0;
+                player.moveFlying(0F, 1F, 0.055F);
                 extractEnergy(stack, energyUsed, false);
             }
         }

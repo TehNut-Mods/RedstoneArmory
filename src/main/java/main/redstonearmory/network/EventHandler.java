@@ -24,11 +24,4 @@ public class EventHandler {
             }
         }
     }
-
-    @SubscribeEvent
-    public void onLivingJump(LivingEvent.LivingJumpEvent event) {
-        if (!(event.entity instanceof EntityPlayer)) return;
-        Minecraft mc = Minecraft.getMinecraft();
-        PacketHandler.INSTANCE.sendToServer(new JumpPacket(mc.gameSettings.keyBindJump.isPressed()));
-    }
 }

@@ -11,6 +11,5 @@ public class PacketHandler {
 
     public static void init() {
         INSTANCE.registerMessage(HoldJumpPacket.class, HoldJumpPacket.class, id++, Side.CLIENT);
-        INSTANCE.registerMessage(JumpPacket.class, JumpPacket.class, id++, Side.CLIENT);
     }
 }

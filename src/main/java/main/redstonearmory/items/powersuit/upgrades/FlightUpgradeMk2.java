@@ -4,17 +4,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class HardenedSpeedUpgrade extends BasicSpeedUpgrade {
+public class FlightUpgradeMk2 extends FlightUpgradeMk1 {
 
-    public HardenedSpeedUpgrade() {
-        energyUsed = 7;
+    public FlightUpgradeMk2() {
+        energyUsed = 150;
     }
 
     @Override
     public void onUse(World world, EntityPlayer player, ItemStack stack) {
-        if (isInstalled("BasicSpeed", stack) && isInstalled("HardenedSpeed", stack) && player.moveForward > 0F) {
+        if (isHoldingJump && isInstalled("FlightMk1", stack) && isInstalled("FlightMk2", stack)) {
             if (energyUsed <= getEnergyStored(stack)) {
-                player.moveFlying(0F, 1F, 0.075F);
+                player.motionY += 0.1;
+                player.fallDistance = 0;
                 extractEnergy(stack, energyUsed, false);
             }
         }
