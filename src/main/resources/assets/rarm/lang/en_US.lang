@@ -77,6 +77,7 @@ info.RArm.tooltip.armor.mithril.almost=Looks just like Rune,
 info.RArm.tooltip.armor.mithril.notquite=but not quite...
 info.RArm.tooltip.armor.tuberous.clever.1=Congrats, you have smeared yourself with
 info.RArm.tooltip.armor.tuberous.clever.2=potatoes. You have achieved "Protatotection".
+info.RArm.tooltip.armor.powersuit.ignore=This is currently unusable. Ignore it.
 
 #Chat Messages
 info.RArm.chat.table.tinker.instruct=Right click top with powersuit to begin upgrading.

@@ -120,6 +120,7 @@ public class ItemPowersuit extends ItemArmorRF {
 
         if (StringHelper.displayShiftForDetail && !StringHelper.isShiftKeyDown()) {
             list.add(StringHelper.shiftForDetails());
+	        list.add(StringHelper.RED + StringHelper.localize("info.RArm.tooltip.armor.powersuit.ignore"));
         }
         if (!StringHelper.isShiftKeyDown()) {
             return;

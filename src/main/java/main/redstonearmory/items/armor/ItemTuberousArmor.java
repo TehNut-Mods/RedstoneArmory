@@ -21,6 +21,7 @@ public class ItemTuberousArmor extends ItemArmorAdv {
 		super(material, type);
 		this.isRepairable();
 		this.setCreativeTab(RedstoneArmory.tabRArm);
+		this.setRepairIngot("cropPotato");
 
 		switch (type) {
 			case 0: {
