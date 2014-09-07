@@ -14,7 +14,7 @@ public class FlightUpgradeMk3 extends FlightUpgradeMk2 {
     public void onUse(World world, EntityPlayer player, ItemStack stack) {
         if (isHoldingJump && isInstalled("FlightMk1", stack) && isInstalled("FlightMk2", stack) && isInstalled("FlightMk3", stack)) {
             if (energyUsed <= getEnergyStored(stack)) {
-                player.motionY += 0.2;
+                player.motionY += 0.15;
                 player.fallDistance = 0;
                 extractEnergy(stack, energyUsed, false);
             }

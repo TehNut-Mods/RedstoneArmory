@@ -82,27 +82,49 @@ public class ItemPowersuit extends ItemArmorRF {
     public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
         switch (this.armorType) {
             case 0: {
+                if (stack.stackTagCompound.getBoolean("activated")) {
+                    WaterBreathingUpgrade waterBreathing = new WaterBreathingUpgrade();
+                    waterBreathing.onUse(world, player, stack);
+                    PotionNullificationUpgrade potionNullification = new PotionNullificationUpgrade();
+                    potionNullification.onUse(world, player, stack);
+                }
                 break;
             }
             case 1: {
-                FlightUpgradeMk1 flightMk1 = new FlightUpgradeMk1();
-                flightMk1.onUse(world, player, stack);
-                FlightUpgradeMk2 flightMk2 = new FlightUpgradeMk2();
-                flightMk2.onUse(world, player, stack);
-                FlightUpgradeMk3 flightMk3 = new FlightUpgradeMk3();
-                flightMk3.onUse(world, player, stack);
+                if (stack.stackTagCompound.getBoolean("activated")) {
+                    FlightUpgradeMk1 flightMk1 = new FlightUpgradeMk1();
+                    flightMk1.onUse(world, player, stack);
+                    FlightUpgradeMk2 flightMk2 = new FlightUpgradeMk2();
+                    flightMk2.onUse(world, player, stack);
+                    FlightUpgradeMk3 flightMk3 = new FlightUpgradeMk3();
+                    flightMk3.onUse(world, player, stack);
+                    FlightUpgradeMk4 flightMk4 = new FlightUpgradeMk4();
+                    flightMk4.onUse(world, player, stack);
+                    FlightUpgradeMk5 flightMk5 = new FlightUpgradeMk5();
+                    flightMk5.onUse(world, player, stack);
+                }
                 break;
             }
             case 2: {
-                SpeedUpgradeMk1 speedMk1 = new SpeedUpgradeMk1();
-                speedMk1.onUse(world, player, stack);
-                SpeedUpgradeMk2 speedMk2 = new SpeedUpgradeMk2();
-                speedMk2.onUse(world, player, stack);
-                SpeedUpgradeMk3 speedMk3 = new SpeedUpgradeMk3();
-                speedMk3.onUse(world, player, stack);
+                if (stack.stackTagCompound.getBoolean("activated")) {
+                    SpeedUpgradeMk1 speedMk1 = new SpeedUpgradeMk1();
+                    speedMk1.onUse(world, player, stack);
+                    SpeedUpgradeMk2 speedMk2 = new SpeedUpgradeMk2();
+                    speedMk2.onUse(world, player, stack);
+                    SpeedUpgradeMk3 speedMk3 = new SpeedUpgradeMk3();
+                    speedMk3.onUse(world, player, stack);
+                    SpeedUpgradeMk4 speedMk4 = new SpeedUpgradeMk4();
+                    speedMk4.onUse(world, player, stack);
+                }
                 break;
             }
             case 3: {
+                if (stack.stackTagCompound.getBoolean("activated")) {
+                    StepAssistUpgrade stepAssist = new StepAssistUpgrade();
+                    stepAssist.onUse(world, player, stack);
+                } else {
+                    player.stepHeight = 0.5F;
+                }
                 break;
             }
         }
@@ -146,14 +168,20 @@ public class ItemPowersuit extends ItemArmorRF {
             EnergyHelper.setDefaultEnergyTag(stack, maxEnergy);
         }
         NBTTagCompound tag = new NBTTagCompound();
-        tag.setInteger("Energy", maxEnergy / 2);
+        tag.setInteger("Energy", 3 * maxEnergy / 4);
         tag.setBoolean("FlightMk1", true);
         tag.setBoolean("FlightMk2", true);
         tag.setBoolean("FlightMk3", true);
+        tag.setBoolean("FlightMk4", true);
+        tag.setBoolean("FlightMk5", true);
         tag.setBoolean("FallPrevention", true);
         tag.setBoolean("SpeedMk1", true);
         tag.setBoolean("SpeedMk2", true);
         tag.setBoolean("SpeedMk3", true);
+        tag.setBoolean("SpeedMk4", true);
+        tag.setBoolean("StepAssist", true);
+        tag.setBoolean("WaterBreathing", true);
+        tag.setBoolean("PotionNullification", true);
         stack.setTagCompound(tag);
         list.add(stack);
     }

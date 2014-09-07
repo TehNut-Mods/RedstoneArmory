@@ -4,17 +4,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 
-public class SpeedUpgradeMk3 extends SpeedUpgradeMk2 {
+public class WaterBreathingUpgrade extends BaseUpgrade {
 
-    public SpeedUpgradeMk3() {
-        energyUsed = 10;
+    public WaterBreathingUpgrade() {
+        type = helmetType;
+        energyUsed = 100;
     }
 
     @Override
     public void onUse(World world, EntityPlayer player, ItemStack stack) {
-        if (isInstalled("SpeedMk1", stack) && isInstalled("SpeedMk2", stack) && isInstalled("SpeedMk3", stack) && player.moveForward > 0F) {
-            if (energyUsed <= getEnergyStored(stack)) {
-                player.moveFlying(0F, 1F, 0.08F);
+        if (isInstalled("WaterBreathing", stack) && (energyUsed <= getEnergyStored(stack))) {
+            if (player.getAir() <= 100) {
+                player.setAir(player.getAir() + 200);
                 extractEnergy(stack, energyUsed, false);
             }
         }

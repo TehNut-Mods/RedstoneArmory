@@ -7,9 +7,9 @@ import main.redstonearmory.ModInformation;
 
 public class PacketHandler {
     public static final SimpleNetworkWrapper INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(ModInformation.CHANNEL);
-    public static int id = 0;
 
     public static void init() {
-        INSTANCE.registerMessage(HoldJumpPacket.class, HoldJumpPacket.class, id++, Side.CLIENT);
+        INSTANCE.registerMessage(HoldJumpPacket.class, HoldJumpPacket.class, 0, Side.CLIENT);
+        INSTANCE.registerMessage(ActivationPacket.class, ActivationPacket.class, 1, Side.SERVER);
     }
 }
