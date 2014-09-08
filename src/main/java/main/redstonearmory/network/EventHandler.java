@@ -12,7 +12,7 @@ public class EventHandler {
 
     public boolean lastKeyJumpHold;
 
-    public static KeyBinding keyActivate = new KeyBinding("key.powersuitActivate", Keyboard.KEY_F, "Redstone Armory");
+    public static KeyBinding keyActivate = new KeyBinding("key.RArm.bind.powersuitActivate", Keyboard.KEY_F, "Redstone Armory");
 
     public EventHandler() {
         ClientRegistry.registerKeyBinding(keyActivate);
