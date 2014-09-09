@@ -81,6 +81,7 @@ info.RArm.tooltip.armor.powersuit.ignore=This is currently unusable. Ignore it.
 
 #Chat Messages
 info.RArm.chat.table.tinker.instruct=Right click top with powersuit to begin upgrading.
+info.RArm.chat.armor.powersuit.active=Active:
 
 #Keybinding
 key.RArm.bind.powersuitActivate=Activate Powersuit

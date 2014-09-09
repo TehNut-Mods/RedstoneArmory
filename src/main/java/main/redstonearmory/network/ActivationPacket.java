@@ -5,6 +5,7 @@ import cpw.mods.fml.common.network.simpleimpl.IMessageHandler;
 import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 import io.netty.buffer.ByteBuf;
 import main.redstonearmory.items.powersuit.ItemPowersuit;
+import main.redstonearmory.util.TextHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
@@ -33,7 +34,7 @@ public class ActivationPacket implements IMessage, IMessageHandler<ActivationPac
                 ItemStack armor = player.inventory.armorItemInSlot(i);
                 if (armor != null && armor.getItem() instanceof ItemPowersuit) {
                     armor.stackTagCompound.setBoolean("activated", !armor.stackTagCompound.getBoolean("activated"));
-                    player.addChatComponentMessage(new ChatComponentText("Activated: " + String.valueOf(armor.stackTagCompound.getBoolean("activated"))));
+                    player.addChatComponentMessage(new ChatComponentText(TextHelper.localize("info.RArm.chat.armor.powersuit.active") + " " + String.valueOf(armor.stackTagCompound.getBoolean("activated")).toUpperCase()));
                 }
             }
         }
