@@ -1,0 +1,21 @@
+1.7.10-r1.1-0pre4
+*Ability stuff.
+*Changelogs should be a bit better from now on.
+1.7.10-r1.1-0pre3
+*Guess what! More fixes.
+1.7.10-r1.1-0pre2
+*Fix some things
+1.7.10-r1.1-0pre1
+*Initial 1.7.10 alpha port
+*Don't expect very good 1.7.10 alpha changelogs.
+1.6.4-r1.0-3pre
+*Fix Wrench not holding correct charge
+*Add materials to OreDict
+1.6.4-r1.0-2
+*Fix minor things
+1.6.4-r1.0-1
+*Fix config inversing
+*Fix Gelid Rod texture not registering.
+1.6.4-r1.0-0
+*Initial Release
+*Nothing much else to say here...

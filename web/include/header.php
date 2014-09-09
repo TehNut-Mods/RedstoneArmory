@@ -3,7 +3,8 @@
       	<div class="container">
         	<div class="hero">
           		<a href="../"><h1>Redstone Armory</h1></a>
-          		<h2>Enhancing the (Redstone) Flux Revolution!</h2><br/>
+          		<h2>Enhancing the (Redstone) Flux Revolution!</h2><br />
+                From the minds of TehNut and Tombenpotter.<br />
           		<a href="../downloads/" class="btn btn-large btn-full"><span class="icon ion-android-download">  </span>Downloads</a>
             	<a href="../changelog/" class="btn btn-large btn-full"><span class="icon ion-ios7-paper">  </span>Changelog</a>
             	<a href="https://webchat.esper.net/?channels=tehnut" target="new" class="btn btn-large btn-empty"><span class="icon ion-pound">  </span>ChatWithUs</a>
