@@ -16,6 +16,7 @@
         		<span class="icon ion-ios7-paper"></span>
     			Redstone Armory Changelog
         	</h1>
+            <p>Version formatting: <b>MCVER-MAIN.SUB-BUILD</b></p>
     	</div>
     </div>
   	<?php

@@ -31,6 +31,8 @@ public class ConfigHandler {
 	public static boolean enablePickaxeEnderDislocation;
 	public static boolean enableSwordSuckage;
 
+	public static boolean enableEnviroCheckMessages;
+
 	public static void init(Configuration config) {
 		config.load();
 
@@ -58,6 +60,8 @@ public class ConfigHandler {
 		enableAxeWeatherClear = config.get(features, "enableAxeWeatherClear", true, "Determines whether to allow the axe to clear weather. [DEFAULT - TRUE]").getBoolean(enableAxeWeatherClear);
 		enablePickaxeEnderDislocation = config.get(features, "enablePickaxeEnderDislocation", true, "Determines whether to allow the pickaxe to [DEFAULT - TRUE]").getBoolean(enablePickaxeEnderDislocation);
 		enableSwordSuckage = config.get(features, "enableSwordSuckage", true, "Determines whether to add magnet mode while blocking with the sword. [DEFAULT - TRUE]").getBoolean(enableSwordSuckage);
+
+		enableEnviroCheckMessages = config.get(general, "enableEnviroCheckMessages", true, "Enable environment check console logging. [DEFAULT - TRUE]").getBoolean(enableEnviroCheckMessages);
 
 		if(config.hasChanged()) {
 			config.save();

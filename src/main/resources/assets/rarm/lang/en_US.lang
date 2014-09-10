@@ -85,3 +85,6 @@ info.RArm.chat.armor.powersuit.active=Active:
 
 #Keybinding
 key.RArm.bind.powersuitActivate=Activate Powersuit
+
+#Console
+info.RArm.console.optifine=[EnviroChecks] Optifine detected. This may cause issues.

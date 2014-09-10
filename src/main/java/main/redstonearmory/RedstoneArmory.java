@@ -14,6 +14,7 @@ import main.redstonearmory.items.ItemRegistry;
 import main.redstonearmory.network.EventHandler;
 import main.redstonearmory.network.PacketHandler;
 import main.redstonearmory.proxies.CommonProxy;
+import main.redstonearmory.util.EnviroChecks;
 import main.redstonearmory.util.OreDictHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.MinecraftForge;
@@ -60,5 +61,6 @@ public class RedstoneArmory {
     public void postInit(FMLPostInitializationEvent event) {
 
         ItemRecipeRegistry.registerLateItemRecipes();
+	    EnviroChecks.verifyEnviro();
     }
 }
