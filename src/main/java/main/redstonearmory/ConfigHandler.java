@@ -36,6 +36,7 @@ public class ConfigHandler {
 	public static boolean enableSwordSuckage;
 
 	public static boolean enableEnviroCheckMessages;
+	public static boolean addNutsToys;
 
 	public static void init(File file) {
 		config = new Configuration(file);
@@ -70,6 +71,7 @@ public class ConfigHandler {
 		enableSwordSuckage = config.get(features, "enableSwordSuckage", true, "Determines whether to add magnet mode while blocking with the sword. [DEFAULT - TRUE]").getBoolean(enableSwordSuckage);
 
 		enableEnviroCheckMessages = config.get(general, "enableEnviroCheckMessages", true, "Enable environment check console logging. [DEFAULT - TRUE]").getBoolean(enableEnviroCheckMessages);
+		addNutsToys = config.get(general, "addNutsToys", true, "Nut likes random things so Nut added random things. These won't change gameplay. [DEFAULT - TRUE]").getBoolean(addNutsToys);
 
 		if(config.hasChanged()) {
 			config.save();

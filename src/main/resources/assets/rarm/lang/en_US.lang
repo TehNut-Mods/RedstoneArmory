@@ -8,6 +8,8 @@ item.RArm.material.enderium.gelid.gem.name=Gelid Gem
 item.RArm.material.enderium.gelid.rod.name=Gelid Rod
 item.RArm.material.enderium.gelid.nothing.name=Anti-Derp Protocol
 
+item.RArm.random.nut.throwable.name=Throwable Nut
+
 item.RArm.material.enderium.plating.name=Enderium Armor Plating
 item.RArm.material.lumium.plating.name=Lumium Armor Plating
 item.RArm.material.mithril.plating.name=Mana Infused Armor Plating

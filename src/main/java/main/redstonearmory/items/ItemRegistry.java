@@ -1,26 +1,34 @@
 package main.redstonearmory.items;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import main.redstonearmory.ConfigHandler;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.items.armor.*;
 import main.redstonearmory.items.powersuit.ItemPowersuit;
+import main.redstonearmory.items.random.ItemThrowableNut;
 import main.redstonearmory.items.tools.gelidenderium.*;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemTool;
 import net.minecraftforge.common.util.EnumHelper;
 
 public class ItemRegistry {
 
-	//materials
+	//armor materials
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_ENDERIUM = EnumHelper.addArmorMaterial("RA_ENDERIUM", 10, new int[]{3, 8, 6, 3}, 20);
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_LUMIUM = EnumHelper.addArmorMaterial("RA_LUMIUM", 10, new int[]{2, 5, 3, 2}, 20);
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_MITHRIL = EnumHelper.addArmorMaterial("RA_MITHRIL", 10, new int[]{3, 6, 4, 3}, 20);
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_BRONZE = EnumHelper.addArmorMaterial("RA_BRONZE", 10, new int[]{4, 7, 5, 4}, 20);
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_TUBEROUS = EnumHelper.addArmorMaterial("RA_TUBEROUS", 10, new int[]{1, 3, 2, 1}, 20);
 
+	//tool materials
+	public static final ItemTool.ToolMaterial TOOL_MATERIAL_GELID_ENDERIUM = EnumHelper.addToolMaterial("RA_GELID_ENDERIUM", 10, Integer.MAX_VALUE, 10, 10, 10);
+
 	//items
 	public static Item gelidMaterials;
 	public static Item armorPlating;
+
+	public static Item nutThrowable;
 
 	public static Item axeGelidEnderium;
 	public static Item battleWrenchGelidEnderium;
@@ -66,17 +74,22 @@ public class ItemRegistry {
 		armorPlating = new ItemArmorPlating().setUnlocalizedName(ModInformation.ID);
 		GameRegistry.registerItem(armorPlating, "ItemArmorPlating");
 
-		axeGelidEnderium = new ItemAxeGelidEnderium(Item.ToolMaterial.EMERALD);
+		if(ConfigHandler.addNutsToys) {
+			nutThrowable = new ItemThrowableNut();
+			GameRegistry.registerItem(nutThrowable, "ItemThrowableNut");
+		}
+
+		axeGelidEnderium = new ItemAxeGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
 		GameRegistry.registerItem(axeGelidEnderium, "ItemAxeGelidEnderium");
-		battleWrenchGelidEnderium = new ItemBattleWrenchGelidEnderium(Item.ToolMaterial.EMERALD);
+		battleWrenchGelidEnderium = new ItemBattleWrenchGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
 		GameRegistry.registerItem(battleWrenchGelidEnderium, "ItemBattleWrenchGelidEnderium");
-		pickaxeGelidEnderium = new ItemPickaxeGelidEnderium(Item.ToolMaterial.EMERALD);
+		pickaxeGelidEnderium = new ItemPickaxeGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
 		GameRegistry.registerItem(pickaxeGelidEnderium, "ItemPickaxeGelidEnderium");
-		shovelGelidEnderium = new ItemShovelGelidEnderium(Item.ToolMaterial.EMERALD);
+		shovelGelidEnderium = new ItemShovelGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
 		GameRegistry.registerItem(shovelGelidEnderium, "ItemShovelGelidEnderium");
-		sickleGelidEnderium = new ItemSickleGelidEnderium(Item.ToolMaterial.EMERALD);
+		sickleGelidEnderium = new ItemSickleGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
 		GameRegistry.registerItem(sickleGelidEnderium, "ItemSickleGelidEnderium");
-		swordGelidEnderium = new ItemSwordGelidEnderium(Item.ToolMaterial.EMERALD);
+		swordGelidEnderium = new ItemSwordGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
 		GameRegistry.registerItem(swordGelidEnderium, "ItemSwordGelidEnderium");
 
 		armorEnderiumHelm = (ItemEnderiumArmor) new ItemEnderiumArmor(ARMOR_MATERIAL_ENDERIUM, 0);

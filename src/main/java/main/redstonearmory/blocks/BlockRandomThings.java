@@ -3,33 +3,33 @@ package main.redstonearmory.blocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ModInformation;
-import main.redstonearmory.RedstoneArmory;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import redstonearsenal.block.BlockStorage;
 
 import java.util.List;
 
-public class BlockIngotStorage extends BlockStorage {
+public class BlockRandomThings extends Block {
 
-	public IIcon[] icon = new IIcon[2];
+	public IIcon[] icon = new IIcon[1];
 
-	public BlockIngotStorage() {
-		super();
+	public BlockRandomThings(Material material) {
+		super(material);
 		this.setHardness(3.0F);
 		this.setResistance(5.0F);
 		this.setStepSound(soundTypeMetal);
-		this.setCreativeTab(RedstoneArmory.tabRArm);
-		this.setBlockName(ModInformation.ID + ".storage");
+		this.setCreativeTab(CreativeTabs.tabBlock);
+		this.setBlockName(ModInformation.ID + ".random");
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void registerBlockIcons(IIconRegister iconRegister) {
-		this.icon[0] = iconRegister.registerIcon(ModInformation.ID + ":storage/gelidEnderiumIngotBlock");
+		this.icon[0] = iconRegister.registerIcon(ModInformation.ID + ":purpleLapisBlock");
 	}
 
 	@Override

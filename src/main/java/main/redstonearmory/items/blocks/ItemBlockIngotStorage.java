@@ -34,7 +34,7 @@ public class ItemBlockIngotStorage extends ItemBlock {
 			default:
 				name = "nothing";
 		}
-		return getUnlocalizedName() + ".storage." + name;
+		return getUnlocalizedName() + "." + name;
 	}
 
 	@Override

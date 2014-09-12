@@ -27,6 +27,7 @@ public class OreDictHandler {
 	//blocks
 	//storage
 	public static String blockGelidEnderium = "blockGelidEnderium";
+	public static String blockLapisPurple = "blockLapisPurple";
 
 	public static void registerOreDict() {
 		//items
@@ -48,5 +49,6 @@ public class OreDictHandler {
 		//blocks
 		//storage
 		OreDictionary.registerOre(blockGelidEnderium, new ItemStack(BlockRegistry.ingotStorage, 1, 0));
+		OreDictionary.registerOre(blockLapisPurple, new ItemStack(BlockRegistry.randomBlocks, 1, 0));
 	}
 }
