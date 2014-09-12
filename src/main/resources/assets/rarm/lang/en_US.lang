@@ -69,6 +69,8 @@ item.RArm.armor.tuberous.boots.name=Tuberous Boots
 tile.RArm.storage.enderium.gelid.ingot.name=Block of Gelid Enderium
 tile.RArm.storage.gem.gelid.name=Gelid Gem Block
 tile.RArm.storage.enderium.gelid.nothing.name=Block of Anti-Derp Protocol
+tile.RArm.random.lapis.purple.name=Lapis Quisque
+tile.RArm.random.nothing.name=Anti-Derp Protocol
 tile.RArm.table.tinker.name=Tinker Table
 
 #Tooltips
@@ -88,3 +90,7 @@ key.RArm.bind.powersuitActivate=Activate Powersuit
 
 #Console
 info.RArm.console.optifine=[EnviroChecks] Optifine detected. This may cause issues.
+info.RArm.console.config.refresh=Refreshing configuration file.
+
+#Gui
+gui.RArm.config.title=Redstone Armory Configuration

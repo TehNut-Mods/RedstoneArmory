@@ -2,7 +2,11 @@ package main.redstonearmory;
 
 import net.minecraftforge.common.config.Configuration;
 
+import java.io.File;
+
 public class ConfigHandler {
+
+	public static Configuration config;
 
 	//sections to add to the config
 	public static String balances = "balances";
@@ -33,8 +37,12 @@ public class ConfigHandler {
 
 	public static boolean enableEnviroCheckMessages;
 
-	public static void init(Configuration config) {
-		config.load();
+	public static void init(File file) {
+		config = new Configuration(file);
+		syncConfig();
+	}
+
+	public static void syncConfig() {
 
 		config.addCustomCategoryComment(balances, "Balancing tweaks to fine tune the mod to how you want. These should be synced between the server and client, but it is not required. Clients will be confused if it isn't.");
 		config.addCustomCategoryComment(crafting, "Toggling of ability to craft items. All default to true");

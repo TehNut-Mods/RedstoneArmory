@@ -11,13 +11,12 @@ import main.redstonearmory.blocks.BlockRegistry;
 import main.redstonearmory.gui.CreativeTabRArm;
 import main.redstonearmory.items.ItemRecipeRegistry;
 import main.redstonearmory.items.ItemRegistry;
-import main.redstonearmory.network.EventHandler;
 import main.redstonearmory.network.PacketHandler;
 import main.redstonearmory.proxies.CommonProxy;
 import main.redstonearmory.util.EnviroChecks;
+import main.redstonearmory.util.EventHandler;
 import main.redstonearmory.util.OreDictHandler;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -38,20 +37,17 @@ public class RedstoneArmory {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
 
-        config = new Configuration(event.getSuggestedConfigurationFile());
-        ConfigHandler.init(config);
+	    ConfigHandler.init(event.getSuggestedConfigurationFile());
 
         ItemRegistry.registerAllItems();
         BlockRegistry.registerAllBlocks();
 
         OreDictHandler.registerOreDict();
+	    FMLCommonHandler.instance().bus().register(new EventHandler());
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
-
-        FMLCommonHandler.instance().bus().register(new EventHandler());
-        MinecraftForge.EVENT_BUS.register(new EventHandler());
         ItemRecipeRegistry.registerItemRecipes();
         BlockRecipeRegistry.registerBlockRecipes();
         PacketHandler.init();
