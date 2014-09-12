@@ -44,6 +44,8 @@ public class RedstoneArmory {
 
         OreDictHandler.registerOreDict();
 	    FMLCommonHandler.instance().bus().register(new EventHandler());
+
+        proxy.load();
     }
 
     @Mod.EventHandler
