@@ -17,7 +17,7 @@ public class EnviroChecks {
 	public static void verifyEnviro() {
 		List<String> modIds = new ArrayList<String>();
 
-		if (FMLCommonHandler.instance().getSide() == Side.CLIENT && !FMLClientHandler.instance().hasOptifine() || !Loader.isModLoaded("optifine")) {
+		if (FMLCommonHandler.instance().getSide() == Side.CLIENT && FMLClientHandler.instance().hasOptifine() || Loader.isModLoaded("optifine")) {
 			if (ConfigHandler.enableEnviroCheckMessages)
 				RedstoneArmory.logger.warn(TextHelper.localize("info.RArm.console.optifine"));
 			hasOptifine = true;

@@ -44,6 +44,8 @@ public class RedstoneArmory {
 
         OreDictHandler.registerOreDict();
 	    FMLCommonHandler.instance().bus().register(new EventHandler());
+//	    MinecraftForge.EVENT_BUS.register(new ParticleRegistry());
+//	    FMLCommonHandler.instance().bus().register(new ParticleScatterEventHandler());
 
         proxy.load();
     }

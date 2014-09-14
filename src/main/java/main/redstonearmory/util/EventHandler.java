@@ -1,7 +1,6 @@
 package main.redstonearmory.util;
 
 import cpw.mods.fml.client.event.ConfigChangedEvent;
-import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import main.redstonearmory.ConfigHandler;

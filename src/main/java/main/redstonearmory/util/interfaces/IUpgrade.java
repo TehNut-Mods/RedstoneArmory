@@ -1,4 +1,4 @@
-package main.redstonearmory.items.powersuit.upgrades;
+package main.redstonearmory.util.interfaces;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

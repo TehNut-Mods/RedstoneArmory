@@ -10,4 +10,7 @@ public class CommonProxy {
 /** Empty in common proxy **/
     }
 
+	public void spawnParticle(String string, double x, double y, double z, Object... args) {
+/** Empty in common proxy **/
+	}
 }

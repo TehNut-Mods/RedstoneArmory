@@ -11,4 +11,5 @@ public class ModInformation {
 	public static final String REQUIRED = "required-after:RedstoneArsenal;" + "after:ThermalFoundation;";
 	public static final String CLIENTPROXY = "main.redstonearmory.proxies.ClientProxy";
 	public static final String COMMONPROXY = "main.redstonearmory.proxies.CommonProxy";
+	public static final String WEBASSETSDIR = "http://rarm.tehnut.info/assets/trails/";
 }
