@@ -1,7 +1,6 @@
 package main.redstonearmory;
 
 import net.minecraftforge.common.config.Configuration;
-import net.minecraftforge.common.config.Property;
 
 import java.io.File;
 
@@ -14,7 +13,6 @@ public class ConfigHandler {
 	public static String crafting = "crafting";
 	public static String features = "features";
 	public static String general = "general";
-	public static String internal = "internal";
 
 	//options in the config
 	public static boolean enableGelidAxeCrafting;
@@ -40,8 +38,6 @@ public class ConfigHandler {
 	public static boolean enableEnviroCheckMessages;
 	public static boolean addNutsToys;
 
-	public static Property contributorTrailsVersion;
-
 	public static void init(File file) {
 		config = new Configuration(file);
 		syncConfig();
@@ -53,7 +49,6 @@ public class ConfigHandler {
 		config.addCustomCategoryComment(crafting, "Toggling of ability to craft items. All default to true");
 		config.addCustomCategoryComment(features, "Enabling and Disabling of mod features. These should be synced between the server and client, but it is not required. Clients will be confused if it isn't.");
 		config.addCustomCategoryComment(general, "General category for other stuff. These should be synced between the server and client, but it is not required. Clients will be confused if it isn't.");
-		config.addCustomCategoryComment(internal, "No touchy. Things may break.");
 
 		enableGelidAxeCrafting = config.get(crafting, "enableGelidAxeCrafting", true).getBoolean(enableGelidAxeCrafting);
 		enableGelidBattleWrenchCrafting = config.get(crafting, "enableGelidBattleWrenchCrafting", true).getBoolean(enableGelidBattleWrenchCrafting);
@@ -77,8 +72,6 @@ public class ConfigHandler {
 
 		enableEnviroCheckMessages = config.get(general, "enableEnviroCheckMessages", true, "Enable environment check console logging. [DEFAULT - TRUE]").getBoolean(enableEnviroCheckMessages);
 		addNutsToys = config.get(general, "addNutsToys", true, "Nut likes random things so Nut added random things. These won't change gameplay. [DEFAULT - TRUE]").getBoolean(addNutsToys);
-
-		contributorTrailsVersion = config.get(internal, "Trail Version", "");
 
 		if(config.hasChanged()) {
 			config.save();
