@@ -1,7 +1,6 @@
 package main.redstonearmory.items.powersuit.upgrades;
 
 import cofh.lib.util.helpers.EnergyHelper;
-import main.redstonearmory.util.interfaces.IUpgrade;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
