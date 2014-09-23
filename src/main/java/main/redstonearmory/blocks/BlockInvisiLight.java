@@ -4,40 +4,30 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
-import net.minecraft.block.Block;
+import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
-public class BlockInvisiLight extends Block {
-
+public class BlockInvisiLight extends BlockContainer {
 
 	public BlockInvisiLight(Material material) {
 		super(material);
+		this.setStepSound(soundTypeCloth);
 		this.setBlockBounds(0, 0, 0, 0, 0, 0);
-		this.setLightLevel(0.85F);
+		this.getLightValue();
 		this.setCreativeTab(RedstoneArmory.tabRArm);
 		this.setBlockName(ModInformation.ID + ".light.invisible");
-	}
-
-	@Override
-	public void updateTick(World world, int x, int y, int z, Random random) {
-		if (!world.isRemote && random.nextInt(10) == 5) {
-				world.setBlockToAir(x, y, z);
-		}
-		world.scheduleBlockUpdate(x, y, z, this, tickRate(world));
-	}
-
-	@Override
-	public void onBlockAdded(World world, int x, int y, int z) {
-		world.scheduleBlockUpdate(x, y, z, this, tickRate(world));
 	}
 
 	@Override
@@ -53,8 +43,18 @@ public class BlockInvisiLight extends Block {
 	}
 
 	@Override
+	public int getLightValue() {
+		return 15;
+	}
+
+	@Override
 	public int getRenderType() {
 		return -1;
+	}
+
+	@Override
+	public int quantityDropped(Random random) {
+		return 0;
 	}
 
 	@Override
@@ -72,10 +72,10 @@ public class BlockInvisiLight extends Block {
 		return false;
 	}
 
-//	@Override
-//	public boolean isAir(IBlockAccess world, int x, int y, int z) {
-//		return true;
-//	}
+	@Override
+	public boolean isAir(IBlockAccess world, int x, int y, int z) {
+		return true;
+	}
 
 	@Override
 	public boolean canCollideCheck(int par1, boolean par2) {
@@ -88,7 +88,31 @@ public class BlockInvisiLight extends Block {
 	}
 
 	@Override
+	public boolean isReplaceable(IBlockAccess world, int x, int y, int z) {
+		return true;
+	}
+
+	@Override
 	public boolean canBeReplacedByLeaves(IBlockAccess world, int x, int y, int z) {
 		return true;
+	}
+
+	@Override
+	public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+		return new TileInvisibleLight();
+	}
+
+	//tterrag code
+	public static class TileInvisibleLight extends TileEntity {
+		@SuppressWarnings("unchecked")
+		@Override
+		public void updateEntity() {
+			if (worldObj.getTotalWorldTime() % 20 == 0) {
+				List<EntityItem> entitiesInside = worldObj.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1));
+				if (entitiesInside.isEmpty()) {
+					worldObj.setBlockToAir(xCoord, yCoord, zCoord);
+				}
+			}
+		}
 	}
 }
