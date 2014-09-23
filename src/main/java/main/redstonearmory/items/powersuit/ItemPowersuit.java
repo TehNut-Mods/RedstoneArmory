@@ -8,6 +8,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.items.powersuit.upgrades.*;
+import main.redstonearmory.util.KeyboardHelper;
 import main.redstonearmory.util.TextHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -158,6 +159,7 @@ public class ItemPowersuit extends ItemArmorRF {
         return type;
     }
 
+	@SuppressWarnings("unchecked")
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List list) {
 
@@ -186,20 +188,38 @@ public class ItemPowersuit extends ItemArmorRF {
         list.add(stack);
     }
 
+	@SuppressWarnings("unchecked")
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
 
-        if (StringHelper.displayShiftForDetail && !StringHelper.isShiftKeyDown()) {
+        if (StringHelper.displayShiftForDetail && !(StringHelper.isShiftKeyDown() || KeyboardHelper.isControlDown())) {
             list.add(StringHelper.shiftForDetails());
+	        list.add(TextHelper.localize("info.cofh.hold") + " " + TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.RArm.tooltip.control") + TextHelper.LIGHT_GRAY + " " + TextHelper.localize("info.RArm.tooltip.forModules"));
             list.add(StringHelper.RED + StringHelper.localize("info.RArm.tooltip.armor.powersuit.ignore"));
         }
+	    if (KeyboardHelper.isControlDown()) {
+		    list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.flight.t1") + ": " + isInstalled("FlightMk1", stack));
+		    list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.flight.t2") + ": " + isInstalled("FlightMk2", stack));
+		    list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.flight.t3") + ": " + isInstalled("FlightMk3", stack));
+		    list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.flight.t4") + ": " + isInstalled("FlightMk4", stack));
+		    list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.flight.t5") + ": " + isInstalled("FlightMk5", stack));
+		    list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.fall.prevention") + ": " + isInstalled("FallPrevention", stack));
+		    list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.speed.t1") + ": " + isInstalled("SpeedMk1", stack));
+		    list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.speed.t2") + ": " + isInstalled("SpeedMk2", stack));
+		    list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.speed.t3") + ": " + isInstalled("SpeedMk3", stack));
+		    list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.speed.t4") + ": " + isInstalled("SpeedMk4", stack));
+		    list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.step.assist") + ": " + isInstalled("StepAssist", stack));
+		    list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.water.breathing") + ": " + isInstalled("WaterBreathing", stack));
+		    list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.potion.nullification") + ": " + isInstalled("PotionNullification", stack));
+	    }
         if (!StringHelper.isShiftKeyDown()) {
             return;
         }
         if (stack.stackTagCompound == null) {
             EnergyHelper.setDefaultEnergyTag(stack, 0);
         }
-        list.add(StringHelper.localize("info.cofh.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + maxEnergy + " RF");
+
+	    list.add(StringHelper.localize("info.cofh.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + maxEnergy + " RF");
     }
 
     protected int getAbsorptionRatio() {

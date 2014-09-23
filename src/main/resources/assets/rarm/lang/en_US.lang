@@ -82,6 +82,23 @@ info.RArm.tooltip.armor.mithril.notquite=but not quite...
 info.RArm.tooltip.armor.tuberous.clever.1=Congrats, you have smeared yourself with
 info.RArm.tooltip.armor.tuberous.clever.2=potatoes. You have achieved "Protatotection".
 info.RArm.tooltip.armor.powersuit.ignore=This is currently unusable. Ignore it.
+info.RArm.tooltip.forModules=for Modules
+info.RArm.tooltip.control=Control
+
+#Powersuit Upgrade Tooltips
+info.RArm.tooltip.armor.powersuit.flight.t1=Flight Mk1
+info.RArm.tooltip.armor.powersuit.flight.t2=Flight Mk2
+info.RArm.tooltip.armor.powersuit.flight.t3=Flight Mk3
+info.RArm.tooltip.armor.powersuit.flight.t4=Flight Mk4
+info.RArm.tooltip.armor.powersuit.flight.t5=Flight Mk5
+info.RArm.tooltip.armor.powersuit.fall.prevention=Fall Prevention
+info.RArm.tooltip.armor.powersuit.speed.t1=Speed Mk1
+info.RArm.tooltip.armor.powersuit.speed.t2=Speed Mk2
+info.RArm.tooltip.armor.powersuit.speed.t3=Speed Mk3
+info.RArm.tooltip.armor.powersuit.speed.t4=Speed Mk4
+info.RArm.tooltip.armor.powersuit.step.assist=Step Assist
+info.RArm.tooltip.armor.powersuit.water.breathing=Water Breathing
+info.RArm.tooltip.armor.powersuit.potion.nullification=Potion Nullifier
 
 #Chat Messages
 info.RArm.chat.table.tinker.instruct=Right click top with powersuit to begin upgrading.

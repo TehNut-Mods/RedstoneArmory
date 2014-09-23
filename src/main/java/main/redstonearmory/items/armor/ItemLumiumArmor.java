@@ -5,11 +5,14 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
+import main.redstonearmory.blocks.BlockRegistry;
 import main.redstonearmory.util.TextHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.world.World;
 
 import java.util.List;
 
@@ -44,6 +47,16 @@ public class ItemLumiumArmor extends ItemArmorAdv {
 				break;
 			}
 		}
+	}
+
+	@Override
+	public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
+		int x = (int) Math.floor(player.posX);
+		int y = (int) player.posY + 1;
+		int z = (int) Math.floor(player.posZ);
+
+		if(!world.isRemote && world.getBlock(x, y, z) == Blocks.air)
+			world.setBlock(x, y, z, BlockRegistry.invisiLight);
 	}
 
 	@Override
