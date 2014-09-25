@@ -71,14 +71,14 @@ public class ItemTuberousArmor extends ItemArmorAdv {
 			return type;
 		}
 
-	//Very simple, very temporary. I'm tired :(
+	//Bleh... Temporary fix = Remove the feature :D
 	@Override
 	public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
-		if(player.getFoodStats().needFood()) {
-			player.inventory.damageArmor(1F);
-			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() + 1);
-			player.getFoodStats().setFoodSaturationLevel(1F);
-		}
+//		if(player.getFoodStats().needFood()) {
+//			player.inventory.damageArmor(1F);
+//			player.getFoodStats().setFoodLevel(player.getFoodStats().getFoodLevel() + 1);
+//			player.getFoodStats().setFoodSaturationLevel(1F);
+//		}
 	}
 
 	@Override

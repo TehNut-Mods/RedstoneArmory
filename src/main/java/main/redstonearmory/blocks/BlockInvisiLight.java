@@ -7,7 +7,7 @@ import main.redstonearmory.RedstoneArmory;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.AxisAlignedBB;
@@ -108,8 +108,8 @@ public class BlockInvisiLight extends BlockContainer {
 		@Override
 		public void updateEntity() {
 			if (worldObj.getTotalWorldTime() % 20 == 0) {
-				List<EntityItem> entitiesInside = worldObj.getEntitiesWithinAABB(EntityItem.class, AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1));
-				if (entitiesInside.isEmpty()) {
+				List<EntityPlayer> playerList = worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1));
+				if (playerList.isEmpty()) {
 					worldObj.setBlockToAir(xCoord, yCoord, zCoord);
 				}
 			}
