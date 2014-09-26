@@ -18,12 +18,12 @@ public class BlockRegistry {
 
 	private static void registerBlocks() {
 		ingotStorage = new BlockIngotStorage();
-		GameRegistry.registerBlock(ingotStorage, ItemBlockIngotStorage.class, ingotStorage.getUnlocalizedName());
+		GameRegistry.registerBlock(ingotStorage, ItemBlockIngotStorage.class, "BlockIngotStorage");
 		invisiLight = new BlockInvisiLight(Material.air);
 		GameRegistry.registerBlock(invisiLight, "BlockInvisiLight");
 		if(ConfigHandler.addNutsToys) {
 			randomBlocks = new BlockRandomThings(Material.rock);
-			GameRegistry.registerBlock(randomBlocks, ItemBlockRandomThings.class, randomBlocks.getUnlocalizedName());
+			GameRegistry.registerBlock(randomBlocks, ItemBlockRandomThings.class, "BlockRandomThings");
 		}
 
 		tinkerTable = new BlockTinkerTable(Material.iron);
