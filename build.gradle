@@ -25,7 +25,13 @@ configFile.withReader {
     project.ext.config = new ConfigSlurper().parse prop
 }
 
-version = config.mc_version + "-" + config.mod_version + "-" + config.build_number
+if (System.getenv('BUILD_NUMBER') != null) {
+    build_number = System.getenv('BUILD_NUMBER')
+} else {
+	build_number = "CUSTOM"
+}
+
+version = config.mc_version + "-" + config.mod_version + "-" + build_number
 group= config.package_group // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = config.mod_name
 
@@ -73,7 +79,6 @@ processResources
 
 // change the name of the obfuscated jar
 jar {
-    dependsOn "incrementBuildNumber"
     appendix = 'universal'
 
 }
@@ -81,7 +86,7 @@ jar {
 // add a source jar
 task sourceJar(type: Jar) {
     from sourceSets.main.allSource
-    appendix = 'src'
+    appendix = 'sources'
 }
 
 // add a javadoc jar
@@ -95,20 +100,6 @@ task deobfJar(type: Jar) {
     from sourceSets.main.output
     appendix = 'deobf'
 }
-
-task("incrementBuildNumber")
-        {
-            // increment build number
-            doFirst {
-                // increment
-                config.build_number = (config.build_number.toString().toInteger()) + 1
-
-                // write back to the file
-                configFile.withWriter {
-                    config.toProperties().store(it, "")
-                }
-            }
-        }
 		
 artifacts {
     archives sourceJar
