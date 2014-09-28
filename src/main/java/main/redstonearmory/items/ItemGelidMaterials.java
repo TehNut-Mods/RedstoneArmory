@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ItemGelidMaterials extends Item {
 
-	public IIcon[] icon = new IIcon[4];
+	public IIcon[] icon = new IIcon[16];
 
 	public ItemGelidMaterials() {
 		this.setCreativeTab(RedstoneArmory.tabRArm);

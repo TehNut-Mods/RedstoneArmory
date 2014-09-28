@@ -74,6 +74,7 @@ tile.RArm.storage.enderium.gelid.nothing.name=Block of Anti-Derp Protocol
 tile.RArm.random.lapis.purple.name=Lapis Quisque
 tile.RArm.random.nothing.name=Anti-Derp Protocol
 tile.RArm.table.tinker.name=Tinker Table
+tile.RArm.light.invisible.name=Invisible Light
 
 #Tooltips
 info.RArm.tooltip.armor.lumium.shine=Shining bright like a Glowstone

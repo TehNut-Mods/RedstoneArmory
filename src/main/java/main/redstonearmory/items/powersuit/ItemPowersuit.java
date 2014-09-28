@@ -7,7 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
-import main.redstonearmory.items.powersuit.upgrades.*;
+import main.redstonearmory.items.powersuit.upgrades.FallPreventionUpgrade;
 import main.redstonearmory.util.KeyboardHelper;
 import main.redstonearmory.util.TextHelper;
 import net.minecraft.creativetab.CreativeTabs;
@@ -17,7 +17,6 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
 import redstonearsenal.item.armor.ItemArmorRF;
@@ -79,57 +78,57 @@ public class ItemPowersuit extends ItemArmorRF {
         }
     }
 
-    @Override
-    public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
-        switch (this.armorType) {
-            case 0: {
-                if (stack.stackTagCompound.getBoolean("activated")) {
-                    WaterBreathingUpgrade waterBreathing = new WaterBreathingUpgrade();
-                    waterBreathing.onUse(world, player, stack);
-                    PotionNullificationUpgrade potionNullification = new PotionNullificationUpgrade();
-                    potionNullification.onUse(world, player, stack);
-                }
-                break;
-            }
-            case 1: {
-                if (stack.stackTagCompound.getBoolean("activated")) {
-                    FlightUpgradeMk1 flightMk1 = new FlightUpgradeMk1();
-                    flightMk1.onUse(world, player, stack);
-                    FlightUpgradeMk2 flightMk2 = new FlightUpgradeMk2();
-                    flightMk2.onUse(world, player, stack);
-                    FlightUpgradeMk3 flightMk3 = new FlightUpgradeMk3();
-                    flightMk3.onUse(world, player, stack);
-                    FlightUpgradeMk4 flightMk4 = new FlightUpgradeMk4();
-                    flightMk4.onUse(world, player, stack);
-                    FlightUpgradeMk5 flightMk5 = new FlightUpgradeMk5();
-                    flightMk5.onUse(world, player, stack);
-                }
-                break;
-            }
-            case 2: {
-                if (stack.stackTagCompound.getBoolean("activated")) {
-                    SpeedUpgradeMk1 speedMk1 = new SpeedUpgradeMk1();
-                    speedMk1.onUse(world, player, stack);
-                    SpeedUpgradeMk2 speedMk2 = new SpeedUpgradeMk2();
-                    speedMk2.onUse(world, player, stack);
-                    SpeedUpgradeMk3 speedMk3 = new SpeedUpgradeMk3();
-                    speedMk3.onUse(world, player, stack);
-                    SpeedUpgradeMk4 speedMk4 = new SpeedUpgradeMk4();
-                    speedMk4.onUse(world, player, stack);
-                }
-                break;
-            }
-            case 3: {
-                if (stack.stackTagCompound.getBoolean("activated")) {
-                    StepAssistUpgrade stepAssist = new StepAssistUpgrade();
-                    stepAssist.onUse(world, player, stack);
-                } else {
-                    player.stepHeight = 0.5F;
-                }
-                break;
-            }
-        }
-    }
+//    @Override
+//    public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
+//        switch (this.armorType) {
+//            case 0: {
+//                if (stack.stackTagCompound.getBoolean("activated")) {
+//                    WaterBreathingUpgrade waterBreathing = new WaterBreathingUpgrade();
+//                    waterBreathing.onUse(world, player, stack);
+//                    PotionNullificationUpgrade potionNullification = new PotionNullificationUpgrade();
+//                    potionNullification.onUse(world, player, stack);
+//                }
+//                break;
+//            }
+//            case 1: {
+//                if (stack.stackTagCompound.getBoolean("activated")) {
+//                    FlightUpgradeMk1 flightMk1 = new FlightUpgradeMk1();
+//                    flightMk1.onUse(world, player, stack);
+//                    FlightUpgradeMk2 flightMk2 = new FlightUpgradeMk2();
+//                    flightMk2.onUse(world, player, stack);
+//                    FlightUpgradeMk3 flightMk3 = new FlightUpgradeMk3();
+//                    flightMk3.onUse(world, player, stack);
+//                    FlightUpgradeMk4 flightMk4 = new FlightUpgradeMk4();
+//                    flightMk4.onUse(world, player, stack);
+//                    FlightUpgradeMk5 flightMk5 = new FlightUpgradeMk5();
+//                    flightMk5.onUse(world, player, stack);
+//                }
+//                break;
+//            }
+//            case 2: {
+//                if (stack.stackTagCompound.getBoolean("activated")) {
+//                    SpeedUpgradeMk1 speedMk1 = new SpeedUpgradeMk1();
+//                    speedMk1.onUse(world, player, stack);
+//                    SpeedUpgradeMk2 speedMk2 = new SpeedUpgradeMk2();
+//                    speedMk2.onUse(world, player, stack);
+//                    SpeedUpgradeMk3 speedMk3 = new SpeedUpgradeMk3();
+//                    speedMk3.onUse(world, player, stack);
+//                    SpeedUpgradeMk4 speedMk4 = new SpeedUpgradeMk4();
+//                    speedMk4.onUse(world, player, stack);
+//                }
+//                break;
+//            }
+//            case 3: {
+//                if (stack.stackTagCompound.getBoolean("activated")) {
+//                    StepAssistUpgrade stepAssist = new StepAssistUpgrade();
+//                    stepAssist.onUse(world, player, stack);
+//                } else {
+//                    player.stepHeight = 0.5F;
+//                }
+//                break;
+//            }
+//        }
+//    }
 
     public boolean isInstalled(String upgrade, ItemStack stack) {
         if (stack.stackTagCompound == null) stack.stackTagCompound = new NBTTagCompound();

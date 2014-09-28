@@ -29,6 +29,8 @@ public class ConfigHandler {
 	public static boolean enableTinkersAlloyArmorCrafting;
 	public static boolean enableTuberousArmorCrafting;
 
+	public static boolean enablePowersuit;
+
 	public static boolean enableAxeWeatherClear;
 	public static boolean enableAxeMultiBreak;
 	public static boolean enableAxeLightning;
@@ -63,6 +65,8 @@ public class ConfigHandler {
 		enableMithrilArmorCrafting = config.get(crafting, "enableMithrilArmorCrafting", true).getBoolean(enableMithrilArmorCrafting);
 		enableTinkersAlloyArmorCrafting = config.get(crafting, "enableTinkersAlloyArmorCrafting", true).getBoolean(enableTinkersAlloyArmorCrafting);
 		enableTuberousArmorCrafting = config.get(crafting, "enableTuberousArmorCrafting", true).getBoolean(enableTuberousArmorCrafting);
+
+		enablePowersuit = config.get(features, "enablePowersuit", false, "Currently has a pretty major memory leak. I suggest not enabling this unless you know what you're doing.").getBoolean(enablePowersuit);
 
 		enableAxeMultiBreak = config.get(features, "enableAxeMultiBreak", true, "Determines whether to add a multi-break effect to empowered axes. [DEFAULT - TRUE]").getBoolean(enableAxeMultiBreak);
 		enableAxeLightning = config.get(features, "enableAxeLightning", true, "Determines whether to allow the axe to spawn lightning. [DEFAULT - TRUE]").getBoolean(enableAxeLightning);

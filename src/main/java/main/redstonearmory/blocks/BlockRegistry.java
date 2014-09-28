@@ -21,6 +21,7 @@ public class BlockRegistry {
 		GameRegistry.registerBlock(ingotStorage, ItemBlockIngotStorage.class, "BlockIngotStorage");
 		invisiLight = new BlockInvisiLight(Material.air);
 		GameRegistry.registerBlock(invisiLight, "BlockInvisiLight");
+		GameRegistry.registerTileEntity(BlockInvisiLight.TileInvisibleLight.class, "TileEntityInvisiLight");
 		if(ConfigHandler.addNutsToys) {
 			randomBlocks = new BlockRandomThings(Material.rock);
 			GameRegistry.registerBlock(randomBlocks, ItemBlockRandomThings.class, "BlockRandomThings");

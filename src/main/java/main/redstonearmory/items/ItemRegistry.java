@@ -101,14 +101,16 @@ public class ItemRegistry {
 		armorEnderiumBoots = (ItemEnderiumArmor) new ItemEnderiumArmor(ARMOR_MATERIAL_ENDERIUM, 3);
 		GameRegistry.registerItem(armorEnderiumBoots, "ItemEnderiumArmor.Boots");
 
-        armorPowersuitHelm = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 0);
-        GameRegistry.registerItem(armorPowersuitHelm, "ItemPowersuit.Helm");
-        armorPowersuitChestplate = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 1);
-        GameRegistry.registerItem(armorPowersuitChestplate, "ItemPowersuit.Chestplate");
-        armorPowersuitLeggings = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 2);
-        GameRegistry.registerItem(armorPowersuitLeggings, "ItemPowersuit.Leggings");
-        armorPowersuitBoots = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 3);
-        GameRegistry.registerItem(armorPowersuitBoots, "ItemPowersuit.Boots");
+		if (ConfigHandler.enablePowersuit) {
+	        armorPowersuitHelm = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 0);
+	        GameRegistry.registerItem(armorPowersuitHelm, "ItemPowersuit.Helm");
+	        armorPowersuitChestplate = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 1);
+	        GameRegistry.registerItem(armorPowersuitChestplate, "ItemPowersuit.Chestplate");
+	        armorPowersuitLeggings = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 2);
+	        GameRegistry.registerItem(armorPowersuitLeggings, "ItemPowersuit.Leggings");
+	        armorPowersuitBoots = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 3);
+	        GameRegistry.registerItem(armorPowersuitBoots, "ItemPowersuit.Boots");
+		}
 
 		armorLumiumHelm = (ItemLumiumArmor) new ItemLumiumArmor(ARMOR_MATERIAL_LUMIUM, 0);
 		GameRegistry.registerItem(armorLumiumHelm, "ItemLumiumArmor.Helm");

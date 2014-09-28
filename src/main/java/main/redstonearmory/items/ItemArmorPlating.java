@@ -15,7 +15,7 @@ import java.util.List;
 
 public class ItemArmorPlating extends Item {
 
-	public IIcon[] icon = new IIcon[7];
+	public IIcon[] icon = new IIcon[16];
 
 	public ItemArmorPlating() {
 		this.setCreativeTab(RedstoneArmory.tabRArm);

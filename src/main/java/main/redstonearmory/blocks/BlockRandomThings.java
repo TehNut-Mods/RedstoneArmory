@@ -15,13 +15,13 @@ import java.util.List;
 
 public class BlockRandomThings extends Block {
 
-	public IIcon[] icon = new IIcon[1];
+	public IIcon[] icon = new IIcon[16];
 
 	public BlockRandomThings(Material material) {
 		super(material);
 		this.setHardness(3.0F);
 		this.setResistance(5.0F);
-		this.setStepSound(soundTypeMetal);
+		this.setStepSound(soundTypeStone);
 		this.setCreativeTab(CreativeTabs.tabBlock);
 		this.setBlockName(ModInformation.ID + ".random");
 	}

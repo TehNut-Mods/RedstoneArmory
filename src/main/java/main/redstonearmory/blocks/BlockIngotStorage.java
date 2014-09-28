@@ -15,7 +15,7 @@ import java.util.List;
 
 public class BlockIngotStorage extends BlockStorage {
 
-	public IIcon[] icon = new IIcon[2];
+	public IIcon[] icon = new IIcon[16];
 
 	public BlockIngotStorage() {
 		super();

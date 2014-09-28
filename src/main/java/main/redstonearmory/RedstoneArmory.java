@@ -11,7 +11,6 @@ import main.redstonearmory.blocks.BlockRegistry;
 import main.redstonearmory.gui.CreativeTabRArm;
 import main.redstonearmory.items.ItemRecipeRegistry;
 import main.redstonearmory.items.ItemRegistry;
-import main.redstonearmory.network.PacketHandler;
 import main.redstonearmory.proxies.CommonProxy;
 import main.redstonearmory.util.EnviroChecks;
 import main.redstonearmory.util.EventHandler;
@@ -52,7 +51,7 @@ public class RedstoneArmory {
     public void init(FMLInitializationEvent event) {
         ItemRecipeRegistry.registerItemRecipes();
         BlockRecipeRegistry.registerBlockRecipes();
-        PacketHandler.init();
+//        PacketHandler.init();
     }
 
     @Mod.EventHandler

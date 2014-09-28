@@ -1,5 +1,6 @@
 package main.redstonearmory.util;
 
+import main.redstonearmory.ConfigHandler;
 import main.redstonearmory.blocks.BlockRegistry;
 import main.redstonearmory.items.ItemRegistry;
 import net.minecraft.item.ItemStack;
@@ -49,6 +50,8 @@ public class OreDictHandler {
 		//blocks
 		//storage
 		OreDictionary.registerOre(blockGelidEnderium, new ItemStack(BlockRegistry.ingotStorage, 1, 0));
-		OreDictionary.registerOre(blockLapisPurple, new ItemStack(BlockRegistry.randomBlocks, 1, 0));
+		if (ConfigHandler.addNutsToys) {
+			OreDictionary.registerOre(blockLapisPurple, new ItemStack(BlockRegistry.randomBlocks, 1, 0));
+		}
 	}
 }

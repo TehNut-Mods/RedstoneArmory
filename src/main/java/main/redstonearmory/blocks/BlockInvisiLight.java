@@ -3,7 +3,6 @@ package main.redstonearmory.blocks;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ModInformation;
-import main.redstonearmory.RedstoneArmory;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -26,7 +25,7 @@ public class BlockInvisiLight extends BlockContainer {
 		this.setStepSound(soundTypeCloth);
 		this.setBlockBounds(0, 0, 0, 0, 0, 0);
 		this.getLightValue();
-		this.setCreativeTab(RedstoneArmory.tabRArm);
+//		this.setCreativeTab(RedstoneArmory.tabRArm);
 		this.setBlockName(ModInformation.ID + ".light.invisible");
 	}
 
@@ -108,7 +107,7 @@ public class BlockInvisiLight extends BlockContainer {
 		@Override
 		public void updateEntity() {
 			if (worldObj.getTotalWorldTime() % 20 == 0) {
-				List<EntityPlayer> playerList = worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 1, yCoord + 1, zCoord + 1));
+				List<EntityPlayer> playerList = worldObj.getEntitiesWithinAABB(EntityPlayer.class, AxisAlignedBB.getBoundingBox(xCoord, yCoord, zCoord, xCoord + 4, yCoord + 4, zCoord + 4));
 				if (playerList.isEmpty()) {
 					worldObj.setBlockToAir(xCoord, yCoord, zCoord);
 				}
