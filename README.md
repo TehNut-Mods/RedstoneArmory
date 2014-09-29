@@ -1,4 +1,4 @@
-Redstone Armory
+Redstone Armory [![Build Status](http://tehnut.info/jenkins/job/RedstoneArmory/badge/icon)](http://tehnut.info/jenkins/job/RedstoneArmory/)
 ==============
 
 Enhancing the Redstone (Flux) revolution!
