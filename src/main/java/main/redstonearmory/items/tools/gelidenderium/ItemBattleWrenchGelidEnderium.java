@@ -11,18 +11,12 @@ import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.KeyboardHelper;
 import main.redstonearmory.util.TextHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potion;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
 import org.lwjgl.input.Keyboard;
 import redstonearsenal.item.tool.ItemWrenchBattleRF;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
@@ -65,30 +59,30 @@ public class ItemBattleWrenchGelidEnderium extends ItemWrenchBattleRF {
 		this.drainedIcon = iconRegister.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench_drained");
 	}
 
-	@Override
-	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-		if (isEmpowered(stack)) {
-			radius = 4;
-			spinDamage = 4;
-			resistanceEffect = 4;
-		}
-
-		AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(player.posX - radius, player.posY - radius, player.posZ - radius, player.posX + radius, player.posY + radius, player.posZ + radius);
-		Iterator iter = world.getEntitiesWithinAABB(EntityLivingBase.class, bb).iterator();
-		player.addPotionEffect(new PotionEffect(Potion.resistance.id, 20, resistanceEffect, false));
-		player.swingItem();
-		if (iter != null) {
-			while (iter.hasNext()) {
-				EntityLivingBase entity = (EntityLivingBase) iter.next();
+//	@Override
+//	public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
+//		if (isEmpowered(stack)) {
+//			radius = 4;
+//			spinDamage = 4;
+//			resistanceEffect = 4;
+//		}
+//
+//		AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(player.posX - radius, player.posY - radius, player.posZ - radius, player.posX + radius, player.posY + radius, player.posZ + radius);
+//		Iterator iter = world.getEntitiesWithinAABB(EntityLivingBase.class, bb).iterator();
+//		player.addPotionEffect(new PotionEffect(Potion.resistance.id, 20, resistanceEffect, false));
+//		player.swingItem();
+//		if (iter != null) {
+//			while (iter.hasNext()) {
+//				EntityLivingBase entity = (EntityLivingBase) iter.next();
 //				entity.attackEntityFrom(Utils.causePlayerFluxDamage(player), spinDamage);
-				player.setAngles(-180, 10);
-				world.spawnParticle("largeexplode", player.posX, player.posY, player.posZ, 1, 1, 1);
-				if (!player.capabilities.isCreativeMode && random.nextInt(5) == 0)
-					useEnergy(stack, false);
-			}
-		}
-		return stack;
-	}
+//				player.setAngles(-180, 10);
+//				world.spawnParticle("largeexplode", player.posX, player.posY, player.posZ, 1, 1, 1);
+//				if (!player.capabilities.isCreativeMode && random.nextInt(5) == 0)
+//					useEnergy(stack, false);
+//			}
+//		}
+//		return stack;
+//	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
