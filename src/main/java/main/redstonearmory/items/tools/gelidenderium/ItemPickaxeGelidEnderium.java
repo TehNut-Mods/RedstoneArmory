@@ -43,6 +43,7 @@ public class ItemPickaxeGelidEnderium extends ItemPickaxeRF {
 		this.setCreativeTab(RedstoneArmory.tabRArm);
 		this.setUnlocalizedName(ModInformation.ID + ".tool.enderium.gelid.pickaxe");
 		this.setNoRepair();
+		this.setMaxDamage(0);
 
 		maxEnergy = 320000;
 		energyPerUse = 350;

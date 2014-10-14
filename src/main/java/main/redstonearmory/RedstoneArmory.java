@@ -51,7 +51,7 @@ public class RedstoneArmory {
     public void init(FMLInitializationEvent event) {
         ItemRecipeRegistry.registerItemRecipes();
         BlockRecipeRegistry.registerBlockRecipes();
-//        PacketHandler.init();
+//      PacketHandler.init();
     }
 
     @Mod.EventHandler

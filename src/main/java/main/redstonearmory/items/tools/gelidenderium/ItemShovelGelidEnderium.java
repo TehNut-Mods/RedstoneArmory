@@ -39,6 +39,7 @@ public class ItemShovelGelidEnderium extends ItemShovelRF {
 		this.setCreativeTab(RedstoneArmory.tabRArm);
 		this.setUnlocalizedName(ModInformation.ID + ".tool.enderium.gelid.shovel");
 		this.setNoRepair();
+		this.setMaxDamage(0);
 
 		maxEnergy = 320000;
 		energyPerUse = 350;

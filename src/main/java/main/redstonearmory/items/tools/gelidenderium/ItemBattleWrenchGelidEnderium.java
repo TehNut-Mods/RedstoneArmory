@@ -36,6 +36,7 @@ public class ItemBattleWrenchGelidEnderium extends ItemWrenchBattleRF {
 		this.setCreativeTab(RedstoneArmory.tabRArm);
 		this.setUnlocalizedName(ModInformation.ID + ".tool.enderium.gelid.battlewrench");
 		this.setNoRepair();
+		this.setMaxDamage(0);
 
 		damage = 7;
 		damageCharged = 4;

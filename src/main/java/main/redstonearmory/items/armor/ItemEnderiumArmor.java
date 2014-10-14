@@ -27,6 +27,8 @@ public class ItemEnderiumArmor extends ItemArmorRF {
 		super(material, type);
 		this.setNoRepair();
 		this.setCreativeTab(RedstoneArmory.tabRArm);
+		this.setMaxDamage(0);
+
         maxEnergy = 1000000;
         energyPerDamage = 140;
         absorbRatio = 1.2D;

@@ -29,11 +29,14 @@ public class ItemPowersuit extends ItemArmorRF {
         super(armorMaterial, type);
         this.setNoRepair();
         this.setCreativeTab(RedstoneArmory.tabRArm);
-        maxEnergy = 10000000;
-        energyPerDamage = 1;
-        absorbRatio = 1D;
-        maxTransfer = 4500;
-        MinecraftForge.EVENT_BUS.register(this);
+	    this.setMaxDamage(0);
+
+	    MinecraftForge.EVENT_BUS.register(this);
+
+	    maxEnergy = 10000000;
+	    energyPerDamage = 1;
+	    absorbRatio = 1D;
+	    maxTransfer = 4500;
 
         switch (type) {
             case 0: {

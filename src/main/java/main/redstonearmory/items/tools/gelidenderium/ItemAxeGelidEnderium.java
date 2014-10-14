@@ -43,6 +43,7 @@ public class ItemAxeGelidEnderium extends ItemAxeRF {
 		this.setCreativeTab(RedstoneArmory.tabRArm);
 		this.setUnlocalizedName(ModInformation.ID + ".tool.enderium.gelid.axe");
 		this.setNoRepair();
+		this.setMaxDamage(0);
 
 		maxEnergy = 320000;
 		energyPerUse = 350;

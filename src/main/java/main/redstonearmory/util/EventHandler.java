@@ -17,7 +17,7 @@ public class EventHandler {
         }
     }
 
-//    @SubscribeEvent
+//	@SubscribeEvent
 //    public void onClientTick(TickEvent.ClientTickEvent event) {
 //        if (event.phase != TickEvent.Phase.END)
 //            return;
