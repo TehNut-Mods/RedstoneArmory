@@ -17,6 +17,11 @@ item.RArm.material.bronze.plating.name=Tinker's Alloy Armor Plating
 item.RArm.material.tuberous.plating.name=Mashed Potatoes
 item.RArm.material.crafting.empty.plating.name=Empty Armor Plating
 item.RArm.material.crafting.full.plating.name=Full Armor Plating
+item.RArm.material.leather.plating.name=Leather Armor Plating
+item.RArm.material.iron.plating.name=Iron Armor Plating
+item.RArm.material.chain.plating.name=Chain Armor Plating
+item.RArm.material.gold.plating.name=Golden Armor Plating
+item.RArm.material.diamond.plating.name=Diamond Armor Plating
 item.RArm.material.nothing.plating.name=Anti-Derp Plating Protocol
 
 #Tools
@@ -24,7 +29,7 @@ item.RArm.tool.enderium.gelid.axe.name=Gelid Enderium Axe
 item.RArm.tool.enderium.gelid.battlewrench.name=Gelid Enderium Battle-Wrench
 item.RArm.tool.enderium.gelid.pickaxe.name=Gelid Enderium Pickaxe
 item.RArm.tool.enderium.gelid.shovel.name=Gelid Enderium Shovel
-item.RArm.tool.enderium.gelid.sickle.name=Gelid Enderium SickleMar
+item.RArm.tool.enderium.gelid.sickle.name=Gelid Enderium Sickle
 item.RArm.tool.enderium.gelid.sword.name=Gelid Enderium Sword
 item.RArm.tool.mithril.scimitar.name=Mith Scimmy
 
@@ -111,6 +116,8 @@ key.RArm.bind.powersuitActivate=Activate Powersuit
 #Console
 info.RArm.console.optifine=[EnviroChecks] Optifine detected. This may cause issues.
 info.RArm.console.config.refresh=Refreshing configuration file.
+info.RArm.console.recipes.remove=Removing recipes
+info.RArm.console.recipes.remove.vanilla.armor=Vanilla Armor
 
 #Gui
 gui.RArm.config.title=Redstone Armory Configuration

@@ -28,6 +28,7 @@ public class ConfigHandler {
 	public static boolean enableMithrilArmorCrafting;
 	public static boolean enableTinkersAlloyArmorCrafting;
 	public static boolean enableTuberousArmorCrafting;
+	public static boolean overrideVanillaArmorRecipes;
 
 	public static boolean enablePowersuit;
 
@@ -42,7 +43,13 @@ public class ConfigHandler {
 
 	public static void init(File file) {
 		config = new Configuration(file);
+
+		loadConfig();
 		syncConfig();
+	}
+
+	public static void loadConfig() {
+		config.load();
 	}
 
 	public static void syncConfig() {
@@ -65,6 +72,7 @@ public class ConfigHandler {
 		enableMithrilArmorCrafting = config.get(crafting, "enableMithrilArmorCrafting", true).getBoolean(enableMithrilArmorCrafting);
 		enableTinkersAlloyArmorCrafting = config.get(crafting, "enableTinkersAlloyArmorCrafting", true).getBoolean(enableTinkersAlloyArmorCrafting);
 		enableTuberousArmorCrafting = config.get(crafting, "enableTuberousArmorCrafting", true).getBoolean(enableTuberousArmorCrafting);
+		overrideVanillaArmorRecipes = config.get(crafting, "overrideVanillaArmorRecipes", false, "Replaces ingots in Vanilla armor recipes with armor plating.").getBoolean(overrideVanillaArmorRecipes);
 
 		enablePowersuit = config.get(features, "enablePowersuit", false, "Currently has a pretty major memory leak. I suggest not enabling this unless you know what you're doing.").getBoolean(enablePowersuit);
 

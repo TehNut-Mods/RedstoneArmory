@@ -1,15 +1,14 @@
 package main.redstonearmory.items.tools.gelidenderium;
 
-import cofh.core.util.KeyBindingEmpower;
 import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import main.redstonearmory.ConfigHandler;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.KeyboardHelper;
 import main.redstonearmory.util.TextHelper;
+import main.redstonearmory.util.TooltipHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
@@ -21,18 +20,18 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.BonemealEvent;
-import org.lwjgl.input.Keyboard;
 import redstonearsenal.item.tool.ItemShovelRF;
 
 import java.util.List;
 
+@SuppressWarnings("all")
 public class ItemShovelGelidEnderium extends ItemShovelRF {
 
 	IIcon activeIcon;
 	IIcon drainedIcon;
 
 	public int damage = 6;
-	public int damageCharged = 3;
+	public int damageCharged = 1;
 
 	public ItemShovelGelidEnderium(ToolMaterial toolMaterial) {
 		super(toolMaterial);
@@ -156,8 +155,42 @@ public class ItemShovelGelidEnderium extends ItemShovelRF {
 		return stack.getItemDamage() != Short.MAX_VALUE;
 	}
 
+//	@SideOnly(Side.CLIENT)
+//	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
+//		if (StringHelper.displayShiftForDetail && !KeyboardHelper.isShiftDown()) {
+//			list.add(StringHelper.shiftForDetails());
+//		}
+//		if (!StringHelper.isShiftKeyDown()) {
+//			return;
+//		}
+//		if (stack.stackTagCompound == null) {
+//			EnergyHelper.setDefaultEnergyTag(stack, 0);
+//		}
+//		list.add(TextHelper.localize("info.cofh.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + maxEnergy + " RF");
+//
+//		list.add(TextHelper.ORANGE + getEnergyPerUse(stack) + " " + TextHelper.localize("info.redstonearsenal.tool.energyPerUse") + TextHelper.END);
+//		if (isEmpowered(stack)) {
+//			list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.cofh.press") + " " + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + TextHelper.localize("info.redstonearsenal.tool.chargeOff") + TextHelper.END);
+//		} else {
+//			list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.cofh.press") + " " + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + TextHelper.localize("info.redstonearsenal.tool.chargeOn") + TextHelper.END);
+//		}
+//		if (getEnergyStored(stack) >= getEnergyPerUse(stack)) {
+//			list.add("");
+//			list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.cofh.damageAttack") + TextHelper.END);
+//			list.add(TextHelper.BRIGHT_GREEN + "+" + (isEmpowered(stack) ? damageCharged : 1) + " " + TextHelper.localize("info.cofh.damageFlux") + TextHelper.END);
+//		}
+//		if(ConfigHandler.enableAxeMultiBreak) {
+//			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.ability") + TextHelper.localize("info.RArm.tooltip.ability.shovel.break"));
+//		}
+//		if(ConfigHandler.enableAxeLightning) {
+//			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.ability") + TextHelper.localize("info.RArm.tooltip.ability.shovel.bonemeal"));
+//		}
+//	}
+
+	@Override
 	@SideOnly(Side.CLIENT)
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
+
 		if (StringHelper.displayShiftForDetail && !KeyboardHelper.isShiftDown()) {
 			list.add(StringHelper.shiftForDetails());
 		}
@@ -167,24 +200,8 @@ public class ItemShovelGelidEnderium extends ItemShovelRF {
 		if (stack.stackTagCompound == null) {
 			EnergyHelper.setDefaultEnergyTag(stack, 0);
 		}
-		list.add(TextHelper.localize("info.cofh.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + maxEnergy + " RF");
 
-		list.add(TextHelper.ORANGE + getEnergyPerUse(stack) + " " + TextHelper.localize("info.redstonearsenal.tool.energyPerUse") + TextHelper.END);
-		if (isEmpowered(stack)) {
-			list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.cofh.press") + " " + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + TextHelper.localize("info.redstonearsenal.tool.chargeOff") + TextHelper.END);
-		} else {
-			list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.cofh.press") + " " + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + TextHelper.localize("info.redstonearsenal.tool.chargeOn") + TextHelper.END);
-		}
-		if (getEnergyStored(stack) >= getEnergyPerUse(stack)) {
-			list.add("");
-			list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.cofh.damageAttack") + TextHelper.END);
-			list.add(TextHelper.BRIGHT_GREEN + "+" + (isEmpowered(stack) ? damageCharged : 1) + " " + TextHelper.localize("info.cofh.damageFlux") + TextHelper.END);
-		}
-		if(ConfigHandler.enableAxeMultiBreak) {
-			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.ability") + TextHelper.localize("info.RArm.tooltip.ability.shovel.break"));
-		}
-		if(ConfigHandler.enableAxeLightning) {
-			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.ability") + TextHelper.localize("info.RArm.tooltip.ability.shovel.bonemeal"));
-		}
+		TooltipHelper.doEnergyTip(stack, player, list, maxEnergy, maxTransfer, energyPerUse, energyPerUseCharged);
+		TooltipHelper.doDamageTip(stack, player, list, energyPerUse, damage, damageCharged);
 	}
 }

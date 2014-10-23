@@ -31,11 +31,13 @@ if (new File(projectDir, '.git').exists()) {
 }
 
 repositories {
-
+    maven { url 'http://maven.tterrag.com/' }
+    maven { url 'http://mobiusstrip.eu/maven' } // ttCore requires waila
+    maven { url 'http://chickenbones.net/maven' } // And CodeChickenCore
 }
 
 dependencies {
-
+    compile "tterrag.core:ttCore:${ttCore_version}"
 }
 
 minecraft {

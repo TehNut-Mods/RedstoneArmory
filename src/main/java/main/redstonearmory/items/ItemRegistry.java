@@ -19,7 +19,7 @@ public class ItemRegistry {
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_LUMIUM = EnumHelper.addArmorMaterial("RA_LUMIUM", 10, new int[]{2, 5, 3, 2}, 20);
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_MITHRIL = EnumHelper.addArmorMaterial("RA_MITHRIL", 10, new int[]{3, 6, 4, 3}, 20);
 	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_BRONZE = EnumHelper.addArmorMaterial("RA_BRONZE", 10, new int[]{4, 7, 5, 4}, 20);
-	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_TUBEROUS = EnumHelper.addArmorMaterial("RA_TUBEROUS", 10, new int[]{1, 3, 2, 1}, 20);
+	public static final ItemArmor.ArmorMaterial ARMOR_MATERIAL_TUBEROUS = EnumHelper.addArmorMaterial("RA_TUBEROUS", 10, new int[]{1, 2, 1, 1}, 20);
 
 	//tool materials
 	public static final ItemTool.ToolMaterial TOOL_MATERIAL_GELID_ENDERIUM = EnumHelper.addToolMaterial("RA_GELID_ENDERIUM", 15, Integer.MAX_VALUE, 20, 10, 10);
@@ -27,6 +27,7 @@ public class ItemRegistry {
 	//items
 	public static Item gelidMaterials;
 	public static Item armorPlating;
+	public static Item armorPlatingVanilla;
 
 	public static Item nutThrowable;
 
@@ -73,6 +74,10 @@ public class ItemRegistry {
 		GameRegistry.registerItem(gelidMaterials, "ItemGelidMaterials");
 		armorPlating = new ItemArmorPlating().setUnlocalizedName(ModInformation.ID);
 		GameRegistry.registerItem(armorPlating, "ItemArmorPlating");
+		if(ConfigHandler.overrideVanillaArmorRecipes) {
+			armorPlatingVanilla = new ItemArmorPlatingVanilla().setUnlocalizedName(ModInformation.ID);
+			GameRegistry.registerItem(armorPlatingVanilla, "ItemArmorPlatingVanilla");
+		}
 
 		if(ConfigHandler.addNutsToys) {
 			nutThrowable = new ItemThrowableNut();

@@ -4,10 +4,15 @@ import cofh.api.modhelpers.ThermalExpansionHelper;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import main.redstonearmory.ConfigHandler;
+import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.blocks.BlockRegistry;
+import main.redstonearmory.util.TextHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.CraftingManager;
+import net.minecraft.item.crafting.IRecipe;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -15,8 +20,14 @@ import redstonearsenal.item.RAItems;
 import thermalexpansion.item.TEItems;
 import thermalfoundation.item.TFItems;
 
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+
 @SuppressWarnings("all")
 public class ItemRecipeRegistry {
+
+	private static HashMap<Item, HashSet<Integer>> recipesToRemove = new HashMap<Item, HashSet<Integer>>();
 
 	private static void registerShapedRecipes() {
 		//Gelid Enderium Nugget -> Ingot
@@ -117,6 +128,83 @@ public class ItemRecipeRegistry {
 		GameRegistry.addShapelessRecipe(TFItems.bucketMana, new Object[]{TFItems.bucketCryotheum, TFItems.bucketEnder, TFItems.bucketPyrotheum, TFItems.bucketRedstone, TFItems.bucketCoal, TFItems.bucketGlowstone});
 	}
 
+	private static void removeVanillaRecipes() {
+		if(ConfigHandler.overrideVanillaArmorRecipes) {
+			// Remove vanilla recipes
+			RedstoneArmory.logger.info(TextHelper.localize("info.RArm.console.recipes.remove") + ": " + TextHelper.localize("info.RArm.console.recipes.remove.vanilla.armor"));
+			
+			removeRecipe(new ItemStack(Items.leather_helmet));
+			removeRecipe(new ItemStack(Items.leather_chestplate));
+			removeRecipe(new ItemStack(Items.leather_leggings));
+			removeRecipe(new ItemStack(Items.leather_boots));
+
+			removeRecipe(new ItemStack(Items.iron_helmet));
+			removeRecipe(new ItemStack(Items.iron_chestplate));
+			removeRecipe(new ItemStack(Items.iron_leggings));
+			removeRecipe(new ItemStack(Items.iron_boots));
+
+			removeRecipe(new ItemStack(Items.chainmail_helmet));
+			removeRecipe(new ItemStack(Items.chainmail_chestplate));
+			removeRecipe(new ItemStack(Items.chainmail_leggings));
+			removeRecipe(new ItemStack(Items.chainmail_boots));
+
+			removeRecipe(new ItemStack(Items.golden_helmet));
+			removeRecipe(new ItemStack(Items.golden_chestplate));
+			removeRecipe(new ItemStack(Items.golden_leggings));
+			removeRecipe(new ItemStack(Items.golden_boots));
+
+			removeRecipe(new ItemStack(Items.diamond_helmet));
+			removeRecipe(new ItemStack(Items.diamond_chestplate));
+			removeRecipe(new ItemStack(Items.diamond_leggings));
+			removeRecipe(new ItemStack(Items.diamond_boots));
+		}
+	}
+
+	private static void addNewVanillaArmorRecipes() {
+		// Add unified armor recipes
+		if(ConfigHandler.overrideVanillaArmorRecipes) {
+			GameRegistry.addShapedRecipe(new ItemStack(Items.leather_helmet), new Object[] { "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 0)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.leather_chestplate), new Object[] { "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 0)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.leather_leggings), new Object[] { "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 0)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.leather_boots), new Object[] { "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 0)});
+
+			GameRegistry.addShapedRecipe(new ItemStack(Items.iron_helmet), new Object[] { "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 1)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.iron_chestplate), new Object[] { "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 1)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.iron_leggings), new Object[] { "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 1)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.iron_boots), new Object[] { "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 1)});
+
+			GameRegistry.addShapedRecipe(new ItemStack(Items.chainmail_helmet), new Object[] { "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 2)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.chainmail_chestplate), new Object[] { "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 2)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.chainmail_leggings), new Object[] { "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 2)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.chainmail_boots), new Object[] { "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 2)});
+
+			GameRegistry.addShapedRecipe(new ItemStack(Items.golden_helmet), new Object[] { "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 3)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.golden_chestplate), new Object[] { "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 3)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.golden_leggings), new Object[] { "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 3)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.golden_boots), new Object[] { "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 3)});
+
+			GameRegistry.addShapedRecipe(new ItemStack(Items.diamond_helmet), new Object[] { "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 4)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.diamond_chestplate), new Object[] { "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 4)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.diamond_leggings), new Object[] { "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 4)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.diamond_boots), new Object[] { "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 4)});
+		}
+	}
+
+	public static void removeRecipe (ItemStack resultItem) {
+		List<IRecipe> recipes = CraftingManager.getInstance().getRecipeList();
+
+		for (int i = 0; i < recipes.size(); i++) {
+
+			IRecipe tmpRecipe = recipes.get(i);
+			ItemStack recipeResult = tmpRecipe.getRecipeOutput();
+
+			if (ItemStack.areItemStacksEqual(resultItem, recipeResult)) {
+				recipes.remove(i--);
+				RedstoneArmory.logger.info(resultItem.toString());
+			}
+		}
+	}
+
 	//Internal/vanilla only recipes go here
 	public static void registerItemRecipes() {
 		registerShapedRecipes();
@@ -127,5 +215,7 @@ public class ItemRecipeRegistry {
 	public static void registerLateItemRecipes() {
 		registerMachineRecipes();
 		registerLateShapedRecipes();
+		removeVanillaRecipes();
+		addNewVanillaArmorRecipes();
 	}
 }

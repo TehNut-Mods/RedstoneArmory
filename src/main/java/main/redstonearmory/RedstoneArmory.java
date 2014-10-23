@@ -1,6 +1,5 @@
 package main.redstonearmory;
 
-import cpw.mods.fml.common.FMLCommonHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -13,12 +12,12 @@ import main.redstonearmory.items.ItemRecipeRegistry;
 import main.redstonearmory.items.ItemRegistry;
 import main.redstonearmory.proxies.CommonProxy;
 import main.redstonearmory.util.EnviroChecks;
-import main.redstonearmory.util.EventHandler;
 import main.redstonearmory.util.OreDictHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import tterrag.core.common.Handlers;
 
 @Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION, dependencies = ModInformation.REQUIRED, guiFactory = ModInformation.GUIFACTORY)
 public class RedstoneArmory {
@@ -42,7 +41,7 @@ public class RedstoneArmory {
         BlockRegistry.registerAllBlocks();
 
         OreDictHandler.registerOreDict();
-	    FMLCommonHandler.instance().bus().register(new EventHandler());
+	    Handlers.addPackage("main.redstonearmory");
 
         proxy.load();
     }

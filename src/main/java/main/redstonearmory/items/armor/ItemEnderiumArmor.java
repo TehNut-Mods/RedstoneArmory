@@ -17,6 +17,7 @@ import redstonearsenal.item.armor.ItemArmorRF;
 
 import java.util.List;
 
+@SuppressWarnings("all")
 public class ItemEnderiumArmor extends ItemArmorRF {
 
 	public static final ArmorProperties UNBLOCKABLE = new ArmorProperties(0, 0.0D, 0);

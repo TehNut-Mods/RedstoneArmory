@@ -75,7 +75,7 @@ public class ItemTuberousArmor extends ItemArmorAdv {
 	public void onArmorTick(World world, EntityPlayer player, ItemStack stack) {
 		if(player.getFoodStats().needFood()) {
 			player.inventory.damageArmor(1F);
-			player.getFoodStats().addStats(1, 1.0f);
+			player.getFoodStats().addStats(1, 4.0f);
 		}
 	}
 
