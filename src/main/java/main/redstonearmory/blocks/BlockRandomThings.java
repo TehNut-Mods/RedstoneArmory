@@ -38,7 +38,7 @@ public class BlockRandomThings extends Block {
 		return this.icon[meta];
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({"unchecked", "rawtypes"})
 	@Override
 	@SideOnly(Side.CLIENT)
 	public void getSubBlocks(Item id, CreativeTabs tab, List list) {

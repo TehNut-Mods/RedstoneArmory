@@ -167,7 +167,7 @@ public class ItemAxeGelidEnderium extends ItemAxeRF {
 		return stack.getItemDamage() != Short.MAX_VALUE;
 	}
 
-//	@SideOnly(Side.CLIENT)
+	//	@SideOnly(Side.CLIENT)
 	//	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
 	//		if (StringHelper.displayShiftForDetail && !KeyboardHelper.isShiftDown()) {
 	//			list.add(StringHelper.shiftForDetails());

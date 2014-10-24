@@ -11,33 +11,34 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 
 public class ActivationPacket implements IMessage, IMessageHandler<ActivationPacket, IMessage> {
-    public boolean isActivated;
 
-    public ActivationPacket() {
-    }
+	public boolean isActivated;
 
-    @Override
-    public void fromBytes(ByteBuf buf) {
-        isActivated = buf.readBoolean();
-    }
+	public ActivationPacket() {
+	}
 
-    @Override
-    public void toBytes(ByteBuf buf) {
-        buf.writeBoolean(isActivated);
-    }
+	@Override
+	public void fromBytes(ByteBuf buf) {
+		isActivated = buf.readBoolean();
+	}
 
-    @Override
-    public IMessage onMessage(ActivationPacket message, MessageContext ctx) {
-        EntityPlayer player = ctx.getServerHandler().playerEntity;
-        if (player != null) {
-            for (int i = 0; i < 4; i++) {
-                ItemStack armor = player.inventory.armorItemInSlot(i);
-                if (armor != null && armor.getItem() instanceof ItemPowersuit) {
-                    armor.stackTagCompound.setBoolean("activated", !armor.stackTagCompound.getBoolean("activated"));
-                    player.addChatComponentMessage(new ChatComponentText(TextHelper.localize("info.RArm.chat.armor.powersuit.active") + " " + String.valueOf(armor.stackTagCompound.getBoolean("activated")).toUpperCase()));
-                }
-            }
-        }
-        return null;
-    }
+	@Override
+	public void toBytes(ByteBuf buf) {
+		buf.writeBoolean(isActivated);
+	}
+
+	@Override
+	public IMessage onMessage(ActivationPacket message, MessageContext ctx) {
+		EntityPlayer player = ctx.getServerHandler().playerEntity;
+		if (player != null) {
+			for (int i = 0; i < 4; i++) {
+				ItemStack armor = player.inventory.armorItemInSlot(i);
+				if (armor != null && armor.getItem() instanceof ItemPowersuit) {
+					armor.stackTagCompound.setBoolean("activated", !armor.stackTagCompound.getBoolean("activated"));
+					player.addChatComponentMessage(new ChatComponentText(TextHelper.localize("info.RArm.chat.armor.powersuit.active") + " " + String.valueOf(armor.stackTagCompound.getBoolean("activated")).toUpperCase()));
+				}
+			}
+		}
+		return null;
+	}
 }

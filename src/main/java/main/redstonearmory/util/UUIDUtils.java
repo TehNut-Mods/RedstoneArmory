@@ -3,6 +3,7 @@ package main.redstonearmory.util;
 import java.util.UUID;
 
 public class UUIDUtils {
+
 	public static String fromUUID(UUID value) {
 		return value.toString().replace("-", "");
 	}

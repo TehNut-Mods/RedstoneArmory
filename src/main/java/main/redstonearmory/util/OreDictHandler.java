@@ -3,8 +3,9 @@ package main.redstonearmory.util;
 import main.redstonearmory.ConfigHandler;
 import main.redstonearmory.blocks.BlockRegistry;
 import main.redstonearmory.items.ItemRegistry;
+import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.oredict.OreDictionary;
+import tterrag.core.common.OreDict;
 
 public class OreDictHandler {
 
@@ -15,6 +16,9 @@ public class OreDictHandler {
 	public static String nuggetGelidEnderium = "nuggetGelidEnderium";
 	public static String gemGelid = "gemGelid";
 	public static String rodGelid = "rodGelid";
+	public static String chainLink = "chainLink";
+	public static String nuggetIron = "nuggetIron";
+	public static String leather = "leather";
 
 	//plating
 	public static String platingEnderium = "platingEnderium";
@@ -33,25 +37,28 @@ public class OreDictHandler {
 	public static void registerOreDict() {
 		//items
 		//materials
-		OreDictionary.registerOre(ingotGelidEnderium, new ItemStack(ItemRegistry.gelidMaterials, 1, 0));
-		OreDictionary.registerOre(nuggetGelidEnderium, new ItemStack(ItemRegistry.gelidMaterials, 1, 1));
-		OreDictionary.registerOre(gemGelid, new ItemStack(ItemRegistry.gelidMaterials, 1, 2));
-		OreDictionary.registerOre(rodGelid, new ItemStack(ItemRegistry.gelidMaterials, 1, 3));
+		OreDict.safeRegister(ingotGelidEnderium, new ItemStack(ItemRegistry.materials, 1, 0));
+		OreDict.safeRegister(nuggetGelidEnderium, new ItemStack(ItemRegistry.materials, 1, 1));
+		OreDict.safeRegister(gemGelid, new ItemStack(ItemRegistry.materials, 1, 2));
+		OreDict.safeRegister(rodGelid, new ItemStack(ItemRegistry.materials, 1, 3));
+		OreDict.safeRegister(chainLink, new ItemStack(ItemRegistry.materials, 1, 4));
+		OreDict.safeRegister(nuggetIron, new ItemStack(ItemRegistry.materials, 1, 5));
+		OreDict.safeRegister(leather, Items.leather);
 
 		//plating
-		OreDictionary.registerOre(platingEnderium, new ItemStack(ItemRegistry.armorPlating, 1, 0));
-		OreDictionary.registerOre(platingLumium, new ItemStack(ItemRegistry.armorPlating, 1, 1));
-		OreDictionary.registerOre(platingMithril, new ItemStack(ItemRegistry.armorPlating, 1, 2));
-		OreDictionary.registerOre(platingBronze, new ItemStack(ItemRegistry.armorPlating, 1, 3));
-		OreDictionary.registerOre(platingTuberous, new ItemStack(ItemRegistry.armorPlating, 1, 4));
-		OreDictionary.registerOre(platingPlatingEmpty, new ItemStack(ItemRegistry.armorPlating, 1, 5));
-		OreDictionary.registerOre(platingPlatingFull, new ItemStack(ItemRegistry.armorPlating, 1, 6));
+		OreDict.safeRegister(platingEnderium, new ItemStack(ItemRegistry.armorPlating, 1, 0));
+		OreDict.safeRegister(platingLumium, new ItemStack(ItemRegistry.armorPlating, 1, 1));
+		OreDict.safeRegister(platingMithril, new ItemStack(ItemRegistry.armorPlating, 1, 2));
+		OreDict.safeRegister(platingBronze, new ItemStack(ItemRegistry.armorPlating, 1, 3));
+		OreDict.safeRegister(platingTuberous, new ItemStack(ItemRegistry.armorPlating, 1, 4));
+		OreDict.safeRegister(platingPlatingEmpty, new ItemStack(ItemRegistry.armorPlating, 1, 5));
+		OreDict.safeRegister(platingPlatingFull, new ItemStack(ItemRegistry.armorPlating, 1, 6));
 
 		//blocks
 		//storage
-		OreDictionary.registerOre(blockGelidEnderium, new ItemStack(BlockRegistry.ingotStorage, 1, 0));
+		OreDict.safeRegister(blockGelidEnderium, new ItemStack(BlockRegistry.ingotStorage, 1, 0));
 		if (ConfigHandler.addNutsToys) {
-			OreDictionary.registerOre(blockLapisPurple, new ItemStack(BlockRegistry.randomBlocks, 1, 0));
+			OreDict.safeRegister(blockLapisPurple, new ItemStack(BlockRegistry.randomBlocks, 1, 0));
 		}
 	}
 }

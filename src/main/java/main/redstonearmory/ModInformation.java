@@ -1,6 +1,7 @@
 package main.redstonearmory;
 
 public class ModInformation {
+
 	public static final String NAME = "Redstone Armory";
 	public static final String ID = "RArm";
 	public static final String CHANNEL = "RedstoneArmory";

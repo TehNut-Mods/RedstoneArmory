@@ -8,8 +8,8 @@ public class ClientProxy extends CommonProxy {
 
 	public static Minecraft minecraft = Minecraft.getMinecraft();
 
-    @Override
-    public void load() {
-        FMLCommonHandler.instance().bus().register(new KeyHandler());
+	@Override
+	public void load() {
+		FMLCommonHandler.instance().bus().register(new KeyHandler());
 	}
 }

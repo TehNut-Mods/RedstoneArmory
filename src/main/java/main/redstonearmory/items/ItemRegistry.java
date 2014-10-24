@@ -25,7 +25,7 @@ public class ItemRegistry {
 	public static final ItemTool.ToolMaterial TOOL_MATERIAL_GELID_ENDERIUM = EnumHelper.addToolMaterial("RA_GELID_ENDERIUM", 15, Integer.MAX_VALUE, 20, 10, 10);
 
 	//items
-	public static Item gelidMaterials;
+	public static Item materials;
 	public static Item armorPlating;
 	public static Item armorPlatingVanilla;
 
@@ -43,10 +43,10 @@ public class ItemRegistry {
 	public static Item armorEnderiumLeggings;
 	public static Item armorEnderiumBoots;
 
-    public static Item armorPowersuitHelm;
-    public static Item armorPowersuitChestplate;
-    public static Item armorPowersuitLeggings;
-    public static Item armorPowersuitBoots;
+	public static Item armorPowersuitHelm;
+	public static Item armorPowersuitChestplate;
+	public static Item armorPowersuitLeggings;
+	public static Item armorPowersuitBoots;
 
 	public static Item armorLumiumHelm;
 	public static Item armorLumiumChestplate;
@@ -57,7 +57,7 @@ public class ItemRegistry {
 	public static Item armorMithrilChestplate;
 	public static Item armorMithrilLeggings;
 	public static Item armorMithrilBoots;
-	
+
 	public static Item armorBronzeHelm;
 	public static Item armorBronzeChestplate;
 	public static Item armorBronzeLeggings;
@@ -70,16 +70,16 @@ public class ItemRegistry {
 
 	private static void registerItems() {
 
-		gelidMaterials = new ItemGelidMaterials().setUnlocalizedName(ModInformation.ID);
-		GameRegistry.registerItem(gelidMaterials, "ItemGelidMaterials");
+		materials = new ItemMaterials().setUnlocalizedName(ModInformation.ID);
+		GameRegistry.registerItem(materials, "ItemMaterials");
 		armorPlating = new ItemArmorPlating().setUnlocalizedName(ModInformation.ID);
 		GameRegistry.registerItem(armorPlating, "ItemArmorPlating");
-		if(ConfigHandler.overrideVanillaArmorRecipes) {
+		if (ConfigHandler.overrideVanillaArmorRecipes) {
 			armorPlatingVanilla = new ItemArmorPlatingVanilla().setUnlocalizedName(ModInformation.ID);
 			GameRegistry.registerItem(armorPlatingVanilla, "ItemArmorPlatingVanilla");
 		}
 
-		if(ConfigHandler.addNutsToys) {
+		if (ConfigHandler.addNutsToys) {
 			nutThrowable = new ItemThrowableNut();
 			GameRegistry.registerItem(nutThrowable, "ItemThrowableNut");
 		}
@@ -107,14 +107,14 @@ public class ItemRegistry {
 		GameRegistry.registerItem(armorEnderiumBoots, "ItemEnderiumArmor.Boots");
 
 		if (ConfigHandler.enablePowersuit) {
-	        armorPowersuitHelm = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 0);
-	        GameRegistry.registerItem(armorPowersuitHelm, "ItemPowersuit.Helm");
-	        armorPowersuitChestplate = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 1);
-	        GameRegistry.registerItem(armorPowersuitChestplate, "ItemPowersuit.Chestplate");
-	        armorPowersuitLeggings = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 2);
-	        GameRegistry.registerItem(armorPowersuitLeggings, "ItemPowersuit.Leggings");
-	        armorPowersuitBoots = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 3);
-	        GameRegistry.registerItem(armorPowersuitBoots, "ItemPowersuit.Boots");
+			armorPowersuitHelm = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 0);
+			GameRegistry.registerItem(armorPowersuitHelm, "ItemPowersuit.Helm");
+			armorPowersuitChestplate = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 1);
+			GameRegistry.registerItem(armorPowersuitChestplate, "ItemPowersuit.Chestplate");
+			armorPowersuitLeggings = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 2);
+			GameRegistry.registerItem(armorPowersuitLeggings, "ItemPowersuit.Leggings");
+			armorPowersuitBoots = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 3);
+			GameRegistry.registerItem(armorPowersuitBoots, "ItemPowersuit.Boots");
 		}
 
 		armorLumiumHelm = (ItemLumiumArmor) new ItemLumiumArmor(ARMOR_MATERIAL_LUMIUM, 0);

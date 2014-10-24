@@ -6,6 +6,8 @@ item.RArm.material.enderium.gelid.ingot.name=Gelid Enderium Ingot
 item.RArm.material.enderium.gelid.nugget.name=Gelid Enderium Nugget
 item.RArm.material.enderium.gelid.gem.name=Gelid Gem
 item.RArm.material.enderium.gelid.rod.name=Gelid Rod
+item.RArm.material.chainlink.name=Chain Link
+item.RArm.material.iron.nugget.name=Iron Nugget
 item.RArm.material.enderium.gelid.nothing.name=Anti-Derp Protocol
 
 item.RArm.random.nut.throwable.name=Throwable Nut

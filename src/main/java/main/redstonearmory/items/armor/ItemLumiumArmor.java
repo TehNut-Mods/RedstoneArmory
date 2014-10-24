@@ -55,14 +55,14 @@ public class ItemLumiumArmor extends ItemArmorAdv {
 		int y = (int) player.posY + 1;
 		int z = (int) Math.floor(player.posZ);
 
-		if(!world.isRemote && world.getBlock(x, y, z) == Blocks.air)
+		if (!world.isRemote && world.getBlock(x, y, z) == Blocks.air)
 			world.setBlock(x, y, z, BlockRegistry.invisiLight);
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getArmorTexture(ItemStack Stack, Entity entity, int Slot, String type) {
-		switch(Slot) {
+		switch (Slot) {
 			case 0: {
 				return ModInformation.ID + ":textures/models/armor/lumiumArmor_1.png";
 			}

@@ -13,11 +13,11 @@ import net.minecraft.util.IIcon;
 
 import java.util.List;
 
-public class ItemGelidMaterials extends Item {
+public class ItemMaterials extends Item {
 
 	public IIcon[] icon = new IIcon[16];
 
-	public ItemGelidMaterials() {
+	public ItemMaterials() {
 		this.setCreativeTab(RedstoneArmory.tabRArm);
 		this.setHasSubtypes(true);
 		this.setMaxDamage(0);
@@ -25,29 +25,37 @@ public class ItemGelidMaterials extends Item {
 
 	@Override
 	public String getUnlocalizedName(ItemStack itemstack) {
-		String name = "";
+		String name;
 		switch (itemstack.getItemDamage()) {
 			case 0: {
-				name = "ingot";
+				name = "enderium.gelid.ingot";
 				break;
 			}
 			case 1: {
-				name = "nugget";
+				name = "enderium.gelid.nugget";
 				break;
 			}
 			case 2: {
-				name = "gem";
+				name = "enderium.gelid.gem";
 				break;
 			}
 			case 3: {
-				name = "rod";
+				name = "enderium.gelid.rod";
+				break;
+			}
+			case 4: {
+				name = "chainlink";
+				break;
+			}
+			case 5: {
+				name = "iron.nugget";
 				break;
 			}
 			default:
 				name = "nothing";
 				break;
 		}
-		return getUnlocalizedName() + ".material.enderium.gelid." + name;
+		return getUnlocalizedName() + ".material." + name;
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -61,12 +69,14 @@ public class ItemGelidMaterials extends Item {
 		this.icon[1] = iconRegister.registerIcon(ModInformation.ID + ":materials/nuggetGelidEnderium");
 		this.icon[2] = iconRegister.registerIcon(ModInformation.ID + ":materials/gemGelidEnderium");
 		this.icon[3] = iconRegister.registerIcon(ModInformation.ID + ":materials/rodGelidEnderium");
+		this.icon[4] = iconRegister.registerIcon(ModInformation.ID + ":materials/chainLink");
+		this.icon[5] = iconRegister.registerIcon(ModInformation.ID + ":materials/nuggetIron");
 	}
 
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs creativeTabs, List list) {
-		for (int i = 0; i <= 3; i++) {
+		for (int i = 0; i <= 5; i++) {
 			list.add(new ItemStack(this, 1, i));
 		}
 	}
@@ -74,6 +84,26 @@ public class ItemGelidMaterials extends Item {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
-		return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+		switch (itemStack.getItemDamage()) {
+			case 0: {
+				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+			}
+			case 1: {
+				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+			}
+			case 2: {
+				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+			}
+			case 3: {
+				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+			}
+			case 4: {
+				return TextHelper.END + super.getItemStackDisplayName(itemStack);
+			}
+			case 5: {
+				return TextHelper.END + super.getItemStackDisplayName(itemStack);
+			}
+		}
+		return super.getItemStackDisplayName(itemStack);
 	}
 }

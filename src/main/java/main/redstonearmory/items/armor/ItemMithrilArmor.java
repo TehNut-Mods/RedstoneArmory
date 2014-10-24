@@ -47,25 +47,25 @@ public class ItemMithrilArmor extends ItemArmorAdv {
 		}
 	}
 
-		@Override
-		@SideOnly(Side.CLIENT)
-		public String getArmorTexture(ItemStack Stack, Entity entity, int Slot, String type) {
-			switch(Slot) {
-				case 0: {
-					return ModInformation.ID + ":textures/models/armor/mithrilArmor_1.png";
-				}
-				case 1: {
-					return ModInformation.ID + ":textures/models/armor/mithrilArmor_1.png";
-				}
-				case 2: {
-					return ModInformation.ID + ":textures/models/armor/mithrilArmor_2.png";
-				}
-				case 3: {
-					return ModInformation.ID + ":textures/models/armor/mithrilArmor_1.png";
-				}
+	@Override
+	@SideOnly(Side.CLIENT)
+	public String getArmorTexture(ItemStack Stack, Entity entity, int Slot, String type) {
+		switch (Slot) {
+			case 0: {
+				return ModInformation.ID + ":textures/models/armor/mithrilArmor_1.png";
 			}
-			return type;
+			case 1: {
+				return ModInformation.ID + ":textures/models/armor/mithrilArmor_1.png";
+			}
+			case 2: {
+				return ModInformation.ID + ":textures/models/armor/mithrilArmor_2.png";
+			}
+			case 3: {
+				return ModInformation.ID + ":textures/models/armor/mithrilArmor_1.png";
+			}
 		}
+		return type;
+	}
 
 	@Override
 	public EnumRarity getRarity(ItemStack stack) {
@@ -82,7 +82,7 @@ public class ItemMithrilArmor extends ItemArmorAdv {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
-		if(KeyboardHelper.isShiftDown()) {
+		if (KeyboardHelper.isShiftDown()) {
 			list.add(TextHelper.END);
 			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.armor.mithril.almost"));
 			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.armor.mithril.notquite"));

@@ -92,36 +92,36 @@ public class ItemSickleGelidEnderium extends ItemSickleRF {
 		return stack;
 	}
 
-//	@SideOnly(Side.CLIENT)
-//	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
-//		if (StringHelper.displayShiftForDetail && !KeyboardHelper.isShiftDown()) {
-//			list.add(StringHelper.shiftForDetails());
-//		}
-//		if (!StringHelper.isShiftKeyDown()) {
-//			return;
-//		}
-//		if (stack.stackTagCompound == null) {
-//			EnergyHelper.setDefaultEnergyTag(stack, 0);
-//		}
-//		list.add(TextHelper.localize("info.cofh.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + maxEnergy + " RF");
-//
-//		list.add(TextHelper.ORANGE + getEnergyPerUse(stack) + " " + TextHelper.localize("info.redstonearsenal.tool.energyPerUse") + TextHelper.END);
-//		if (isEmpowered(stack)) {
-//			list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.cofh.press") + " " + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + TextHelper.localize("info.redstonearsenal.tool.chargeOff") + TextHelper.END);
-//		} else {
-//			list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.cofh.press") + " " + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + TextHelper.localize("info.redstonearsenal.tool.chargeOn") + TextHelper.END);
-//		}
-//		if (getEnergyStored(stack) >= getEnergyPerUse(stack)) {
-//			list.add("");
-//			list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.cofh.damageAttack") + TextHelper.END);
-//			list.add(TextHelper.BRIGHT_GREEN + "+" + (isEmpowered(stack) ? damageCharged : 1) + " " + TextHelper.localize("info.cofh.damageFlux") + TextHelper.END);
-//		}
-//		if(KeyboardHelper.isShiftDown()) {
-//			if(ConfigHandler.enableAxeWeatherClear) {
-//				list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.ability") + TextHelper.localize("info.RArm.tooltip.ability.sickle.sekrit"));
-//			}
-//		}
-//	}
+	//	@SideOnly(Side.CLIENT)
+	//	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
+	//		if (StringHelper.displayShiftForDetail && !KeyboardHelper.isShiftDown()) {
+	//			list.add(StringHelper.shiftForDetails());
+	//		}
+	//		if (!StringHelper.isShiftKeyDown()) {
+	//			return;
+	//		}
+	//		if (stack.stackTagCompound == null) {
+	//			EnergyHelper.setDefaultEnergyTag(stack, 0);
+	//		}
+	//		list.add(TextHelper.localize("info.cofh.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + maxEnergy + " RF");
+	//
+	//		list.add(TextHelper.ORANGE + getEnergyPerUse(stack) + " " + TextHelper.localize("info.redstonearsenal.tool.energyPerUse") + TextHelper.END);
+	//		if (isEmpowered(stack)) {
+	//			list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.cofh.press") + " " + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + TextHelper.localize("info.redstonearsenal.tool.chargeOff") + TextHelper.END);
+	//		} else {
+	//			list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.cofh.press") + " " + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + TextHelper.localize("info.redstonearsenal.tool.chargeOn") + TextHelper.END);
+	//		}
+	//		if (getEnergyStored(stack) >= getEnergyPerUse(stack)) {
+	//			list.add("");
+	//			list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.cofh.damageAttack") + TextHelper.END);
+	//			list.add(TextHelper.BRIGHT_GREEN + "+" + (isEmpowered(stack) ? damageCharged : 1) + " " + TextHelper.localize("info.cofh.damageFlux") + TextHelper.END);
+	//		}
+	//		if(KeyboardHelper.isShiftDown()) {
+	//			if(ConfigHandler.enableAxeWeatherClear) {
+	//				list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.ability") + TextHelper.localize("info.RArm.tooltip.ability.sickle.sekrit"));
+	//			}
+	//		}
+	//	}
 
 	@Override
 	@SideOnly(Side.CLIENT)

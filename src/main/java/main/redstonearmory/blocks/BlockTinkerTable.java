@@ -40,9 +40,9 @@ public class BlockTinkerTable extends Block {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public IIcon getIcon(int side, int meta) {
-		if(side == 1) {
+		if (side == 1) {
 			return topIcon;
-		} else if(side == 0) {
+		} else if (side == 0) {
 			return bottomIcon;
 		} else {
 			return sideIcon;
@@ -51,11 +51,11 @@ public class BlockTinkerTable extends Block {
 
 	@Override
 	public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-		if(player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemPowersuit && side == 1) {
+		if (player.getHeldItem() != null && player.getHeldItem().getItem() instanceof ItemPowersuit && side == 1) {
 			player.swingItem();
 			player.inventory.consumeInventoryItem(player.getHeldItem().getItem());
 		} else {
-			if(!world.isRemote)
+			if (!world.isRemote)
 				player.addChatComponentMessage(new ChatComponentTranslation("info.RArm.chat.table.tinker.instruct"));
 		}
 		return false;

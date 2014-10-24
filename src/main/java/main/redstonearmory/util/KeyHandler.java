@@ -10,16 +10,16 @@ import org.lwjgl.input.Keyboard;
 
 public class KeyHandler {
 
-    public static KeyBinding keyActivate = new KeyBinding("key.RArm.bind.powersuitActivate", Keyboard.KEY_F, "Redstone Armory");
+	public static KeyBinding keyActivate = new KeyBinding("key.RArm.bind.powersuitActivate", Keyboard.KEY_F, "Redstone Armory");
 
-    public KeyHandler() {
-        ClientRegistry.registerKeyBinding(keyActivate);
-    }
+	public KeyHandler() {
+		ClientRegistry.registerKeyBinding(keyActivate);
+	}
 
-    @SubscribeEvent
-    public void onKeyInput(InputEvent.KeyInputEvent event) {
-        if (keyActivate.isPressed()) {
-            PacketHandler.INSTANCE.sendToServer(new ActivationPacket());
-        }
-    }
+	@SubscribeEvent
+	public void onKeyInput(InputEvent.KeyInputEvent event) {
+		if (keyActivate.isPressed()) {
+			PacketHandler.INSTANCE.sendToServer(new ActivationPacket());
+		}
+	}
 }

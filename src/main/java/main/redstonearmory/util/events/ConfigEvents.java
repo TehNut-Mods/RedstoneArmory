@@ -12,13 +12,13 @@ import tterrag.core.common.event.ConfigFileChangedEvent;
 @Handlers.Handler
 public class ConfigEvents {
 
-    @SubscribeEvent
-    public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
-        if (eventArgs.modID.equals(ModInformation.ID)) {
-            ConfigHandler.syncConfig();
-            RedstoneArmory.logger.info(TextHelper.localize("info.RArm.console.config.refresh"));
-        }
-    }
+	@SubscribeEvent
+	public void onConfigChanged(ConfigChangedEvent.OnConfigChangedEvent eventArgs) {
+		if (eventArgs.modID.equals(ModInformation.ID)) {
+			ConfigHandler.syncConfig();
+			RedstoneArmory.logger.info(TextHelper.localize("info.RArm.console.config.refresh"));
+		}
+	}
 
 	@SubscribeEvent
 	public void onConfigFileChanged(ConfigFileChangedEvent event) {

@@ -45,7 +45,7 @@ public class ItemBronzeArmor extends ItemArmorAdv {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getArmorTexture(ItemStack Stack, Entity entity, int Slot, String type) {
-		switch(Slot) {
+		switch (Slot) {
 			case 0: {
 				return ModInformation.ID + ":textures/models/armor/bronzeArmor_1.png";
 			}

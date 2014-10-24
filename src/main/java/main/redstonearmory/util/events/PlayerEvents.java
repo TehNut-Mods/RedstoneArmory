@@ -14,18 +14,18 @@ public class PlayerEvents {
 	public boolean lastKeyJumpHold;
 
 	@SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event) {
+	public void onClientTick(TickEvent.ClientTickEvent event) {
 		if (ConfigHandler.enablePowersuit) {
-	        if (event.phase != TickEvent.Phase.END)
-	            return;
-	        Minecraft mc = Minecraft.getMinecraft();
-	        if (mc.thePlayer != null) {
-	            boolean jumpState = mc.gameSettings.keyBindJump.getIsKeyPressed();
-	            if (jumpState != lastKeyJumpHold) {
-	                lastKeyJumpHold = jumpState;
-	                PacketHandler.INSTANCE.sendToServer(new HoldJumpPacket(jumpState));
-	            }
-	        }
+			if (event.phase != TickEvent.Phase.END)
+				return;
+			Minecraft mc = Minecraft.getMinecraft();
+			if (mc.thePlayer != null) {
+				boolean jumpState = mc.gameSettings.keyBindJump.getIsKeyPressed();
+				if (jumpState != lastKeyJumpHold) {
+					lastKeyJumpHold = jumpState;
+					PacketHandler.INSTANCE.sendToServer(new HoldJumpPacket(jumpState));
+				}
+			}
 		}
-    }
+	}
 }

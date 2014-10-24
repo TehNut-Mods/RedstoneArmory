@@ -30,10 +30,10 @@ public class ItemEnderiumArmor extends ItemArmorRF {
 		this.setCreativeTab(RedstoneArmory.tabRArm);
 		this.setMaxDamage(0);
 
-        maxEnergy = 1000000;
-        energyPerDamage = 140;
-        absorbRatio = 1.2D;
-        maxTransfer = 4500;
+		maxEnergy = 1000000;
+		energyPerDamage = 140;
+		absorbRatio = 1.2D;
+		maxTransfer = 4500;
 
 		switch (type) {
 			case 0: {
@@ -62,7 +62,7 @@ public class ItemEnderiumArmor extends ItemArmorRF {
 	@Override
 	@SideOnly(Side.CLIENT)
 	public String getArmorTexture(ItemStack Stack, Entity entity, int Slot, String type) {
-		switch(Slot) {
+		switch (Slot) {
 			case 0: {
 				return ModInformation.ID + ":textures/models/armor/enderiumArmor_1.png";
 			}

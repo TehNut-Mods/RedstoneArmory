@@ -13,10 +13,11 @@ public class CreativeTabRArm extends CreativeTabs {
 
 	@Override
 	public ItemStack getIconItemStack() {
-		return new ItemStack(ItemRegistry.gelidMaterials, 1, 3);
+		return new ItemStack(ItemRegistry.materials, 1, 3);
 	}
 
 	@Override
-	public Item getTabIconItem() { return new Item(); }
-
+	public Item getTabIconItem() {
+		return new Item();
+	}
 }

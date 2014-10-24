@@ -7,29 +7,30 @@ import io.netty.buffer.ByteBuf;
 import main.redstonearmory.items.powersuit.upgrades.BaseUpgrade;
 
 public class HoldJumpPacket implements IMessage, IMessageHandler<HoldJumpPacket, IMessage> {
-    public boolean isHoldingJump;
 
-    public HoldJumpPacket() {
-    }
+	public boolean isHoldingJump;
 
-    public HoldJumpPacket(boolean b) {
-        isHoldingJump = b;
-    }
+	public HoldJumpPacket() {
+	}
 
-    @Override
-    public void fromBytes(ByteBuf buf) {
-        isHoldingJump = buf.readBoolean();
-        BaseUpgrade.isHoldingJump = isHoldingJump;
-    }
+	public HoldJumpPacket(boolean b) {
+		isHoldingJump = b;
+	}
 
-    @Override
-    public void toBytes(ByteBuf buf) {
-        buf.writeBoolean(isHoldingJump);
-    }
+	@Override
+	public void fromBytes(ByteBuf buf) {
+		isHoldingJump = buf.readBoolean();
+		BaseUpgrade.isHoldingJump = isHoldingJump;
+	}
 
-    @Override
-    public IMessage onMessage(HoldJumpPacket message, MessageContext ctx) {
-        BaseUpgrade.isHoldingJump = isHoldingJump;
-        return null;
-    }
+	@Override
+	public void toBytes(ByteBuf buf) {
+		buf.writeBoolean(isHoldingJump);
+	}
+
+	@Override
+	public IMessage onMessage(HoldJumpPacket message, MessageContext ctx) {
+		BaseUpgrade.isHoldingJump = isHoldingJump;
+		return null;
+	}
 }

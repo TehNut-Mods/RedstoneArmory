@@ -15,6 +15,7 @@ import java.util.List;
 public class ItemArmorPlatingVanilla extends Item {
 
 	public IIcon[] icon = new IIcon[16];
+	private static final String[] names = {"leather", "iron", "chain", "gold", "diamond"};
 
 	public ItemArmorPlatingVanilla() {
 		this.setCreativeTab(RedstoneArmory.tabRArm);
@@ -23,34 +24,8 @@ public class ItemArmorPlatingVanilla extends Item {
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack itemstack) {
-		String name = "";
-		switch (itemstack.getItemDamage()) {
-			case 0: {
-				name = "leather";
-				break;
-			}
-			case 1: {
-				name = "iron";
-				break;
-			}
-			case 2: {
-				name = "chain";
-				break;
-			}
-			case 3: {
-				name = "gold";
-				break;
-			}
-			case 4: {
-				name = "diamond";
-				break;
-			}
-			default:
-				name = "nothing";
-				break;
-		}
-		return getUnlocalizedName() + ".material." + name + ".plating";
+	public String getUnlocalizedName(ItemStack stack) {
+		return getUnlocalizedName() + ".material." + names[stack.getItemDamage() % names.length] + ".plating";
 	}
 
 	@SideOnly(Side.CLIENT)

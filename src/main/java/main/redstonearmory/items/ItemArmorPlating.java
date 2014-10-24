@@ -16,6 +16,7 @@ import java.util.List;
 public class ItemArmorPlating extends Item {
 
 	public IIcon[] icon = new IIcon[16];
+	private static final String[] names = {"enderium", "lumium", "mithril", "bronze", "tuberous", "crafting.empty", "crafting.full"};
 
 	public ItemArmorPlating() {
 		this.setCreativeTab(RedstoneArmory.tabRArm);
@@ -24,42 +25,8 @@ public class ItemArmorPlating extends Item {
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack itemstack) {
-		String name = "";
-		switch (itemstack.getItemDamage()) {
-			case 0: {
-				name = "enderium";
-				break;
-			}
-			case 1: {
-				name = "lumium";
-				break;
-			}
-			case 2: {
-				name = "mithril";
-				break;
-			}
-			case 3: {
-				name = "bronze";
-				break;
-			}
-			case 4: {
-				name = "tuberous";
-				break;
-			}
-			case 5: {
-				name = "crafting.empty";
-				break;
-			}
-			case 6: {
-				name = "crafting.full";
-				break;
-			}
-			default:
-				name = "nothing";
-				break;
-		}
-		return getUnlocalizedName() + ".material." + name + ".plating";
+	public String getUnlocalizedName(ItemStack stack) {
+		return getUnlocalizedName() + ".material." + names[stack.getItemDamage() % names.length] + ".plating";
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -90,7 +57,7 @@ public class ItemArmorPlating extends Item {
 	@Override
 	public String getItemStackDisplayName(ItemStack itemStack) {
 
-		switch(itemStack.getItemDamage()) {
+		switch (itemStack.getItemDamage()) {
 			case 0: {
 				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
 			}
