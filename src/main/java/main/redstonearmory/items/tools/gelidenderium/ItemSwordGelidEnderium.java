@@ -82,14 +82,16 @@ public class ItemSwordGelidEnderium extends ItemSwordRF {
 
 		if (ConfigHandler.enableSwordSuckage) {
 			if (!world.isRemote && entity instanceof EntityPlayer && ((EntityPlayer) entity).isUsingItem()) {
-				AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(entity.posX - radius, entity.posY - radius, entity.posZ - radius, entity.posX + radius, entity.posY + radius, entity.posZ + radius);
-				Iterator iter = world.getEntitiesWithinAABB(EntityItem.class, bb).iterator();
-				if (iter != null) {
-					while (iter.hasNext()) {
-						EntityItem item = (EntityItem) iter.next();
-						moveEntity(item, Vector3.fromEntityCenter(entity), 0.1);
-						if (random.nextInt(15) == 0)
-							world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
+				if(((EntityPlayer) entity).getHeldItem().getItem() instanceof ItemSwordGelidEnderium) {
+					AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(entity.posX - radius, entity.posY - radius, entity.posZ - radius, entity.posX + radius, entity.posY + radius, entity.posZ + radius);
+					Iterator iter = world.getEntitiesWithinAABB(EntityItem.class, bb).iterator();
+					if (iter != null) {
+						while (iter.hasNext()) {
+							EntityItem item = (EntityItem) iter.next();
+							moveEntity(item, Vector3.fromEntityCenter(entity), 0.1);
+							if (random.nextInt(15) == 0)
+								world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
+						}
 					}
 				}
 			}
