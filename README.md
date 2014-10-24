@@ -28,5 +28,3 @@ All of these (must be deobfuscated) are required for the dev workspace to work c
 * Redstone Arsenal (Found on the CoFH CurseForge)
 * Thermal Foundation (Found on the CoFH CurseForge)
 * ttCore (Automagically added to workspace with Maven)
-
-__ttCore depends on Waila and NEI. It *should* download these by itself.__

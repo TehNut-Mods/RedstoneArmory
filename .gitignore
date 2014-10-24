@@ -17,6 +17,7 @@
 *.iws
 *.classpath
 *.project
+*.zip
 
 #Specific files
 MCFPost.txt
