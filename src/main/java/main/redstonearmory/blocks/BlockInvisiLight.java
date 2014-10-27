@@ -114,5 +114,11 @@ public class BlockInvisiLight extends BlockContainer {
 				}
 			}
 		}
+
+		@Override
+		public void markDirty() {
+			super.markDirty();
+			this.worldObj.markBlockForUpdate(xCoord, yCoord, zCoord);
+		}
 	}
 }
