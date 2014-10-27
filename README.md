@@ -3,6 +3,7 @@ Redstone Armory [![Build Status](http://tehnut.info/jenkins/job/RedstoneArmory/b
 
 Enhancing the Redstone (Flux) revolution!
 
+This mod depends on [ttCore](http://ci.tterrag.com/job/ttCore/) as of build 8 for 1.7.10. It should always work with the latest ttCore.
 
 ##Branch Information
 
