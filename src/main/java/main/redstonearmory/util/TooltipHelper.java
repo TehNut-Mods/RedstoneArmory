@@ -1,6 +1,9 @@
 package main.redstonearmory.util;
 
 import cofh.core.util.KeyBindingEmpower;
+import cofh.lib.util.helpers.MathHelper;
+import net.minecraft.enchantment.Enchantment;
+import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import org.lwjgl.input.Keyboard;
@@ -16,10 +19,10 @@ public class TooltipHelper {
 
 		if (isEmpowered(stack)) {
 			list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.cofh.press") + " " + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + TextHelper.localize("info.redstonearsenal.tool.chargeOff") + TextHelper.END);
-			list.add(TextHelper.ORANGE + energyPerUseCharged + " " + TextHelper.localize("info.redstonearsenal.tool.energyPerUse") + TextHelper.END);
+			list.add(TextHelper.ORANGE + getEnergyPerUse(stack, energyPerUse, energyPerUseCharged) + " " + TextHelper.localize("info.redstonearsenal.tool.energyPerUse") + TextHelper.END);
 		} else {
 			list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.cofh.press") + " " + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + TextHelper.localize("info.redstonearsenal.tool.chargeOn") + TextHelper.END);
-			list.add(TextHelper.ORANGE + energyPerUse + " " + TextHelper.localize("info.redstonearsenal.tool.energyPerUse") + TextHelper.END);
+			list.add(TextHelper.ORANGE + getEnergyPerUse(stack, energyPerUse, energyPerUseCharged) + " " + TextHelper.localize("info.redstonearsenal.tool.energyPerUse") + TextHelper.END);
 		}
 	}
 
@@ -37,5 +40,11 @@ public class TooltipHelper {
 
 	private static boolean isEmpowered(ItemStack stack) {
 		return stack.getTagCompound().getBoolean("Empowered");
+	}
+
+	private static int getEnergyPerUse(ItemStack stack, int energyPerUse, int energyPerUseCharged) {
+
+		int unbreakingLevel = MathHelper.clampI(EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, stack), 0, 4);
+		return (isEmpowered(stack) ? energyPerUseCharged : energyPerUse) * (5 - unbreakingLevel) / 5;
 	}
 }

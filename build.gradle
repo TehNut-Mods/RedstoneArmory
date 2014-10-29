@@ -36,6 +36,7 @@ repositories {
 
 dependencies {
     compile "tterrag.core:ttCore:${ttCore_version}"
+    compile "tterrag.rtc:RecipeTweakingCore:${rtc_version}"
 }
 
 minecraft {

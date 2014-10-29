@@ -40,6 +40,7 @@ public class ConfigHandler {
 
 	public static boolean enableEnviroCheckMessages;
 	public static boolean addNutsToys;
+	public static boolean enableDebugThingsAndStuff;
 
 	public static void init(File file) {
 		config = new Configuration(file);
@@ -72,7 +73,7 @@ public class ConfigHandler {
 		enableMithrilArmorCrafting = config.get(crafting, "enableMithrilArmorCrafting", true).getBoolean(enableMithrilArmorCrafting);
 		enableTinkersAlloyArmorCrafting = config.get(crafting, "enableTinkersAlloyArmorCrafting", true).getBoolean(enableTinkersAlloyArmorCrafting);
 		enableTuberousArmorCrafting = config.get(crafting, "enableTuberousArmorCrafting", true).getBoolean(enableTuberousArmorCrafting);
-		overrideVanillaArmorRecipes = config.get(crafting, "overrideVanillaArmorRecipes", false, "Replaces ingots in Vanilla armor recipes with armor plating. WARNING: This makes all of the vanilla armor about 3x more expensive. Enable if you wish to have a \"harder\" experience.").getBoolean(overrideVanillaArmorRecipes);
+		overrideVanillaArmorRecipes = config.get(crafting, "overrideVanillaArmorRecipes", false, "Replaces ingots in Vanilla armor recipes with armor plating. [DEFAULT - FALSE] " + "WARNING: This makes all of the vanilla armor about 3x more expensive. Enable if you wish to have a \"harder\" experience. " + "This option requires RecipeTweakingCore by tterrag to be installed. " + "http://ci.tterrag.com/job/RecipeTweakingCore/").getBoolean(overrideVanillaArmorRecipes);
 
 		enablePowersuit = config.get(features, "enablePowersuit", false, "Currently has a pretty major memory leak. I suggest not enabling this unless you know what you're doing.").getBoolean(enablePowersuit);
 
@@ -84,6 +85,7 @@ public class ConfigHandler {
 
 		enableEnviroCheckMessages = config.get(general, "enableEnviroCheckMessages", true, "Enable environment check console logging. [DEFAULT - TRUE]").getBoolean(enableEnviroCheckMessages);
 		addNutsToys = config.get(general, "addNutsToys", true, "Nut likes random things so Nut added random things. These won't change gameplay. [DEFAULT - TRUE]").getBoolean(addNutsToys);
+		enableDebugThingsAndStuff = config.get(general, "enableDebugThingsAndStuff", false, "You probably don't want to enable this...").getBoolean(enableDebugThingsAndStuff);
 
 		if (config.hasChanged()) {
 			config.save();

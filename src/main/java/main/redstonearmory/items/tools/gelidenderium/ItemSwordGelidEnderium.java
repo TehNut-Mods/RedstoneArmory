@@ -39,7 +39,6 @@ public class ItemSwordGelidEnderium extends ItemSwordRF {
 		this.setCreativeTab(RedstoneArmory.tabRArm);
 		this.setUnlocalizedName(ModInformation.ID + ".tool.enderium.gelid.sword");
 		this.setNoRepair();
-		this.setMaxDamage(0);
 
 		maxEnergy = 320000;
 		maxTransfer = 1600;
@@ -96,6 +95,10 @@ public class ItemSwordGelidEnderium extends ItemSwordRF {
 				}
 			}
 		}
+
+		if (stack.getItemDamage() != stack.getMaxDamage() && stack.getItem() instanceof ItemSwordGelidEnderium) {
+			stack.setItemDamage(stack.getMaxDamage());
+		}
 	}
 
 	public void moveEntity(Entity ent, Vector3 target, double speed) {
@@ -124,35 +127,6 @@ public class ItemSwordGelidEnderium extends ItemSwordRF {
 	public boolean isDamaged(ItemStack stack) {
 		return stack.getItemDamage() != Short.MAX_VALUE;
 	}
-
-	//	@SideOnly(Side.CLIENT)
-	//	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
-	//		if (StringHelper.displayShiftForDetail && !KeyboardHelper.isShiftDown()) {
-	//			list.add(StringHelper.shiftForDetails());
-	//		}
-	//		if (!StringHelper.isShiftKeyDown()) {
-	//			return;
-	//		}
-	//		if (stack.stackTagCompound == null) {
-	//			EnergyHelper.setDefaultEnergyTag(stack, 0);
-	//		}
-	//		list.add(TextHelper.localize("info.cofh.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + maxEnergy + " RF");
-	//
-	//		list.add(TextHelper.ORANGE + getEnergyPerUse(stack) + " " + TextHelper.localize("info.redstonearsenal.tool.energyPerUse") + TextHelper.END);
-	//		if (isEmpowered(stack)) {
-	//			list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.cofh.press") + " " + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + TextHelper.localize("info.redstonearsenal.tool.chargeOff") + TextHelper.END);
-	//		} else {
-	//			list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.cofh.press") + " " + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + TextHelper.localize("info.redstonearsenal.tool.chargeOn") + TextHelper.END);
-	//		}
-	//		if (getEnergyStored(stack) >= getEnergyPerUse(stack)) {
-	//			list.add("");
-	//			list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.cofh.damageAttack") + TextHelper.END);
-	//			list.add(TextHelper.BRIGHT_GREEN + "+" + (isEmpowered(stack) ? damageCharged : 1) + " " + TextHelper.localize("info.cofh.damageFlux") + TextHelper.END);
-	//		}
-	//		if(KeyboardHelper.isShiftDown() && ConfigHandler.enableSwordSuckage) {
-	//			list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.ability") + TextHelper.localize("info.RArm.tooltip.ability.sword.magnet"));
-	//		}
-	//	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
