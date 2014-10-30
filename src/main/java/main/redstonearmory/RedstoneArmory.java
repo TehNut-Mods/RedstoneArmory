@@ -24,7 +24,7 @@ import net.minecraftforge.common.MinecraftForge;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-@Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION, dependencies = "required-after:Redstone Arsenal")
+@Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION, dependencies = "required-after:Redstone Arsenal;required-after:ttCore@[MC1.7.10-0.0.3-27,)")
 @NetworkMod(channels = ModInformation.CHANNEL, clientSideRequired = true, serverSideRequired = false)
 public class RedstoneArmory {
 
