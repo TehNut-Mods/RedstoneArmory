@@ -32,11 +32,36 @@ if (new File(projectDir, '.git').exists()) {
 
 repositories {
     maven { url 'http://maven.tterrag.com/' }
+	ivy {
+		name "CoFHLib"
+		artifactPattern "http://addons.cursecdn.com/files/2212/893/[module]-[revision].[ext]"
+	}
+	ivy {
+		name "CoFHCore"
+        artifactPattern "http://addons.cursecdn.com/files/2212/895/[module]-[revision].[ext]"
+    }
+	ivy {
+		name "RedstoneArsenal"
+        artifactPattern "http://addons.cursecdn.com/files/2212/448/[module]-[revision].[ext]"
+    }
+	ivy {
+		name "ThermalExpansion"
+        artifactPattern "http://addons.curse.cursecdn.com/files/2212/446/[module]-[revision].[ext]"
+    }
+	ivy {
+		name "ThermalFoundation"
+        artifactPattern "http://addons.curse.cursecdn.com/files/2212/444/[module]-[revision].[ext]"
+    }
 }
 
 dependencies {
     compile "tterrag.core:ttCore:${ttCore_version}"
     compile "tterrag.rtc:RecipeTweakingCore:${rtc_version}"
+	compile name: 'CoFHLib', version: '[1.7.10]1.0.0B6-dev-26', ext: 'jar'
+	compile name: 'CoFHCore', version: '[1.7.10]3.0.0B6-dev-32', ext: 'jar'
+	compile name: 'RedstoneArsenal', version: '[1.7.10]1.1.0B4-dev-10', ext: 'jar'
+	compile name: 'ThermalExpansion', version: '[1.7.10]4.0.0B5-dev-13', ext: 'jar'
+	compile name: 'ThermalFoundation', version: '[1.7.10]1.0.0B3-dev-8', ext: 'jar'
 }
 
 minecraft {
