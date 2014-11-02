@@ -15,16 +15,16 @@ Enhancing the Redstone (Flux) revolution!
 ##Dev setup
 
 ###Workspace Setup
-1. Clone and run `gradlew setupDecompWorkspace` then (if you use Eclipse) `gradlew eclipse` or (if you use IDEA) `gradlew idea`.
+1. Fork and run `gradlew setupDecompWorkspace` then (if you use Eclipse) `gradlew eclipse` or (if you use IDEA) `gradlew idea`. This process should automatically setup the libs listed below.
 2. Open in IDE of your choice.
-3. Set the libs folder as an external library. Add `-Dfml.coreMods.load=cofh.asm.LoadingPlugin` to your launch settings.
+3. Add `-Dfml.coreMods.load=cofh.asm.LoadingPlugin` to your launch settings.
 4. You should be all setup now.
 
 ###Dependencies
 All of these (must be deobfuscated) are required for the dev workspace to work correctly:
 
-* CoFHLib (Found on the CoFH CurseForge)
-* CoFHCore (Found on the CoFH CurseForge)
-* Redstone Arsenal (Found on the CoFH CurseForge)
-* Thermal Foundation (Found on the CoFH CurseForge)
+* CoFHLib (Automagically added to workspace with Ivy)
+* CoFHCore (Automagically added to workspace with Ivy)
+* Redstone Arsenal (Automagically added to workspace with Ivy)
+* Thermal Foundation (Automagically added to workspace with Ivy)
 * ttCore (Automagically added to workspace with Maven)
