@@ -84,6 +84,13 @@ tile.RArm.table.tinker.name=Tinker Table
 tile.RArm.light.invisible.name=Invisible Light
 
 #Tooltips
+info.RArm.tooltip.getenergy=Charge: %currentenergy% / %maxenergy% RF
+info.RArm.tooltip.peruse=%energyperuse% RF per use
+info.RArm.tooltip.extinguish=Press V to Quell
+info.RArm.tooltip.empower=Press V to Empower
+info.RArm.tooltip.damage=+%damage% Attack Damage
+info.RArm.tooltip.damage.flux=+%fluxdamage% Flux Damage
+
 info.RArm.tooltip.armor.lumium.shine=Shining bright like a Glowstone
 info.RArm.tooltip.armor.mithril.almost=Looks just like Rune,
 info.RArm.tooltip.armor.mithril.notquite=but not quite...

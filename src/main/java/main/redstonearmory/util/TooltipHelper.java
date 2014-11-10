@@ -15,26 +15,39 @@ public class TooltipHelper {
 
 	public static void doEnergyTip(ItemStack stack, EntityPlayer player, List list, int maxEnergy, int maxTransfer, int energyPerUse, int energyPerUseCharged) {
 
-		list.add(TextHelper.localize("info.cofh.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + maxEnergy + " RF");
+		// yay for easy yet stupid ways to do things :>
+		int currentEnergy = stack.stackTagCompound.getInteger("Energy"); // y u no allow .toString()?
+
+		String getCurrentEnergy = "" + currentEnergy;
+		String getMaxEnergy = "" + maxEnergy;
+		String getUseCharged = "" + getEnergyPerUse(stack, energyPerUse, energyPerUseCharged);
+
+		list.add(TextHelper.localize("info.RArm.tooltip.getenergy").replace("%currentenergy%", getCurrentEnergy).replace("%maxenergy%", getMaxEnergy));
 
 		if (isEmpowered(stack)) {
-			list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.cofh.press") + " " + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + TextHelper.localize("info.redstonearsenal.tool.chargeOff") + TextHelper.END);
-			list.add(TextHelper.ORANGE + getEnergyPerUse(stack, energyPerUse, energyPerUseCharged) + " " + TextHelper.localize("info.redstonearsenal.tool.energyPerUse") + TextHelper.END);
+			list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.RArm.tooltip.extinguish").replace("%key%", Keyboard.getKeyName(KeyBindingEmpower.instance.getKey())) + TextHelper.END);
+			list.add(TextHelper.ORANGE + TextHelper.localize("info.RArm.tooltip.peruse").replace("%energyperuse%", getUseCharged) + TextHelper.END);
 		} else {
-			list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.cofh.press") + " " + Keyboard.getKeyName(KeyBindingEmpower.instance.getKey()) + " " + TextHelper.localize("info.redstonearsenal.tool.chargeOn") + TextHelper.END);
-			list.add(TextHelper.ORANGE + getEnergyPerUse(stack, energyPerUse, energyPerUseCharged) + " " + TextHelper.localize("info.redstonearsenal.tool.energyPerUse") + TextHelper.END);
+			list.add(TextHelper.BRIGHT_BLUE + TextHelper.ITALIC + TextHelper.localize("info.RArm.tooltip.empower").replace("%key%", Keyboard.getKeyName(KeyBindingEmpower.instance.getKey())) + TextHelper.END);
+			list.add(TextHelper.ORANGE + TextHelper.localize("info.RArm.tooltip.peruse").replace("%energyperuse%", getUseCharged) + TextHelper.END);
 		}
 	}
 
 	public static void doDamageTip(ItemStack stack, EntityPlayer player, List list, int energyPerUse, int damage, int damageCharged) {
+		String getDamage = "" + damage;
+		String getDamageCharged = "" + damageCharged;
+
 		list.add("");
 
+		// I have no clue why it's changing fluxdamage to sluxdamage and damage to samage. Stupid fix for now :D
+
 		if (stack.stackTagCompound.getInteger("Energy") >= energyPerUse) {
-			list.add(TextHelper.LIGHT_BLUE + "+" + damage + " " + TextHelper.localize("info.cofh.damageAttack") + TextHelper.END);
-			if (isEmpowered(stack))
-				list.add(TextHelper.BRIGHT_GREEN + "+" + damageCharged + " " + TextHelper.localize("info.cofh.damageFlux") + TextHelper.END);
+			list.add(TextHelper.LIGHT_BLUE + TextHelper.localize("info.RArm.tooltip.damage").replace("%samage%", "%damage%").replace("%damage%", getDamage) + TextHelper.END);
+			if (isEmpowered(stack)) {
+				list.add(TextHelper.BRIGHT_GREEN + TextHelper.localize("info.RArm.tooltip.damage.flux").replace("%sluxdamage%", "%fluxdamage%").replace("%fluxdamage%", getDamageCharged) + TextHelper.END);
+			}
 		} else {
-			list.add(TextHelper.LIGHT_BLUE + "+" + 0 + " " + TextHelper.localize("info.cofh.damageAttack") + TextHelper.END);
+			list.add(TextHelper.LIGHT_BLUE + TextHelper.localize("info.RArm.tooltip.damage").replace("%samage%", "%damage%").replace("%damage%", "0") + TextHelper.END);
 		}
 	}
 

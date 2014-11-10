@@ -104,6 +104,11 @@ public class ItemEnderiumArmor extends ItemArmorRF {
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
 
+		int currentEnergy = stack.stackTagCompound.getInteger("Energy");
+
+		String getCurrentEnergy = "" + currentEnergy;
+		String getMaxEnergy = "" + maxEnergy;
+
 		if (StringHelper.displayShiftForDetail && !StringHelper.isShiftKeyDown()) {
 			list.add(StringHelper.shiftForDetails());
 		}
@@ -113,7 +118,7 @@ public class ItemEnderiumArmor extends ItemArmorRF {
 		if (stack.stackTagCompound == null) {
 			EnergyHelper.setDefaultEnergyTag(stack, 0);
 		}
-		list.add(StringHelper.localize("info.cofh.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + maxEnergy + " RF");
+		list.add(TextHelper.localize("info.RArm.tooltip.getenergy").replace("%currentenergy%", getCurrentEnergy).replace("%maxenergy%", getMaxEnergy));
 	}
 
 	@Override
