@@ -19,6 +19,8 @@ import net.minecraftforge.common.config.Configuration;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import tterrag.core.common.Handlers;
+import tterrag.core.common.compat.CompatabilityRegistry;
+import tterrag.core.common.util.RegisterTime;
 import tterrag.rtc.RecipeTweakingCore;
 
 @Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION, dependencies = ModInformation.REQUIRED, guiFactory = ModInformation.GUIFACTORY)
@@ -37,15 +39,19 @@ public class RedstoneArmory {
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 
-		ConfigHandler.init(event.getSuggestedConfigurationFile());
+		ConfigHandler.INSTANCE.initialize(event.getSuggestedConfigurationFile());
 
 		ItemRegistry.registerAllItems();
 		BlockRegistry.registerAllBlocks();
+//		TileRegistry.registerTileEntities();
+
 		OreDictHandler.registerOreDict();
 		Handlers.addPackage("main.redstonearmory");
 		if (Loader.isModLoaded("recipetweakingcore")) {
 			RecipeTweakingCore.registerPackageName("main.redstonearmory.tweaks");
 		}
+
+		CompatabilityRegistry.INSTANCE.registerCompat(RegisterTime.INIT, "main.redstonearmory.compat.SimplyJetpacksCompat", "simplyjetpacks");
 
 		proxy.load();
 	}
@@ -54,7 +60,7 @@ public class RedstoneArmory {
 	public void init(FMLInitializationEvent event) {
 		ItemRecipeRegistry.registerItemRecipes();
 		BlockRecipeRegistry.registerBlockRecipes();
-		//      PacketHandler.init();
+//      PacketHandler.init();
 	}
 
 	@Mod.EventHandler

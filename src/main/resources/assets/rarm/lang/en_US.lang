@@ -82,6 +82,10 @@ tile.RArm.random.lapis.purple.name=Lapis Quisque
 tile.RArm.random.nothing.name=Anti-Derp Protocol
 tile.RArm.table.tinker.name=Tinker Table
 tile.RArm.light.invisible.name=Invisible Light
+tile.RArm.solar.basic.name=Solar Panel (Basic)
+tile.RArm.solar.hardened.name=Solar Panel (Hardened)
+tile.RArm.solar.reinforced.name=Solar Panel (Reinforced)
+tile.RArm.solar.resonant.name=Solar Panel (Resonant)
 
 #Tooltips
 info.RArm.tooltip.getenergy=Charge: %currentenergy% / %maxenergy% RF
@@ -127,6 +131,7 @@ info.RArm.console.optifine=[EnviroChecks] Optifine detected. This may cause issu
 info.RArm.console.config.refresh=Refreshing configuration file.
 info.RArm.console.recipes.remove=Removing recipes
 info.RArm.console.recipes.remove.vanilla.armor=Vanilla Armor
+info.RArm.console.compat.simplyjetpacks=Registering compatability with SimplyJetpacks.
 
-#Gui
-gui.RArm.config.title=Redstone Armory Configuration
+#Config
+config.RArm.title=Redstone Armory Configuration

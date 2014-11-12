@@ -1,94 +1,100 @@
 package main.redstonearmory;
 
-import net.minecraftforge.common.config.Configuration;
+import tterrag.core.common.config.AbstractConfigHandler;
 
-import java.io.File;
+public class ConfigHandler extends AbstractConfigHandler {
 
-public class ConfigHandler {
+	public static final ConfigHandler INSTANCE = new ConfigHandler();
 
-	public static Configuration config;
+	private ConfigHandler() {
+		super(ModInformation.ID);
+	}
 
 	//sections to add to the config
-	public static String balances = "balances";
-	public static String crafting = "crafting";
-	public static String features = "features";
-	public static String general = "general";
+	public static final String balances = "balances";
+	public static final String crafting = "crafting";
+	public static final String features = "features";
+	public static final String general = "general";
+	public static final String compat = "compatability";
 
 	//options in the config
-	public static boolean enableGelidAxeCrafting;
-	public static boolean enableGelidBattleWrenchCrafting;
-	public static boolean enableGelidPickaxeCrafting;
-	public static boolean enableGelidShovelCrafting;
-	public static boolean enableGelidSickleCrafting;
-	public static boolean enableGelidSwordCrafting;
+	public static boolean enableGelidAxeCrafting = true;
+	public static boolean enableGelidBattleWrenchCrafting = true;
+	public static boolean enableGelidPickaxeCrafting = true;
+	public static boolean enableGelidShovelCrafting = true;
+	public static boolean enableGelidSickleCrafting = true;
+	public static boolean enableGelidSwordCrafting = true;
 
-	public static boolean enableEnderiumFluxArmorCrafting;
-	public static boolean enablePowersuitCrafting;
-	public static boolean enableLumiumArmorCrafting;
-	public static boolean enableMithrilArmorCrafting;
-	public static boolean enableTinkersAlloyArmorCrafting;
-	public static boolean enableTuberousArmorCrafting;
-	public static boolean overrideVanillaArmorRecipes;
+	public static boolean enableEnderiumFluxArmorCrafting = true;
+	public static boolean enablePowersuitCrafting = true;
+	public static boolean enableLumiumArmorCrafting = true;
+	public static boolean enableMithrilArmorCrafting = true;
+	public static boolean enableTinkersAlloyArmorCrafting = true;
+	public static boolean enableTuberousArmorCrafting = true;
+	public static boolean overrideVanillaArmorRecipes = false;
 
-	public static boolean enablePowersuit;
+	public static boolean enablePowersuit = false;
 
-	public static boolean enableAxeWeatherClear;
-	public static boolean enableAxeMultiBreak;
-	public static boolean enableAxeLightning;
-	public static boolean enablePickaxeEnderDislocation;
-	public static boolean enableSwordSuckage;
+	public static boolean enableAxeWeatherClear = true;
+	public static boolean enableAxeMultiBreak = true;
+	public static boolean enableAxeLightning = true;
+	public static boolean enablePickaxeEnderDislocation = true;
+	public static boolean enableSwordSuckage = true;
 
-	public static boolean enableEnviroCheckMessages;
-	public static boolean addNutsToys;
-	public static boolean enableDebugThingsAndStuff;
+	public static boolean enableEnviroCheckMessages = true;
+	public static boolean addNutsToys = true;
+	public static boolean enableDebugThingsAndStuff = false;
 
-	public static void init(File file) {
-		config = new Configuration(file);
+	public static boolean enableSimplyJetpacksCompat = true;
 
-		loadConfig();
-		syncConfig();
+	@Override
+	protected void init() {
+		addSection(balances, balances, "Balancing tweaks to fine tune the mod to how you want.");
+		addSection(crafting, crafting, "Toggling of ability to craft items.");
+		addSection(features, features, "Enabling and disabling of mod features.");
+		addSection(general, general, "General category for other stuff.");
+		addSection(compat, compat, "Mod integration settings.");
 	}
 
-	public static void loadConfig() {
-		config.load();
+	@Override
+	protected void reloadNonIngameConfigs() {
+
+		activateSection(crafting);
+		enableGelidAxeCrafting = getValue("enableGelidAxeCrafting", enableGelidAxeCrafting, RestartReqs.REQUIRES_MC_RESTART);
+		enableGelidBattleWrenchCrafting = getValue("enableGelidBattleWrenchCrafting", enableGelidBattleWrenchCrafting, RestartReqs.REQUIRES_MC_RESTART);
+		enableGelidPickaxeCrafting = getValue("enableGelidPickaxeCrafting", enableGelidPickaxeCrafting, RestartReqs.REQUIRES_MC_RESTART);
+		enableGelidShovelCrafting = getValue("enableGelidShovelCrafting", enableGelidShovelCrafting, RestartReqs.REQUIRES_MC_RESTART);
+		enableGelidSickleCrafting = getValue("enableGelidSickleCrafting", enableGelidSickleCrafting, RestartReqs.REQUIRES_MC_RESTART);
+		enableGelidSwordCrafting = getValue("enableGelidSwordCrafting", enableGelidSwordCrafting, RestartReqs.REQUIRES_MC_RESTART);
+
+		enableEnderiumFluxArmorCrafting = getValue("enableEnderiumFluxArmorCrafting", enableEnderiumFluxArmorCrafting, RestartReqs.REQUIRES_MC_RESTART);
+		enablePowersuitCrafting = getValue("enablePowersuitCrafting", enablePowersuitCrafting, RestartReqs.REQUIRES_MC_RESTART);
+		enableLumiumArmorCrafting = getValue("enableLumiumArmorCrafting", enableLumiumArmorCrafting, RestartReqs.REQUIRES_MC_RESTART);
+		enableMithrilArmorCrafting = getValue("enableMithrilArmorCrafting", enableMithrilArmorCrafting, RestartReqs.REQUIRES_MC_RESTART);
+		enableTinkersAlloyArmorCrafting = getValue("enableTinkersAlloyArmorCrafting", enableTinkersAlloyArmorCrafting, RestartReqs.REQUIRES_MC_RESTART);
+		enableTuberousArmorCrafting = getValue("enableTuberousArmorCrafting", enableTuberousArmorCrafting, RestartReqs.REQUIRES_MC_RESTART);
+		overrideVanillaArmorRecipes = getValue("overrideVanillaArmorRecipes", overrideVanillaArmorRecipes, RestartReqs.REQUIRES_MC_RESTART);
+
+		activateSection(features);
+		enablePowersuit = getValue("enablePowersuit", "Currently has a pretty major memory leak. I suggest not enabling this unless you know what you're doing.", enablePowersuit, RestartReqs.REQUIRES_MC_RESTART);
+
+		enableAxeMultiBreak = getValue("enableAxeMultiBreak", "Determines whether to add an AOE effect to empowered axes. [DEFAULT - TRUE]", enableAxeMultiBreak, RestartReqs.NONE);
+		enableAxeLightning = getValue("enableAxeLightning", "Determines whether to allow the axe to spawn lightning. [DEFAULT - TRUE]", enableAxeLightning, RestartReqs.NONE);
+		enableAxeWeatherClear = getValue("enableAxeWeatherClear", "Determines whether to allow the axe to clear weather. [DEFAULT - TRUE]", enableAxeWeatherClear, RestartReqs.NONE);
+		enablePickaxeEnderDislocation = getValue("enablePickaxeEnderDislocation", "Determines whether to allow the pickaxe to [DEFAULT - TRUE]", enablePickaxeEnderDislocation, RestartReqs.NONE);
+		enableSwordSuckage = getValue("enableSwordSuckage", "Determines whether to add magnet mode while blocking with the sword. [DEFAULT - TRUE]", enableSwordSuckage, RestartReqs.NONE);
+
+		activateSection(general);
+		enableEnviroCheckMessages = getValue("enableEnviroCheckMessages", "Enable environment check console logging. [DEFAULT - TRUE]", enableEnviroCheckMessages, RestartReqs.REQUIRES_MC_RESTART);
+		addNutsToys = getValue("addNutsToys", "Nut likes random things so Nut added random things. These won't change gameplay. [DEFAULT - TRUE]", addNutsToys, RestartReqs.REQUIRES_MC_RESTART);
+		enableDebugThingsAndStuff = getValue("enableDebugThingsAndStuff", "You probably don't want to enable this...", enableDebugThingsAndStuff, RestartReqs.REQUIRES_MC_RESTART);
+
+		activateSection(compat);
+		enableSimplyJetpacksCompat = getValue("enableSimplyJetpacksCompat", "Adds SimplyJetpacks integration", enableSimplyJetpacksCompat, RestartReqs.REQUIRES_MC_RESTART);
 	}
 
-	public static void syncConfig() {
-
-		config.addCustomCategoryComment(balances, "Balancing tweaks to fine tune the mod to how you want. These should be synced between the server and client, but it is not required. Clients will be confused if it isn't.");
-		config.addCustomCategoryComment(crafting, "Toggling of ability to craft items. All default to true");
-		config.addCustomCategoryComment(features, "Enabling and Disabling of mod features. These should be synced between the server and client, but it is not required. Clients will be confused if it isn't.");
-		config.addCustomCategoryComment(general, "General category for other stuff. These should be synced between the server and client, but it is not required. Clients will be confused if it isn't.");
-
-		enableGelidAxeCrafting = config.get(crafting, "enableGelidAxeCrafting", true).getBoolean(enableGelidAxeCrafting);
-		enableGelidBattleWrenchCrafting = config.get(crafting, "enableGelidBattleWrenchCrafting", true).getBoolean(enableGelidBattleWrenchCrafting);
-		enableGelidPickaxeCrafting = config.get(crafting, "enableGelidPickaxeCrafting", true).getBoolean(enableGelidPickaxeCrafting);
-		enableGelidShovelCrafting = config.get(crafting, "enableGelidShovelCrafting", true).getBoolean(enableGelidShovelCrafting);
-		enableGelidSickleCrafting = config.get(crafting, "enableGelidSickleCrafting", true).getBoolean(enableGelidSickleCrafting);
-		enableGelidSwordCrafting = config.get(crafting, "enableGelidSwordCrafting", true).getBoolean(enableGelidSwordCrafting);
-
-		enableEnderiumFluxArmorCrafting = config.get(crafting, "enableEnderiumFluxArmorCrafting", true).getBoolean(enableEnderiumFluxArmorCrafting);
-		enablePowersuitCrafting = config.get(crafting, "enablePowersuitCrafting", true).getBoolean(enablePowersuitCrafting);
-		enableLumiumArmorCrafting = config.get(crafting, "enableLumiumArmorCrafting", true).getBoolean(enableLumiumArmorCrafting);
-		enableMithrilArmorCrafting = config.get(crafting, "enableMithrilArmorCrafting", true).getBoolean(enableMithrilArmorCrafting);
-		enableTinkersAlloyArmorCrafting = config.get(crafting, "enableTinkersAlloyArmorCrafting", true).getBoolean(enableTinkersAlloyArmorCrafting);
-		enableTuberousArmorCrafting = config.get(crafting, "enableTuberousArmorCrafting", true).getBoolean(enableTuberousArmorCrafting);
-		overrideVanillaArmorRecipes = config.get(crafting, "overrideVanillaArmorRecipes", false, "Replaces ingots in Vanilla armor recipes with armor plating. [DEFAULT - FALSE] " + "WARNING: This makes all of the vanilla armor about 3x more expensive. Enable if you wish to have a \"harder\" experience. " + "This option requires RecipeTweakingCore by tterrag to be installed. " + "http://ci.tterrag.com/job/RecipeTweakingCore/").getBoolean(overrideVanillaArmorRecipes);
-
-		enablePowersuit = config.get(features, "enablePowersuit", false, "Currently has a pretty major memory leak. I suggest not enabling this unless you know what you're doing.").getBoolean(enablePowersuit);
-
-		enableAxeMultiBreak = config.get(features, "enableAxeMultiBreak", true, "Determines whether to add a multi-break effect to empowered axes. [DEFAULT - TRUE]").getBoolean(enableAxeMultiBreak);
-		enableAxeLightning = config.get(features, "enableAxeLightning", true, "Determines whether to allow the axe to spawn lightning. [DEFAULT - TRUE]").getBoolean(enableAxeLightning);
-		enableAxeWeatherClear = config.get(features, "enableAxeWeatherClear", true, "Determines whether to allow the axe to clear weather. [DEFAULT - TRUE]").getBoolean(enableAxeWeatherClear);
-		enablePickaxeEnderDislocation = config.get(features, "enablePickaxeEnderDislocation", true, "Determines whether to allow the pickaxe to [DEFAULT - TRUE]").getBoolean(enablePickaxeEnderDislocation);
-		enableSwordSuckage = config.get(features, "enableSwordSuckage", true, "Determines whether to add magnet mode while blocking with the sword. [DEFAULT - TRUE]").getBoolean(enableSwordSuckage);
-
-		enableEnviroCheckMessages = config.get(general, "enableEnviroCheckMessages", true, "Enable environment check console logging. [DEFAULT - TRUE]").getBoolean(enableEnviroCheckMessages);
-		addNutsToys = config.get(general, "addNutsToys", true, "Nut likes random things so Nut added random things. These won't change gameplay. [DEFAULT - TRUE]").getBoolean(addNutsToys);
-		enableDebugThingsAndStuff = config.get(general, "enableDebugThingsAndStuff", false, "You probably don't want to enable this...").getBoolean(enableDebugThingsAndStuff);
-
-		if (config.hasChanged()) {
-			config.save();
-		}
+	@Override
+	protected void reloadIngameConfigs() {
+		// Do stuff
 	}
 }
