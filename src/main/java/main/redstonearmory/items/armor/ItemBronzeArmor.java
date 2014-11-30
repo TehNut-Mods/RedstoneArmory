@@ -14,29 +14,33 @@ public class ItemBronzeArmor extends ItemArmorAdv {
 	public ItemBronzeArmor(ArmorMaterial material, int type) {
 
 		super(material, type);
-		this.isRepairable();
-		this.setRepairIngot("ingotBronze");
-		this.setCreativeTab(RedstoneArmory.tabRArm);
+		isRepairable();
+		setRepairIngot("ingotBronze");
+		setCreativeTab(RedstoneArmory.tabRArm);
 
 		switch (type) {
 			case 0: {
-				this.setTextureName(ModInformation.ID + ":armor/bronzeHelm");
-				this.setUnlocalizedName(ModInformation.ID + ".armor.bronze.helm");
+				setTextureName(ModInformation.ID + ":armor/bronzeHelm");
+				setUnlocalizedName(ModInformation.ID + ".armor.bronze.helm");
+				setMaxDamage(320);
 				break;
 			}
 			case 1: {
-				this.setTextureName(ModInformation.ID + ":armor/bronzeChestplate");
-				this.setUnlocalizedName(ModInformation.ID + ".armor.bronze.chestplate");
+				setTextureName(ModInformation.ID + ":armor/bronzeChestplate");
+				setUnlocalizedName(ModInformation.ID + ".armor.bronze.chestplate");
+				setMaxDamage(450);
 				break;
 			}
 			case 2: {
-				this.setTextureName(ModInformation.ID + ":armor/bronzeLeggings");
-				this.setUnlocalizedName(ModInformation.ID + ".armor.bronze.leggings");
+				setTextureName(ModInformation.ID + ":armor/bronzeLeggings");
+				setUnlocalizedName(ModInformation.ID + ".armor.bronze.leggings");
+				setMaxDamage(380);
 				break;
 			}
 			case 3: {
-				this.setTextureName(ModInformation.ID + ":armor/bronzeBoots");
-				this.setUnlocalizedName(ModInformation.ID + ".armor.bronze.boots");
+				setTextureName(ModInformation.ID + ":armor/bronzeBoots");
+				setUnlocalizedName(ModInformation.ID + ".armor.bronze.boots");
+				setMaxDamage(290);
 				break;
 			}
 		}

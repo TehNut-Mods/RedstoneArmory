@@ -32,8 +32,9 @@ public class ConfigHandler extends AbstractConfigHandler {
 	public static boolean enableTinkersAlloyArmorCrafting = true;
 	public static boolean enableTuberousArmorCrafting = true;
 	public static boolean overrideVanillaArmorRecipes = false;
+	public static boolean addCustomChainmailRecipe = true;
 
-	public static boolean enablePowersuit = false;
+	public static boolean enableTestingEnviro = false;
 
 	public static boolean enableAxeWeatherClear = true;
 	public static boolean enableAxeMultiBreak = true;
@@ -74,9 +75,10 @@ public class ConfigHandler extends AbstractConfigHandler {
 		enableTinkersAlloyArmorCrafting = getValue("enableTinkersAlloyArmorCrafting", enableTinkersAlloyArmorCrafting, RestartReqs.REQUIRES_MC_RESTART);
 		enableTuberousArmorCrafting = getValue("enableTuberousArmorCrafting", enableTuberousArmorCrafting, RestartReqs.REQUIRES_MC_RESTART);
 		overrideVanillaArmorRecipes = getValue("overrideVanillaArmorRecipes", overrideVanillaArmorRecipes, RestartReqs.REQUIRES_MC_RESTART);
+		addCustomChainmailRecipe = getValue("addCustomChainmailRecipe", "Adds a custom chainmail recipe using chainlink. Will nly be active if overrideVanillaArmorRecipes is false.", addCustomChainmailRecipe, RestartReqs.REQUIRES_MC_RESTART);
 
 		activateSection(features);
-		enablePowersuit = getValue("enablePowersuit", "Currently has a pretty major memory leak. I suggest not enabling this unless you know what you're doing.", enablePowersuit, RestartReqs.REQUIRES_MC_RESTART);
+		enableTestingEnviro = getValue("enableTestingEnviro", "This enables unfinished/broken features. For stable play, leave this disabled. Most of the things don't work, anyways.", enableTestingEnviro, RestartReqs.REQUIRES_MC_RESTART);
 
 		enableAxeMultiBreak = getValue("enableAxeMultiBreak", "Determines whether to add an AOE effect to empowered axes. [DEFAULT - TRUE]", enableAxeMultiBreak, RestartReqs.NONE);
 		enableAxeLightning = getValue("enableAxeLightning", "Determines whether to allow the axe to spawn lightning. [DEFAULT - TRUE]", enableAxeLightning, RestartReqs.NONE);

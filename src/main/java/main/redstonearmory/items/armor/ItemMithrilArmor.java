@@ -19,29 +19,33 @@ public class ItemMithrilArmor extends ItemArmorAdv {
 	public ItemMithrilArmor(ArmorMaterial material, int type) {
 
 		super(material, type);
-		this.isRepairable();
-		this.setRepairIngot("ingotMithril");
-		this.setCreativeTab(RedstoneArmory.tabRArm);
+		isRepairable();
+		setRepairIngot("ingotMithril");
+		setCreativeTab(RedstoneArmory.tabRArm);
 
 		switch (type) {
 			case 0: {
-				this.setTextureName(ModInformation.ID + ":armor/mithrilHelm");
-				this.setUnlocalizedName(ModInformation.ID + ".armor.mithril.helm");
+				setTextureName(ModInformation.ID + ":armor/mithrilHelm");
+				setUnlocalizedName(ModInformation.ID + ".armor.mithril.helm");
+				setMaxDamage(610);
 				break;
 			}
 			case 1: {
-				this.setTextureName(ModInformation.ID + ":armor/mithrilChestplate");
-				this.setUnlocalizedName(ModInformation.ID + ".armor.mithril.chestplate");
+				setTextureName(ModInformation.ID + ":armor/mithrilChestplate");
+				setUnlocalizedName(ModInformation.ID + ".armor.mithril.chestplate");
+				setMaxDamage(670);
 				break;
 			}
 			case 2: {
-				this.setTextureName(ModInformation.ID + ":armor/mithrilLeggings");
-				this.setUnlocalizedName(ModInformation.ID + ".armor.mithril.leggings");
+				setTextureName(ModInformation.ID + ":armor/mithrilLeggings");
+				setUnlocalizedName(ModInformation.ID + ".armor.mithril.leggings");
+				setMaxDamage(650);
 				break;
 			}
 			case 3: {
-				this.setTextureName(ModInformation.ID + ":armor/mithrilBoots");
-				this.setUnlocalizedName(ModInformation.ID + ".armor.mithril.boots");
+				setTextureName(ModInformation.ID + ":armor/mithrilBoots");
+				setUnlocalizedName(ModInformation.ID + ".armor.mithril.boots");
+				setMaxDamage(600);
 				break;
 			}
 		}

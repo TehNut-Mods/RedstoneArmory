@@ -21,29 +21,29 @@ public class ItemLumiumArmor extends ItemArmorAdv {
 	public ItemLumiumArmor(ArmorMaterial material, int type) {
 
 		super(material, type);
-		this.isRepairable();
-		this.setRepairIngot("ingotLumium");
-		this.setCreativeTab(RedstoneArmory.tabRArm);
+		isRepairable();
+		setRepairIngot("ingotLumium");
+		setCreativeTab(RedstoneArmory.tabRArm);
 
 		switch (type) {
 			case 0: {
-				this.setTextureName(ModInformation.ID + ":armor/lumiumHelm");
-				this.setUnlocalizedName(ModInformation.ID + ".armor.lumium.helm");
+				setTextureName(ModInformation.ID + ":armor/lumiumHelm");
+				setUnlocalizedName(ModInformation.ID + ".armor.lumium.helm");;
 				break;
 			}
 			case 1: {
-				this.setTextureName(ModInformation.ID + ":armor/lumiumChestplate");
-				this.setUnlocalizedName(ModInformation.ID + ".armor.lumium.chestplate");
+				setTextureName(ModInformation.ID + ":armor/lumiumChestplate");
+				setUnlocalizedName(ModInformation.ID + ".armor.lumium.chestplate");
 				break;
 			}
 			case 2: {
-				this.setTextureName(ModInformation.ID + ":armor/lumiumLeggings");
-				this.setUnlocalizedName(ModInformation.ID + ".armor.lumium.leggings");
+				setTextureName(ModInformation.ID + ":armor/lumiumLeggings");
+				setUnlocalizedName(ModInformation.ID + ".armor.lumium.leggings");
 				break;
 			}
 			case 3: {
-				this.setTextureName(ModInformation.ID + ":armor/lumiumBoots");
-				this.setUnlocalizedName(ModInformation.ID + ".armor.lumium.boots");
+				setTextureName(ModInformation.ID + ":armor/lumiumBoots");
+				setUnlocalizedName(ModInformation.ID + ".armor.lumium.boots");
 				break;
 			}
 		}

@@ -106,7 +106,7 @@ public class ItemRegistry {
 		armorEnderiumBoots = (ItemEnderiumArmor) new ItemEnderiumArmor(RAItems.ARMOR_MATERIAL_FLUX, 3);
 		GameRegistry.registerItem(armorEnderiumBoots, "ItemEnderiumArmor.Boots");
 
-		if (ConfigHandler.enablePowersuit) {
+		if (ConfigHandler.enableTestingEnviro) {
 			armorPowersuitHelm = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 0);
 			GameRegistry.registerItem(armorPowersuitHelm, "ItemPowersuit.Helm");
 			armorPowersuitChestplate = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 1);
