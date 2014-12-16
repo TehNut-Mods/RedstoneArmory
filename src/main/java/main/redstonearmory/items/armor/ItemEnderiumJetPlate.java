@@ -21,6 +21,7 @@ public class ItemEnderiumJetPlate extends ItemJetpack {
 	}
 
 	@Override
+	@SuppressWarnings("unchecked")
 	public void getSubItems(Item item, CreativeTabs tab, List list) {
 
 		list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, 0), 0));

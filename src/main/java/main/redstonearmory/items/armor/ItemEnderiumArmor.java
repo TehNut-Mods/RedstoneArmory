@@ -28,7 +28,7 @@ public class ItemEnderiumArmor extends ItemArmorRF {
 		super(material, type);
 		this.setNoRepair();
 		this.setCreativeTab(RedstoneArmory.tabRArm);
-		this.setMaxDamage(0);
+		this.setMaxDamage(5);
 
 		maxEnergy = 1000000;
 		energyPerDamage = 140;
@@ -93,7 +93,6 @@ public class ItemEnderiumArmor extends ItemArmorRF {
 
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
-
 		int currentEnergy = stack.stackTagCompound.getInteger("Energy");
 
 		String getCurrentEnergy = "" + currentEnergy;
