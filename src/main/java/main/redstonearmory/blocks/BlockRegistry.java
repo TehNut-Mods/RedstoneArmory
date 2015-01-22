@@ -3,7 +3,6 @@ package main.redstonearmory.blocks;
 import cpw.mods.fml.common.registry.GameRegistry;
 import main.redstonearmory.items.blocks.ItemBlockIngotStorage;
 import main.redstonearmory.items.blocks.ItemBlockRandomThings;
-import main.redstonearmory.items.blocks.ItemBlockSolars;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
