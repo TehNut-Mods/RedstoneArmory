@@ -33,10 +33,10 @@ public class ItemBattleWrenchGelidEnderium extends ItemWrenchBattleRF {
 
 	public ItemBattleWrenchGelidEnderium(ToolMaterial toolMaterial) {
 		super(toolMaterial);
-		this.setCreativeTab(RedstoneArmory.tabRArm);
-		this.setUnlocalizedName(ModInformation.ID + ".tool.enderium.gelid.battlewrench");
-		this.setNoRepair();
-		this.setMaxDamage(0);
+		setCreativeTab(RedstoneArmory.tabRArm);
+		setUnlocalizedName(ModInformation.ID + ".tool.enderium.gelid.battlewrench");
+		setNoRepair();
+		setMaxDamage(0);
 
 		damage = 7;
 		damageCharged = 1;

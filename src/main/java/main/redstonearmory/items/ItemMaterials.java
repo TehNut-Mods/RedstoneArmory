@@ -15,47 +15,18 @@ import java.util.List;
 
 public class ItemMaterials extends Item {
 
+	public String[] names = { "enderium.gelid.ingot", "enderium.gelid.nugget", "enderium.gelid.gem", "enderium.gelid.rod", "chainlink", "iron.nugget" };
 	public IIcon[] icon = new IIcon[16];
 
 	public ItemMaterials() {
-		this.setCreativeTab(RedstoneArmory.tabRArm);
-		this.setHasSubtypes(true);
-		this.setMaxDamage(0);
+		setCreativeTab(RedstoneArmory.tabRArm);
+		setHasSubtypes(true);
+		setMaxDamage(0);
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack itemstack) {
-		String name;
-		switch (itemstack.getItemDamage()) {
-			case 0: {
-				name = "enderium.gelid.ingot";
-				break;
-			}
-			case 1: {
-				name = "enderium.gelid.nugget";
-				break;
-			}
-			case 2: {
-				name = "enderium.gelid.gem";
-				break;
-			}
-			case 3: {
-				name = "enderium.gelid.rod";
-				break;
-			}
-			case 4: {
-				name = "chainlink";
-				break;
-			}
-			case 5: {
-				name = "iron.nugget";
-				break;
-			}
-			default:
-				name = "nothing";
-				break;
-		}
-		return getUnlocalizedName() + ".material." + name;
+	public String getUnlocalizedName(ItemStack stack) {
+		return getUnlocalizedName() + ".material." + names[stack.getItemDamage() % names.length];
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -83,27 +54,29 @@ public class ItemMaterials extends Item {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public String getItemStackDisplayName(ItemStack itemStack) {
-		switch (itemStack.getItemDamage()) {
+	public String getItemStackDisplayName(ItemStack stack) {
+		switch (stack.getItemDamage()) {
 			case 0: {
-				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(stack);
 			}
 			case 1: {
-				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(stack);
 			}
 			case 2: {
-				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(stack);
 			}
 			case 3: {
-				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(stack);
 			}
 			case 4: {
-				return TextHelper.END + super.getItemStackDisplayName(itemStack);
+				return TextHelper.END + super.getItemStackDisplayName(stack);
 			}
 			case 5: {
-				return TextHelper.END + super.getItemStackDisplayName(itemStack);
+				return TextHelper.END + super.getItemStackDisplayName(stack);
+			}
+			default: {
+				return super.getItemStackDisplayName(stack);
 			}
 		}
-		return super.getItemStackDisplayName(itemStack);
 	}
 }

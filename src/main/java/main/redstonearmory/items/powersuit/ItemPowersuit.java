@@ -27,9 +27,9 @@ public class ItemPowersuit extends ItemArmorRF {
 
 	public ItemPowersuit(ArmorMaterial armorMaterial, int type) {
 		super(armorMaterial, type);
-		this.setNoRepair();
-		this.setCreativeTab(RedstoneArmory.tabRArm);
-		this.setMaxDamage(0);
+		setNoRepair();
+		setCreativeTab(RedstoneArmory.tabRArm);
+		setMaxDamage(0);
 
 		MinecraftForge.EVENT_BUS.register(this);
 

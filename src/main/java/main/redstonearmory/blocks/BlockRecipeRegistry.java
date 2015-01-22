@@ -1,21 +1,25 @@
 package main.redstonearmory.blocks;
 
 import cpw.mods.fml.common.registry.GameRegistry;
+import main.redstonearmory.util.RecipeUtils;
+import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
+import net.minecraftforge.oredict.ShapelessOreRecipe;
 
 @SuppressWarnings("all")
 public class BlockRecipeRegistry {
 
 	private static void registerShapedRecipes() {
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.ingotStorage, 1, 0), new Object[]{"III", "III", "III", 'I', "ingotGelidEnderium"}));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.tinkerTable), new Object[]{"PPP", "DCD", "PPP", 'P', "platingCraftFull", 'D', "gemDiamond", 'C', new ItemStack(Blocks.crafting_table)}));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.randomBlocks, 1, 0), new Object[]{" D ", "DLD", " D ", 'D', "dyePurple", 'L', "blockLapis"}));
+
+		RecipeUtils.addStepUpRecipe(new ItemStack(BlockRegistry.ingotStorage, 1, 0), "ingotGelidEnderium");
+		if (BlockRegistry.tinkerTable != null)
+			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.tinkerTable), "PPP", "DCD", "PPP", 'P', "platingCraftFull", 'D', "gemDiamond", 'C', Blocks.crafting_table));
 	}
 
 	private static void registerShaplessRecipes() {
-
+		GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(BlockRegistry.randomBlocks, 1, 0), "dyePurple", "blockLapis"));
 	}
 
 	public static void registerBlockRecipes() {

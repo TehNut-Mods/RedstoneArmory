@@ -15,12 +15,12 @@ import java.util.List;
 public class ItemArmorPlatingVanilla extends Item {
 
 	public IIcon[] icon = new IIcon[16];
-	private static final String[] names = {"leather", "iron", "chain", "gold", "diamond"};
+	private static final String[] names = { "leather", "iron", "chain", "gold", "diamond" };
 
 	public ItemArmorPlatingVanilla() {
-		this.setCreativeTab(RedstoneArmory.tabRArm);
-		this.setHasSubtypes(true);
-		this.setMaxDamage(0);
+		setCreativeTab(RedstoneArmory.tabRArm);
+		setHasSubtypes(true);
+		setMaxDamage(0);
 	}
 
 	@Override

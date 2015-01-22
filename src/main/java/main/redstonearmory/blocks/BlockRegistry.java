@@ -12,12 +12,10 @@ import static main.redstonearmory.ConfigHandler.enableTestingEnviro;
 
 public class BlockRegistry {
 
-	//blocks
+	// Blocks
 	public static Block ingotStorage;
 	public static Block randomBlocks;
 	public static Block invisiLight;
-
-	public static Block solars;
 
 	public static Block tinkerTable;
 
@@ -33,9 +31,6 @@ public class BlockRegistry {
 		}
 
 		if (enableTestingEnviro) {
-			solars = new BlockSolars();
-			GameRegistry.registerBlock(solars, ItemBlockSolars.class, "BlockSolars");
-
 			tinkerTable = new BlockTinkerTable(Material.iron);
 			GameRegistry.registerBlock(tinkerTable, "BlockTinkerTable");
 		}

@@ -33,10 +33,10 @@ public class ItemSickleGelidEnderium extends ItemSickleRF {
 
 	public ItemSickleGelidEnderium(ToolMaterial toolMaterial) {
 		super(toolMaterial);
-		this.setCreativeTab(RedstoneArmory.tabRArm);
-		this.setUnlocalizedName(ModInformation.ID + ".tool.enderium.gelid.sickle");
-		this.setNoRepair();
-		this.setMaxDamage(0);
+		setCreativeTab(RedstoneArmory.tabRArm);
+		setUnlocalizedName(ModInformation.ID + ".tool.enderium.gelid.sickle");
+		setNoRepair();
+		setMaxDamage(0);
 
 		maxEnergy = 320000;
 		energyPerUse = 350;

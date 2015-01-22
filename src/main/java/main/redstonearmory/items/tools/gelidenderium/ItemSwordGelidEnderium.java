@@ -36,9 +36,9 @@ public class ItemSwordGelidEnderium extends ItemSwordRF {
 	public ItemSwordGelidEnderium(ToolMaterial toolMaterial) {
 
 		super(toolMaterial);
-		this.setCreativeTab(RedstoneArmory.tabRArm);
-		this.setUnlocalizedName(ModInformation.ID + ".tool.enderium.gelid.sword");
-		this.setNoRepair();
+		setCreativeTab(RedstoneArmory.tabRArm);
+		setUnlocalizedName(ModInformation.ID + ".tool.enderium.gelid.sword");
+		setNoRepair();
 
 		maxEnergy = 320000;
 		maxTransfer = 1600;

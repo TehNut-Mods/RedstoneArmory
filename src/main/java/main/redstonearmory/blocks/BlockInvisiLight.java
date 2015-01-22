@@ -25,7 +25,7 @@ public class BlockInvisiLight extends BlockContainer {
 		this.setStepSound(soundTypeCloth);
 		this.setBlockBounds(0, 0, 0, 0, 0, 0);
 		this.getLightValue();
-		//		this.setCreativeTab(RedstoneArmory.tabRArm);
+//		this.setCreativeTab(RedstoneArmory.tabRArm);
 		this.setBlockName(ModInformation.ID + ".light.invisible");
 	}
 

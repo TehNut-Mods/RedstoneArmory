@@ -16,12 +16,12 @@ import java.util.List;
 public class ItemArmorPlating extends Item {
 
 	public IIcon[] icon = new IIcon[16];
-	private static final String[] names = {"enderium", "lumium", "mithril", "bronze", "tuberous", "crafting.empty", "crafting.full"};
+	private static final String[] names = { "enderium", "lumium", "mithril", "bronze", "tuberous", "crafting.empty", "crafting.full" };
 
 	public ItemArmorPlating() {
-		this.setCreativeTab(RedstoneArmory.tabRArm);
-		this.setHasSubtypes(true);
-		this.setMaxDamage(0);
+		setCreativeTab(RedstoneArmory.tabRArm);
+		setHasSubtypes(true);
+		setMaxDamage(0);
 	}
 
 	@Override
@@ -55,20 +55,20 @@ public class ItemArmorPlating extends Item {
 
 	@SideOnly(Side.CLIENT)
 	@Override
-	public String getItemStackDisplayName(ItemStack itemStack) {
+	public String getItemStackDisplayName(ItemStack stack) {
 
-		switch (itemStack.getItemDamage()) {
+		switch (stack.getItemDamage()) {
 			case 0: {
-				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(stack);
 			}
 			case 1: {
-				return TextHelper.YELLOW + super.getItemStackDisplayName(itemStack);
+				return TextHelper.YELLOW + super.getItemStackDisplayName(stack);
 			}
 			case 2: {
-				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(stack);
 			}
 			default: {
-				return TextHelper.WHITE + super.getItemStackDisplayName(itemStack);
+				return super.getItemStackDisplayName(stack);
 			}
 		}
 	}

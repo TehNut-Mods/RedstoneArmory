@@ -8,6 +8,7 @@ import net.minecraft.item.ItemStack;
 
 public class ItemBlockIngotStorage extends ItemBlock {
 
+	private static final String[] names = { "enderium.gelid.ingot", "gem.gelid" };
 
 	public ItemBlockIngotStorage(Block block) {
 		super(block);
@@ -20,21 +21,8 @@ public class ItemBlockIngotStorage extends ItemBlock {
 	}
 
 	@Override
-	public String getUnlocalizedName(ItemStack itemstack) {
-		String name = "";
-		switch (itemstack.getItemDamage()) {
-			case 0: {
-				name = "enderium.gelid.ingot";
-				break;
-			}
-			case 1: {
-				name = "gem.gelid";
-				break;
-			}
-			default:
-				name = "nothing";
-		}
-		return getUnlocalizedName() + "." + name;
+	public String getUnlocalizedName(ItemStack stack) {
+		return getUnlocalizedName() + "." + names[stack.getItemDamage() % names.length];
 	}
 
 	@Override

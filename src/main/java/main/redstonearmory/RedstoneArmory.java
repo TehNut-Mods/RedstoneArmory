@@ -51,7 +51,9 @@ public class RedstoneArmory {
 			RecipeTweakingCore.registerPackageName("main.redstonearmory.tweaks");
 		}
 
-		CompatabilityRegistry.INSTANCE.registerCompat(RegisterTime.INIT, "main.redstonearmory.compat.SimplyJetpacksCompat", "simplyjetpacks");
+		if (ConfigHandler.enableSimplyJetpacksCompat)
+			CompatabilityRegistry.INSTANCE.registerCompat(RegisterTime.INIT, "main.redstonearmory.compat.SimplyJetpacksCompat", "simplyjetpacks");
+		CompatabilityRegistry.INSTANCE.registerCompat(RegisterTime.POSTINIT, "main.redstonearmory.compat.ThermalExpansionCompat", "ThermalExpansion");
 
 		proxy.load();
 	}
@@ -67,6 +69,5 @@ public class RedstoneArmory {
 	public void postInit(FMLPostInitializationEvent event) {
 
 		ItemRecipeRegistry.registerLateItemRecipes();
-		EnviroChecks.verifyEnviro();
 	}
 }
