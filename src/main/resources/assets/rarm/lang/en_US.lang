@@ -127,11 +127,9 @@ info.RArm.chat.armor.powersuit.active=Active:
 key.RArm.bind.powersuitActivate=Activate Powersuit
 
 #Console
-info.RArm.console.optifine=[EnviroChecks] Optifine detected. This may cause issues.
-info.RArm.console.config.refresh=Refreshing configuration file.
 info.RArm.console.recipes.remove=Removing recipes
 info.RArm.console.recipes.remove.vanilla.armor=Vanilla Armor
-info.RArm.console.compat.simplyjetpacks=Registering compatability with SimplyJetpacks.
+info.RArm.console.compat.thermalexpansion=Registering compatability with ThermalExpansion.
 
 #Config
 config.RArm.title=Redstone Armory Configuration

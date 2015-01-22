@@ -47,12 +47,9 @@ public class RedstoneArmory {
 
 		OreDictHandler.registerOreDict();
 		Handlers.addPackage("main.redstonearmory");
-		if (Loader.isModLoaded("recipetweakingcore")) {
+		if (Loader.isModLoaded("recipetweakingcore"))
 			RecipeTweakingCore.registerPackageName("main.redstonearmory.tweaks");
-		}
 
-		if (ConfigHandler.enableSimplyJetpacksCompat)
-			CompatabilityRegistry.INSTANCE.registerCompat(RegisterTime.INIT, "main.redstonearmory.compat.SimplyJetpacksCompat", "simplyjetpacks");
 		CompatabilityRegistry.INSTANCE.registerCompat(RegisterTime.POSTINIT, "main.redstonearmory.compat.ThermalExpansionCompat", "ThermalExpansion");
 
 		proxy.load();
