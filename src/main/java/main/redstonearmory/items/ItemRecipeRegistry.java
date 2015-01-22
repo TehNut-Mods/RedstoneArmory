@@ -144,7 +144,11 @@ public class ItemRecipeRegistry {
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 1), new Object[]{"NNN", "GIG", "NNN", 'N', "nuggetLumium", 'G', "dustRedstone", 'I', "ingotLumium"}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 2), new Object[]{"NNN", "GIG", "NNN", 'N', "nuggetMithril", 'G', "dustRedstone", 'I', "ingotMithril"}));
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 3), new Object[]{"NNN", "GIG", "NNN", 'N', "nuggetBronze", 'G', "dustRedstone", 'I', "ingotBronze"}));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 4), new Object[]{"PPP", "DCD", "PPP", 'P', new ItemStack(Items.potato), 'D', "dustRedstone", 'C', TEItems.capacitorPotato}));
+		if(Loader.isModLoaded("ThermalExpansion")) {
+		  GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 4), new Object[]{"PPP", "DCD", "PPP", 'P', new ItemStack(Items.potato), 'D', "dustRedstone", 'C', TEItems.capacitorPotato}));
+		} else {
+      GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 4), new Object[]{"PPP", "DLD", "PPP", 'P', new ItemStack(Items.potato), 'D', "dustRedstone", 'L', "ingotLead"}));
+		}
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 5), new Object[]{"NNN", "GIG", "NNN", 'N', "nuggetIron", 'G', "dustRedstone", 'I', "ingotIron"}));
 
 		//temporary mana bucket recipe until CoFH add one

@@ -8,7 +8,7 @@ import main.redstonearmory.items.armor.ItemEnderiumJetPlate;
 import main.redstonearmory.util.TextHelper;
 import net.minecraft.item.Item;
 import tonius.simplyjetpacks.item.ItemIndex;
-import tonius.simplyjetpacks.setup.SJItems;
+import tonius.simplyjetpacks.setup.ModItems;
 import tterrag.core.common.compat.ICompatability;
 
 public class SimplyJetpacksCompat implements ICompatability {
@@ -20,7 +20,7 @@ public class SimplyJetpacksCompat implements ICompatability {
 	}
 
 	private static void registerItems() {
-		enderiumJetPlate = new ItemEnderiumJetPlate(ItemIndex.COMMON, SJItems.ModType.THERMAL_EXPANSION);
+		enderiumJetPlate = new ItemEnderiumJetPlate(ItemIndex.COMMON, ModItems.ModType.THERMAL_EXPANSION);
 		// Need to specify mod ID here or else it will register as a ttCore item.
 		GameRegistry.registerItem(enderiumJetPlate, "ItemEnderiumJetplate", ModInformation.ID);
 	}

@@ -8,13 +8,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import tonius.simplyjetpacks.item.ItemIndex;
 import tonius.simplyjetpacks.item.ItemJetpack;
-import tonius.simplyjetpacks.setup.SJItems;
+import tonius.simplyjetpacks.setup.ModItems;
 
 import java.util.List;
 
 public class ItemEnderiumJetPlate extends ItemJetpack {
 
-	public ItemEnderiumJetPlate(ItemIndex index, SJItems.ModType modType) {
+	public ItemEnderiumJetPlate(ItemIndex index, ModItems.ModType modType) {
 		super(index, modType);
 		this.setUnlocalizedName(ModInformation.ID + "jetpack");
 		this.setCreativeTab(RedstoneArmory.tabRArm);
