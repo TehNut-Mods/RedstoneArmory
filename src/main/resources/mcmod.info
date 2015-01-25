@@ -3,14 +3,14 @@
   "modid": "RArm",
   "name": "Redstone Armory",
   "description": "Enhancing the Flux Revolution!",
-  "version": "1.10",
-  "mcversion": "1.7.10",
-  "url": "",
-  "updateUrl": "",
-  "authorList": ["TehNut, Tombenpotter"],
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "http://tehnut.info/",
+  "updateUrl": "http://tehnut.info/jenkins/",
+  "authorList": [ "TehNut, Tombenpotter" ],
   "credits": "Team CoFH",
   "logoFile": "/assets/rarm/textures/logo.png",
-  "screenshots": [],
-  "requiredMods": [ "ThermalExpansion", "ThermalFoundation", "RedstoneArsenal" ]
+  "screenshots": [ ],
+  "requiredMods": [ "ThermalExpansion", "ThermalFoundation", "RedstoneArsenal", "ttCore", "recipetweakingcore" ]
 }
 ]

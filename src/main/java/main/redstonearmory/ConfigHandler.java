@@ -15,7 +15,7 @@ public class ConfigHandler extends AbstractConfigHandler {
 	public static final String crafting = "crafting";
 	public static final String features = "features";
 	public static final String general = "general";
-	public static final String compat = "compatability";
+//	public static final String compat = "compatability";
 
 	//options in the config
 	public static boolean enableGelidAxeCrafting = true;
@@ -46,7 +46,7 @@ public class ConfigHandler extends AbstractConfigHandler {
 	public static boolean addNutsToys = true;
 	public static boolean enableDebugThingsAndStuff = false;
 
-	public static boolean enableSimplyJetpacksCompat = true;
+//	public static boolean enableSimplyJetpacksCompat = true;
 
 	@Override
 	protected void init() {
@@ -54,7 +54,7 @@ public class ConfigHandler extends AbstractConfigHandler {
 		addSection(crafting, crafting, "Toggling of ability to craft items.");
 		addSection(features, features, "Enabling and disabling of mod features.");
 		addSection(general, general, "General category for other stuff.");
-		addSection(compat, compat, "Mod integration settings.");
+//		addSection(compat, compat, "Mod integration settings.");
 	}
 
 	@Override
@@ -91,8 +91,8 @@ public class ConfigHandler extends AbstractConfigHandler {
 		addNutsToys = getValue("addNutsToys", "Nut likes random things so Nut added random things. These won't change gameplay. [DEFAULT - TRUE]", addNutsToys, RestartReqs.REQUIRES_MC_RESTART);
 		enableDebugThingsAndStuff = getValue("enableDebugThingsAndStuff", "You probably don't want to enable this...", enableDebugThingsAndStuff, RestartReqs.REQUIRES_MC_RESTART);
 
-		activateSection(compat);
-		enableSimplyJetpacksCompat = getValue("enableSimplyJetpacksCompat", "Adds SimplyJetpacks integration", enableSimplyJetpacksCompat, RestartReqs.REQUIRES_MC_RESTART);
+//		activateSection(compat);
+//		enableSimplyJetpacksCompat = getValue("enableSimplyJetpacksCompat", "Adds SimplyJetpacks integration", enableSimplyJetpacksCompat, RestartReqs.REQUIRES_MC_RESTART);
 	}
 
 	@Override
