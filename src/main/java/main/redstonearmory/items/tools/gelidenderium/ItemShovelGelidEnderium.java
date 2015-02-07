@@ -20,7 +20,7 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.BonemealEvent;
-import redstonearsenal.item.tool.ItemShovelRF;
+import cofh.redstonearsenal.item.tool.ItemShovelRF;
 
 import java.util.List;
 

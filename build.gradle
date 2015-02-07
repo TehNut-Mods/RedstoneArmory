@@ -34,34 +34,34 @@ repositories {
     maven { url 'http://maven.tterrag.com/' }
 	ivy {
 		name "CoFHLib"
-		artifactPattern "http://addons.cursecdn.com/files/2218/257/[module]-[revision].[ext]"
+		artifactPattern "http://addons.cursecdn.com/files/2226/536/[module]-[revision].[ext]"
 	}
 	ivy {
 		name "CoFHCore"
-        artifactPattern "http://addons.cursecdn.com/files/2218/330/[module]-[revision].[ext]"
+        artifactPattern "http://addons.cursecdn.com/files/2226/539/[module]-[revision].[ext]"
     }
 	ivy {
 		name "RedstoneArsenal"
-        artifactPattern "http://addons.cursecdn.com/files/2218/261/[module]-[revision].[ext]"
+        artifactPattern "http://addons.cursecdn.com/files/2226/543/[module]-[revision].[ext]"
     }
 	ivy {
 		name "ThermalExpansion"
-        artifactPattern "http://addons.curse.cursecdn.com/files/2218/263/[module]-[revision].[ext]"
+        artifactPattern "http://addons.curse.cursecdn.com/files/2221/850/[module]-[revision].[ext]"
     }
 	ivy {
 		name "ThermalFoundation"
-        artifactPattern "http://addons.curse.cursecdn.com/files/2212/444/[module]-[revision].[ext]"
+        artifactPattern "http://addons.curse.cursecdn.com/files/2225/832/[module]-[revision].[ext]"
     }
 }
 
 dependencies {
     compile "tterrag.core:ttCore:${ttCore_version}:deobf"
     compile "tterrag.rtc:RecipeTweakingCore:${rtc_version}:deobf"
-	compile name: 'CoFHLib', version: "${cofhlib_version}", ext: 'jar'
-	compile name: 'CoFHCore', version: "${cofhcore_version}", ext: 'jar'
-	compile name: 'RedstoneArsenal', version: "${rars_version}", ext: 'jar'
-	compile name: 'ThermalExpansion', version: "${texpansion_version}", ext: 'jar'
-	compile name: 'ThermalFoundation', version: "${tfoundation_version}", ext: 'jar'
+  	compile name: 'CoFHLib', version: "${cofhlib_version}", ext: 'jar'
+  	compile name: 'CoFHCore', version: "${cofhcore_version}", ext: 'jar'
+  	compile name: 'RedstoneArsenal', version: "${rars_version}", ext: 'jar'
+  	compile name: 'ThermalExpansion', version: "${texpansion_version}", ext: 'jar'
+  	compile name: 'ThermalFoundation', version: "${tfoundation_version}", ext: 'jar'
 }
 
 minecraft {
@@ -102,19 +102,19 @@ jar {
     )
 }
 
-// add a source jar
+// Source jar
 task sourceJar(type: Jar) {
     from sourceSets.main.allSource
     classifier = 'sources'
 }
 
-// add a javadoc jar
+// Javadoc jar
 task javadocJar(type: Jar, dependsOn: javadoc) {
     from javadoc.destinationDir
     classifier = 'javadoc'
 }
 
-// because the normal output has been made to be obfuscated
+// Deobfuscated jar
 task deobfJar(type: Jar) {
     from sourceSets.main.output
     classifier = 'deobf'

@@ -1,30 +1,15 @@
 package main.redstonearmory.items;
 
-import cofh.api.modhelpers.ThermalExpansionHelper;
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
-import main.redstonearmory.RedstoneArmory;
-import main.redstonearmory.blocks.BlockRegistry;
 import main.redstonearmory.util.EnviroChecks;
 import main.redstonearmory.util.RecipeUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.CraftingManager;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
-import redstonearsenal.item.RAItems;
-import thermalexpansion.item.TEItems;
+import cofh.redstonearsenal.item.RAItems;
 import thermalfoundation.item.TFItems;
-import tterrag.core.common.event.ItemStackEvent;
-
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
 
 import static main.redstonearmory.ConfigHandler.*;
 

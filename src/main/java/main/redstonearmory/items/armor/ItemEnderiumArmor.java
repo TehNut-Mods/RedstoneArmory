@@ -13,7 +13,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import redstonearsenal.item.armor.ItemArmorRF;
+import cofh.redstonearsenal.item.armor.ItemArmorRF;
 
 import java.util.List;
 

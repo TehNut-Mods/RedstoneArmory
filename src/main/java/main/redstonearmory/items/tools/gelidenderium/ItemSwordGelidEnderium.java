@@ -19,7 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import redstonearsenal.item.tool.ItemSwordRF;
+import cofh.redstonearsenal.item.tool.ItemSwordRF;
 
 import java.util.Iterator;
 import java.util.List;

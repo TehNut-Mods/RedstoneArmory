@@ -10,7 +10,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import redstonearsenal.item.RAItems;
+import cofh.redstonearsenal.item.RAItems;
 import thermalexpansion.item.TEItems;
 import thermalfoundation.item.TFItems;
 import tterrag.core.common.compat.ICompatability;

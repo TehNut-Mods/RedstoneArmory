@@ -19,7 +19,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
-import redstonearsenal.item.armor.ItemArmorRF;
+import cofh.redstonearsenal.item.armor.ItemArmorRF;
 
 import java.util.List;
 

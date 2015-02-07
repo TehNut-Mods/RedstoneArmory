@@ -17,7 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import redstonearsenal.item.tool.ItemSickleRF;
+import cofh.redstonearsenal.item.tool.ItemSickleRF;
 
 import java.util.List;
 

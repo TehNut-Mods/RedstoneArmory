@@ -11,7 +11,7 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemTool;
 import net.minecraftforge.common.util.EnumHelper;
-import redstonearsenal.item.RAItems;
+import cofh.redstonearsenal.item.RAItems;
 
 public class ItemRegistry {
 

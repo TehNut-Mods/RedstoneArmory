@@ -20,7 +20,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import redstonearsenal.item.tool.ItemPickaxeRF;
+import cofh.redstonearsenal.item.tool.ItemPickaxeRF;
 
 import java.util.List;
 import java.util.Random;

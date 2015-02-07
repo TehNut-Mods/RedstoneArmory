@@ -15,7 +15,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import redstonearsenal.item.tool.ItemWrenchBattleRF;
+import cofh.redstonearsenal.item.tool.ItemWrenchBattleRF;
 
 import java.util.List;
 import java.util.Random;

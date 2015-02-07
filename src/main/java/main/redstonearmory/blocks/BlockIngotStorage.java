@@ -9,7 +9,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import redstonearsenal.block.BlockStorage;
+import cofh.redstonearsenal.block.BlockStorage;
 
 import java.util.List;
 
