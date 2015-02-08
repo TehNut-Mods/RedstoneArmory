@@ -13,6 +13,16 @@ import java.util.List;
 @SuppressWarnings("unchecked")
 public class TooltipHelper {
 
+    /**
+     *
+     * @param stack - ItemStack to apply to.
+     * @param player - The player.
+     * @param list - The list to add to.
+     * @param maxEnergy - Max stack energy.
+     * @param maxTransfer - Max stack transfer rate.
+     * @param energyPerUse - Energy per use of stack.
+     * @param energyPerUseCharged - Energy per use of stack while charged
+     */
 	public static void doEnergyTip(ItemStack stack, EntityPlayer player, List list, int maxEnergy, int maxTransfer, int energyPerUse, int energyPerUseCharged) {
 
 		// yay for easy yet stupid ways to do things :>
@@ -33,6 +43,15 @@ public class TooltipHelper {
 		}
 	}
 
+    /**
+     *
+     * @param stack - ItemStack to apply to.
+     * @param player - The player.
+     * @param list - The list to add to.
+     * @param energyPerUse - Energy per use of stack.
+     * @param damage - Damage the stack inflicts.
+     * @param damageCharged - Damage the stack inflicts while charged.
+     */
 	public static void doDamageTip(ItemStack stack, EntityPlayer player, List list, int energyPerUse, int damage, int damageCharged) {
 		String getDamage = "" + damage;
 		String getDamageCharged = "" + damageCharged;
@@ -51,10 +70,22 @@ public class TooltipHelper {
 		}
 	}
 
+    /**
+     *
+     * @param stack - ItemStack to check for empowerment.
+     * @return - If the stack is empowered.
+     */
 	private static boolean isEmpowered(ItemStack stack) {
 		return stack.getTagCompound().getBoolean("Empowered");
 	}
 
+    /**
+     *
+     * @param stack - ItemStack to check.
+     * @param energyPerUse - Energy per use of stack.
+     * @param energyPerUseCharged - Energy per use of stack while charged.
+     * @return
+     */
 	private static int getEnergyPerUse(ItemStack stack, int energyPerUse, int energyPerUseCharged) {
 
 		int unbreakingLevel = MathHelper.clampI(EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, stack), 0, 4);

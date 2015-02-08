@@ -28,6 +28,11 @@ public class TextHelper {
 	public static final String ITALIC = (char) 167 + "o";
 	public static final String END = (char) 167 + "r";
 
+    /**
+     *
+     * @param key - Unlocalized string to localize.
+     * @return - Localized String.
+     */
 	public static String localize(String key) {
 		return StatCollector.translateToLocal(key);
 	}

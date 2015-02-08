@@ -53,30 +53,30 @@ public class ItemRecipeTweaks {
 	public static void addRecipes() {
 		// Add unified armor recipes
 		if (ConfigHandler.overrideVanillaArmorRecipes) {
-			GameRegistry.addShapedRecipe(new ItemStack(Items.leather_helmet), new Object[]{"PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 0)});
-			GameRegistry.addShapedRecipe(new ItemStack(Items.leather_chestplate), new Object[]{"P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 0)});
-			GameRegistry.addShapedRecipe(new ItemStack(Items.leather_leggings), new Object[]{"PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 0)});
-			GameRegistry.addShapedRecipe(new ItemStack(Items.leather_boots), new Object[]{"P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 0)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.leather_helmet), "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 0));
+			GameRegistry.addShapedRecipe(new ItemStack(Items.leather_chestplate), "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 0));
+			GameRegistry.addShapedRecipe(new ItemStack(Items.leather_leggings), "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 0));
+			GameRegistry.addShapedRecipe(new ItemStack(Items.leather_boots), "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 0));
 
-			GameRegistry.addShapedRecipe(new ItemStack(Items.iron_helmet), new Object[]{"PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 1)});
-			GameRegistry.addShapedRecipe(new ItemStack(Items.iron_chestplate), new Object[]{"P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 1)});
-			GameRegistry.addShapedRecipe(new ItemStack(Items.iron_leggings), new Object[]{"PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 1)});
-			GameRegistry.addShapedRecipe(new ItemStack(Items.iron_boots), new Object[]{"P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 1)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.iron_helmet), "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 1));
+			GameRegistry.addShapedRecipe(new ItemStack(Items.iron_chestplate), "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 1));
+			GameRegistry.addShapedRecipe(new ItemStack(Items.iron_leggings), "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 1));
+			GameRegistry.addShapedRecipe(new ItemStack(Items.iron_boots), "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 1));
 
-			GameRegistry.addShapedRecipe(new ItemStack(Items.chainmail_helmet), new Object[]{"PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 2)});
-			GameRegistry.addShapedRecipe(new ItemStack(Items.chainmail_chestplate), new Object[]{"P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 2)});
-			GameRegistry.addShapedRecipe(new ItemStack(Items.chainmail_leggings), new Object[]{"PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 2)});
-			GameRegistry.addShapedRecipe(new ItemStack(Items.chainmail_boots), new Object[]{"P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 2)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.chainmail_helmet), "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 2));
+			GameRegistry.addShapedRecipe(new ItemStack(Items.chainmail_chestplate), "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 2));
+			GameRegistry.addShapedRecipe(new ItemStack(Items.chainmail_leggings), "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 2));
+			GameRegistry.addShapedRecipe(new ItemStack(Items.chainmail_boots), "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 2));
 
-			GameRegistry.addShapedRecipe(new ItemStack(Items.golden_helmet), new Object[]{"PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 3)});
-			GameRegistry.addShapedRecipe(new ItemStack(Items.golden_chestplate), new Object[]{"P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 3)});
-			GameRegistry.addShapedRecipe(new ItemStack(Items.golden_leggings), new Object[]{"PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 3)});
-			GameRegistry.addShapedRecipe(new ItemStack(Items.golden_boots), new Object[]{"P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 3)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.golden_helmet), "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 3));
+			GameRegistry.addShapedRecipe(new ItemStack(Items.golden_chestplate), "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 3));
+			GameRegistry.addShapedRecipe(new ItemStack(Items.golden_leggings), "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 3));
+			GameRegistry.addShapedRecipe(new ItemStack(Items.golden_boots), "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 3));
 
-			GameRegistry.addShapedRecipe(new ItemStack(Items.diamond_helmet), new Object[]{"PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 4)});
-			GameRegistry.addShapedRecipe(new ItemStack(Items.diamond_chestplate), new Object[]{"P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 4)});
-			GameRegistry.addShapedRecipe(new ItemStack(Items.diamond_leggings), new Object[]{"PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 4)});
-			GameRegistry.addShapedRecipe(new ItemStack(Items.diamond_boots), new Object[]{"P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 4)});
+			GameRegistry.addShapedRecipe(new ItemStack(Items.diamond_helmet), "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 4));
+			GameRegistry.addShapedRecipe(new ItemStack(Items.diamond_chestplate), "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 4));
+			GameRegistry.addShapedRecipe(new ItemStack(Items.diamond_leggings), "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 4));
+			GameRegistry.addShapedRecipe(new ItemStack(Items.diamond_boots), "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 4));
 		}
 	}
 }
