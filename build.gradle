@@ -34,23 +34,23 @@ repositories {
     maven { url 'http://maven.tterrag.com/' }
 	ivy {
 		name "CoFHLib"
-		artifactPattern "http://addons.cursecdn.com/files/2226/536/[module]-[revision].[ext]"
+		artifactPattern "http://addons.cursecdn.com/files/2227/885/[module]-[revision].[ext]"
 	}
 	ivy {
 		name "CoFHCore"
-        artifactPattern "http://addons.cursecdn.com/files/2226/539/[module]-[revision].[ext]"
+        artifactPattern "http://addons.cursecdn.com/files/2227/888/[module]-[revision].[ext]"
     }
 	ivy {
 		name "RedstoneArsenal"
-        artifactPattern "http://addons.cursecdn.com/files/2226/543/[module]-[revision].[ext]"
+        artifactPattern "http://addons.cursecdn.com/files/2227/810/[module]-[revision].[ext]"
     }
 	ivy {
 		name "ThermalExpansion"
-        artifactPattern "http://addons.curse.cursecdn.com/files/2221/850/[module]-[revision].[ext]"
+        artifactPattern "http://addons.curse.cursecdn.com/files/2227/901/[module]-[revision].[ext]"
     }
 	ivy {
 		name "ThermalFoundation"
-        artifactPattern "http://addons.curse.cursecdn.com/files/2225/832/[module]-[revision].[ext]"
+        artifactPattern "http://addons.curse.cursecdn.com/files/2227/828/[module]-[revision].[ext]"
     }
 }
 

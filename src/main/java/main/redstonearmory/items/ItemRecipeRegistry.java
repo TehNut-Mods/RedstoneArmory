@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cofh.redstonearsenal.item.RAItems;
-import thermalfoundation.item.TFItems;
+import cofh.thermalfoundation.item.TFItems;
 
 import static main.redstonearmory.ConfigHandler.*;
 
