@@ -10,6 +10,7 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cofh.redstonearsenal.item.RAItems;
 import cofh.thermalfoundation.item.TFItems;
+import tterrag.core.common.transform.TTCorePlugin;
 
 import static main.redstonearmory.ConfigHandler.*;
 
@@ -29,51 +30,31 @@ public class ItemRecipeRegistry {
 			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorEnderiumLeggings, 1), "PLP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, -1), 'L', RAItems.armorFluxLegs);
 			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorEnderiumBoots, 1), "P P", "PBP", 'P', new ItemStack(ItemRegistry.armorPlating, 1, -1), 'B', RAItems.armorFluxBoots);
 		}
-		if (enablePowersuitCrafting && enableTestingEnviro && ItemRegistry.armorPowersuitChestplate != null) {
+		if (!TTCorePlugin.runtimeDeobfEnabled && enableTestingEnviro && ItemRegistry.armorPowersuitChestplate != null) {
 			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorPowersuitHelm, 1), "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 6));
 			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorPowersuitChestplate, 1), "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 6));
 			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorPowersuitLeggings, 1), "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 6));
 			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorPowersuitBoots, 1), "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 6));
 		}
 		if (enableLumiumArmorCrafting) {
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorLumiumHelm, 1), "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 1));
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorLumiumChestplate, 1), "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 1));
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorLumiumLeggings, 1), "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 1));
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorLumiumBoots, 1), "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 1));
-		}
-		if (enableMithrilArmorCrafting) {
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorMithrilHelm, 1), "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 2));
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorMithrilChestplate, 1), "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 2));
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorMithrilLeggings, 1), "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 2));
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorMithrilBoots, 1), "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 2));
-		}
-		if (enableTinkersAlloyArmorCrafting) {
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorBronzeHelm, 1), "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 3));
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorBronzeChestplate, 1), "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 3));
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorBronzeLeggings, 1), "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 3));
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorBronzeBoots, 1), "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 3));
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorLumiumHelm, 1), "PPP", "P P", 'P', TFItems.ingotLumium);
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorLumiumChestplate, 1), "P P", "PPP", "PPP", 'P', TFItems.ingotLumium);
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorLumiumLeggings, 1), "PPP", "P P", "P P", 'P', TFItems.ingotLumium);
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorLumiumBoots, 1), "P P", "P P", 'P', TFItems.ingotLumium);
 		}
 		if (enableTuberousArmorCrafting) {
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousHelm, 1), "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 4));
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousChestplate, 1), "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 4));
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousLeggings, 1), "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 4));
-			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousBoots, 1), "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 4));
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousHelm, 1), "PPP", "P P", 'P', new ItemStack(Items.potato));
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousChestplate, 1), "P P", "PPP", "PPP", 'P', new ItemStack(Items.potato));
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousLeggings, 1), "PPP", "P P", "P P", 'P', new ItemStack(Items.potato));
+			GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousBoots, 1), "P P", "P P", 'P', new ItemStack(Items.potato));
 		}
 
 		// Add a recipe for Chainmail
-		if (!overrideVanillaArmorRecipes && addCustomChainmailRecipe) {
+		if (addCustomChainmailRecipe) {
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.chainmail_helmet), "LLL", "L L", 'L', "chainLink"));
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.chainmail_chestplate), "L L", "LLL", "LLL", 'L', "chainLink"));
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.chainmail_leggings), "LLL", "L L", "L L", 'L', "chainLink"));
 			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.chainmail_boots), "L L", "L L", 'L', "chainLink"));
-		}
-
-		if (overrideVanillaArmorRecipes) {
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 0), "NNN", "INI", "NNN", 'N', "stickWood", 'I', "leather"));
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 1), "NNN", "INI", "NNN", 'N', "nuggetIron", 'I', "ingotIron"));
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 2), "NNN", "INI", "NNN", 'N', "nuggetIron", 'I', "chainLink"));
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 3), "NNN", "INI", "NNN", 'N', "nuggetIron", 'I', "ingotGold"));
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlatingVanilla, 1, 4), "NNN", "INI", "NNN", 'N', "nuggetIron", 'I', "gemDiamond"));
 		}
 	}
 
@@ -122,12 +103,8 @@ public class ItemRecipeRegistry {
 
 		//armor plating
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 0), "NNN", "GIG", "NNN", 'N', "nuggetEnderium", 'G', "gemCrystalFlux", 'I', "ingotEnderium"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 1), "NNN", "GIG", "NNN", 'N', "nuggetLumium", 'G', "dustRedstone", 'I', "ingotLumium"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 2), "NNN", "GIG", "NNN", 'N', "nuggetMithril", 'G', "dustRedstone", 'I', "ingotMithril"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 3), "NNN", "GIG", "NNN", 'N', "nuggetBronze", 'G', "dustRedstone", 'I', "ingotBronze"));
-		if(!EnviroChecks.isTELoaded())
-      		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 4), "PPP", "DLD", "PPP", 'P', Items.potato, 'D', "dustRedstone", 'L', "ingotLead"));
-		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 5), "NNN", "GIG", "NNN", 'N', "nuggetIron", 'G', "dustRedstone", 'I', "ingotIron"));
+        if (!TTCorePlugin.runtimeDeobfEnabled && enableTestingEnviro && ItemRegistry.armorPowersuitChestplate != null)
+		    GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 1), "NNN", "GIG", "NNN", 'N', "chainLink", 'G', "dustRedstone", 'I', "ingotIron"));
 
 		//temporary mana bucket recipe until CoFH add one
 		GameRegistry.addShapelessRecipe(TFItems.bucketMana, TFItems.bucketCryotheum, TFItems.bucketEnder, TFItems.bucketPyrotheum, TFItems.bucketRedstone, TFItems.bucketCoal, TFItems.bucketGlowstone);

@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.RedstoneArmory;
+import main.redstonearmory.util.KeyboardHelper;
 import main.redstonearmory.util.TextHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -77,8 +78,11 @@ public class ItemTuberousArmor extends ItemArmorAdv {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
-		list.add(TextHelper.END);
-		list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.armor.tuberous.clever.1"));
-		list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.armor.tuberous.clever.2"));
+
+        if (KeyboardHelper.isShiftDown()) {
+            list.add(TextHelper.END);
+            list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.armor.tuberous.clever.1"));
+            list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.armor.tuberous.clever.2"));
+        }
 	}
 }

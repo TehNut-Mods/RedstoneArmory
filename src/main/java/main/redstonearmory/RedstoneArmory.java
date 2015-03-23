@@ -1,6 +1,5 @@
 package main.redstonearmory;
 
-import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -12,7 +11,6 @@ import main.redstonearmory.gui.CreativeTabRArm;
 import main.redstonearmory.items.ItemRecipeRegistry;
 import main.redstonearmory.items.ItemRegistry;
 import main.redstonearmory.proxies.CommonProxy;
-import main.redstonearmory.util.EnviroChecks;
 import main.redstonearmory.util.OreDictHandler;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
@@ -21,7 +19,6 @@ import org.apache.logging.log4j.Logger;
 import tterrag.core.common.Handlers;
 import tterrag.core.common.compat.CompatabilityRegistry;
 import tterrag.core.common.util.RegisterTime;
-import tterrag.rtc.RecipeTweakingCore;
 
 @Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION, dependencies = ModInformation.REQUIRED, guiFactory = ModInformation.GUIFACTORY)
 public class RedstoneArmory {
@@ -47,8 +44,6 @@ public class RedstoneArmory {
 
 		OreDictHandler.registerOreDict();
 		Handlers.addPackage("main.redstonearmory");
-		if (Loader.isModLoaded("recipetweakingcore"))
-			RecipeTweakingCore.registerPackageName("main.redstonearmory.tweaks");
 
 		CompatabilityRegistry.INSTANCE.registerCompat(RegisterTime.POSTINIT, "main.redstonearmory.compat.ThermalExpansionCompat", "ThermalExpansion");
 

@@ -26,13 +26,10 @@ public class ConfigHandler extends AbstractConfigHandler {
 	public static boolean enableGelidSwordCrafting = true;
 
 	public static boolean enableEnderiumFluxArmorCrafting = true;
-	public static boolean enablePowersuitCrafting = true;
+//	public static boolean enablePowersuitCrafting = false;
 	public static boolean enableLumiumArmorCrafting = true;
-	public static boolean enableMithrilArmorCrafting = true;
-	public static boolean enableTinkersAlloyArmorCrafting = true;
 	public static boolean enableTuberousArmorCrafting = true;
-	public static boolean overrideVanillaArmorRecipes = false;
-	public static boolean addCustomChainmailRecipe = true;
+	public static boolean addCustomChainmailRecipe = false;
 
 	public static boolean enableTestingEnviro = false;
 
@@ -69,12 +66,9 @@ public class ConfigHandler extends AbstractConfigHandler {
 		enableGelidSwordCrafting = getValue("enableGelidSwordCrafting", enableGelidSwordCrafting, RestartReqs.REQUIRES_MC_RESTART);
 
 		enableEnderiumFluxArmorCrafting = getValue("enableEnderiumFluxArmorCrafting", enableEnderiumFluxArmorCrafting, RestartReqs.REQUIRES_MC_RESTART);
-		enablePowersuitCrafting = getValue("enablePowersuitCrafting", enablePowersuitCrafting, RestartReqs.REQUIRES_MC_RESTART);
+//		enablePowersuitCrafting = getValue("enablePowersuitCrafting", enablePowersuitCrafting, RestartReqs.REQUIRES_MC_RESTART);
 		enableLumiumArmorCrafting = getValue("enableLumiumArmorCrafting", enableLumiumArmorCrafting, RestartReqs.REQUIRES_MC_RESTART);
-		enableMithrilArmorCrafting = getValue("enableMithrilArmorCrafting", enableMithrilArmorCrafting, RestartReqs.REQUIRES_MC_RESTART);
-		enableTinkersAlloyArmorCrafting = getValue("enableTinkersAlloyArmorCrafting", enableTinkersAlloyArmorCrafting, RestartReqs.REQUIRES_MC_RESTART);
 		enableTuberousArmorCrafting = getValue("enableTuberousArmorCrafting", enableTuberousArmorCrafting, RestartReqs.REQUIRES_MC_RESTART);
-		overrideVanillaArmorRecipes = getValue("overrideVanillaArmorRecipes", overrideVanillaArmorRecipes, RestartReqs.REQUIRES_MC_RESTART);
 		addCustomChainmailRecipe = getValue("addCustomChainmailRecipe", "Adds a custom chainmail recipe using chainlink. Will nly be active if overrideVanillaArmorRecipes is false.", addCustomChainmailRecipe, RestartReqs.REQUIRES_MC_RESTART);
 
 		activateSection(features);
