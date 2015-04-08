@@ -79,17 +79,20 @@ public class ItemAxeGelidEnderium extends ItemAxeRF {
 		}
 		EntityPlayer player = (EntityPlayer) entity;
 
-		if (block.getMaterial() == Material.wood && isEmpowered(stack)) {
-			for (int i = x - 2; i <= x + 2; i++) {
-				for (int k = z - 2; k <= z + 2; k++) {
-					for (int j = y - 2; j <= y + 2; j++) {
-						if (world.getBlock(i, j, k).getMaterial() == Material.wood) {
-							harvestBlock(world, i, j, k, player);
-						}
-					}
-				}
-			}
-		}
+        if (ConfigHandler.enableAxeMultiBreak) {
+            if (block.getMaterial() == Material.wood && isEmpowered(stack)) {
+                for (int i = x - 2; i <= x + 2; i++) {
+                    for (int k = z - 2; k <= z + 2; k++) {
+                        for (int j = y - 2; j <= y + 2; j++) {
+                            if (world.getBlock(i, j, k).getMaterial() == Material.wood) {
+                                harvestBlock(world, i, j, k, player);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
 		if (!player.capabilities.isCreativeMode) {
 			useEnergy(stack, false);
 		}

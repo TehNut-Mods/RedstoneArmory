@@ -1,49 +1,70 @@
 package main.redstonearmory;
 
 import tterrag.core.common.config.AbstractConfigHandler;
+import tterrag.core.common.config.ConfigProcessor;
+import tterrag.core.common.config.ConfigProcessor.IReloadCallback;
+import tterrag.core.common.config.annot.Comment;
+import tterrag.core.common.config.annot.Config;
+import tterrag.core.common.config.annot.NoSync;
+import tterrag.core.common.config.annot.RestartReq;
 
-public class ConfigHandler extends AbstractConfigHandler {
+public class ConfigHandler extends AbstractConfigHandler implements IReloadCallback {
 
 	public static final ConfigHandler INSTANCE = new ConfigHandler();
+    public static ConfigProcessor processor;
 
 	private ConfigHandler() {
 		super(ModInformation.ID);
 	}
 
-	//sections to add to the config
+	// Categories
 	public static final String balances = "balances";
 	public static final String crafting = "crafting";
 	public static final String features = "features";
 	public static final String general = "general";
-//	public static final String compat = "compatability";
 
-	//options in the config
+	// Settings
+    @Config(crafting) @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
 	public static boolean enableGelidAxeCrafting = true;
+    @Config(crafting) @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
 	public static boolean enableGelidBattleWrenchCrafting = true;
+    @Config(crafting) @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
 	public static boolean enableGelidPickaxeCrafting = true;
+    @Config(crafting) @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
 	public static boolean enableGelidShovelCrafting = true;
+    @Config(crafting) @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
 	public static boolean enableGelidSickleCrafting = true;
+    @Config(crafting) @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
 	public static boolean enableGelidSwordCrafting = true;
 
+    @Config(crafting) @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
 	public static boolean enableEnderiumFluxArmorCrafting = true;
-//	public static boolean enablePowersuitCrafting = false;
+    @Config(crafting) @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
 	public static boolean enableLumiumArmorCrafting = true;
+    @Config(crafting) @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
 	public static boolean enableTuberousArmorCrafting = true;
+    @Config(crafting) @RestartReq(RestartReqs.REQUIRES_MC_RESTART) @Comment("Adds a custom chainmail recipe using chainlink.")
 	public static boolean addCustomChainmailRecipe = false;
-
+    @Config(crafting) @RestartReq(RestartReqs.REQUIRES_MC_RESTART) @Comment("This enables unfinished/broken features. For stable play, leave this disabled. Most of the things don't work, anyways.")
 	public static boolean enableTestingEnviro = false;
 
+    @Config(features) @RestartReq(RestartReqs.NONE) @Comment("Determines whether to allow the axe to clear weather.")
 	public static boolean enableAxeWeatherClear = true;
+    @Config(features) @RestartReq(RestartReqs.NONE) @Comment("Determines whether to add an AOE effect to empowered axes.")
 	public static boolean enableAxeMultiBreak = true;
+    @Config(features) @RestartReq(RestartReqs.NONE) @Comment("Determines whether to allow the axe to spawn lightning.")
 	public static boolean enableAxeLightning = true;
+    @Config(features) @RestartReq(RestartReqs.NONE) @Comment("Determines whether to allow the pickaxe to teleport mundane Stone blocks.")
 	public static boolean enablePickaxeEnderDislocation = true;
+    @Config(features) @RestartReq(RestartReqs.NONE) @Comment("Determines whether to add magnet mode while blocking with the sword.")
 	public static boolean enableSwordSuckage = true;
 
-	public static boolean enableEnviroCheckMessages = true;
+    @Config(general) @RestartReq(RestartReqs.NONE) @Comment("Enable environment check console logging.") @NoSync
+	public static boolean enableConsoleLogging = true;
+    @Config(general) @RestartReq(RestartReqs.REQUIRES_MC_RESTART) @Comment("Nut likes random things so Nut added random things. These won't change gameplay.")
 	public static boolean addNutsToys = true;
+    @Config(general) @RestartReq(RestartReqs.REQUIRES_MC_RESTART) @Comment("You probably don't want to enable this...")
 	public static boolean enableDebugThingsAndStuff = false;
-
-//	public static boolean enableSimplyJetpacksCompat = true;
 
 	@Override
 	protected void init() {
@@ -51,46 +72,23 @@ public class ConfigHandler extends AbstractConfigHandler {
 		addSection(crafting, crafting, "Toggling of ability to craft items.");
 		addSection(features, features, "Enabling and disabling of mod features.");
 		addSection(general, general, "General category for other stuff.");
-//		addSection(compat, compat, "Mod integration settings.");
+
+        processor = new ConfigProcessor(getClass(), this, this);
+        processor.process(true);
 	}
 
 	@Override
 	protected void reloadNonIngameConfigs() {
-
-		activateSection(crafting);
-		enableGelidAxeCrafting = getValue("enableGelidAxeCrafting", enableGelidAxeCrafting, RestartReqs.REQUIRES_MC_RESTART);
-		enableGelidBattleWrenchCrafting = getValue("enableGelidBattleWrenchCrafting", enableGelidBattleWrenchCrafting, RestartReqs.REQUIRES_MC_RESTART);
-		enableGelidPickaxeCrafting = getValue("enableGelidPickaxeCrafting", enableGelidPickaxeCrafting, RestartReqs.REQUIRES_MC_RESTART);
-		enableGelidShovelCrafting = getValue("enableGelidShovelCrafting", enableGelidShovelCrafting, RestartReqs.REQUIRES_MC_RESTART);
-		enableGelidSickleCrafting = getValue("enableGelidSickleCrafting", enableGelidSickleCrafting, RestartReqs.REQUIRES_MC_RESTART);
-		enableGelidSwordCrafting = getValue("enableGelidSwordCrafting", enableGelidSwordCrafting, RestartReqs.REQUIRES_MC_RESTART);
-
-		enableEnderiumFluxArmorCrafting = getValue("enableEnderiumFluxArmorCrafting", enableEnderiumFluxArmorCrafting, RestartReqs.REQUIRES_MC_RESTART);
-//		enablePowersuitCrafting = getValue("enablePowersuitCrafting", enablePowersuitCrafting, RestartReqs.REQUIRES_MC_RESTART);
-		enableLumiumArmorCrafting = getValue("enableLumiumArmorCrafting", enableLumiumArmorCrafting, RestartReqs.REQUIRES_MC_RESTART);
-		enableTuberousArmorCrafting = getValue("enableTuberousArmorCrafting", enableTuberousArmorCrafting, RestartReqs.REQUIRES_MC_RESTART);
-		addCustomChainmailRecipe = getValue("addCustomChainmailRecipe", "Adds a custom chainmail recipe using chainlink. Will nly be active if overrideVanillaArmorRecipes is false.", addCustomChainmailRecipe, RestartReqs.REQUIRES_MC_RESTART);
-
-		activateSection(features);
-		enableTestingEnviro = getValue("enableTestingEnviro", "This enables unfinished/broken features. For stable play, leave this disabled. Most of the things don't work, anyways.", enableTestingEnviro, RestartReqs.REQUIRES_MC_RESTART);
-
-		enableAxeMultiBreak = getValue("enableAxeMultiBreak", "Determines whether to add an AOE effect to empowered axes. [DEFAULT - TRUE]", enableAxeMultiBreak, RestartReqs.NONE);
-		enableAxeLightning = getValue("enableAxeLightning", "Determines whether to allow the axe to spawn lightning. [DEFAULT - TRUE]", enableAxeLightning, RestartReqs.NONE);
-		enableAxeWeatherClear = getValue("enableAxeWeatherClear", "Determines whether to allow the axe to clear weather. [DEFAULT - TRUE]", enableAxeWeatherClear, RestartReqs.NONE);
-		enablePickaxeEnderDislocation = getValue("enablePickaxeEnderDislocation", "Determines whether to allow the pickaxe to [DEFAULT - TRUE]", enablePickaxeEnderDislocation, RestartReqs.NONE);
-		enableSwordSuckage = getValue("enableSwordSuckage", "Determines whether to add magnet mode while blocking with the sword. [DEFAULT - TRUE]", enableSwordSuckage, RestartReqs.NONE);
-
-		activateSection(general);
-		enableEnviroCheckMessages = getValue("enableEnviroCheckMessages", "Enable environment check console logging. [DEFAULT - TRUE]", enableEnviroCheckMessages, RestartReqs.REQUIRES_MC_RESTART);
-		addNutsToys = getValue("addNutsToys", "Nut likes random things so Nut added random things. These won't change gameplay. [DEFAULT - TRUE]", addNutsToys, RestartReqs.REQUIRES_MC_RESTART);
-		enableDebugThingsAndStuff = getValue("enableDebugThingsAndStuff", "You probably don't want to enable this...", enableDebugThingsAndStuff, RestartReqs.REQUIRES_MC_RESTART);
-
-//		activateSection(compat);
-//		enableSimplyJetpacksCompat = getValue("enableSimplyJetpacksCompat", "Adds SimplyJetpacks integration", enableSimplyJetpacksCompat, RestartReqs.REQUIRES_MC_RESTART);
+        // Do stuff
 	}
 
 	@Override
 	protected void reloadIngameConfigs() {
 		// Do stuff
 	}
+
+    @Override
+    public void callback(ConfigProcessor inst) {
+
+    }
 }

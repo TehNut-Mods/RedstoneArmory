@@ -27,7 +27,6 @@ public class RedstoneArmory {
 	public static CommonProxy proxy;
 
 	public static CreativeTabs tabRArm = new CreativeTabRArm(ModInformation.ID + ".creativeTab");
-	public static Logger logger = LogManager.getLogger(ModInformation.NAME);
 
 	@Mod.Instance
 	public static RedstoneArmory instance;
@@ -40,7 +39,6 @@ public class RedstoneArmory {
 
 		ItemRegistry.registerAllItems();
 		BlockRegistry.registerAllBlocks();
-//		TileRegistry.registerTileEntities();
 
 		OreDictHandler.registerOreDict();
 		Handlers.addPackage("main.redstonearmory");

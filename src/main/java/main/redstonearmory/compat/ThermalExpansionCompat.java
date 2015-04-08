@@ -4,6 +4,7 @@ import cofh.api.modhelpers.ThermalExpansionHelper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.items.ItemRegistry;
+import main.redstonearmory.util.LogHelper;
 import main.redstonearmory.util.TextHelper;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -18,7 +19,7 @@ import tterrag.core.common.compat.ICompatability;
 public class ThermalExpansionCompat implements ICompatability {
 
     public static void load() {
-        RedstoneArmory.logger.info(TextHelper.localize("info.RArm.console.compat.thermalexpansion"));
+        LogHelper.info(TextHelper.localize("info.RArm.console.compat.thermalexpansion"));
         registerTERecipes();
     }
 
