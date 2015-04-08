@@ -7,6 +7,7 @@ import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.TextHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -16,7 +17,7 @@ import java.util.List;
 public class ItemMaterials extends Item {
 
 	public String[] names = { "enderium.gelid.ingot", "enderium.gelid.nugget", "enderium.gelid.gem", "enderium.gelid.rod", "chainlink", "iron.nugget" };
-	public IIcon[] icon = new IIcon[16];
+	public IIcon[] icon = new IIcon[names.length];
 
 	public ItemMaterials() {
 		setCreativeTab(RedstoneArmory.tabRArm);
@@ -52,31 +53,10 @@ public class ItemMaterials extends Item {
 		}
 	}
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public String getItemStackDisplayName(ItemStack stack) {
-		switch (stack.getItemDamage()) {
-			case 0: {
-				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(stack);
-			}
-			case 1: {
-				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(stack);
-			}
-			case 2: {
-				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(stack);
-			}
-			case 3: {
-				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(stack);
-			}
-			case 4: {
-				return TextHelper.END + super.getItemStackDisplayName(stack);
-			}
-			case 5: {
-				return TextHelper.END + super.getItemStackDisplayName(stack);
-			}
-			default: {
-				return super.getItemStackDisplayName(stack);
-			}
-		}
-	}
+    public EnumRarity getRarity(ItemStack stack) {
+        if (stack.getItemDamage() <= 3)
+            return EnumRarity.rare;
+
+        return EnumRarity.common;
+    }
 }

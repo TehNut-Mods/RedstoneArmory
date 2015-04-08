@@ -11,7 +11,6 @@ import main.redstonearmory.ModInformation;
 import main.redstonearmory.util.TooltipHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -72,14 +71,12 @@ public class ItemBaubleCapacitor extends ItemBaubleBase implements IEnergyContai
     @SuppressWarnings("unchecked")
     public void getSubItems(Item item, CreativeTabs tabs, List list) {
 
-        list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, 0), CapacitorType.CREATIVE.capacity));
-        list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, 1), CapacitorType.TUBEROUS.capacity));
+        list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, CapacitorType.CREATIVE.ordinal()), CapacitorType.CREATIVE.capacity));
+        list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, CapacitorType.TUBEROUS.ordinal()), CapacitorType.TUBEROUS.capacity));
 
-        for (int i = 0; i < CapacitorType.values().length; ++i) {
-            if (CapacitorType.values()[i] != CapacitorType.CREATIVE && CapacitorType.values()[i] != CapacitorType.TUBEROUS) {
-                list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, i), 0));
-                list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, i), CapacitorType.values()[i].capacity));
-            }
+        for (int i = 2; i < CapacitorType.values().length; ++i) {
+            list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, i), 0));
+            list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, i), CapacitorType.values()[i].capacity));
         }
     }
 
@@ -88,9 +85,11 @@ public class ItemBaubleCapacitor extends ItemBaubleBase implements IEnergyContai
     }
 
     public EnumRarity getRarity(ItemStack stack) {
-        if (stack.getItemDamage() == 2)
+        if (stack.getItemDamage() == CapacitorType.CREATIVE.ordinal())
+            return EnumRarity.epic;
+        else if (stack.getItemDamage() == CapacitorType.REINFORCED.ordinal())
             return EnumRarity.uncommon;
-        else if (stack.getItemDamage() == 3)
+        else if (stack.getItemDamage() == CapacitorType.RESONANT.ordinal())
             return EnumRarity.rare;
 
         return EnumRarity.common;
@@ -195,14 +194,13 @@ public class ItemBaubleCapacitor extends ItemBaubleBase implements IEnergyContai
 
     @Override
     public void onWornTick(ItemStack stack, EntityLivingBase entityLivingBase) {
-        if(this.isActive(stack)) {
+        if(this.isActive(stack) && !entityLivingBase.worldObj.isRemote) {
             InventoryPlayer inventory = ((EntityPlayer)entityLivingBase).inventory;
-            int send = Math.min(this.getEnergyStored(stack), CapacitorType.values()[stack.getItemDamage()].send);
+            int toSend = Math.min(this.getEnergyStored(stack), CapacitorType.values()[stack.getItemDamage()].send);
             ItemStack currentItem = inventory.getCurrentItem();
-
             if(EnergyHelper.isEnergyContainerItem(currentItem)) {
                 IEnergyContainerItem containerItem = (IEnergyContainerItem)currentItem.getItem();
-                this.extractEnergy(stack, containerItem.receiveEnergy(currentItem, send, false), false);
+                this.extractEnergy(stack, containerItem.receiveEnergy(currentItem, toSend, false), false);
             }
         }
     }

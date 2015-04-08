@@ -12,6 +12,8 @@ item.RArm.material.enderium.gelid.nothing.name=Anti-Derp Protocol
 
 item.RArm.random.nut.throwable.name=Throwable Nut
 
+item.RArm.bauble.capacitor.creative.name=Creative Flux Amulet
+item.RArm.bauble.capacitor.tuberous.name=Tuberous Flux Amulet
 item.RArm.bauble.capacitor.leadstone.name=Leadstone Flux Amulet
 item.RArm.bauble.capacitor.hardened.name=Hardened Flux Amulet
 item.RArm.bauble.capacitor.reinforced.name=Reinforced Flux Amulet

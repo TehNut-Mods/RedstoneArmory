@@ -56,8 +56,13 @@ public class TooltipHelper {
         }
 
         if(StringHelper.isShiftKeyDown()) {
-            list.add(StringHelper.localize("info.cofh.charge") + ": " + StringHelper.getScaledNumber((long) stack.stackTagCompound.getInteger("Energy")) + " / " + StringHelper.getScaledNumber((long) CapacitorType.values()[stack.getItemDamage()].capacity) + " RF");
-            list.add(StringHelper.localize("info.cofh.send") + "/" + StringHelper.localize("info.cofh.receive") + ": " + CapacitorType.values()[stack.getItemDamage()].send + "/" + CapacitorType.values()[stack.getItemDamage()].recieve + " RF/t");
+            if(stack.getItemDamage() == CapacitorType.CREATIVE.ordinal()) {
+                list.add(StringHelper.localize("info.cofh.charge") + ": 1.21G RF");
+                list.add(StringHelper.localize("info.cofh.send") + "/" + StringHelper.localize("info.cofh.receive") + ": " + CapacitorType.CREATIVE.send + " RF/t");
+            } else {
+                list.add(StringHelper.localize("info.cofh.charge") + ": " + StringHelper.getScaledNumber((long) stack.stackTagCompound.getInteger("Energy")) + " / " + StringHelper.getScaledNumber((long) CapacitorType.values()[stack.getItemDamage()].capacity) + " RF");
+                list.add(StringHelper.localize("info.cofh.send") + "/" + StringHelper.localize("info.cofh.receive") + ": " + CapacitorType.values()[stack.getItemDamage()].send + "/" + CapacitorType.values()[stack.getItemDamage()].recieve + " RF/t");
+            }
 
             if(isActive(stack)) {
                 list.add(StringHelper.getInfoText("info.thermalexpansion.capacitor.2"));
