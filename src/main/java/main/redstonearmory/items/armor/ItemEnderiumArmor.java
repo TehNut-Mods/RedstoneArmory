@@ -31,7 +31,7 @@ public class ItemEnderiumArmor extends ItemArmorRF {
 		this.setMaxDamage(5);
 
 		maxEnergy = 1000000;
-		energyPerDamage = 140;
+		energyPerDamage = 200;
 		absorbRatio = 1.2D;
 		maxTransfer = 4500;
 
@@ -75,7 +75,7 @@ public class ItemEnderiumArmor extends ItemArmorRF {
 			case 0:
 				return 15;
 			case 1:
-				return 45;
+				return 40;
 			case 2:
 				return 30;
 			case 3:

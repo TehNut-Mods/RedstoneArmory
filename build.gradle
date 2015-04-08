@@ -52,10 +52,15 @@ repositories {
 		name "ThermalFoundation"
         artifactPattern "http://addons-origin.cursecdn.com/files/2230/632/[module]-[revision].[ext]"
     }
+	ivy {
+		name "Baubles"
+        artifactPattern "https://dl.dropboxusercontent.com/u/47135879/[module]-deobf-1.7.10-[revision].[ext]"
+    }
 }
 
 dependencies {
     compile "tterrag.core:ttCore:${ttCore_version}:deobf"
+  	compile name: 'Baubles', version: "${baubles_version}", ext: 'jar'
   	compile name: 'CoFHLib', version: "[${mc_version}]${cofhlib_version}", ext: 'jar'
   	compile name: 'CoFHCore', version: "[${mc_version}]${cofhcore_version}", ext: 'jar'
   	compile name: 'RedstoneArsenal', version: "[${mc_version}]${rars_version}", ext: 'jar'
@@ -142,4 +147,20 @@ publishing {
             mavenLocal()
         }
     }
+}
+
+apply plugin: 'curseforge'
+
+curse {
+    projectId = '229339'
+	if (project.hasProperty('curse_key))
+		apiKey = project.curse_key
+    releaseType = 'release'
+
+    changelog = project.hasProperty('changelog') ? project.changelog : ''
+    relatedProject 'cofhcore': 'requiredLibrary'
+    relatedProject 'thermal-foundation': 'requiredLibrary'
+    relatedProject 'redstone-arsenal': 'requiredLibrary'
+    relatedProject 'ttcore': 'requiredLibrary'
+    relatedProject 'thermalexpansion': 'requiredLibrary'
 }
