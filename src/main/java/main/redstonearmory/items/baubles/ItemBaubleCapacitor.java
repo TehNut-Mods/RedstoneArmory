@@ -202,6 +202,14 @@ public class ItemBaubleCapacitor extends ItemBaubleBase implements IEnergyContai
                 IEnergyContainerItem containerItem = (IEnergyContainerItem)currentItem.getItem();
                 this.extractEnergy(stack, containerItem.receiveEnergy(currentItem, toSend, false), false);
             }
+
+            for (int i = 0; i <= 3; i++) {
+                ItemStack check = inventory.armorItemInSlot(i);
+                if (EnergyHelper.isEnergyContainerItem(check)) {
+                    IEnergyContainerItem containerItem = (IEnergyContainerItem)check.getItem();
+                    this.extractEnergy(stack, containerItem.receiveEnergy(check, toSend, false), false);
+                }
+            }
         }
     }
 }
