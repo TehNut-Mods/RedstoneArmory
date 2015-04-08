@@ -36,4 +36,13 @@ public class TextHelper {
 	public static String localize(String key) {
 		return StatCollector.translateToLocal(key);
 	}
+
+    /**
+     *
+     * @param key - Unlocalized string to localize.
+     * @return - Localized String.
+     */
+    public static String localizeFormatted(String key, String keyFormat) {
+        return String.format(localize(key), localize(keyFormat));
+    }
 }

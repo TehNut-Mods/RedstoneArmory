@@ -4,6 +4,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import main.redstonearmory.ConfigHandler;
 import main.redstonearmory.ModInformation;
 import main.redstonearmory.items.armor.*;
+import main.redstonearmory.items.baubles.ItemBaubleCapacitor;
 import main.redstonearmory.items.powersuit.ItemPowersuit;
 import main.redstonearmory.items.random.ItemThrowableNut;
 import main.redstonearmory.items.tools.gelidenderium.*;
@@ -28,6 +29,8 @@ public class ItemRegistry {
 	public static Item armorPlating;
 
 	public static Item nutThrowable;
+
+    public static Item capacitorBauble;
 
 	public static Item axeGelidEnderium;
 	public static Item battleWrenchGelidEnderium;
@@ -67,6 +70,9 @@ public class ItemRegistry {
 			nutThrowable = new ItemThrowableNut();
 			GameRegistry.registerItem(nutThrowable, "ItemThrowableNut");
 		}
+
+        capacitorBauble = new ItemBaubleCapacitor();
+        GameRegistry.registerItem(capacitorBauble, "ItemBaubleCapacitor");
 
 		axeGelidEnderium = new ItemAxeGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
 		GameRegistry.registerItem(axeGelidEnderium, "ItemAxeGelidEnderium");

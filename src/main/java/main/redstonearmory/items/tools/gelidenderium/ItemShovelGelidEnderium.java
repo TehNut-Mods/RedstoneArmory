@@ -169,7 +169,7 @@ public class ItemShovelGelidEnderium extends ItemShovelRF {
 			EnergyHelper.setDefaultEnergyTag(stack, 0);
 		}
 
-		TooltipHelper.doEnergyTip(stack, player, list, maxEnergy, maxTransfer, energyPerUse, energyPerUseCharged);
-		TooltipHelper.doDamageTip(stack, player, list, energyPerUse, damage, damageCharged);
+		TooltipHelper.doEnergyTip(stack, list, maxEnergy, energyPerUse, energyPerUseCharged);
+		TooltipHelper.doDamageTip(stack, list, energyPerUse, damage, damageCharged);
 	}
 }

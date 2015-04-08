@@ -12,6 +12,11 @@ item.RArm.material.enderium.gelid.nothing.name=Anti-Derp Protocol
 
 item.RArm.random.nut.throwable.name=Throwable Nut
 
+item.RArm.bauble.capacitor.leadstone.name=Leadstone Flux Amulet
+item.RArm.bauble.capacitor.hardened.name=Hardened Flux Amulet
+item.RArm.bauble.capacitor.reinforced.name=Reinforced Flux Amulet
+item.RArm.bauble.capacitor.resonant.name=Resonant Flux Amulet
+
 item.RArm.material.enderium.plating.name=Enderium Armor Plating
 item.RArm.material.lumium.plating.name=Lumium Armor Plating
 item.RArm.material.mithril.plating.name=Mana Infused Armor Plating
@@ -43,6 +48,7 @@ info.RArm.tooltip.ability.axe.break= Mega Break
 info.RArm.tooltip.ability.axe.lightning= Lightning Caller
 info.RArm.tooltip.ability.battlewrench.taz= Tazmanian Devil
 info.RArm.tooltip.ability.pickaxe= Ender Dislocation
+entity.ItemFrame.name=Item Frame
 info.RArm.tooltip.ability.shovel.bonemeal= Grow all the things
 info.RArm.tooltip.ability.shovel.break= Mega Break
 info.RArm.tooltip.ability.sickle.sekrit= supah sekrit
@@ -61,14 +67,6 @@ item.RArm.armor.lumium.helm.name=Lumium Helmet
 item.RArm.armor.lumium.chestplate.name=Lumium Chestplate
 item.RArm.armor.lumium.leggings.name=Lumium Leggings
 item.RArm.armor.lumium.boots.name=Lumium Boots
-item.RArm.armor.mithril.helm.name=Mana Infused Helmet
-item.RArm.armor.mithril.chestplate.name=Mana Infused Chestplate
-item.RArm.armor.mithril.leggings.name=Mana Infused Leggings
-item.RArm.armor.mithril.boots.name=Mana Infused Boots
-item.RArm.armor.bronze.helm.name=Tinker's Alloy Helmet
-item.RArm.armor.bronze.chestplate.name=Tinker's Alloy Chestplate
-item.RArm.armor.bronze.leggings.name=Tinker's Alloy Leggings
-item.RArm.armor.bronze.boots.name=Tinker's Alloy Boots
 item.RArm.armor.tuberous.helm.name=Tuberous Helmet
 item.RArm.armor.tuberous.chestplate.name=Tuberous Chestplate
 item.RArm.armor.tuberous.leggings.name=Tuberous Leggings
@@ -89,11 +87,13 @@ tile.RArm.solar.resonant.name=Solar Panel (Resonant)
 
 #Tooltips
 info.RArm.tooltip.getenergy=Charge: %currentenergy% / %maxenergy% RF
-info.RArm.tooltip.peruse=%energyperuse% RF per use
-info.RArm.tooltip.extinguish=Press V to Quell
-info.RArm.tooltip.empower=Press V to Empower
-info.RArm.tooltip.damage=+%damage% Attack Damage
-info.RArm.tooltip.damage.flux=+%fluxdamage% Flux Damage
+info.RArm.tooltip.peruse=%s RF per use
+info.RArm.tooltip.extinguish=Press %s to Quell
+info.RArm.tooltip.empower=Press %s to Empower
+info.RArm.tooltip.damage=+%s Attack Damage
+info.RArm.tooltip.damage.flux=+%s Flux Damage
+
+info.RArm.capacitor.slot=Must remain in the amulet slot.
 
 info.RArm.tooltip.armor.lumium.shine=Shining bright like a Glowstone
 info.RArm.tooltip.armor.mithril.almost=Looks just like Rune,
