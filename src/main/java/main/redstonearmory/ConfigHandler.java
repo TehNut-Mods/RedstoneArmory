@@ -2,13 +2,12 @@ package main.redstonearmory;
 
 import tterrag.core.common.config.AbstractConfigHandler;
 import tterrag.core.common.config.ConfigProcessor;
-import tterrag.core.common.config.ConfigProcessor.IReloadCallback;
 import tterrag.core.common.config.annot.Comment;
 import tterrag.core.common.config.annot.Config;
 import tterrag.core.common.config.annot.NoSync;
 import tterrag.core.common.config.annot.RestartReq;
 
-public class ConfigHandler extends AbstractConfigHandler implements IReloadCallback {
+public class ConfigHandler extends AbstractConfigHandler {
 
 	public static final ConfigHandler INSTANCE = new ConfigHandler();
     public static ConfigProcessor processor;
@@ -68,12 +67,12 @@ public class ConfigHandler extends AbstractConfigHandler implements IReloadCallb
 
 	@Override
 	protected void init() {
-		addSection(balances, balances, "Balancing tweaks to fine tune the mod to how you want.");
+//		addSection(balances, balances, "Balancing tweaks to fine tune the mod to how you want.");
 		addSection(crafting, crafting, "Toggling of ability to craft items.");
 		addSection(features, features, "Enabling and disabling of mod features.");
 		addSection(general, general, "General category for other stuff.");
 
-        processor = new ConfigProcessor(getClass(), this, this);
+        processor = new ConfigProcessor(getClass(), this);
         processor.process(true);
 	}
 
@@ -86,9 +85,4 @@ public class ConfigHandler extends AbstractConfigHandler implements IReloadCallb
 	protected void reloadIngameConfigs() {
 		// Do stuff
 	}
-
-    @Override
-    public void callback(ConfigProcessor inst) {
-
-    }
 }
