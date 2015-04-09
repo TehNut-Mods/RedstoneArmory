@@ -8,6 +8,7 @@ import cofh.lib.util.helpers.ItemHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import main.redstonearmory.ModInformation;
+import main.redstonearmory.items.ItemRegistry;
 import main.redstonearmory.util.TooltipHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -127,6 +128,10 @@ public class ItemBaubleCapacitor extends ItemBaubleBase implements IEnergyContai
     @SideOnly(Side.CLIENT)
     public boolean requiresMultipleRenderPasses() {
         return true;
+    }
+
+    public static ItemStack getStackItem(CapacitorType type) {
+        return new ItemStack(ItemRegistry.capacitorBauble, 1, type.ordinal());
     }
 
     public boolean isActive(ItemStack stack) {

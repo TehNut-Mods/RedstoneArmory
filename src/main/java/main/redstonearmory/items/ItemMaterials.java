@@ -16,13 +16,12 @@ import java.util.List;
 
 public class ItemMaterials extends Item {
 
-	public String[] names = { "enderium.gelid.ingot", "enderium.gelid.nugget", "enderium.gelid.gem", "enderium.gelid.rod", "chainlink", "iron.nugget" };
+	public String[] names = { "enderium.gelid.ingot", "enderium.gelid.nugget", "enderium.gelid.gem", "enderium.gelid.rod", "chainlink", "iron.nugget", "string.fluxed" };
 	public IIcon[] icon = new IIcon[names.length];
 
 	public ItemMaterials() {
 		setCreativeTab(RedstoneArmory.tabRArm);
 		setHasSubtypes(true);
-		setMaxDamage(0);
 	}
 
 	@Override
@@ -43,12 +42,13 @@ public class ItemMaterials extends Item {
 		this.icon[3] = iconRegister.registerIcon(ModInformation.ID + ":materials/rodGelidEnderium");
 		this.icon[4] = iconRegister.registerIcon(ModInformation.ID + ":materials/chainLink");
 		this.icon[5] = iconRegister.registerIcon(ModInformation.ID + ":materials/nuggetIron");
+		this.icon[6] = iconRegister.registerIcon(ModInformation.ID + ":materials/stringFluxed");
 	}
 
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs creativeTabs, List list) {
-		for (int i = 0; i <= 5; i++) {
+		for (int i = 0; i <= names.length - 1; i++) {
 			list.add(new ItemStack(this, 1, i));
 		}
 	}
@@ -56,6 +56,8 @@ public class ItemMaterials extends Item {
     public EnumRarity getRarity(ItemStack stack) {
         if (stack.getItemDamage() <= 3)
             return EnumRarity.rare;
+        else if (stack.getItemDamage() == 6)
+            return EnumRarity.uncommon;
 
         return EnumRarity.common;
     }

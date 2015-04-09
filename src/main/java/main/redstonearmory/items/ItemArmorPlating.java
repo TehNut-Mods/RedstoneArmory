@@ -7,6 +7,7 @@ import main.redstonearmory.RedstoneArmory;
 import main.redstonearmory.util.TextHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -21,7 +22,6 @@ public class ItemArmorPlating extends Item {
 	public ItemArmorPlating() {
 		setCreativeTab(RedstoneArmory.tabRArm);
 		setHasSubtypes(true);
-		setMaxDamage(0);
 	}
 
 	@Override
@@ -44,28 +44,18 @@ public class ItemArmorPlating extends Item {
 	@SuppressWarnings({"rawtypes", "unchecked"})
 	@SideOnly(Side.CLIENT)
 	public void getSubItems(Item item, CreativeTabs creativeTabs, List list) {
-		for (int i = 0; i < names.length; i++) {
+		for (int i = 0; i < names.length; i++)
 			list.add(new ItemStack(this, 1, i));
-		}
 	}
 
-	@SideOnly(Side.CLIENT)
-	@Override
-	public String getItemStackDisplayName(ItemStack stack) {
+    public EnumRarity getRarity(ItemStack stack) {
+        if (stack.getItemDamage() == 0)
+            return EnumRarity.rare;
+        else if (stack.getItemDamage() == 1)
+            return EnumRarity.uncommon;
+        else if (stack.getItemDamage() == 2)
+            return EnumRarity.epic;
 
-		switch (stack.getItemDamage()) {
-			case 0: {
-				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(stack);
-			}
-			case 1: {
-				return TextHelper.YELLOW + super.getItemStackDisplayName(stack);
-			}
-			case 2: {
-				return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(stack);
-			}
-			default: {
-				return super.getItemStackDisplayName(stack);
-			}
-		}
-	}
+        return EnumRarity.common;
+    }
 }

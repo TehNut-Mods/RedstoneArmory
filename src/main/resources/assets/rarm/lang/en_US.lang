@@ -8,7 +8,7 @@ item.RArm.material.enderium.gelid.gem.name=Gelid Gem
 item.RArm.material.enderium.gelid.rod.name=Gelid Rod
 item.RArm.material.chainlink.name=Chain Link
 item.RArm.material.iron.nugget.name=Iron Nugget
-item.RArm.material.enderium.gelid.nothing.name=Anti-Derp Protocol
+item.RArm.material.string.fluxed.name=Flux String
 
 item.RArm.random.nut.throwable.name=Throwable Nut
 
@@ -20,18 +20,8 @@ item.RArm.bauble.capacitor.reinforced.name=Reinforced Flux Amulet
 item.RArm.bauble.capacitor.resonant.name=Resonant Flux Amulet
 
 item.RArm.material.enderium.plating.name=Enderium Armor Plating
-item.RArm.material.lumium.plating.name=Lumium Armor Plating
-item.RArm.material.mithril.plating.name=Mana Infused Armor Plating
-item.RArm.material.bronze.plating.name=Tinker's Alloy Armor Plating
-item.RArm.material.tuberous.plating.name=Mashed Potatoes
 item.RArm.material.crafting.empty.plating.name=Empty Armor Plating
 item.RArm.material.crafting.full.plating.name=Full Armor Plating
-item.RArm.material.leather.plating.name=Leather Armor Plating
-item.RArm.material.iron.plating.name=Iron Armor Plating
-item.RArm.material.chain.plating.name=Chain Armor Plating
-item.RArm.material.gold.plating.name=Golden Armor Plating
-item.RArm.material.diamond.plating.name=Diamond Armor Plating
-item.RArm.material.nothing.plating.name=Anti-Derp Plating Protocol
 
 #Tools
 item.RArm.tool.enderium.gelid.axe.name=Gelid Enderium Axe
@@ -40,21 +30,9 @@ item.RArm.tool.enderium.gelid.pickaxe.name=Gelid Enderium Pickaxe
 item.RArm.tool.enderium.gelid.shovel.name=Gelid Enderium Shovel
 item.RArm.tool.enderium.gelid.sickle.name=Gelid Enderium Sickle
 item.RArm.tool.enderium.gelid.sword.name=Gelid Enderium Sword
-item.RArm.tool.mithril.scimitar.name=Mith Scimmy
 
-#Tool abilities
-#Leave the space before the ability text
-info.RArm.tooltip.ability=Ability:
-info.RArm.tooltip.ability.axe.weather= /weather clear
-info.RArm.tooltip.ability.axe.break= Mega Break
-info.RArm.tooltip.ability.axe.lightning= Lightning Caller
-info.RArm.tooltip.ability.battlewrench.taz= Tazmanian Devil
-info.RArm.tooltip.ability.pickaxe= Ender Dislocation
+#Random Vanilla Fix
 entity.ItemFrame.name=Item Frame
-info.RArm.tooltip.ability.shovel.bonemeal= Grow all the things
-info.RArm.tooltip.ability.shovel.break= Mega Break
-info.RArm.tooltip.ability.sickle.sekrit= supah sekrit
-info.RArm.tooltip.ability.sword.magnet= Magnet mode
 
 #Armor
 item.RArm.armor.enderium.helm.name=Enderium Flux Helmet

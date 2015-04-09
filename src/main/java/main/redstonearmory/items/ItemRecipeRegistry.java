@@ -1,27 +1,32 @@
 package main.redstonearmory.items;
 
+import cofh.api.modhelpers.ThermalExpansionHelper;
+import cofh.thermalexpansion.item.TEItems;
 import cpw.mods.fml.common.registry.GameRegistry;
-import main.redstonearmory.util.EnviroChecks;
+import main.redstonearmory.items.baubles.CapacitorType;
+import main.redstonearmory.items.baubles.ItemBaubleCapacitor;
 import main.redstonearmory.util.RecipeUtils;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
-import net.minecraftforge.oredict.ShapelessOreRecipe;
 import cofh.redstonearsenal.item.RAItems;
 import cofh.thermalfoundation.item.TFItems;
 import tterrag.core.common.transform.TTCorePlugin;
 
 import static main.redstonearmory.ConfigHandler.*;
 
-@SuppressWarnings("all")
 public class ItemRecipeRegistry {
 
 	private static void registerShapedRecipes() {
 		RecipeUtils.addStepUpRecipe(new ItemStack(ItemRegistry.materials, 1, 0), "nuggetGelidEnderium");
 		RecipeUtils.addStepUpRecipe(new ItemStack(Items.iron_ingot), "nuggetIron");
-
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.materials, 1, 4), "  N", " N ", "N  ", 'N', "nuggetIron"));
+
+        if (enableCapacitorBaubleCrafting)
+            for (int i = 2; i < CapacitorType.values().length; i++)
+                GameRegistry.addRecipe(new ShapedOreRecipe(ItemBaubleCapacitor.getStackItem(CapacitorType.values()[i]), " S ", "S S", " C ", 'S', "stringFluxed", 'C', new ItemStack(TEItems.itemCapacitor, 1, i)));
 
 		//Armor recipes
 		if (enableEnderiumFluxArmorCrafting) {
@@ -68,11 +73,10 @@ public class ItemRecipeRegistry {
 	}
 
 	private static void registerMachineRecipes() {
-		if (!EnviroChecks.isTELoaded()) {
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.materials, 1, 0), "PSP", "SIS", "PSP", 'P', new ItemStack(Items.ender_pearl), 'S', new ItemStack(Blocks.snow), 'I', RAItems.ingotElectrumFlux));
-			GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.materials, 1, 2), "PSP", "SGS", "PSP", 'P', new ItemStack(Items.ender_pearl), 'S', new ItemStack(Blocks.ice), 'G', RAItems.gemCrystalFlux));
-			GameRegistry.addRecipe(new ShapelessOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 6), TFItems.bucketMana, new ItemStack(ItemRegistry.armorPlating, 1, 5)));
-		}
+        ThermalExpansionHelper.addTransposerFill(12000, RAItems.gemCrystalFlux, new ItemStack(ItemRegistry.materials, 1, 2), new FluidStack(FluidRegistry.getFluid("cryotheum"), 1000), false);
+        ThermalExpansionHelper.addTransposerFill(12000, TFItems.ingotEnderium, new ItemStack(ItemRegistry.materials, 1, 0), new FluidStack(FluidRegistry.getFluid("cryotheum"), 1000), false);
+        ThermalExpansionHelper.addTransposerFill(12000, new ItemStack(ItemRegistry.armorPlating, 1, 5), new ItemStack(ItemRegistry.armorPlating, 1, 6), new FluidStack(FluidRegistry.getFluid("mana"), 1000), false);
+        ThermalExpansionHelper.addTransposerFill(6000, new ItemStack(Items.string), new ItemStack(ItemRegistry.materials, 1, 6), new FluidStack(FluidRegistry.getFluid("redstone"), 200), false);
 	}
 
 	private static void registerLateShapedRecipes() {
@@ -80,26 +84,19 @@ public class ItemRecipeRegistry {
 		//Gelid Rod
 		GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.materials, 1, 3), "  G", " R ", "G  ", 'R', RAItems.rodObsidianFlux, 'G', new ItemStack(ItemRegistry.materials, 1, 2));
 
-
 		//Tool recipes
-		if (enableGelidAxeCrafting) {
+		if (enableGelidAxeCrafting)
 			GameRegistry.addRecipe(new ItemStack(ItemRegistry.axeGelidEnderium, 1, 0), "II ", "IT ", " R ", 'R', new ItemStack(ItemRegistry.materials, 1, 3), 'T', RAItems.itemAxeFlux, 'I', new ItemStack(ItemRegistry.materials, 1, 0));
-		}
-		if (enableGelidBattleWrenchCrafting) {
+		if (enableGelidBattleWrenchCrafting)
 			GameRegistry.addRecipe(new ItemStack(ItemRegistry.battleWrenchGelidEnderium, 1, 0), "I I", "ITI", " R ", 'R', new ItemStack(ItemRegistry.materials, 1, 3), 'T', RAItems.itemBattleWrenchFlux, 'I', new ItemStack(ItemRegistry.materials, 1, 0));
-		}
-		if (enableGelidPickaxeCrafting) {
+		if (enableGelidPickaxeCrafting)
 			GameRegistry.addRecipe(new ItemStack(ItemRegistry.pickaxeGelidEnderium, 1, 0), "III", " T ", " R ", 'R', new ItemStack(ItemRegistry.materials, 1, 3), 'T', RAItems.itemPickaxeFlux, 'I', new ItemStack(ItemRegistry.materials, 1, 0));
-		}
-		if (enableGelidShovelCrafting) {
+		if (enableGelidShovelCrafting)
 			GameRegistry.addRecipe(new ItemStack(ItemRegistry.shovelGelidEnderium, 1, 0), " I ", " T ", " R ", 'R', new ItemStack(ItemRegistry.materials, 1, 3), 'T', RAItems.itemShovelFlux, 'I', new ItemStack(ItemRegistry.materials, 1, 0));
-		}
-		if (enableGelidSickleCrafting) {
+		if (enableGelidSickleCrafting)
 			GameRegistry.addRecipe(new ItemStack(ItemRegistry.sickleGelidEnderium, 1, 0), " I ", "  I", "RT ", 'R', new ItemStack(ItemRegistry.materials, 1, 3), 'T', RAItems.itemSickleFlux, 'I', new ItemStack(ItemRegistry.materials, 1, 0));
-		}
-		if (enableGelidSwordCrafting) {
+		if (enableGelidSwordCrafting)
 			GameRegistry.addRecipe(new ItemStack(ItemRegistry.swordGelidEnderium, 1, 0), " I ", " T ", " R ", 'R', new ItemStack(ItemRegistry.materials, 1, 3), 'T', RAItems.itemSwordFlux, 'I', new ItemStack(ItemRegistry.materials, 1, 0));
-		}
 
 		//armor plating
 		GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 0), "NNN", "GIG", "NNN", 'N', "nuggetEnderium", 'G', "gemCrystalFlux", 'I', "ingotEnderium"));

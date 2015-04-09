@@ -43,8 +43,6 @@ public class RedstoneArmory {
 		OreDictHandler.registerOreDict();
 		Handlers.addPackage("main.redstonearmory");
 
-		CompatabilityRegistry.INSTANCE.registerCompat(RegisterTime.POSTINIT, "main.redstonearmory.compat.ThermalExpansionCompat", "ThermalExpansion");
-
 		proxy.load();
 	}
 

@@ -18,6 +18,7 @@ public class OreDictHandler {
 	public static String rodGelid = "rodGelid";
 	public static String chainLink = "chainLink";
 	public static String nuggetIron = "nuggetIron";
+    public static String stringFluxed = "stringFluxed";
 	public static String leather = "leather";
 
 	//plating
@@ -43,6 +44,7 @@ public class OreDictHandler {
 		OreDict.safeRegister(rodGelid, new ItemStack(ItemRegistry.materials, 1, 3));
 		OreDict.safeRegister(chainLink, new ItemStack(ItemRegistry.materials, 1, 4));
 		OreDict.safeRegister(nuggetIron, new ItemStack(ItemRegistry.materials, 1, 5));
+		OreDict.safeRegister(stringFluxed, new ItemStack(ItemRegistry.materials, 1, 6));
 		OreDict.safeRegister(leather, Items.leather);
 
 		//plating

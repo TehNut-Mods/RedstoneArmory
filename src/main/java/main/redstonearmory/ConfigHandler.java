@@ -37,6 +37,9 @@ public class ConfigHandler extends AbstractConfigHandler {
 	public static boolean enableGelidSwordCrafting = true;
 
     @Config(crafting) @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
+    public static boolean enableCapacitorBaubleCrafting = true;
+
+    @Config(crafting) @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
 	public static boolean enableEnderiumFluxArmorCrafting = true;
     @Config(crafting) @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
 	public static boolean enableLumiumArmorCrafting = true;
