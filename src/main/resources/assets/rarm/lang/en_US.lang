@@ -30,6 +30,7 @@ item.RArm.tool.enderium.gelid.pickaxe.name=Gelid Enderium Pickaxe
 item.RArm.tool.enderium.gelid.shovel.name=Gelid Enderium Shovel
 item.RArm.tool.enderium.gelid.sickle.name=Gelid Enderium Sickle
 item.RArm.tool.enderium.gelid.sword.name=Gelid Enderium Sword
+item.RArm.tool.potato.hoe.name=Fluxed Potahoe
 
 #Random Vanilla Fix
 entity.ItemFrame.name=Item Frame
@@ -74,6 +75,8 @@ info.RArm.tooltip.damage=+%s Attack Damage
 info.RArm.tooltip.damage.flux=+%s Flux Damage
 
 info.RArm.capacitor.slot=Must remain in the amulet slot.
+info.RArm.capacitor.armor=Activate to charge armor.
+info.RArm.capacitor.armor.charging=Charging armor items.
 
 info.RArm.tooltip.armor.lumium.shine=Shining bright like a Glowstone
 info.RArm.tooltip.armor.mithril.almost=Looks just like Rune,
