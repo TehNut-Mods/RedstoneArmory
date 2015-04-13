@@ -153,42 +153,35 @@ publishing {
     }
 }
 
-apply plugin: 'curseforge'
-
-curse {
-    projectId = '229339'
-	if (project.hasProperty('curse_key'))
-		apiKey = project.curse_key
-    releaseType = 'release'
-
-    changelog = project.hasProperty('changelog') ? project.changelog : ''
-    relatedProject 'cofhcore': 'requiredLibrary'
-    relatedProject 'thermal-foundation': 'requiredLibrary'
-    relatedProject 'redstone-arsenal': 'requiredLibrary'
-    relatedProject 'ttcore': 'requiredLibrary'
-    relatedProject 'thermalexpansion': 'requiredLibrary'
+def curseRelations = {
+    requiredLibrary 'cofhcore'
+    requiredLibrary 'thermal-foundation'
+    requiredLibrary 'redstone-arsenal'
+    requiredLibrary 'ttcore'
+    requiredLibrary 'thermalexpansion'
 }
-
+ 
 curseforge {
-    if (project.hasProperty('curse_key')) 
+    if (project.hasProperty('curse_key'))
         apiKey = project.curse_key
     else
         apiKey = "matthewpls"
+ 
     project {
-        id = "229339"
+        id = '229339'
         changelog = project.hasProperty('changelog') ? project.changelog : ''
         releaseType = 'release'
-        
+ 
         mainArtifact(jar) {
             displayName = "Redstone Armory - ${mod_version}-${build_number}"
-            
-            relations {
-                requiredLibrary 'cofhcore'
-                requiredLibrary 'thermal-foundation'
-                requiredLibrary 'redstone-arsenal'
-                requiredLibrary 'ttcore'
-                requiredLibrary 'thermalexpansion'
-            }
+            relations curseRelations
         }
+ 
+        addArtifact(deobfJar) {
+            relations curseRelations
+        }
+ 
+        addArtifact sourceJar
+        addArtifact javadocJar
     }
 }
