@@ -164,8 +164,6 @@ def curseRelations = {
 curseforge {
     if (project.hasProperty('curse_key'))
         apiKey = project.curse_key
-    else
-        apiKey = "matthewpls"
  
     project {
         id = '229339'
