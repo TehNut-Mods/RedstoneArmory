@@ -5,9 +5,6 @@ import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import tehnut.redstonearmory.ModInformation;
-import tehnut.redstonearmory.RedstoneArmory;
-import tehnut.redstonearmory.util.TextHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,6 +13,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import tehnut.redstonearmory.ModInformation;
+import tehnut.redstonearmory.RedstoneArmory;
+import tehnut.redstonearmory.util.TextHelper;
 
 import java.util.List;
 
@@ -55,7 +55,6 @@ public class ItemPotahoeFluxed extends ItemHoe implements IEnergyContainerItem {
     @SuppressWarnings("unchecked")
     public void getSubItems(Item item, CreativeTabs tabs, List list) {
         list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item), capacity));
-        list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item), 160));
     }
 
     @Override

@@ -1,10 +1,10 @@
 package tehnut.redstonearmory.items;
 
 import cofh.redstonearsenal.item.RAItems;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.registry.GameRegistry;
-import tehnut.redstonearmory.ConfigHandler;
-import tehnut.redstonearmory.ModInformation;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemArmor;
+import net.minecraft.item.ItemTool;
+import net.minecraftforge.common.util.EnumHelper;
 import tehnut.redstonearmory.items.armor.ItemEnderiumArmor;
 import tehnut.redstonearmory.items.armor.ItemLumiumArmor;
 import tehnut.redstonearmory.items.armor.ItemTuberousArmor;
@@ -12,12 +12,8 @@ import tehnut.redstonearmory.items.baubles.ItemBaubleCapacitor;
 import tehnut.redstonearmory.items.powersuit.ItemPowersuit;
 import tehnut.redstonearmory.items.random.ItemThrowableNut;
 import tehnut.redstonearmory.items.tools.ItemPotahoeFluxed;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemArmor;
-import net.minecraft.item.ItemTool;
-import net.minecraftforge.common.util.EnumHelper;
 import tehnut.redstonearmory.items.tools.gelidenderium.*;
-import tterrag.core.common.transform.TTCorePlugin;
+import tehnut.redstonearmory.util.annot.Register;
 
 public class ItemRegistry {
 
@@ -29,115 +25,39 @@ public class ItemRegistry {
     public static final ItemTool.ToolMaterial TOOL_MATERIAL_GELID_ENDERIUM = EnumHelper.addToolMaterial("RA_GELID_ENDERIUM", 15, Integer.MAX_VALUE, 20, 10, 15);
 
     // Items
-    public static Item materials;
-    public static Item armorPlating;
+    @Register public static Item materials = new ItemMaterials();
+    @Register public static Item armorPlating = new ItemArmorPlating();
 
-    public static Item nutThrowable;
+    @Register(enabled = "false") public static Item nutThrowable = new ItemThrowableNut();
 
-    public static Item capacitorBauble;
+    @Register(dependency = "Baubles") public static Item capacitorBauble = new ItemBaubleCapacitor();
 
-    public static Item potahoe;
+    @Register public static Item potahoe = new ItemPotahoeFluxed();
 
-    public static Item axeGelidEnderium;
-    public static Item battleWrenchGelidEnderium;
-    public static Item pickaxeGelidEnderium;
-    public static Item shovelGelidEnderium;
-    public static Item sickleGelidEnderium;
-    public static Item swordGelidEnderium;
+    @Register public static Item axeGelidEnderium = new ItemAxeGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
+    @Register public static Item battleWrenchGelidEnderium = new ItemBattleWrenchGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
+    @Register public static Item pickaxeGelidEnderium = new ItemPickaxeGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
+    @Register public static Item shovelGelidEnderium = new ItemShovelGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
+    @Register public static Item sickleGelidEnderium = new ItemSickleGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
+    @Register public static Item swordGelidEnderium = new ItemSwordGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
 
-    public static Item armorEnderiumHelm;
-    public static Item armorEnderiumChestplate;
-    public static Item armorEnderiumLeggings;
-    public static Item armorEnderiumBoots;
+    @Register(name = "ItemEnderiumArmor.Helm") public static Item armorEnderiumHelm = new ItemEnderiumArmor(RAItems.ARMOR_MATERIAL_FLUX, 0);
+    @Register(name = "ItemEnderiumArmor.Chestplate") public static Item armorEnderiumChestplate = new ItemEnderiumArmor(RAItems.ARMOR_MATERIAL_FLUX, 1);
+    @Register(name = "ItemEnderiumArmor.Leggings") public static Item armorEnderiumLeggings = new ItemEnderiumArmor(RAItems.ARMOR_MATERIAL_FLUX, 2);
+    @Register(name = "ItemEnderiumArmor.Boots") public static Item armorEnderiumBoots = new ItemEnderiumArmor(RAItems.ARMOR_MATERIAL_FLUX, 3);
 
-    public static Item armorPowersuitHelm;
-    public static Item armorPowersuitChestplate;
-    public static Item armorPowersuitLeggings;
-    public static Item armorPowersuitBoots;
+    @Register(name = "ItemPowersuit.Helm", enabled = "enableTestingEnviro") public static Item armorPowersuitHelm = new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 0);
+    @Register(name = "ItemPowersuit.Chestplate", enabled = "enableTestingEnviro") public static Item armorPowersuitChestplate = new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 1);
+    @Register(name = "ItemPowersuit.Leggings", enabled = "enableTestingEnviro") public static Item armorPowersuitLeggings = new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 2);
+    @Register(name = "ItemPowersuit.Boots", enabled = "enableTestingEnviro") public static Item armorPowersuitBoots = new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 3);
 
-    public static Item armorLumiumHelm;
-    public static Item armorLumiumChestplate;
-    public static Item armorLumiumLeggings;
-    public static Item armorLumiumBoots;
+    @Register(name = "ItemLumiumArmor.Helm") public static Item armorLumiumHelm = new ItemLumiumArmor(ARMOR_MATERIAL_LUMIUM, 0);
+    @Register(name = "ItemLumiumArmor.Chestplate") public static Item armorLumiumChestplate = new ItemLumiumArmor(ARMOR_MATERIAL_LUMIUM, 1);
+    @Register(name = "ItemLumiumArmor.Leggings") public static Item armorLumiumLeggings = new ItemLumiumArmor(ARMOR_MATERIAL_LUMIUM, 2);
+    @Register(name = "ItemLumiumArmor.Boots") public static Item armorLumiumBoots = new ItemLumiumArmor(ARMOR_MATERIAL_LUMIUM, 3);
 
-    public static Item armorTuberousHelm;
-    public static Item armorTuberousChestplate;
-    public static Item armorTuberousLeggings;
-    public static Item armorTuberousBoots;
-
-    private static void registerItems() {
-
-        materials = new ItemMaterials().setUnlocalizedName(ModInformation.ID);
-        GameRegistry.registerItem(materials, "ItemMaterials");
-        armorPlating = new ItemArmorPlating().setUnlocalizedName(ModInformation.ID);
-        GameRegistry.registerItem(armorPlating, "ItemArmorPlating");
-
-        if (ConfigHandler.addNutsToys) {
-            nutThrowable = new ItemThrowableNut();
-            GameRegistry.registerItem(nutThrowable, "ItemThrowableNut");
-        }
-
-        if (Loader.isModLoaded("Baubles")) {
-            capacitorBauble = new ItemBaubleCapacitor();
-            GameRegistry.registerItem(capacitorBauble, "ItemBaubleCapacitor");
-        }
-
-        potahoe = new ItemPotahoeFluxed();
-        GameRegistry.registerItem(potahoe, "ItemPotahoFluxed");
-
-        axeGelidEnderium = new ItemAxeGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
-        GameRegistry.registerItem(axeGelidEnderium, "ItemAxeGelidEnderium");
-        battleWrenchGelidEnderium = new ItemBattleWrenchGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
-        GameRegistry.registerItem(battleWrenchGelidEnderium, "ItemBattleWrenchGelidEnderium");
-        pickaxeGelidEnderium = new ItemPickaxeGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
-        GameRegistry.registerItem(pickaxeGelidEnderium, "ItemPickaxeGelidEnderium");
-        shovelGelidEnderium = new ItemShovelGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
-        GameRegistry.registerItem(shovelGelidEnderium, "ItemShovelGelidEnderium");
-        sickleGelidEnderium = new ItemSickleGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
-        GameRegistry.registerItem(sickleGelidEnderium, "ItemSickleGelidEnderium");
-        swordGelidEnderium = new ItemSwordGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
-        GameRegistry.registerItem(swordGelidEnderium, "ItemSwordGelidEnderium");
-
-        armorEnderiumHelm = (ItemEnderiumArmor) new ItemEnderiumArmor(RAItems.ARMOR_MATERIAL_FLUX, 0);
-        GameRegistry.registerItem(armorEnderiumHelm, "ItemEnderiumArmor.Helm");
-        armorEnderiumChestplate = (ItemEnderiumArmor) new ItemEnderiumArmor(RAItems.ARMOR_MATERIAL_FLUX, 1);
-        GameRegistry.registerItem(armorEnderiumChestplate, "ItemEnderiumArmor.Chestplate");
-        armorEnderiumLeggings = (ItemEnderiumArmor) new ItemEnderiumArmor(RAItems.ARMOR_MATERIAL_FLUX, 2);
-        GameRegistry.registerItem(armorEnderiumLeggings, "ItemEnderiumArmor.Leggings");
-        armorEnderiumBoots = (ItemEnderiumArmor) new ItemEnderiumArmor(RAItems.ARMOR_MATERIAL_FLUX, 3);
-        GameRegistry.registerItem(armorEnderiumBoots, "ItemEnderiumArmor.Boots");
-
-        if (!TTCorePlugin.runtimeDeobfEnabled) {
-            armorPowersuitHelm = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 0);
-            GameRegistry.registerItem(armorPowersuitHelm, "ItemPowersuit.Helm");
-            armorPowersuitChestplate = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 1);
-            GameRegistry.registerItem(armorPowersuitChestplate, "ItemPowersuit.Chestplate");
-            armorPowersuitLeggings = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 2);
-            GameRegistry.registerItem(armorPowersuitLeggings, "ItemPowersuit.Leggings");
-            armorPowersuitBoots = (ItemPowersuit) new ItemPowersuit(ItemArmor.ArmorMaterial.CHAIN, 3);
-            GameRegistry.registerItem(armorPowersuitBoots, "ItemPowersuit.Boots");
-        }
-
-        armorLumiumHelm = (ItemLumiumArmor) new ItemLumiumArmor(ARMOR_MATERIAL_LUMIUM, 0);
-        GameRegistry.registerItem(armorLumiumHelm, "ItemLumiumArmor.Helm");
-        armorLumiumChestplate = (ItemLumiumArmor) new ItemLumiumArmor(ARMOR_MATERIAL_LUMIUM, 1);
-        GameRegistry.registerItem(armorLumiumChestplate, "ItemLumiumArmor.Chestplate");
-        armorLumiumLeggings = (ItemLumiumArmor) new ItemLumiumArmor(ARMOR_MATERIAL_LUMIUM, 2);
-        GameRegistry.registerItem(armorLumiumLeggings, "ItemLumiumArmor.Leggings");
-        armorLumiumBoots = (ItemLumiumArmor) new ItemLumiumArmor(ARMOR_MATERIAL_LUMIUM, 3);
-        GameRegistry.registerItem(armorLumiumBoots, "ItemLumiumArmor.Boots");
-
-        armorTuberousHelm = (ItemTuberousArmor) new ItemTuberousArmor(ARMOR_MATERIAL_TUBEROUS, 0);
-        GameRegistry.registerItem(armorTuberousHelm, "ItemTuberousArmor.Helm");
-        armorTuberousChestplate = (ItemTuberousArmor) new ItemTuberousArmor(ARMOR_MATERIAL_TUBEROUS, 1);
-        GameRegistry.registerItem(armorTuberousChestplate, "ItemTuberousArmor.Chestplate");
-        armorTuberousLeggings = (ItemTuberousArmor) new ItemTuberousArmor(ARMOR_MATERIAL_TUBEROUS, 2);
-        GameRegistry.registerItem(armorTuberousLeggings, "ItemTuberousArmor.Leggings");
-        armorTuberousBoots = (ItemTuberousArmor) new ItemTuberousArmor(ARMOR_MATERIAL_TUBEROUS, 3);
-        GameRegistry.registerItem(armorTuberousBoots, "ItemTuberousArmor.Boots");
-    }
-
-    public static void registerAllItems() {
-        registerItems();
-    }
+    @Register(name = "ItemTuberousArmor.Helm") public static Item armorTuberousHelm = new ItemTuberousArmor(ARMOR_MATERIAL_TUBEROUS, 0);
+    @Register(name = "ItemTuberousArmor.Chestplate") public static Item armorTuberousChestplate = new ItemTuberousArmor(ARMOR_MATERIAL_TUBEROUS, 1);
+    @Register(name = "ItemTuberousArmor.Leggings") public static Item armorTuberousLeggings = new ItemTuberousArmor(ARMOR_MATERIAL_TUBEROUS, 2);
+    @Register(name = "ItemTuberousArmor.Boots") public static Item armorTuberousBoots = new ItemTuberousArmor(ARMOR_MATERIAL_TUBEROUS, 3);
 }

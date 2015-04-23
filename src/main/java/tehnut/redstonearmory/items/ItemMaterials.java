@@ -2,14 +2,14 @@ package tehnut.redstonearmory.items;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import tehnut.redstonearmory.ModInformation;
-import tehnut.redstonearmory.RedstoneArmory;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import tehnut.redstonearmory.ModInformation;
+import tehnut.redstonearmory.RedstoneArmory;
 
 import java.util.List;
 
@@ -19,13 +19,14 @@ public class ItemMaterials extends Item {
     public IIcon[] icon = new IIcon[names.length];
 
     public ItemMaterials() {
+        setUnlocalizedName(ModInformation.ID + ".material");
         setCreativeTab(RedstoneArmory.tabRArm);
         setHasSubtypes(true);
     }
 
     @Override
     public String getUnlocalizedName(ItemStack stack) {
-        return getUnlocalizedName() + ".material." + names[stack.getItemDamage() % names.length];
+        return getUnlocalizedName() + "." + names[stack.getItemDamage() % names.length];
     }
 
     @SideOnly(Side.CLIENT)

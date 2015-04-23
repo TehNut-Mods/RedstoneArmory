@@ -5,6 +5,8 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraftforge.common.config.Configuration;
 import tehnut.redstonearmory.blocks.BlockRecipeRegistry;
 import tehnut.redstonearmory.blocks.BlockRegistry;
 import tehnut.redstonearmory.gui.CreativeTabRArm;
@@ -12,8 +14,7 @@ import tehnut.redstonearmory.items.ItemRecipeRegistry;
 import tehnut.redstonearmory.items.ItemRegistry;
 import tehnut.redstonearmory.proxies.CommonProxy;
 import tehnut.redstonearmory.util.OreDictHandler;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.common.config.Configuration;
+import tehnut.redstonearmory.util.annot.Registerer;
 import tterrag.core.common.Handlers;
 
 @Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION, dependencies = ModInformation.REQUIRED, guiFactory = ModInformation.GUIFACTORY)
@@ -33,8 +34,8 @@ public class RedstoneArmory {
 
         ConfigHandler.INSTANCE.initialize(event.getSuggestedConfigurationFile());
 
-        ItemRegistry.registerAllItems();
-        BlockRegistry.registerAllBlocks();
+        Registerer.scan(ItemRegistry.class);
+        Registerer.scan(BlockRegistry.class);
 
         OreDictHandler.registerOreDict();
         Handlers.addPackage("tehnut.redstonearmory");

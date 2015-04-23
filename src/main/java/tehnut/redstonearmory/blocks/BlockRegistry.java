@@ -1,39 +1,16 @@
 package tehnut.redstonearmory.blocks;
 
-import cpw.mods.fml.common.registry.GameRegistry;
-import tehnut.redstonearmory.items.blocks.ItemBlockIngotStorage;
-import tehnut.redstonearmory.items.blocks.ItemBlockRandomThings;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import tehnut.redstonearmory.ConfigHandler;
+import tehnut.redstonearmory.items.blocks.ItemBlockIngotStorage;
+import tehnut.redstonearmory.items.blocks.ItemBlockRandomThings;
+import tehnut.redstonearmory.util.annot.Register;
 
 public class BlockRegistry {
 
     // Blocks
-    public static Block ingotStorage;
-    public static Block randomBlocks;
-    public static Block invisiLight;
-
-    public static Block tinkerTable;
-
-    private static void registerBlocks() {
-        ingotStorage = new BlockIngotStorage();
-        GameRegistry.registerBlock(ingotStorage, ItemBlockIngotStorage.class, "BlockIngotStorage");
-        invisiLight = new BlockInvisiLight(Material.air);
-        GameRegistry.registerBlock(invisiLight, "BlockInvisiLight");
-        GameRegistry.registerTileEntity(BlockInvisiLight.TileInvisibleLight.class, "TileEntityInvisiLight");
-        if (ConfigHandler.addNutsToys) {
-            randomBlocks = new BlockRandomThings(Material.rock);
-            GameRegistry.registerBlock(randomBlocks, ItemBlockRandomThings.class, "BlockRandomThings");
-        }
-
-        if (ConfigHandler.enableTestingEnviro) {
-            tinkerTable = new BlockTinkerTable(Material.iron);
-            GameRegistry.registerBlock(tinkerTable, "BlockTinkerTable");
-        }
-    }
-
-    public static void registerAllBlocks() {
-        registerBlocks();
-    }
+    @Register(itemBlock = ItemBlockIngotStorage.class) public static Block ingotStorage = new BlockIngotStorage();
+    @Register(enabled = "addNutsToys", itemBlock = ItemBlockRandomThings.class) public static Block randomBlocks = new BlockRandomThings(Material.rock);
+    @Register(tileEntity = BlockInvisiLight.TileInvisibleLight.class) public static Block invisiLight = new BlockInvisiLight(Material.air);
+    @Register(enabled = "enableTestingEnviro") public static Block tinkerTable;
 }

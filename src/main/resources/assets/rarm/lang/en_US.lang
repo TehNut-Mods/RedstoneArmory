@@ -19,9 +19,9 @@ item.RArm.bauble.capacitor.hardened.name=Hardened Flux Amulet
 item.RArm.bauble.capacitor.reinforced.name=Reinforced Flux Amulet
 item.RArm.bauble.capacitor.resonant.name=Resonant Flux Amulet
 
-item.RArm.material.enderium.plating.name=Enderium Armor Plating
-item.RArm.material.crafting.empty.plating.name=Empty Armor Plating
-item.RArm.material.crafting.full.plating.name=Full Armor Plating
+item.RArm.plating.enderium.name=Enderium Armor Plating
+item.RArm.plating.power.empty.name=Empty Armor Plating
+item.RArm.plating.power.full.name=Full Armor Plating
 
 #Tools
 item.RArm.tool.enderium.gelid.axe.name=Gelid Enderium Axe
