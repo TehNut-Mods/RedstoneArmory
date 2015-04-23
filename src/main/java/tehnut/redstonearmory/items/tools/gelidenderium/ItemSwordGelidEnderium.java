@@ -67,14 +67,6 @@ public class ItemSwordGelidEnderium extends ItemSwordRF {
     }
 
     @Override
-    public int getDisplayDamage(ItemStack stack) {
-        if (stack.stackTagCompound == null) {
-            EnergyHelper.setDefaultEnergyTag(stack, 0);
-        }
-        return 1 + maxEnergy - stack.stackTagCompound.getInteger("Energy");
-    }
-
-    @Override
     public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5) {
         if (isEmpowered(stack))
             radius = 10;
@@ -94,10 +86,6 @@ public class ItemSwordGelidEnderium extends ItemSwordRF {
                     }
                 }
             }
-        }
-
-        if (stack.getItemDamage() != stack.getMaxDamage() && stack.getItem() instanceof ItemSwordGelidEnderium) {
-            stack.setItemDamage(stack.getMaxDamage());
         }
     }
 
@@ -119,13 +107,18 @@ public class ItemSwordGelidEnderium extends ItemSwordRF {
     }
 
     @Override
-    public int getMaxDamage(ItemStack stack) {
-        return 1 + maxEnergy;
+    public boolean showDurabilityBar(ItemStack stack) {
+        return true;
     }
 
     @Override
-    public boolean isDamaged(ItemStack stack) {
-        return stack.getItemDamage() != Short.MAX_VALUE;
+    public double getDurabilityForDisplay(ItemStack stack) {
+        if (stack.stackTagCompound == null)
+            EnergyHelper.setDefaultEnergyTag(stack, 0);
+
+        int currentEnergy = stack.stackTagCompound.getInteger("Energy");
+
+        return 1.0 - ((double) currentEnergy / (double) getMaxEnergyStored(stack));
     }
 
     @Override

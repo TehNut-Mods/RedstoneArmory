@@ -150,21 +150,18 @@ public class ItemPickaxeGelidEnderium extends ItemPickaxeRF {
     }
 
     @Override
-    public int getDisplayDamage(ItemStack stack) {
-        if (stack.stackTagCompound == null) {
+    public boolean showDurabilityBar(ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack) {
+        if (stack.stackTagCompound == null)
             EnergyHelper.setDefaultEnergyTag(stack, 0);
-        }
-        return 1 + maxEnergy - stack.stackTagCompound.getInteger("Energy");
-    }
 
-    @Override
-    public int getMaxDamage(ItemStack stack) {
-        return 1 + maxEnergy;
-    }
+        int currentEnergy = stack.stackTagCompound.getInteger("Energy");
 
-    @Override
-    public boolean isDamaged(ItemStack stack) {
-        return stack.getItemDamage() != Short.MAX_VALUE;
+        return 1.0 - ((double) currentEnergy / (double) getMaxEnergyStored(stack));
     }
 
     @Override

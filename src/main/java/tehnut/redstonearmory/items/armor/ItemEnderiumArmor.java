@@ -7,6 +7,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import tehnut.redstonearmory.ModInformation;
 import tehnut.redstonearmory.RedstoneArmory;
+import tehnut.redstonearmory.items.baubles.CapacitorType;
 import tehnut.redstonearmory.util.TextHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -111,24 +112,18 @@ public class ItemEnderiumArmor extends ItemArmorRF {
     }
 
     @Override
-    public int getDisplayDamage(ItemStack stack) {
+    public boolean showDurabilityBar(ItemStack stack) {
+        return true;
+    }
 
-        if (stack.stackTagCompound == null) {
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack) {
+        if (stack.stackTagCompound == null)
             EnergyHelper.setDefaultEnergyTag(stack, 0);
-        }
-        return 1 + maxEnergy - stack.stackTagCompound.getInteger("Energy");
-    }
 
-    @Override
-    public int getMaxDamage(ItemStack stack) {
+        int currentEnergy = stack.stackTagCompound.getInteger("Energy");
 
-        return 1 + maxEnergy;
-    }
-
-    @Override
-    public boolean isDamaged(ItemStack stack) {
-
-        return stack.getItemDamage() != Short.MAX_VALUE;
+        return 1.0 - ((double) currentEnergy / (double) getMaxEnergyStored(stack));
     }
 
     protected int getBaseAbsorption() {

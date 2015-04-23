@@ -59,13 +59,6 @@ public class ItemBattleWrenchGelidEnderium extends ItemWrenchBattleRF {
         this.drainedIcon = iconRegister.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench_drained");
     }
 
-    @Override
-    public void onUpdate(ItemStack stack, World world, Entity entity, int par4, boolean par5) {
-        if (stack.getItemDamage() != stack.getMaxDamage() && stack.getItem() instanceof ItemBattleWrenchGelidEnderium) {
-            stack.setItemDamage(stack.getMaxDamage());
-        }
-    }
-
 //    @Override
 //    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
 //        if (isEmpowered(stack)) {
@@ -97,21 +90,18 @@ public class ItemBattleWrenchGelidEnderium extends ItemWrenchBattleRF {
     }
 
     @Override
-    public int getDisplayDamage(ItemStack stack) {
-        if (stack.stackTagCompound == null) {
+    public boolean showDurabilityBar(ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack) {
+        if (stack.stackTagCompound == null)
             EnergyHelper.setDefaultEnergyTag(stack, 0);
-        }
-        return 1 + maxEnergy - stack.stackTagCompound.getInteger("Energy");
-    }
 
-    @Override
-    public int getMaxDamage(ItemStack stack) {
-        return 1 + maxEnergy;
-    }
+        int currentEnergy = stack.stackTagCompound.getInteger("Energy");
 
-    @Override
-    public boolean isDamaged(ItemStack stack) {
-        return stack.getItemDamage() != Short.MAX_VALUE;
+        return 1.0 - ((double) currentEnergy / (double) getMaxEnergyStored(stack));
     }
 
     @Override
