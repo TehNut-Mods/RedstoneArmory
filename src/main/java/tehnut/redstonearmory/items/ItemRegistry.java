@@ -1,6 +1,7 @@
 package tehnut.redstonearmory.items;
 
 import cofh.redstonearsenal.item.RAItems;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.registry.GameRegistry;
 import tehnut.redstonearmory.ConfigHandler;
 import tehnut.redstonearmory.ModInformation;
@@ -76,8 +77,10 @@ public class ItemRegistry {
             GameRegistry.registerItem(nutThrowable, "ItemThrowableNut");
         }
 
-        capacitorBauble = new ItemBaubleCapacitor();
-        GameRegistry.registerItem(capacitorBauble, "ItemBaubleCapacitor");
+        if (Loader.isModLoaded("Baubles")) {
+            capacitorBauble = new ItemBaubleCapacitor();
+            GameRegistry.registerItem(capacitorBauble, "ItemBaubleCapacitor");
+        }
 
         potahoe = new ItemPotahoeFluxed();
         GameRegistry.registerItem(potahoe, "ItemPotahoFluxed");
