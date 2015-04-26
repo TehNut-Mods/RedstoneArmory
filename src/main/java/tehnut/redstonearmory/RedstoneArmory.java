@@ -3,8 +3,10 @@ package tehnut.redstonearmory;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLMissingMappingsEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
 import tehnut.redstonearmory.blocks.BlockRecipeRegistry;
@@ -53,5 +55,13 @@ public class RedstoneArmory {
     public void postInit(FMLPostInitializationEvent event) {
 
         ItemRecipeRegistry.registerLateItemRecipes();
+    }
+
+    @Mod.EventHandler
+    public void onMissingMapping(FMLMissingMappingsEvent event) {
+        for (FMLMissingMappingsEvent.MissingMapping mapping : event.get()) {
+            if (mapping.type == GameRegistry.Type.ITEM && mapping.name.contains("ItemBaubleCapacitor"))
+                mapping.remap(ItemRegistry.capacitorBauble);
+        }
     }
 }
