@@ -30,6 +30,7 @@ public class BlockIngotStorage extends BlockStorage {
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister iconRegister) {
         this.icon[0] = iconRegister.registerIcon(ModInformation.ID + ":storage/gelidEnderiumIngotBlock");
+        this.icon[1] = icon[0];
     }
 
     @Override
@@ -42,7 +43,7 @@ public class BlockIngotStorage extends BlockStorage {
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item id, CreativeTabs tab, List list) {
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 2; i++) {
             list.add(new ItemStack(id, 1, i));
         }
     }
