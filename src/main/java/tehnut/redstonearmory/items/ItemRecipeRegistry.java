@@ -25,7 +25,7 @@ public class ItemRecipeRegistry {
     private static void registerShapedRecipes() {
         RecipeUtils.addStepUpRecipe(new ItemStack(ItemRegistry.materials, 1, 0), "nuggetGelidEnderium");
         RecipeUtils.addStepUpRecipe(new ItemStack(Items.iron_ingot), "nuggetIron");
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.materials, 1, 4), "  N", " N ", "N  ", 'N', "nuggetIron"));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.materials, 1, 4), " NN", " N ", "NN ", 'N', "nuggetIron"));
 
         if (ConfigHandler.enableCapacitorBaubleCrafting) {
             GameRegistry.addRecipe(new ShapedOreRecipe(EnergyHelper.setDefaultEnergyTag(ItemCapacitorAmulet.getStackItem(CapacitorType.TUBEROUS), CapacitorType.TUBEROUS.capacity), " S ", "S S", " C ", 'S', "stringFluxed", 'C', EnergyHelper.setDefaultEnergyTag(new ItemStack(TEItems.itemCapacitor, 1, ItemCapacitor.Types.POTATO.ordinal()), ItemCapacitor.CAPACITY[ItemCapacitor.Types.POTATO.ordinal()])));
@@ -41,28 +41,28 @@ public class ItemRecipeRegistry {
 
         //Armor recipes
         if (ConfigHandler.enableEnderiumFluxArmorCrafting) {
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorEnderiumHelm, 1), "PHP", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, -1), 'H', RAItems.armorFluxHelmet);
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorEnderiumChestplate, 1), "P P", "PCP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlating, 1, -1), 'C', RAItems.armorFluxPlate);
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorEnderiumLeggings, 1), "PLP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, -1), 'L', RAItems.armorFluxLegs);
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorEnderiumBoots, 1), "P P", "PBP", 'P', new ItemStack(ItemRegistry.armorPlating, 1, -1), 'B', RAItems.armorFluxBoots);
+            GameRegistry.addRecipe(new RecipeUpgrade(1, new ItemStack(ItemRegistry.armorEnderiumHelm), new Object[]{"PHP", "P P", 'P', "platingEnderium", 'H', RAItems.armorFluxHelmet}));
+            GameRegistry.addRecipe(new RecipeUpgrade(new ItemStack(ItemRegistry.armorEnderiumChestplate), new Object[]{"P P", "PCP", "PPP", 'P', "platingEnderium", 'C', RAItems.armorFluxPlate}));
+            GameRegistry.addRecipe(new RecipeUpgrade(1, new ItemStack(ItemRegistry.armorEnderiumLeggings), new Object[]{"PLP", "P P", "P P", 'P', "platingEnderium", 'L', RAItems.armorFluxLegs}));
+            GameRegistry.addRecipe(new RecipeUpgrade(new ItemStack(ItemRegistry.armorEnderiumBoots), new Object[]{"P P", "PBP", 'P', "platingEnderium", 'B', RAItems.armorFluxBoots}));
         }
         if (!TTCorePlugin.runtimeDeobfEnabled && ConfigHandler.enableTestingEnviro && ItemRegistry.armorPowersuitChestplate != null) {
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorPowersuitHelm, 1), "PPP", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 6));
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorPowersuitChestplate, 1), "P P", "PPP", "PPP", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 6));
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorPowersuitLeggings, 1), "PPP", "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 6));
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorPowersuitBoots, 1), "P P", "P P", 'P', new ItemStack(ItemRegistry.armorPlating, 1, 6));
+            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorPowersuitHelm, "PPP", "P P", 'P', "platingCraftFull"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorPowersuitChestplate, "P P", "PPP", "PPP", 'P', "platingCraftFull"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorPowersuitLeggings, "PPP", "P P", "P P", 'P', "platingCraftFull"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorPowersuitBoots, "P P", "P P", 'P', "platingCraftFull"));
         }
         if (ConfigHandler.enableLumiumArmorCrafting) {
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorLumiumHelm, 1), "PPP", "P P", 'P', TFItems.ingotLumium);
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorLumiumChestplate, 1), "P P", "PPP", "PPP", 'P', TFItems.ingotLumium);
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorLumiumLeggings, 1), "PPP", "P P", "P P", 'P', TFItems.ingotLumium);
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorLumiumBoots, 1), "P P", "P P", 'P', TFItems.ingotLumium);
+            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorLumiumHelm, "PPP", "P P", 'P', "ingotLumium"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorLumiumChestplate, "P P", "PPP", "PPP", 'P', "ingotLumium"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorLumiumLeggings, "PPP", "P P", "P P", 'P', "ingotLumium"));
+            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorLumiumBoots, "P P", "P P", 'P', "ingotLumium"));
         }
         if (ConfigHandler.enableTuberousArmorCrafting) {
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousHelm, 1), "PPP", "P P", 'P', new ItemStack(Items.potato));
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousChestplate, 1), "P P", "PPP", "PPP", 'P', new ItemStack(Items.potato));
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousLeggings, 1), "PPP", "P P", "P P", 'P', new ItemStack(Items.potato));
-            GameRegistry.addShapedRecipe(new ItemStack(ItemRegistry.armorTuberousBoots, 1), "P P", "P P", 'P', new ItemStack(Items.potato));
+            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorTuberousHelm, "PPP", "P P", 'P', new ItemStack(Items.potato)));
+            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorTuberousChestplate, "P P", "PPP", "PPP", 'P', new ItemStack(Items.potato)));
+            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorTuberousLeggings, "PPP", "P P", "P P", 'P', new ItemStack(Items.potato)));
+            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorTuberousBoots, "P P", "P P", 'P', new ItemStack(Items.potato)));
         }
 
         // Add a recipe for Chainmail
@@ -97,17 +97,17 @@ public class ItemRecipeRegistry {
 
         //Tool recipes
         if (ConfigHandler.enableGelidAxeCrafting)
-            GameRegistry.addRecipe(new ItemStack(ItemRegistry.axeGelidEnderium, 1, 0), "II ", "IT ", " R ", 'R', new ItemStack(ItemRegistry.materials, 1, 3), 'T', RAItems.itemAxeFlux, 'I', new ItemStack(ItemRegistry.materials, 1, 0));
+            GameRegistry.addRecipe(new RecipeUpgrade(new ItemStack(ItemRegistry.axeGelidEnderium), new Object[]{"II ", "IT ", " R ", 'R', "rodGelid", 'T', RAItems.itemAxeFlux, 'I', "ingotGelidEnderium"}));
         if (ConfigHandler.enableGelidBattleWrenchCrafting)
-            GameRegistry.addRecipe(new ItemStack(ItemRegistry.battleWrenchGelidEnderium, 1, 0), "I I", "ITI", " R ", 'R', new ItemStack(ItemRegistry.materials, 1, 3), 'T', RAItems.itemBattleWrenchFlux, 'I', new ItemStack(ItemRegistry.materials, 1, 0));
+            GameRegistry.addRecipe(new RecipeUpgrade(new ItemStack(ItemRegistry.battleWrenchGelidEnderium), new Object[]{"I I", "ITI", " R ", 'R', "rodGelid", 'T', RAItems.itemBattleWrenchFlux, 'I', "ingotGelidEnderium"}));
         if (ConfigHandler.enableGelidPickaxeCrafting)
-            GameRegistry.addRecipe(new ItemStack(ItemRegistry.pickaxeGelidEnderium, 1, 0), "III", " T ", " R ", 'R', new ItemStack(ItemRegistry.materials, 1, 3), 'T', RAItems.itemPickaxeFlux, 'I', new ItemStack(ItemRegistry.materials, 1, 0));
+            GameRegistry.addRecipe(new RecipeUpgrade(new ItemStack(ItemRegistry.pickaxeGelidEnderium), new Object[]{"III", " T ", " R ", 'R', "rodGelid", 'T', RAItems.itemPickaxeFlux, 'I', "ingotGelidEnderium"}));
         if (ConfigHandler.enableGelidShovelCrafting)
-            GameRegistry.addRecipe(new ItemStack(ItemRegistry.shovelGelidEnderium, 1, 0), " I ", " T ", " R ", 'R', new ItemStack(ItemRegistry.materials, 1, 3), 'T', RAItems.itemShovelFlux, 'I', new ItemStack(ItemRegistry.materials, 1, 0));
+            GameRegistry.addRecipe(new RecipeUpgrade(new ItemStack(ItemRegistry.shovelGelidEnderium), new Object[]{" I ", " T ", " R ", 'R', "rodGelid", 'T', RAItems.itemShovelFlux, 'I', "ingotGelidEnderium"}));
         if (ConfigHandler.enableGelidSickleCrafting)
-            GameRegistry.addRecipe(new ItemStack(ItemRegistry.sickleGelidEnderium, 1, 0), " I ", "  I", "RT ", 'R', new ItemStack(ItemRegistry.materials, 1, 3), 'T', RAItems.itemSickleFlux, 'I', new ItemStack(ItemRegistry.materials, 1, 0));
+            GameRegistry.addRecipe(new RecipeUpgrade(7, new ItemStack(ItemRegistry.sickleGelidEnderium), new Object[]{" I ", "  I", "RT ", 'R', "rodGelid", 'T', RAItems.itemSickleFlux, 'I', "ingotGelidEnderium"}));
         if (ConfigHandler.enableGelidSwordCrafting)
-            GameRegistry.addRecipe(new ItemStack(ItemRegistry.swordGelidEnderium, 1, 0), " I ", " T ", " R ", 'R', new ItemStack(ItemRegistry.materials, 1, 3), 'T', RAItems.itemSwordFlux, 'I', new ItemStack(ItemRegistry.materials, 1, 0));
+            GameRegistry.addRecipe(new RecipeUpgrade(new ItemStack(ItemRegistry.swordGelidEnderium), new Object[]{" I ", " T ", " R ", 'R', "rodGelid", 'T', RAItems.itemSwordFlux, 'I', "ingotGelidEnderium"}));
 
         //armor plating
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 0), "NNN", "GIG", "NNN", 'N', "nuggetEnderium", 'G', "gemCrystalFlux", 'I', "ingotEnderium"));
