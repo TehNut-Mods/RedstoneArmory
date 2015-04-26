@@ -1,6 +1,8 @@
 package tehnut.redstonearmory.util.annot;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.tileentity.TileEntity;
@@ -28,10 +30,13 @@ public @interface Register {
 
     public Class<? extends TileEntity> tileEntity() default TileEntity.class;
 
+    @SideOnly(Side.CLIENT)
     public Class<? extends TileEntitySpecialRenderer> TESR() default TileEntitySpecialRenderer.class;
 
+    @SideOnly(Side.CLIENT)
     public Class<IItemRenderer> IItemRenderer() default IItemRenderer.class;
 
+    @SideOnly(Side.CLIENT)
     public Class<ISimpleBlockRenderingHandler> SBRH() default ISimpleBlockRenderingHandler.class;
 
     public Class<? extends ItemBlock> itemBlock() default ItemBlock.class;
