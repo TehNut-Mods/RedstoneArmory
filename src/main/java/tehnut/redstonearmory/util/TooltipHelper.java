@@ -26,7 +26,7 @@ public class TooltipHelper {
 
         int currentEnergy = stack.stackTagCompound.getInteger("Energy");
 
-        list.add(TextHelper.localize("info.RArm.tooltip.getenergy").replace("%currentenergy%", String.valueOf(currentEnergy)).replace("%maxenergy%", String.valueOf(maxEnergy)));
+        list.add(TextHelper.localize("info.RArm.tooltip.getenergy").replace("%current%", String.valueOf(currentEnergy)).replace("%max%", String.valueOf(maxEnergy)));
 
         if (isEmpowered(stack)) {
             list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localizeFormatted("info.RArm.tooltip.extinguish", Keyboard.getKeyName(KeyBindingEmpower.instance.getKey())) + TextHelper.END);

@@ -99,16 +99,18 @@ public class ItemEnderiumArmor extends ItemArmorRF {
         String getCurrentEnergy = "" + currentEnergy;
         String getMaxEnergy = "" + maxEnergy;
 
-        if (StringHelper.displayShiftForDetail && !StringHelper.isShiftKeyDown()) {
+        if (StringHelper.displayShiftForDetail && !StringHelper.isShiftKeyDown())
             list.add(StringHelper.shiftForDetails());
-        }
-        if (!StringHelper.isShiftKeyDown()) {
+
+        if (!StringHelper.isShiftKeyDown())
             return;
-        }
-        if (stack.stackTagCompound == null) {
+
+        if (stack.stackTagCompound == null)
             EnergyHelper.setDefaultEnergyTag(stack, 0);
-        }
-        list.add(TextHelper.localize("info.RArm.tooltip.getenergy").replace("%currentenergy%", getCurrentEnergy).replace("%maxenergy%", getMaxEnergy));
+
+        list.add(TextHelper.localize("info.RArm.tooltip.getenergy").replace("%current%", getCurrentEnergy).replace("%max%", getMaxEnergy));
+        list.add(TextHelper.ORANGE + TextHelper.localizeFormatted("info.RArm.tooltip.perdamage", String.valueOf(energyPerDamage)));
+        list.add("");
     }
 
     @Override

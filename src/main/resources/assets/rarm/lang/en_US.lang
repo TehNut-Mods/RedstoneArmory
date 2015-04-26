@@ -67,8 +67,9 @@ tile.RArm.solar.reinforced.name=Solar Panel (Reinforced)
 tile.RArm.solar.resonant.name=Solar Panel (Resonant)
 
 #Tooltips
-info.RArm.tooltip.getenergy=Charge: %currentenergy% / %maxenergy% RF
-info.RArm.tooltip.peruse=%s RF per use
+info.RArm.tooltip.getenergy=Charge: %current% / %max% RF
+info.RArm.tooltip.peruse=%s RF Per Use
+info.RArm.tooltip.perdamage=%s RF Per Damage
 info.RArm.tooltip.extinguish=Press %s to Quell
 info.RArm.tooltip.empower=Press %s to Empower
 info.RArm.tooltip.damage=+%s Attack Damage
@@ -79,8 +80,6 @@ info.RArm.capacitor.armor=Activate to charge armor.
 info.RArm.capacitor.armor.charging=Charging armor items.
 
 info.RArm.tooltip.armor.lumium.shine=Shining bright like a Glowstone
-info.RArm.tooltip.armor.mithril.almost=Looks just like Rune,
-info.RArm.tooltip.armor.mithril.notquite=but not quite...
 info.RArm.tooltip.armor.tuberous.clever.1=Congrats, you have smeared yourself with
 info.RArm.tooltip.armor.tuberous.clever.2=potatoes. You have achieved "Protatotection".
 info.RArm.tooltip.armor.powersuit.ignore=This is currently unusable. Ignore it.
