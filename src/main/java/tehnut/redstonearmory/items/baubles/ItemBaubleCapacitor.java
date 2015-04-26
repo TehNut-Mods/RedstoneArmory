@@ -61,7 +61,7 @@ public class ItemBaubleCapacitor extends ItemBaubleBase implements IEnergyContai
 
     @Override
     public boolean showDurabilityBar(ItemStack stack) {
-        return true;
+        return stack.getItemDamage() != CapacitorType.CREATIVE.ordinal();
     }
 
     @Override
