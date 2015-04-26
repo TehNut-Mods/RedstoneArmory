@@ -37,24 +37,20 @@ if (new File(projectDir, '.git').exists()) {
 repositories {
     maven { url 'http://maven.tterrag.com/' }
 	ivy {
-		name "CoFHLib"
-		artifactPattern "http://addons-origin.cursecdn.com/files/2230/985/[module]-[revision].[ext]"
-	}
-	ivy {
 		name "CoFHCore"
-        artifactPattern "http://addons-origin.cursecdn.com/files/2231/43/[module]-[revision].[ext]"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2235/399/[module]-[revision].[ext]"
     }
 	ivy {
 		name "RedstoneArsenal"
-        artifactPattern "http://addons-origin.cursecdn.com/files/2230/197/[module]-[revision].[ext]"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2234/469/[module]-[revision].[ext]"
     }
 	ivy {
 		name "ThermalExpansion"
-        artifactPattern "http://addons-origin.cursecdn.com/files/2231/31/[module]-[revision].[ext]"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2233/797/[module]-[revision].[ext]"
     }
 	ivy {
 		name "ThermalFoundation"
-        artifactPattern "http://addons-origin.cursecdn.com/files/2230/632/[module]-[revision].[ext]"
+        artifactPattern "http://addons-origin.cursecdn.com/files/2235/66/[module]-[revision].[ext]"
     }
 	ivy {
 		name "Baubles"
@@ -65,7 +61,6 @@ repositories {
 dependencies {
     compile "tterrag.core:ttCore:${ttCore_version}:deobf"
   	compile name: 'Baubles', version: "${baubles_version}", ext: 'jar'
-  	compile name: 'CoFHLib', version: "[${mc_version}]${cofhlib_version}", ext: 'jar'
   	compile name: 'CoFHCore', version: "[${mc_version}]${cofhcore_version}", ext: 'jar'
   	compile name: 'RedstoneArsenal', version: "[${mc_version}]${rars_version}", ext: 'jar'
   	compile name: 'ThermalExpansion', version: "[${mc_version}]${texpansion_version}", ext: 'jar'
