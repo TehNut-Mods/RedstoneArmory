@@ -41,10 +41,10 @@ public class ItemRecipeRegistry {
 
         //Armor recipes
         if (ConfigHandler.enableEnderiumFluxArmorCrafting) {
-            GameRegistry.addRecipe(new RecipeUpgrade(1, new ItemStack(ItemRegistry.armorEnderiumHelm), new Object[]{"PHP", "P P", 'P', "platingEnderium", 'H', RAItems.armorFluxHelmet}));
+            GameRegistry.addRecipe(new RecipeUpgrade(1, new ItemStack(ItemRegistry.armorEnderiumHelm), new Object[]{"PHP", "P P", "   ", 'P', "platingEnderium", 'H', RAItems.armorFluxHelmet}));
             GameRegistry.addRecipe(new RecipeUpgrade(new ItemStack(ItemRegistry.armorEnderiumChestplate), new Object[]{"P P", "PCP", "PPP", 'P', "platingEnderium", 'C', RAItems.armorFluxPlate}));
             GameRegistry.addRecipe(new RecipeUpgrade(1, new ItemStack(ItemRegistry.armorEnderiumLeggings), new Object[]{"PLP", "P P", "P P", 'P', "platingEnderium", 'L', RAItems.armorFluxLegs}));
-            GameRegistry.addRecipe(new RecipeUpgrade(new ItemStack(ItemRegistry.armorEnderiumBoots), new Object[]{"P P", "PBP", 'P', "platingEnderium", 'B', RAItems.armorFluxBoots}));
+            GameRegistry.addRecipe(new RecipeUpgrade(7, new ItemStack(ItemRegistry.armorEnderiumBoots), new Object[]{"   ", "P P", "PBP", 'P', "platingEnderium", 'B', RAItems.armorFluxBoots}));
         }
         if (!TTCorePlugin.runtimeDeobfEnabled && ConfigHandler.enableTestingEnviro && ItemRegistry.armorPowersuitChestplate != null) {
             GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorPowersuitHelm, "PPP", "P P", 'P', "platingCraftFull"));
