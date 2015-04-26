@@ -30,8 +30,10 @@ public class ItemRecipeRegistry {
         if (ConfigHandler.enableCapacitorBaubleCrafting) {
             GameRegistry.addRecipe(new ShapedOreRecipe(EnergyHelper.setDefaultEnergyTag(ItemBaubleCapacitor.getStackItem(CapacitorType.TUBEROUS), CapacitorType.TUBEROUS.capacity), " S ", "S S", " C ", 'S', "stringFluxed", 'C', EnergyHelper.setDefaultEnergyTag(new ItemStack(TEItems.itemCapacitor, 1, ItemCapacitor.Types.POTATO.ordinal()), ItemCapacitor.CAPACITY[ItemCapacitor.Types.POTATO.ordinal()])));
 
-            for (int i = 2; i < CapacitorType.values().length; i++)
+            for (int i = 2; i < CapacitorType.values().length; i++) {
                 GameRegistry.addRecipe(new RecipeUpgrade(7, ItemBaubleCapacitor.getStackItem(CapacitorType.values()[i]), new Object[]{" S ", "S S", " C ", 'S', "stringFluxed", 'C', new ItemStack(TEItems.itemCapacitor, 1, i)}));
+                GameRegistry.addRecipe(new RecipeUpgrade(new ItemStack(TEItems.itemCapacitor, 1, i), new Object[]{" S ", " C ", "   ", 'S', Items.shears.setContainerItem(Items.shears), 'C', ItemBaubleCapacitor.getStackItem(CapacitorType.values()[i])}));
+            }
         }
 
         if (ConfigHandler.enablePotahoeCrafting)
