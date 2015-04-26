@@ -24,11 +24,11 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ItemBaubleCapacitor extends ItemBaubleBase implements IEnergyContainerItem {
+public class ItemCapacitorAmulet extends ItemBaubleBase implements IEnergyContainerItem {
 
     private IIcon[] icon = new IIcon[CapacitorType.values().length + 1];
 
-    public ItemBaubleCapacitor() {
+    public ItemCapacitorAmulet() {
         super("capacitor.", BaubleType.AMULET);
     }
 

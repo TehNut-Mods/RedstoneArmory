@@ -8,7 +8,7 @@ import net.minecraftforge.common.util.EnumHelper;
 import tehnut.redstonearmory.items.armor.ItemEnderiumArmor;
 import tehnut.redstonearmory.items.armor.ItemLumiumArmor;
 import tehnut.redstonearmory.items.armor.ItemTuberousArmor;
-import tehnut.redstonearmory.items.baubles.ItemBaubleCapacitor;
+import tehnut.redstonearmory.items.baubles.ItemCapacitorAmulet;
 import tehnut.redstonearmory.items.powersuit.ItemPowersuit;
 import tehnut.redstonearmory.items.random.ItemThrowableNut;
 import tehnut.redstonearmory.items.tools.ItemPotahoeFluxed;
@@ -30,7 +30,7 @@ public class ItemRegistry {
 
     @Register(enabled = "false") public static Item nutThrowable = new ItemThrowableNut();
 
-    @Register(dependency = "Baubles") public static Item capacitorBauble = new ItemBaubleCapacitor();
+    @Register(dependency = "Baubles") public static Item capacitorBauble = new ItemCapacitorAmulet();
 
     @Register public static Item potahoe = new ItemPotahoeFluxed();
 
