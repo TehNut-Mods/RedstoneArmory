@@ -6,6 +6,7 @@ import cpw.mods.fml.relauncher.SideOnly;
 import tehnut.redstonearmory.ModInformation;
 import tehnut.redstonearmory.RedstoneArmory;
 import tehnut.redstonearmory.blocks.BlockRegistry;
+import tehnut.redstonearmory.items.ItemRegistry;
 import tehnut.redstonearmory.util.TextHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,10 +19,9 @@ import java.util.List;
 
 public class ItemLumiumArmor extends ItemArmorAdv {
 
-    public ItemLumiumArmor(ArmorMaterial material, int type) {
+    public ItemLumiumArmor(int type) {
 
-        super(material, type);
-        isRepairable();
+        super(ItemRegistry.ARMOR_MATERIAL_LUMIUM, type);
         setRepairIngot("ingotLumium");
         setCreativeTab(RedstoneArmory.tabRArm);
 

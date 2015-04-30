@@ -18,15 +18,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class BlockInvisiLight extends BlockContainer {
+public class BlockInvisible extends BlockContainer {
 
-    public BlockInvisiLight(Material material) {
-        super(material);
-        this.setStepSound(soundTypeCloth);
-        this.setBlockBounds(0, 0, 0, 0, 0, 0);
-        this.getLightValue();
-//		this.setCreativeTab(RedstoneArmory.tabRArm);
-        this.setBlockName(ModInformation.ID + ".light.invisible");
+    public InvisibleType type;
+
+    public BlockInvisible(InvisibleType type) {
+        super(Material.air);
+        setStepSound(soundTypeCloth);
+        setBlockBounds(0, 0, 0, 0, 0, 0);
+        setBlockName(ModInformation.ID + ".invisible");
+
+        this.type = type;
     }
 
     @Override
@@ -42,8 +44,20 @@ public class BlockInvisiLight extends BlockContainer {
     }
 
     @Override
+    public boolean canProvidePower() {
+        return type.equals(InvisibleType.REDSTONE);
+    }
+
+    public int isProvidingWeakPower(IBlockAccess blockAccess, int par2, int par3, int par4, int par5) {
+        if (type.equals(InvisibleType.REDSTONE))
+            return 15;
+        else
+            return 0;
+    }
+
+    @Override
     public int getLightValue() {
-        return 15;
+        return type.getLightLevel();
     }
 
     @Override
@@ -98,11 +112,15 @@ public class BlockInvisiLight extends BlockContainer {
 
     @Override
     public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
-        return new TileInvisibleLight();
+        return new TileInvisible();
     }
 
     //tterrag code
-    public static class TileInvisibleLight extends TileEntity {
+    public static class TileInvisible extends TileEntity {
+
+        public TileInvisible() {
+
+        }
 
         @SuppressWarnings("unchecked")
         @Override

@@ -52,6 +52,7 @@ item.RArm.armor.tuberous.helm.name=Tuberous Helmet
 item.RArm.armor.tuberous.chestplate.name=Tuberous Chestplate
 item.RArm.armor.tuberous.leggings.name=Tuberous Leggings
 item.RArm.armor.tuberous.boots.name=Tuberous Boots
+item.RArm.armor.redstone.boots.name=Redstone Dusted Iron Boots
 
 #Blocks
 tile.RArm.storage.enderium.gelid.ingot.name=Block of Gelid Enderium

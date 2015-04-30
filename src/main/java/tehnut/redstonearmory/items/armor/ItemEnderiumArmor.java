@@ -2,6 +2,7 @@ package tehnut.redstonearmory.items.armor;
 
 import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.StringHelper;
+import cofh.redstonearsenal.item.RAItems;
 import cofh.redstonearsenal.item.armor.ItemArmorRF;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -24,12 +25,12 @@ public class ItemEnderiumArmor extends ItemArmorRF {
     public static final ArmorProperties UNBLOCKABLE = new ArmorProperties(0, 0.0D, 0);
     public static final ArmorProperties FLUX = new ArmorProperties(0, 0.5D, Integer.MAX_VALUE);
 
-    public ItemEnderiumArmor(ArmorMaterial material, int type) {
+    public ItemEnderiumArmor(int type) {
 
-        super(material, type);
-        this.setNoRepair();
-        this.setCreativeTab(RedstoneArmory.tabRArm);
-        this.setMaxDamage(5);
+        super(RAItems.ARMOR_MATERIAL_FLUX, type);
+        setNoRepair();
+        setCreativeTab(RedstoneArmory.tabRArm);
+        setMaxDamage(5);
 
         maxEnergy = 1000000;
         energyPerDamage = 200;

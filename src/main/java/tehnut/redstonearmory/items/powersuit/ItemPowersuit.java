@@ -25,8 +25,8 @@ import java.util.List;
 
 public class ItemPowersuit extends ItemArmorRF {
 
-    public ItemPowersuit(ArmorMaterial armorMaterial, int type) {
-        super(armorMaterial, type);
+    public ItemPowersuit(int type) {
+        super(ArmorMaterial.CHAIN, type);
         setNoRepair();
         setCreativeTab(RedstoneArmory.tabRArm);
         setMaxDamage(0);

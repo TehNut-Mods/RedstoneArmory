@@ -65,6 +65,9 @@ public class ItemRecipeRegistry {
             GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorTuberousBoots, "P P", "P P", 'P', new ItemStack(Items.potato)));
         }
 
+        if (ConfigHandler.enableRedstoneBootsCrafting)
+            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorRedstoneBoots, "I", "B", 'I', Items.iron_boots, 'B', "blockRedstone"));
+
         // Add a recipe for Chainmail
         if (ConfigHandler.addCustomChainmailRecipe) {
             GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(Items.chainmail_helmet), "LLL", "L L", 'L', "chainLink"));

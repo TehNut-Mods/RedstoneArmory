@@ -5,6 +5,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import tehnut.redstonearmory.ModInformation;
 import tehnut.redstonearmory.RedstoneArmory;
+import tehnut.redstonearmory.items.ItemRegistry;
 import tehnut.redstonearmory.util.KeyboardHelper;
 import tehnut.redstonearmory.util.TextHelper;
 import net.minecraft.entity.Entity;
@@ -17,12 +18,11 @@ import java.util.List;
 
 public class ItemTuberousArmor extends ItemArmorAdv {
 
-    public ItemTuberousArmor(ArmorMaterial material, int type) {
+    public ItemTuberousArmor(int type) {
 
-        super(material, type);
-        this.isRepairable();
-        this.setCreativeTab(RedstoneArmory.tabRArm);
-        this.setRepairIngot("cropPotato");
+        super(ItemRegistry.ARMOR_MATERIAL_TUBEROUS, type);
+        setCreativeTab(RedstoneArmory.tabRArm);
+        setRepairIngot("cropPotato");
 
         switch (type) {
             case 0: {
