@@ -1,14 +1,13 @@
 package tehnut.redstonearmory.items.tools.gelidenderium;
 
-import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.redstonearsenal.item.tool.ItemShovelRF;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.item.EnumRarity;
 import tehnut.redstonearmory.ModInformation;
 import tehnut.redstonearmory.RedstoneArmory;
 import tehnut.redstonearmory.util.KeyboardHelper;
-import tehnut.redstonearmory.util.TextHelper;
 import tehnut.redstonearmory.util.TooltipHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
@@ -128,12 +127,6 @@ public class ItemShovelGelidEnderium extends ItemShovelRF {
         return true;
     }
 
-    @SideOnly(Side.CLIENT)
-    @Override
-    public String getItemStackDisplayName(ItemStack itemStack) {
-        return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
-    }
-
     @Override
     public boolean showDurabilityBar(ItemStack stack) {
         return true;
@@ -141,29 +134,25 @@ public class ItemShovelGelidEnderium extends ItemShovelRF {
 
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
-        if (stack.stackTagCompound == null)
-            EnergyHelper.setDefaultEnergyTag(stack, 0);
-
-        int currentEnergy = stack.stackTagCompound.getInteger("Energy");
-
-        return 1.0 - ((double) currentEnergy / (double) getMaxEnergyStored(stack));
+        return 1.0 - ((double) getEnergyStored(stack) / (double) getMaxEnergyStored(stack));
     }
 
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
 
-        if (StringHelper.displayShiftForDetail && !KeyboardHelper.isShiftDown()) {
+        if (StringHelper.displayShiftForDetail && !KeyboardHelper.isShiftDown())
             list.add(StringHelper.shiftForDetails());
-        }
-        if (!StringHelper.isShiftKeyDown()) {
-            return;
-        }
-        if (stack.stackTagCompound == null) {
-            EnergyHelper.setDefaultEnergyTag(stack, 0);
-        }
 
-        TooltipHelper.doEnergyTip(stack, list, maxEnergy, energyPerUse, energyPerUseCharged);
-        TooltipHelper.doDamageTip(stack, list, energyPerUse, damage, damageCharged);
+        if (!StringHelper.isShiftKeyDown())
+            return;
+
+        TooltipHelper.doEnergyTip(stack, list, getMaxEnergyStored(stack), getEnergyStored(stack), getEnergyPerUse(stack), energyPerUseCharged);
+        TooltipHelper.doDamageTip(stack, list, getEnergyPerUse(stack), damage, damageCharged);
+    }
+
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
+        return EnumRarity.rare;
     }
 }

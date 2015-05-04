@@ -1,21 +1,18 @@
 package tehnut.redstonearmory.items.tools.gelidenderium;
 
-import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.redstonearsenal.item.tool.ItemWrenchBattleRF;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.item.EnumRarity;
 import tehnut.redstonearmory.ModInformation;
 import tehnut.redstonearmory.RedstoneArmory;
 import tehnut.redstonearmory.util.KeyboardHelper;
-import tehnut.redstonearmory.util.TextHelper;
 import tehnut.redstonearmory.util.TooltipHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
 
 import java.util.List;
 import java.util.Random;
@@ -25,10 +22,7 @@ public class ItemBattleWrenchGelidEnderium extends ItemWrenchBattleRF {
     IIcon activeIcon;
     IIcon drainedIcon;
 
-    int radius = 2;
     Random random = new Random();
-    int spinDamage = 2;
-    int resistanceEffect = 1;
 
     public ItemBattleWrenchGelidEnderium(ToolMaterial toolMaterial) {
         super(toolMaterial);
@@ -47,7 +41,6 @@ public class ItemBattleWrenchGelidEnderium extends ItemWrenchBattleRF {
 
     @Override
     public IIcon getIcon(ItemStack stack, int pass) {
-
         return isEmpowered(stack) ? this.activeIcon : getEnergyStored(stack) <= 0 ? this.drainedIcon : this.itemIcon;
     }
 
@@ -59,36 +52,6 @@ public class ItemBattleWrenchGelidEnderium extends ItemWrenchBattleRF {
         this.drainedIcon = iconRegister.registerIcon(ModInformation.ID + ":tools/gelidEnderiumBattleWrench_drained");
     }
 
-//    @Override
-//    public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
-//        if (isEmpowered(stack)) {
-//            radius = 4;
-//            spinDamage = 4;
-//            resistanceEffect = 4;
-//        }
-//
-//        AxisAlignedBB bb = AxisAlignedBB.getBoundingBox(player.posX - radius, player.posY - radius, player.posZ - radius, player.posX + radius, player.posY + radius, player.posZ + radius);
-//        Iterator iter = world.getEntitiesWithinAABB(EntityLivingBase.class, bb).iterator();
-//        player.swingItem();
-//        if (iter != null) {
-//            while (iter.hasNext()) {
-//                EntityLivingBase entity = (EntityLivingBase) iter.next();
-//                entity.attackEntityFrom(Utils.causePlayerFluxDamage(player), spinDamage);
-//                player.setAngles(-180, 10);
-//                world.spawnParticle("largeexplode", player.posX, player.posY, player.posZ, 1, 1, 1);
-//                if (!player.capabilities.isCreativeMode && random.nextInt(5) == 0)
-//                    useEnergy(stack, false);
-//            }
-//        }
-//        return stack;
-//    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public String getItemStackDisplayName(ItemStack itemStack) {
-        return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
-    }
-
     @Override
     public boolean showDurabilityBar(ItemStack stack) {
         return true;
@@ -96,29 +59,26 @@ public class ItemBattleWrenchGelidEnderium extends ItemWrenchBattleRF {
 
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
-        if (stack.stackTagCompound == null)
-            EnergyHelper.setDefaultEnergyTag(stack, 0);
+        return 1.0 - ((double) getEnergyStored(stack) / (double) getMaxEnergyStored(stack));
+    }
 
-        int currentEnergy = stack.stackTagCompound.getInteger("Energy");
+    @SuppressWarnings("unchecked")
+    @SideOnly(Side.CLIENT)
+    @Override
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
 
-        return 1.0 - ((double) currentEnergy / (double) getMaxEnergyStored(stack));
+        if (StringHelper.displayShiftForDetail && !KeyboardHelper.isShiftDown())
+            list.add(StringHelper.shiftForDetails());
+
+        if (!StringHelper.isShiftKeyDown())
+            return;
+
+        TooltipHelper.doEnergyTip(stack, list, getMaxEnergyStored(stack), getEnergyStored(stack), getEnergyPerUse(stack), energyPerUseCharged);
+        TooltipHelper.doDamageTip(stack, list, getEnergyPerUse(stack), damage, damageCharged);
     }
 
     @Override
-    @SideOnly(Side.CLIENT)
-    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
-
-        if (StringHelper.displayShiftForDetail && !KeyboardHelper.isShiftDown()) {
-            list.add(StringHelper.shiftForDetails());
-        }
-        if (!StringHelper.isShiftKeyDown()) {
-            return;
-        }
-        if (stack.stackTagCompound == null) {
-            EnergyHelper.setDefaultEnergyTag(stack, 0);
-        }
-
-        TooltipHelper.doEnergyTip(stack, list, maxEnergy, energyPerUse, energyPerUseCharged);
-        TooltipHelper.doDamageTip(stack, list, energyPerUse, damage, damageCharged);
+    public EnumRarity getRarity(ItemStack stack) {
+        return EnumRarity.rare;
     }
 }

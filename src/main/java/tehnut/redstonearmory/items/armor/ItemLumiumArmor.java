@@ -29,7 +29,6 @@ public class ItemLumiumArmor extends ItemArmorAdv {
             case 0: {
                 setTextureName(ModInformation.ID + ":armor/lumiumHelm");
                 setUnlocalizedName(ModInformation.ID + ".armor.lumium.helm");
-                ;
                 break;
             }
             case 1: {
@@ -62,8 +61,8 @@ public class ItemLumiumArmor extends ItemArmorAdv {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public String getArmorTexture(ItemStack Stack, Entity entity, int Slot, String type) {
-        if (Slot == 2)
+    public String getArmorTexture(ItemStack Stack, Entity entity, int slot, String type) {
+        if (slot == 2)
             return ModInformation.ID + ":textures/models/armor/lumiumArmor_2.png";
         else
             return ModInformation.ID + ":textures/models/armor/lumiumArmor_1.png";
@@ -72,14 +71,7 @@ public class ItemLumiumArmor extends ItemArmorAdv {
 
     @Override
     public EnumRarity getRarity(ItemStack stack) {
-
-        return EnumRarity.common;
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public String getItemStackDisplayName(ItemStack itemStack) {
-        return TextHelper.YELLOW + super.getItemStackDisplayName(itemStack);
+        return EnumRarity.uncommon;
     }
 
     @SuppressWarnings("unchecked")

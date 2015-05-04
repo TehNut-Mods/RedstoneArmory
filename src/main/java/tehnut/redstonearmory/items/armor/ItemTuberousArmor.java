@@ -26,27 +26,27 @@ public class ItemTuberousArmor extends ItemArmorAdv {
 
         switch (type) {
             case 0: {
-                this.setTextureName(ModInformation.ID + ":armor/tuberousHelm");
-                this.setUnlocalizedName(ModInformation.ID + ".armor.tuberous.helm");
-                this.setMaxDamage(32);
+                setTextureName(ModInformation.ID + ":armor/tuberousHelm");
+                setUnlocalizedName(ModInformation.ID + ".armor.tuberous.helm");
+                setMaxDamage(32);
                 break;
             }
             case 1: {
-                this.setTextureName(ModInformation.ID + ":armor/tuberousChestplate");
-                this.setUnlocalizedName(ModInformation.ID + ".armor.tuberous.chestplate");
-                this.setMaxDamage(58);
+                setTextureName(ModInformation.ID + ":armor/tuberousChestplate");
+                setUnlocalizedName(ModInformation.ID + ".armor.tuberous.chestplate");
+                setMaxDamage(58);
                 break;
             }
             case 2: {
-                this.setTextureName(ModInformation.ID + ":armor/tuberousLeggings");
-                this.setUnlocalizedName(ModInformation.ID + ".armor.tuberous.leggings");
-                this.setMaxDamage(41);
+                setTextureName(ModInformation.ID + ":armor/tuberousLeggings");
+                setUnlocalizedName(ModInformation.ID + ".armor.tuberous.leggings");
+                setMaxDamage(41);
                 break;
             }
             case 3: {
-                this.setTextureName(ModInformation.ID + ":armor/tuberousBoots");
-                this.setUnlocalizedName(ModInformation.ID + ".armor.tuberous.boots");
-                this.setMaxDamage(25);
+                setTextureName(ModInformation.ID + ":armor/tuberousBoots");
+                setUnlocalizedName(ModInformation.ID + ".armor.tuberous.boots");
+                setMaxDamage(25);
                 break;
             }
         }
@@ -54,8 +54,8 @@ public class ItemTuberousArmor extends ItemArmorAdv {
 
     @Override
     @SideOnly(Side.CLIENT)
-    public String getArmorTexture(ItemStack Stack, Entity entity, int Slot, String type) {
-        if (Slot == 2)
+    public String getArmorTexture(ItemStack Stack, Entity entity, int slot, String type) {
+        if (slot == 2)
             return ModInformation.ID + ":textures/models/armor/tuberousArmor_2.png";
         else
             return ModInformation.ID + ":textures/models/armor/tuberousArmor_1.png";
@@ -68,11 +68,6 @@ public class ItemTuberousArmor extends ItemArmorAdv {
             player.inventory.damageArmor(1F);
             player.getFoodStats().addStats(1, 4.0f);
         }
-    }
-
-    @Override
-    public EnumRarity getRarity(ItemStack stack) {
-        return EnumRarity.common;
     }
 
     @SuppressWarnings("unchecked")

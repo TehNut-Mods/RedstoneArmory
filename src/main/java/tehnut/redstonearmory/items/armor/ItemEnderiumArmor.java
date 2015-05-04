@@ -8,7 +8,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import tehnut.redstonearmory.ModInformation;
 import tehnut.redstonearmory.RedstoneArmory;
-import tehnut.redstonearmory.items.baubles.CapacitorType;
 import tehnut.redstonearmory.util.TextHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
@@ -83,6 +82,7 @@ public class ItemEnderiumArmor extends ItemArmorRF {
             case 3:
                 return 10;
         }
+
         return 0;
     }
 
@@ -90,15 +90,11 @@ public class ItemEnderiumArmor extends ItemArmorRF {
     public void getSubItems(Item item, CreativeTabs tab, List list) {
 
         list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, 0), 0));
-        list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, 0), maxEnergy));
+        list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, 0), getMaxEnergyStored(new ItemStack(item))));
     }
 
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
-        int currentEnergy = stack.stackTagCompound.getInteger("Energy");
-
-        String getCurrentEnergy = "" + currentEnergy;
-        String getMaxEnergy = "" + maxEnergy;
 
         if (StringHelper.displayShiftForDetail && !StringHelper.isShiftKeyDown())
             list.add(StringHelper.shiftForDetails());
@@ -106,10 +102,7 @@ public class ItemEnderiumArmor extends ItemArmorRF {
         if (!StringHelper.isShiftKeyDown())
             return;
 
-        if (stack.stackTagCompound == null)
-            EnergyHelper.setDefaultEnergyTag(stack, 0);
-
-        list.add(TextHelper.localize("info.RArm.tooltip.getenergy").replace("%current%", getCurrentEnergy).replace("%max%", getMaxEnergy));
+        list.add(TextHelper.localize("info.RArm.tooltip.getenergy").replace("%current%", String.valueOf(getEnergyStored(stack))).replace("%max%", String.valueOf(getMaxEnergyStored(stack))));
         list.add(TextHelper.ORANGE + TextHelper.localizeFormatted("info.RArm.tooltip.perdamage", String.valueOf(energyPerDamage)));
         list.add("");
     }
@@ -121,28 +114,15 @@ public class ItemEnderiumArmor extends ItemArmorRF {
 
     @Override
     public double getDurabilityForDisplay(ItemStack stack) {
-        if (stack.stackTagCompound == null)
-            EnergyHelper.setDefaultEnergyTag(stack, 0);
-
-        int currentEnergy = stack.stackTagCompound.getInteger("Energy");
-
-        return 1.0 - ((double) currentEnergy / (double) getMaxEnergyStored(stack));
+        return 1.0 - ((double) getEnergyStored(stack) / (double) getMaxEnergyStored(stack));
     }
 
     protected int getBaseAbsorption() {
-
         return 20;
     }
 
     @Override
     public EnumRarity getRarity(ItemStack stack) {
-
-        return EnumRarity.uncommon;
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public String getItemStackDisplayName(ItemStack itemStack) {
-        return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+        return EnumRarity.rare;
     }
 }

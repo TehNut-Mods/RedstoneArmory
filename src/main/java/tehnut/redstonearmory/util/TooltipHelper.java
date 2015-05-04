@@ -22,9 +22,7 @@ public class TooltipHelper {
      * @param energyPerUseCharged - Energy per use of stack while charged
      */
     @SuppressWarnings("unchecked")
-    public static void doEnergyTip(ItemStack stack, List list, int maxEnergy, int energyPerUse, int energyPerUseCharged) {
-
-        int currentEnergy = stack.stackTagCompound.getInteger("Energy");
+    public static void doEnergyTip(ItemStack stack, List list, int maxEnergy, int currentEnergy, int energyPerUse, int energyPerUseCharged) {
 
         list.add(TextHelper.localize("info.RArm.tooltip.getenergy").replace("%current%", String.valueOf(currentEnergy)).replace("%max%", String.valueOf(maxEnergy)));
 
