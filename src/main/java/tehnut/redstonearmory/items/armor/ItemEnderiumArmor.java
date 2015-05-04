@@ -15,11 +15,11 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import tehnut.redstonearmory.util.interfaces.IGetRidOfDurabilityTooltips;
 
 import java.util.List;
 
-@SuppressWarnings("all")
-public class ItemEnderiumArmor extends ItemArmorRF {
+public class ItemEnderiumArmor extends ItemArmorRF implements IGetRidOfDurabilityTooltips {
 
     public static final ArmorProperties UNBLOCKABLE = new ArmorProperties(0, 0.0D, 0);
     public static final ArmorProperties FLUX = new ArmorProperties(0, 0.5D, Integer.MAX_VALUE);
@@ -86,6 +86,7 @@ public class ItemEnderiumArmor extends ItemArmorRF {
         return 0;
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void getSubItems(Item item, CreativeTabs tab, List list) {
 
@@ -93,6 +94,7 @@ public class ItemEnderiumArmor extends ItemArmorRF {
         list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, 0), getMaxEnergyStored(new ItemStack(item))));
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
 
@@ -104,7 +106,6 @@ public class ItemEnderiumArmor extends ItemArmorRF {
 
         list.add(TextHelper.localize("info.RArm.tooltip.getenergy").replace("%current%", String.valueOf(getEnergyStored(stack))).replace("%max%", String.valueOf(getMaxEnergyStored(stack))));
         list.add(TextHelper.ORANGE + TextHelper.localizeFormatted("info.RArm.tooltip.perdamage", String.valueOf(energyPerDamage)));
-        list.add("");
     }
 
     @Override

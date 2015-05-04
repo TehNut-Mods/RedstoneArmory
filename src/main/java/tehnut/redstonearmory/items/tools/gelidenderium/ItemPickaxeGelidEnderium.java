@@ -20,12 +20,13 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import tehnut.redstonearmory.util.interfaces.IGetRidOfDurabilityTooltips;
 
 import java.util.List;
 import java.util.Random;
 
 @SuppressWarnings("all")
-public class ItemPickaxeGelidEnderium extends ItemPickaxeRF {
+public class ItemPickaxeGelidEnderium extends ItemPickaxeRF implements IGetRidOfDurabilityTooltips {
 
     public int damage = 6;
     public int damageCharged = 1;

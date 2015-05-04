@@ -20,11 +20,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.BonemealEvent;
+import tehnut.redstonearmory.util.interfaces.IGetRidOfDurabilityTooltips;
 
 import java.util.List;
 
 @SuppressWarnings("all")
-public class ItemShovelGelidEnderium extends ItemShovelRF {
+public class ItemShovelGelidEnderium extends ItemShovelRF implements IGetRidOfDurabilityTooltips {
 
     public int damage = 6;
     public int damageCharged = 1;

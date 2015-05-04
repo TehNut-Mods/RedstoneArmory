@@ -7,10 +7,11 @@ import tehnut.redstonearmory.network.HoldJumpPacket;
 import tehnut.redstonearmory.network.PacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import tehnut.redstonearmory.util.interfaces.IGetRidOfDurabilityTooltips;
 import tterrag.core.common.Handlers;
 
 @Handlers.Handler
-public class PlayerEvents {
+public class EventHandler {
 
     public boolean lastKeyJumpHold;
 
@@ -33,6 +34,12 @@ public class PlayerEvents {
     @SubscribeEvent
     public void onToolTip(ItemTooltipEvent event) {
         if (ConfigHandler.enableDebugThingsAndStuff)
-            event.toolTip.add(event.itemStack.getItem().getClass().toString());
+            event.toolTip.add(event.itemStack.getItem().getClass().getCanonicalName());
+
+        if (event.itemStack.getItem() instanceof IGetRidOfDurabilityTooltips) {
+            for (int i = 0; i < event.toolTip.size(); i++)
+                if (event.toolTip.get(i).contains(TextHelper.localize("info.RArm.tooltip.durability")))
+                    event.toolTip.remove(i);
+        }
     }
 }

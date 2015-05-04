@@ -23,11 +23,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.WorldInfo;
+import tehnut.redstonearmory.util.interfaces.IGetRidOfDurabilityTooltips;
 
 import java.util.List;
 import java.util.Random;
 
-public class ItemAxeGelidEnderium extends ItemAxeRF {
+public class ItemAxeGelidEnderium extends ItemAxeRF implements IGetRidOfDurabilityTooltips {
 
     IIcon activeIcon;
     IIcon drainedIcon;

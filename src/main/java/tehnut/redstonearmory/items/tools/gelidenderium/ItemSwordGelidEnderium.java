@@ -19,13 +19,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import tehnut.redstonearmory.util.interfaces.IGetRidOfDurabilityTooltips;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Random;
 
 @SuppressWarnings("all")
-public class ItemSwordGelidEnderium extends ItemSwordRF {
+public class ItemSwordGelidEnderium extends ItemSwordRF implements IGetRidOfDurabilityTooltips {
 
     IIcon activeIcon;
     IIcon drainedIcon;

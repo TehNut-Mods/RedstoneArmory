@@ -75,6 +75,7 @@ info.RArm.tooltip.extinguish=Press %s to Quell
 info.RArm.tooltip.empower=Press %s to Empower
 info.RArm.tooltip.damage=+%s Attack Damage
 info.RArm.tooltip.damage.flux=+%s Flux Damage
+info.RArm.tooltip.durability=Durability
 
 info.RArm.capacitor.slot=Must remain in the amulet slot.
 info.RArm.capacitor.armor=Activate to charge armor.
