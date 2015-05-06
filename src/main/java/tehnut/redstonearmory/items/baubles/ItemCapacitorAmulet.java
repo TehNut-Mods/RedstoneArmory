@@ -8,7 +8,7 @@ import cofh.lib.util.helpers.EnergyHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import tehnut.redstonearmory.ModInformation;
-import tehnut.redstonearmory.items.ItemRegistry;
+import tehnut.redstonearmory.compat.CompatibilityBaubles;
 import tehnut.redstonearmory.util.TooltipHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
@@ -33,7 +33,7 @@ public class ItemCapacitorAmulet extends ItemBaubleBase implements IEnergyContai
     }
 
     public static ItemStack getStackItem(CapacitorType type) {
-        return new ItemStack(ItemRegistry.capacitorBauble, 1, type.ordinal());
+        return new ItemStack(CompatibilityBaubles.capacitorBauble, 1, type.ordinal());
     }
 
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {

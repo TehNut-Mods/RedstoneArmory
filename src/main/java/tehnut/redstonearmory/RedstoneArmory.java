@@ -1,5 +1,6 @@
 package tehnut.redstonearmory;
 
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -11,6 +12,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraftforge.common.config.Configuration;
 import tehnut.redstonearmory.blocks.BlockRecipeRegistry;
 import tehnut.redstonearmory.blocks.BlockRegistry;
+import tehnut.redstonearmory.compat.CompatibilityBaubles;
 import tehnut.redstonearmory.gui.CreativeTabRArm;
 import tehnut.redstonearmory.items.ItemRecipeRegistry;
 import tehnut.redstonearmory.items.ItemRegistry;
@@ -39,6 +41,9 @@ public class RedstoneArmory {
         Registerer.scan(ItemRegistry.class);
         Registerer.scan(BlockRegistry.class);
 
+        if (Loader.isModLoaded("Baubles"))
+            CompatibilityBaubles.load();
+
         OreDictHandler.registerOreDict();
         Handlers.addPackage("tehnut.redstonearmory");
 
@@ -60,8 +65,8 @@ public class RedstoneArmory {
     @Mod.EventHandler
     public void onMissingMapping(FMLMissingMappingsEvent event) {
         for (FMLMissingMappingsEvent.MissingMapping mapping : event.get()) {
-            if (mapping.type == GameRegistry.Type.ITEM && mapping.name.contains("ItemBaubleCapacitor"))
-                mapping.remap(ItemRegistry.capacitorBauble);
+            if (mapping.type == GameRegistry.Type.ITEM && mapping.name.contains("ItemBaubleCapacitor") && Loader.isModLoaded("Baubles"))
+                mapping.remap(CompatibilityBaubles.capacitorBauble);
         }
     }
 }

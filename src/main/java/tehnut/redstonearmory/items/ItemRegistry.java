@@ -30,8 +30,6 @@ public class ItemRegistry {
 
     @Register(enabled = "false") public static Item nutThrowable = new ItemThrowableNut();
 
-    @Register(dependency = "Baubles") public static Item capacitorBauble = new ItemCapacitorAmulet();
-
     @Register public static Item potahoe = new ItemPotahoeFluxed();
 
     @Register public static Item axeGelidEnderium = new ItemAxeGelidEnderium(TOOL_MATERIAL_GELID_ENDERIUM);
