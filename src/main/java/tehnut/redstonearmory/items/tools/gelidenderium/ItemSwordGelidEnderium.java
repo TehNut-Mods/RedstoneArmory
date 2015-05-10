@@ -44,7 +44,7 @@ public class ItemSwordGelidEnderium extends ItemSwordRF {
         energyPerUse = 350;
         energyPerUseCharged = 600;
         damage = 15;
-        damageCharged = 1;
+        damageCharged = 8;
     }
 
     @Override
