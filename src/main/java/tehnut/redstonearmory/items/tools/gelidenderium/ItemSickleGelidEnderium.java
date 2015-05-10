@@ -14,12 +14,11 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import tehnut.redstonearmory.util.interfaces.IGetRidOfDurabilityTooltips;
 
 import java.util.List;
 
 @SuppressWarnings("all")
-public class ItemSickleGelidEnderium extends ItemSickleRF implements IGetRidOfDurabilityTooltips {
+public class ItemSickleGelidEnderium extends ItemSickleRF {
 
     public int radius;
     IIcon activeIcon;

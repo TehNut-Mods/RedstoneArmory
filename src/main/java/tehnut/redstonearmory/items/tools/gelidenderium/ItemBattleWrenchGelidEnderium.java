@@ -13,12 +13,11 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import tehnut.redstonearmory.util.interfaces.IGetRidOfDurabilityTooltips;
 
 import java.util.List;
 import java.util.Random;
 
-public class ItemBattleWrenchGelidEnderium extends ItemWrenchBattleRF implements IGetRidOfDurabilityTooltips {
+public class ItemBattleWrenchGelidEnderium extends ItemWrenchBattleRF {
 
     IIcon activeIcon;
     IIcon drainedIcon;

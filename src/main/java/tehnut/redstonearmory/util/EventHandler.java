@@ -1,13 +1,15 @@
 package tehnut.redstonearmory.util;
 
+import cofh.redstonearsenal.item.RAItems;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraft.item.Item;
 import tehnut.redstonearmory.ConfigHandler;
+import tehnut.redstonearmory.items.ItemRegistry;
 import tehnut.redstonearmory.network.HoldJumpPacket;
 import tehnut.redstonearmory.network.PacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
-import tehnut.redstonearmory.util.interfaces.IGetRidOfDurabilityTooltips;
 import tterrag.core.common.Handlers;
 
 @Handlers.Handler
@@ -33,13 +35,35 @@ public class EventHandler {
 
     @SubscribeEvent
     public void onToolTip(ItemTooltipEvent event) {
-        if (ConfigHandler.enableDebugThingsAndStuff)
-            event.toolTip.add(event.itemStack.getItem().getClass().getCanonicalName());
 
-        if (event.itemStack.getItem() instanceof IGetRidOfDurabilityTooltips) {
-            for (int i = 0; i < event.toolTip.size(); i++)
-                if (event.toolTip.get(i).contains(TextHelper.localize("info.RArm.tooltip.durability")))
-                    event.toolTip.remove(i);
+        Item[] removeItems = new Item[] {
+                ItemRegistry.armorEnderiumHelm,
+                ItemRegistry.armorEnderiumChestplate,
+                ItemRegistry.armorEnderiumLeggings,
+                ItemRegistry.armorEnderiumBoots,
+                ItemRegistry.axeGelidEnderium,
+                ItemRegistry.battleWrenchGelidEnderium,
+                ItemRegistry.pickaxeGelidEnderium,
+                ItemRegistry.shovelGelidEnderium,
+                ItemRegistry.sickleGelidEnderium,
+                ItemRegistry.swordGelidEnderium,
+                RAItems.itemHelmetFlux,
+                RAItems.itemPlateFlux,
+                RAItems.itemLegsFlux,
+                RAItems.itemBootsFlux,
+                RAItems.itemAxeFlux,
+                RAItems.itemBattleWrenchFlux,
+                RAItems.itemPickaxeFlux,
+                RAItems.itemShovelFlux,
+                RAItems.itemSickleFlux,
+                RAItems.itemSwordFlux
+        };
+
+        for (Item item : removeItems) {
+            if (event.itemStack.getItem() == item)
+                for (int i = 0; i < event.toolTip.size(); i++)
+                    if (event.toolTip.get(i).contains(TextHelper.localize("info.RArm.tooltip.durability")))
+                        event.toolTip.remove(i);
         }
     }
 }

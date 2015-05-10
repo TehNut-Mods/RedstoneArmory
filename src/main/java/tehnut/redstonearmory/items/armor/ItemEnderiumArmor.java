@@ -15,11 +15,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import tehnut.redstonearmory.util.interfaces.IGetRidOfDurabilityTooltips;
 
 import java.util.List;
 
-public class ItemEnderiumArmor extends ItemArmorRF implements IGetRidOfDurabilityTooltips {
+public class ItemEnderiumArmor extends ItemArmorRF {
 
     public static final ArmorProperties UNBLOCKABLE = new ArmorProperties(0, 0.0D, 0);
     public static final ArmorProperties FLUX = new ArmorProperties(0, 0.5D, Integer.MAX_VALUE);
