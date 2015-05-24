@@ -3,9 +3,27 @@ package tehnut.redstonearmory.util;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
 public class Utils {
+
+    /**
+     * @param key - Unlocalized string to localize.
+     * @return - Localized String.
+     */
+    public static String localize(String key) {
+        return StatCollector.translateToLocal(key);
+    }
+
+    /**
+     * @param key - Unlocalized string to localize.
+     * @param info - Info to inject into key
+     * @return - Localized String.
+     */
+    public static String localizeFormatted(String key, Object ... info) {
+        return String.format(localize(key), info);
+    }
 
     /**
      * Adapted from the Blood Magic repository. https://github.com/WayofTime/BloodMagic/

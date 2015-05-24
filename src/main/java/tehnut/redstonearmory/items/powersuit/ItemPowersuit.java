@@ -6,11 +6,11 @@ import cofh.redstonearsenal.item.armor.ItemArmorRF;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.EnumChatFormatting;
 import tehnut.redstonearmory.ModInformation;
 import tehnut.redstonearmory.RedstoneArmory;
 import tehnut.redstonearmory.items.powersuit.upgrades.FallPreventionUpgrade;
 import tehnut.redstonearmory.util.KeyboardHelper;
-import tehnut.redstonearmory.util.TextHelper;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,6 +20,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.living.LivingFallEvent;
+import tehnut.redstonearmory.util.Utils;
 
 import java.util.List;
 
@@ -196,23 +197,23 @@ public class ItemPowersuit extends ItemArmorRF {
 
         if (StringHelper.displayShiftForDetail && !(StringHelper.isShiftKeyDown() || KeyboardHelper.isControlDown())) {
             list.add(StringHelper.shiftForDetails());
-            list.add(TextHelper.localize("info.cofh.hold") + " " + TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.RArm.tooltip.control") + TextHelper.LIGHT_GRAY + " " + TextHelper.localize("info.RArm.tooltip.forModules"));
+            list.add(Utils.localize("info.cofh.hold") + " " + EnumChatFormatting.YELLOW + EnumChatFormatting.ITALIC + Utils.localize("info.RArm.tooltip.control") + EnumChatFormatting.GRAY + " " + Utils.localize("info.RArm.tooltip.forModules"));
             list.add(StringHelper.RED + StringHelper.localize("info.RArm.tooltip.armor.powersuit.ignore"));
         }
         if (KeyboardHelper.isControlDown()) {
-            list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.flight.t1") + ": " + isInstalled("FlightMk1", stack));
-            list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.flight.t2") + ": " + isInstalled("FlightMk2", stack));
-            list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.flight.t3") + ": " + isInstalled("FlightMk3", stack));
-            list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.flight.t4") + ": " + isInstalled("FlightMk4", stack));
-            list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.flight.t5") + ": " + isInstalled("FlightMk5", stack));
-            list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.fall.prevention") + ": " + isInstalled("FallPrevention", stack));
-            list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.speed.t1") + ": " + isInstalled("SpeedMk1", stack));
-            list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.speed.t2") + ": " + isInstalled("SpeedMk2", stack));
-            list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.speed.t3") + ": " + isInstalled("SpeedMk3", stack));
-            list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.speed.t4") + ": " + isInstalled("SpeedMk4", stack));
-            list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.step.assist") + ": " + isInstalled("StepAssist", stack));
-            list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.water.breathing") + ": " + isInstalled("WaterBreathing", stack));
-            list.add(TextHelper.localize("info.RArm.tooltip.armor.powersuit.potion.nullification") + ": " + isInstalled("PotionNullification", stack));
+            list.add(Utils.localize("info.RArm.tooltip.armor.powersuit.flight.t1") + ": " + isInstalled("FlightMk1", stack));
+            list.add(Utils.localize("info.RArm.tooltip.armor.powersuit.flight.t2") + ": " + isInstalled("FlightMk2", stack));
+            list.add(Utils.localize("info.RArm.tooltip.armor.powersuit.flight.t3") + ": " + isInstalled("FlightMk3", stack));
+            list.add(Utils.localize("info.RArm.tooltip.armor.powersuit.flight.t4") + ": " + isInstalled("FlightMk4", stack));
+            list.add(Utils.localize("info.RArm.tooltip.armor.powersuit.flight.t5") + ": " + isInstalled("FlightMk5", stack));
+            list.add(Utils.localize("info.RArm.tooltip.armor.powersuit.fall.prevention") + ": " + isInstalled("FallPrevention", stack));
+            list.add(Utils.localize("info.RArm.tooltip.armor.powersuit.speed.t1") + ": " + isInstalled("SpeedMk1", stack));
+            list.add(Utils.localize("info.RArm.tooltip.armor.powersuit.speed.t2") + ": " + isInstalled("SpeedMk2", stack));
+            list.add(Utils.localize("info.RArm.tooltip.armor.powersuit.speed.t3") + ": " + isInstalled("SpeedMk3", stack));
+            list.add(Utils.localize("info.RArm.tooltip.armor.powersuit.speed.t4") + ": " + isInstalled("SpeedMk4", stack));
+            list.add(Utils.localize("info.RArm.tooltip.armor.powersuit.step.assist") + ": " + isInstalled("StepAssist", stack));
+            list.add(Utils.localize("info.RArm.tooltip.armor.powersuit.water.breathing") + ": " + isInstalled("WaterBreathing", stack));
+            list.add(Utils.localize("info.RArm.tooltip.armor.powersuit.potion.nullification") + ": " + isInstalled("PotionNullification", stack));
         }
         if (!StringHelper.isShiftKeyDown()) {
             return;
@@ -241,39 +242,28 @@ public class ItemPowersuit extends ItemArmorRF {
 
     @Override
     public int getDisplayDamage(ItemStack stack) {
-
-        if (stack.stackTagCompound == null) {
+        if (stack.stackTagCompound == null)
             EnergyHelper.setDefaultEnergyTag(stack, 0);
-        }
+
         return 1 + maxEnergy - stack.stackTagCompound.getInteger("Energy");
     }
 
     @Override
     public int getMaxDamage(ItemStack stack) {
-
         return 1 + maxEnergy;
     }
 
     @Override
     public boolean isDamaged(ItemStack stack) {
-
         return stack.getItemDamage() != Short.MAX_VALUE;
     }
 
     protected int getBaseAbsorption() {
-
         return 20;
     }
 
     @Override
     public EnumRarity getRarity(ItemStack stack) {
-
-        return EnumRarity.uncommon;
-    }
-
-    @SideOnly(Side.CLIENT)
-    @Override
-    public String getItemStackDisplayName(ItemStack itemStack) {
-        return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
+        return EnumRarity.epic;
     }
 }

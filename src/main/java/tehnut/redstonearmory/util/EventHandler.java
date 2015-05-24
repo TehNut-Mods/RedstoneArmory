@@ -107,7 +107,7 @@ public class EventHandler {
         for (Item item : removeItems) {
             if (event.itemStack.getItem() == item)
                 for (int i = 0; i < event.toolTip.size(); i++)
-                    if (event.toolTip.get(i).contains(TextHelper.localize("info.RArm.tooltip.durability")))
+                    if (event.toolTip.get(i).contains(Utils.localize("info.RArm.tooltip.durability")))
                         event.toolTip.remove(i);
         }
     }

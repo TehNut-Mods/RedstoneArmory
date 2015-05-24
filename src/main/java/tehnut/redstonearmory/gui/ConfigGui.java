@@ -1,8 +1,8 @@
 package tehnut.redstonearmory.gui;
 
 import tehnut.redstonearmory.ConfigHandler;
-import tehnut.redstonearmory.util.TextHelper;
 import net.minecraft.client.gui.GuiScreen;
+import tehnut.redstonearmory.util.Utils;
 import tterrag.core.api.common.config.IConfigHandler;
 import tterrag.core.client.config.BaseConfigGui;
 
@@ -18,6 +18,6 @@ public class ConfigGui extends BaseConfigGui {
 
     @Override
     protected String getTitle() {
-        return TextHelper.localize("config.RArm.title");
+        return Utils.localize("config.RArm.title");
     }
 }

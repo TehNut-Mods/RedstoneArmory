@@ -1,11 +1,8 @@
 package tehnut.redstonearmory.blocks;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import tehnut.redstonearmory.ModInformation;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
@@ -24,17 +21,12 @@ public class BlockInvisible extends BlockContainer {
 
     public BlockInvisible(InvisibleType type) {
         super(Material.air);
+        setBlockName(ModInformation.ID + ".invisible");
+        setBlockTextureName("blankIcon");
         setStepSound(soundTypeCloth);
         setBlockBounds(0, 0, 0, 0, 0, 0);
-        setBlockName(ModInformation.ID + ".invisible");
 
         this.type = type;
-    }
-
-    @Override
-    @SideOnly(Side.CLIENT)
-    public void registerBlockIcons(IIconRegister iconRegister) {
-        blockIcon = iconRegister.registerIcon("blankIcon");
     }
 
     @SuppressWarnings("unchecked")
@@ -91,12 +83,12 @@ public class BlockInvisible extends BlockContainer {
     }
 
     @Override
-    public boolean canCollideCheck(int par1, boolean par2) {
+    public boolean canCollideCheck(int meta, boolean isFlotationDevice) {
         return false;
     }
 
     @Override
-    public AxisAlignedBB getCollisionBoundingBoxFromPool(World par1World, int par2, int par3, int par4) {
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World world, int x, int y, int z) {
         return null;
     }
 
@@ -111,11 +103,11 @@ public class BlockInvisible extends BlockContainer {
     }
 
     @Override
-    public TileEntity createNewTileEntity(World p_149915_1_, int p_149915_2_) {
+    public TileEntity createNewTileEntity(World world, int someIntThatIDontKnowOf) {
         return new TileInvisible();
     }
 
-    //tterrag code
+    // tterrag code
     public static class TileInvisible extends TileEntity {
 
         public TileInvisible() {

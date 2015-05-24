@@ -3,17 +3,18 @@ package tehnut.redstonearmory.items.armor;
 import cofh.core.item.ItemArmorAdv;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.util.EnumChatFormatting;
 import tehnut.redstonearmory.ModInformation;
 import tehnut.redstonearmory.RedstoneArmory;
 import tehnut.redstonearmory.blocks.BlockRegistry;
 import tehnut.redstonearmory.items.ItemRegistry;
-import tehnut.redstonearmory.util.TextHelper;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
+import tehnut.redstonearmory.util.Utils;
 
 import java.util.List;
 
@@ -77,7 +78,7 @@ public class ItemLumiumArmor extends ItemArmorAdv {
     @SuppressWarnings("unchecked")
     @Override
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
-        list.add(TextHelper.END);
-        list.add(TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.armor.lumium.shine"));
+        list.add("");
+        list.add(EnumChatFormatting.GRAY + Utils.localize("info.RArm.tooltip.armor.lumium.shine"));
     }
 }

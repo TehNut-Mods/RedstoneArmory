@@ -68,13 +68,13 @@ tile.RArm.solar.reinforced.name=Solar Panel (Reinforced)
 tile.RArm.solar.resonant.name=Solar Panel (Resonant)
 
 #Tooltips
-info.RArm.tooltip.getenergy=Charge: %current% / %max% RF
-info.RArm.tooltip.peruse=%s RF Per Use
-info.RArm.tooltip.perdamage=%s RF Per Damage
+info.RArm.tooltip.getenergy=Charge: %d / %d RF
+info.RArm.tooltip.peruse=%d RF Per Use
+info.RArm.tooltip.perdamage=%d RF Per Damage
 info.RArm.tooltip.extinguish=Press %s to Quell
 info.RArm.tooltip.empower=Press %s to Empower
-info.RArm.tooltip.damage=+%s Attack Damage
-info.RArm.tooltip.damage.flux=+%s Flux Damage
+info.RArm.tooltip.damage=+%d Attack Damage
+info.RArm.tooltip.damage.flux=+%d Flux Damage
 info.RArm.tooltip.durability=Durability
 info.RArm.tooltip.bound=Bound Block: %d, %d, %d
 info.RArm.tooltip.side=Insert Side: %s

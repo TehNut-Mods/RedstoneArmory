@@ -7,9 +7,9 @@ public enum InvisibleType {
     REDSTONE(0),
     LUMIUM(15);
 
-    public final int lightLevel;
+    private final int lightLevel;
 
-    private InvisibleType(int lightLevel) {
+    InvisibleType(int lightLevel) {
         this.lightLevel = lightLevel;
     }
 

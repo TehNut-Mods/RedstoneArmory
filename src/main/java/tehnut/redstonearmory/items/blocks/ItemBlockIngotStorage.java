@@ -1,6 +1,5 @@
 package tehnut.redstonearmory.items.blocks;
 
-import tehnut.redstonearmory.util.TextHelper;
 import net.minecraft.block.Block;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemBlock;
@@ -16,11 +15,6 @@ public class ItemBlockIngotStorage extends ItemBlock {
     }
 
     @Override
-    public String getItemStackDisplayName(ItemStack itemStack) {
-        return TextHelper.BRIGHT_BLUE + super.getItemStackDisplayName(itemStack);
-    }
-
-    @Override
     public String getUnlocalizedName(ItemStack stack) {
         return getUnlocalizedName() + "." + names[stack.getItemDamage() % names.length];
     }
@@ -32,6 +26,6 @@ public class ItemBlockIngotStorage extends ItemBlock {
 
     @Override
     public EnumRarity getRarity(ItemStack stack) {
-        return EnumRarity.uncommon;
+        return EnumRarity.rare;
     }
 }

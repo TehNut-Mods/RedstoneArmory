@@ -12,10 +12,11 @@ import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemHoe;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import tehnut.redstonearmory.ModInformation;
 import tehnut.redstonearmory.RedstoneArmory;
-import tehnut.redstonearmory.util.TextHelper;
+import tehnut.redstonearmory.util.Utils;
 
 import java.util.List;
 
@@ -84,7 +85,7 @@ public class ItemPotahoeFluxed extends ItemHoe implements IEnergyContainerItem {
 
         if (StringHelper.isShiftKeyDown()) {
             list.add(StringHelper.localize("info.cofh.charge") + ": " + stack.stackTagCompound.getInteger("Energy") + " / " + capacity + " RF");
-            list.add(TextHelper.ORANGE + TextHelper.localizeFormatted("info.RArm.tooltip.peruse", "" + send) + TextHelper.END);
+            list.add(EnumChatFormatting.GOLD + Utils.localizeFormatted("info.RArm.tooltip.peruse", "" + send));
         }
     }
 

@@ -4,6 +4,7 @@ import cofh.core.util.KeyBindingEmpower;
 import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.MathHelper;
 import cofh.lib.util.helpers.StringHelper;
+import net.minecraft.util.EnumChatFormatting;
 import tehnut.redstonearmory.items.baubles.CapacitorType;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -23,15 +24,13 @@ public class TooltipHelper {
      */
     @SuppressWarnings("unchecked")
     public static void doEnergyTip(ItemStack stack, List list, int maxEnergy, int currentEnergy, int energyPerUse, int energyPerUseCharged) {
-
-        list.add(TextHelper.localize("info.RArm.tooltip.getenergy").replace("%current%", String.valueOf(currentEnergy)).replace("%max%", String.valueOf(maxEnergy)));
-
+        list.add(Utils.localizeFormatted("info.RArm.tooltip.getenergy", currentEnergy, maxEnergy));
         if (isEmpowered(stack)) {
-            list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localizeFormatted("info.RArm.tooltip.extinguish", Keyboard.getKeyName(KeyBindingEmpower.instance.getKey())) + TextHelper.END);
-            list.add(TextHelper.ORANGE + TextHelper.localizeFormatted("info.RArm.tooltip.peruse", String.valueOf(getEnergyPerUse(stack, energyPerUse, energyPerUseCharged))) + TextHelper.END);
+            list.add(EnumChatFormatting.YELLOW + "" + EnumChatFormatting.ITALIC + Utils.localizeFormatted("info.RArm.tooltip.extinguish", Keyboard.getKeyName(KeyBindingEmpower.instance.getKey())));
+            list.add(EnumChatFormatting.GOLD + Utils.localizeFormatted("info.RArm.tooltip.peruse", getEnergyPerUse(stack, energyPerUse, energyPerUseCharged)));
         } else {
-            list.add(TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localizeFormatted("info.RArm.tooltip.empower", Keyboard.getKeyName(KeyBindingEmpower.instance.getKey())) + TextHelper.END);
-            list.add(TextHelper.ORANGE + TextHelper.localizeFormatted("info.RArm.tooltip.peruse", String.valueOf(getEnergyPerUse(stack, energyPerUse, energyPerUseCharged))) + TextHelper.END);
+            list.add(EnumChatFormatting.YELLOW + "" + EnumChatFormatting.ITALIC + Utils.localizeFormatted("info.RArm.tooltip.empower", Keyboard.getKeyName(KeyBindingEmpower.instance.getKey())));
+            list.add(EnumChatFormatting.GOLD + Utils.localizeFormatted("info.RArm.tooltip.peruse", getEnergyPerUse(stack, energyPerUse, energyPerUseCharged)));
         }
     }
 
@@ -75,16 +74,13 @@ public class TooltipHelper {
      */
     @SuppressWarnings("unchecked")
     public static void doDamageTip(ItemStack stack, List list, int energyPerUse, int damage, int damageCharged) {
-
         list.add("");
-
         if (stack.stackTagCompound.getInteger("Energy") >= energyPerUse) {
-            list.add(TextHelper.LIGHT_BLUE + TextHelper.localizeFormatted("info.RArm.tooltip.damage", String.valueOf(damage)) + TextHelper.END);
-            if (isEmpowered(stack)) {
-                list.add(TextHelper.BRIGHT_GREEN + TextHelper.localizeFormatted("info.RArm.tooltip.damage.flux", String.valueOf(damageCharged)) + TextHelper.END);
-            }
+            list.add(EnumChatFormatting.BLUE+ Utils.localizeFormatted("info.RArm.tooltip.damage", damage));
+            if (isEmpowered(stack))
+                list.add(EnumChatFormatting.GREEN + Utils.localizeFormatted("info.RArm.tooltip.damage.flux", damageCharged));
         } else {
-            list.add(TextHelper.LIGHT_BLUE + TextHelper.localizeFormatted("info.RArm.tooltip.damage", "0") + TextHelper.END);
+            list.add(EnumChatFormatting.BLUE + Utils.localizeFormatted("info.RArm.tooltip.damage", "0"));
         }
     }
 
@@ -111,7 +107,6 @@ public class TooltipHelper {
      * @return - Energy per use.
      */
     private static int getEnergyPerUse(ItemStack stack, int energyPerUse, int energyPerUseCharged) {
-
         int unbreakingLevel = MathHelper.clampI(EnchantmentHelper.getEnchantmentLevel(Enchantment.unbreaking.effectId, stack), 0, 4);
         return (isEmpowered(stack) ? energyPerUseCharged : energyPerUse) * (5 - unbreakingLevel) / 5;
     }

@@ -8,11 +8,11 @@ import net.minecraft.inventory.IInventory;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.util.ForgeDirection;
 import tehnut.redstonearmory.ModInformation;
 import tehnut.redstonearmory.RedstoneArmory;
 import tehnut.redstonearmory.util.KeyboardHelper;
-import tehnut.redstonearmory.util.TextHelper;
 import tehnut.redstonearmory.util.TooltipHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -20,6 +20,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import tehnut.redstonearmory.util.Utils;
 import tterrag.core.common.Handlers;
 
 import java.util.List;
@@ -125,10 +126,10 @@ public class ItemPickaxeGelidEnderium extends ItemPickaxeRF {
         String sideString = ForgeDirection.getOrientation(side).toString().toLowerCase();
 
         if (KeyboardHelper.isControlDown()) {
-            list.add(TextHelper.localizeFormatted("info.RArm.tooltip.bound", coordX, coordY, coordZ));
-            list.add(TextHelper.localizeFormatted("info.RArm.tooltip.side", Character.toUpperCase(sideString.charAt(0)) + sideString.substring(1)));
+            list.add(Utils.localizeFormatted("info.RArm.tooltip.bound", coordX, coordY, coordZ));
+            list.add(Utils.localizeFormatted("info.RArm.tooltip.side", Character.toUpperCase(sideString.charAt(0)) + sideString.substring(1)));
         } else {
-            list.add(TextHelper.localize("info.RArm.tooltip.hold") + " " + TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.RArm.tooltip.control") + " " + TextHelper.END + TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.forDetails"));
+            list.add(Utils.localize("info.RArm.tooltip.hold") + " " + EnumChatFormatting.YELLOW + EnumChatFormatting.ITALIC + Utils.localize("info.RArm.tooltip.control") + " " + EnumChatFormatting.RESET + EnumChatFormatting.GRAY + Utils.localize("info.RArm.tooltip.forDetails"));
         }
     }
 
