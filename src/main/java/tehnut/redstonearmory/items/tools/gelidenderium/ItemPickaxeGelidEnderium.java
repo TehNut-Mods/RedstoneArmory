@@ -81,6 +81,7 @@ public class ItemPickaxeGelidEnderium extends ItemPickaxeRF {
                 stack.stackTagCompound.setInteger("CoordX", x);
                 stack.stackTagCompound.setInteger("CoordY", y);
                 stack.stackTagCompound.setInteger("CoordZ", z);
+                stack.stackTagCompound.setInteger("DimID", world.provider.dimensionId);
                 stack.stackTagCompound.setInteger("Side", hitSide);
 
                 return true;
@@ -119,12 +120,13 @@ public class ItemPickaxeGelidEnderium extends ItemPickaxeRF {
         int coordX = stack.stackTagCompound.getInteger("CoordX");
         int coordY = stack.stackTagCompound.getInteger("CoordY");
         int coordZ = stack.stackTagCompound.getInteger("CoordZ");
+        int dimID = stack.stackTagCompound.getInteger("DimID");
         int side = stack.stackTagCompound.getInteger("Side");
 
         String sideString = ForgeDirection.getOrientation(side).toString().toLowerCase();
 
         if (KeyboardHelper.isControlDown()) {
-            list.add(Utils.localizeFormatted("info.RArm.tooltip.bound", coordX, coordY, coordZ));
+            list.add(Utils.localizeFormatted("info.RArm.tooltip.bound", coordX, coordY, coordZ, dimID));
             list.add(Utils.localizeFormatted("info.RArm.tooltip.side", Character.toUpperCase(sideString.charAt(0)) + sideString.substring(1)));
         } else {
             list.add(Utils.localize("info.RArm.tooltip.hold") + " " + EnumChatFormatting.YELLOW + EnumChatFormatting.ITALIC + Utils.localize("info.RArm.tooltip.control") + " " + EnumChatFormatting.RESET + EnumChatFormatting.GRAY + Utils.localize("info.RArm.tooltip.forDetails"));

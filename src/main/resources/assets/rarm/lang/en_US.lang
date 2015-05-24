@@ -76,7 +76,7 @@ info.RArm.tooltip.empower=Press %s to Empower
 info.RArm.tooltip.damage=+%d Attack Damage
 info.RArm.tooltip.damage.flux=+%d Flux Damage
 info.RArm.tooltip.durability=Durability
-info.RArm.tooltip.bound=Bound Block: %d, %d, %d
+info.RArm.tooltip.bound=Bound Block: %d, %d, %d, %d
 info.RArm.tooltip.side=Insert Side: %s
 
 info.RArm.capacitor.slot=Must remain in the amulet slot.

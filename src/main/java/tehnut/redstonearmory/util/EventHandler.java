@@ -9,6 +9,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.world.BlockEvent;
@@ -55,10 +57,13 @@ public class EventHandler {
                     int coordX = tag.getInteger("CoordX");
                     int coordY = tag.getInteger("CoordY");
                     int coordZ = tag.getInteger("CoordZ");
+                    int dimID = tag.getInteger("DimID");
                     int side = tag.getInteger("Side");
 
-                    if (event.world.getBlock(event.x, event.y, event.z) != event.world.getBlock(coordX, coordY, coordZ)) {
-                        TileEntity bound = event.world.getTileEntity(coordX, coordY, coordZ);
+                    World boundWorld = DimensionManager.getWorld(dimID);
+
+                    if (event.world.getBlock(event.x, event.y, event.z) != boundWorld.getBlock(coordX, coordY, coordZ)) {
+                        TileEntity bound = boundWorld.getTileEntity(coordX, coordY, coordZ);
                         IInventory inventory;
 
                         if (bound instanceof IInventory)
