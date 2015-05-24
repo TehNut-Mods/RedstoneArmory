@@ -98,24 +98,25 @@ public class ItemAxeGelidEnderium extends ItemAxeRF {
     @Override
     public ItemStack onItemRightClick(ItemStack stack, World world, EntityPlayer player) {
         if (ConfigHandler.enableAxeWeatherClear) {
-            if (world.isRaining() && isEmpowered(stack) || world.isThundering() && isEmpowered(stack)) {
-                WorldServer worldserver = MinecraftServer.getServer().worldServers[0];
-                WorldInfo worldinfo = worldserver.getWorldInfo();
+            if (!world.isRemote) {
+                if (isEmpowered(stack) && (world.isRaining() || world.isThundering())) {
+                    WorldServer worldserver = MinecraftServer.getServer().worldServers[0];
+                    WorldInfo worldinfo = worldserver.getWorldInfo();
 
-                int i = (300 + (new Random()).nextInt(600)) * 20;
+                    int i = (300 + (new Random()).nextInt(600)) * 20;
 
-                worldinfo.setRaining(false);
-                worldinfo.setThundering(false);
-                worldinfo.setRainTime(i);
+                    worldinfo.setRaining(false);
+                    worldinfo.setThundering(false);
+                    worldinfo.setRainTime(i);
 
-                if (random.nextInt(50) == 0)
-                    world.spawnEntityInWorld(new EntityLightningBolt(world, player.posX, player.posY, player.posZ));
+                    if (random.nextInt(50) == 0)
+                        world.spawnEntityInWorld(new EntityLightningBolt(world, player.posX, player.posY, player.posZ));
 
-                if (!player.capabilities.isCreativeMode)
-                    useEnergy(stack, false);
-
-                player.swingItem();
+                    if (!player.capabilities.isCreativeMode)
+                        useEnergy(stack, false);
+                }
             }
+            player.swingItem();
         }
         return stack;
     }
