@@ -55,7 +55,7 @@ public class ItemCapacitorAmulet extends ItemBaubleBase implements IEnergyContai
     }
 
     @Override
-    public boolean hasEffect(ItemStack stack) {
+    public boolean hasEffect(ItemStack stack, int pass) {
         return this.isActive(stack);
     }
 
