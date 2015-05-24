@@ -4,18 +4,13 @@ import cofh.lib.util.helpers.StringHelper;
 import cofh.redstonearsenal.item.tool.ItemAxeRF;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.item.EnumRarity;
-import tehnut.redstonearmory.ConfigHandler;
-import tehnut.redstonearmory.ModInformation;
-import tehnut.redstonearmory.RedstoneArmory;
-import tehnut.redstonearmory.util.KeyboardHelper;
-import tehnut.redstonearmory.util.TooltipHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.MinecraftServer;
@@ -23,17 +18,22 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.WorldInfo;
+import tehnut.redstonearmory.ConfigHandler;
+import tehnut.redstonearmory.ModInformation;
+import tehnut.redstonearmory.RedstoneArmory;
+import tehnut.redstonearmory.util.KeyboardHelper;
+import tehnut.redstonearmory.util.TooltipHelper;
 
 import java.util.List;
 import java.util.Random;
 
 public class ItemAxeGelidEnderium extends ItemAxeRF {
 
+    public int damage = 8;
+    public int damageCharged = 1;
     IIcon activeIcon;
     IIcon drainedIcon;
     Random random = new Random();
-    public int damage = 8;
-    public int damageCharged = 1;
 
     public ItemAxeGelidEnderium(Item.ToolMaterial toolMaterial) {
         super(toolMaterial);

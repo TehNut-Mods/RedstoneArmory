@@ -7,9 +7,6 @@ import cofh.core.util.CoreUtils;
 import cofh.lib.util.helpers.EnergyHelper;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import tehnut.redstonearmory.ModInformation;
-import tehnut.redstonearmory.compat.CompatibilityBaubles;
-import tehnut.redstonearmory.util.TooltipHelper;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.EntityLivingBase;
@@ -21,6 +18,9 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import tehnut.redstonearmory.ModInformation;
+import tehnut.redstonearmory.compat.CompatibilityBaubles;
+import tehnut.redstonearmory.util.TooltipHelper;
 
 import java.util.List;
 

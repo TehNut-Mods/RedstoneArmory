@@ -4,20 +4,17 @@ import cofh.api.modhelpers.ThermalExpansionHelper;
 import cofh.core.util.crafting.RecipeUpgrade;
 import cofh.lib.util.helpers.EnergyHelper;
 import cofh.redstonearsenal.item.RAItems;
-import cofh.thermalexpansion.item.ItemCapacitor;
 import cofh.thermalexpansion.item.TEItems;
 import cofh.thermalfoundation.item.TFItems;
 import cpw.mods.fml.common.registry.GameRegistry;
-import tehnut.redstonearmory.items.baubles.CapacitorType;
-import tehnut.redstonearmory.items.baubles.ItemCapacitorAmulet;
-import tehnut.redstonearmory.items.tools.ItemPotahoeFluxed;
-import tehnut.redstonearmory.util.RecipeUtils;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import tehnut.redstonearmory.ConfigHandler;
+import tehnut.redstonearmory.items.tools.ItemPotahoeFluxed;
+import tehnut.redstonearmory.util.RecipeUtils;
 import tterrag.core.common.transform.TTCorePlugin;
 
 public class ItemRecipeRegistry {

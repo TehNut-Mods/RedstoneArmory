@@ -4,20 +4,19 @@ import cofh.lib.util.helpers.StringHelper;
 import cofh.redstonearsenal.item.tool.ItemSickleRF;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 import tehnut.redstonearmory.ModInformation;
 import tehnut.redstonearmory.RedstoneArmory;
 import tehnut.redstonearmory.util.KeyboardHelper;
 import tehnut.redstonearmory.util.TooltipHelper;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
 
 import java.util.List;
 
-@SuppressWarnings("all")
 public class ItemSickleGelidEnderium extends ItemSickleRF {
 
     public int radius;
@@ -70,6 +69,7 @@ public class ItemSickleGelidEnderium extends ItemSickleRF {
 
     @Override
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
 
         if (StringHelper.displayShiftForDetail && !KeyboardHelper.isShiftDown())

@@ -4,28 +4,26 @@ import cofh.lib.util.helpers.StringHelper;
 import cofh.redstonearsenal.item.tool.ItemPickaxeRF;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.EnumRarity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IIcon;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import tehnut.redstonearmory.ModInformation;
 import tehnut.redstonearmory.RedstoneArmory;
 import tehnut.redstonearmory.util.KeyboardHelper;
 import tehnut.redstonearmory.util.TooltipHelper;
-import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
-import net.minecraft.world.World;
 import tehnut.redstonearmory.util.Utils;
-import tterrag.core.common.Handlers;
 
 import java.util.List;
 
-@Handlers.Handler
 public class ItemPickaxeGelidEnderium extends ItemPickaxeRF {
 
     public int damage = 6;

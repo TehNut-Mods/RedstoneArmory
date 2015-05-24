@@ -3,11 +3,11 @@ package tehnut.redstonearmory.items.baubles;
 import baubles.api.BaubleType;
 import baubles.api.IBauble;
 import cpw.mods.fml.common.Optional;
-import tehnut.redstonearmory.ModInformation;
-import tehnut.redstonearmory.RedstoneArmory;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import tehnut.redstonearmory.ModInformation;
+import tehnut.redstonearmory.RedstoneArmory;
 
 @Optional.Interface(iface = "baubles.api.IBauble", modid = "Baubles")
 public class ItemBaubleBase extends Item implements IBauble {

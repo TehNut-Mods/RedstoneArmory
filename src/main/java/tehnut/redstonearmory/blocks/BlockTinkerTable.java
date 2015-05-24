@@ -2,9 +2,6 @@ package tehnut.redstonearmory.blocks;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import tehnut.redstonearmory.ModInformation;
-import tehnut.redstonearmory.RedstoneArmory;
-import tehnut.redstonearmory.items.powersuit.ItemPowersuit;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -12,6 +9,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import tehnut.redstonearmory.ModInformation;
+import tehnut.redstonearmory.RedstoneArmory;
+import tehnut.redstonearmory.items.powersuit.ItemPowersuit;
 
 public class BlockTinkerTable extends Block {
 

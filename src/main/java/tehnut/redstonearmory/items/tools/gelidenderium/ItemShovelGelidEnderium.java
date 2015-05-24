@@ -4,26 +4,25 @@ import cofh.lib.util.helpers.StringHelper;
 import cofh.redstonearsenal.item.tool.ItemShovelRF;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.item.EnumRarity;
-import tehnut.redstonearmory.ModInformation;
-import tehnut.redstonearmory.RedstoneArmory;
-import tehnut.redstonearmory.util.KeyboardHelper;
-import tehnut.redstonearmory.util.TooltipHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.entity.player.BonemealEvent;
+import tehnut.redstonearmory.ModInformation;
+import tehnut.redstonearmory.RedstoneArmory;
+import tehnut.redstonearmory.util.KeyboardHelper;
+import tehnut.redstonearmory.util.TooltipHelper;
 
 import java.util.List;
 
-@SuppressWarnings("all")
 public class ItemShovelGelidEnderium extends ItemShovelRF {
 
     public int damage = 6;
@@ -139,6 +138,7 @@ public class ItemShovelGelidEnderium extends ItemShovelRF {
 
     @Override
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
 
         if (StringHelper.displayShiftForDetail && !KeyboardHelper.isShiftDown())

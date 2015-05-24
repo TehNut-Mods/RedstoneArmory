@@ -3,13 +3,13 @@ package tehnut.redstonearmory.blocks;
 import cofh.redstonearsenal.block.BlockStorage;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import tehnut.redstonearmory.ModInformation;
-import tehnut.redstonearmory.RedstoneArmory;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import tehnut.redstonearmory.ModInformation;
+import tehnut.redstonearmory.RedstoneArmory;
 
 import java.util.List;
 

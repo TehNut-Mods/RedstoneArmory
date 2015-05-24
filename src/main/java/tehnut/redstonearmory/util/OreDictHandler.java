@@ -1,10 +1,10 @@
 package tehnut.redstonearmory.util;
 
+import net.minecraft.init.Items;
+import net.minecraft.item.ItemStack;
 import tehnut.redstonearmory.ConfigHandler;
 import tehnut.redstonearmory.blocks.BlockRegistry;
 import tehnut.redstonearmory.items.ItemRegistry;
-import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
 import tterrag.core.common.OreDict;
 
 public class OreDictHandler {

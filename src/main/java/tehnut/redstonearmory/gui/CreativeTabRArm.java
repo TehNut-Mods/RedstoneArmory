@@ -1,9 +1,9 @@
 package tehnut.redstonearmory.gui;
 
-import tehnut.redstonearmory.items.ItemRegistry;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import tehnut.redstonearmory.items.ItemRegistry;
 
 public class CreativeTabRArm extends CreativeTabs {
 

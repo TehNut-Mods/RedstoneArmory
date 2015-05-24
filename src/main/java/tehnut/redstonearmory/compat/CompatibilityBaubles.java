@@ -19,7 +19,8 @@ import tterrag.core.common.compat.ICompatability;
 
 public class CompatibilityBaubles implements ICompatability {
 
-    @Register public static Item capacitorBauble = new ItemCapacitorAmulet();
+    @Register
+    public static Item capacitorBauble = new ItemCapacitorAmulet();
 
     public static void load() {
         LogHelper.info("Baubles Detected: Adding compatibility.");

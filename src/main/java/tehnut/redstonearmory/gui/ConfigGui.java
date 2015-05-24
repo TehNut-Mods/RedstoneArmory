@@ -1,7 +1,7 @@
 package tehnut.redstonearmory.gui;
 
-import tehnut.redstonearmory.ConfigHandler;
 import net.minecraft.client.gui.GuiScreen;
+import tehnut.redstonearmory.ConfigHandler;
 import tehnut.redstonearmory.util.Utils;
 import tterrag.core.api.common.config.IConfigHandler;
 import tterrag.core.client.config.BaseConfigGui;

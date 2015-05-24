@@ -3,23 +3,21 @@ package tehnut.redstonearmory.util;
 import cofh.redstonearsenal.item.RAItems;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraft.client.Minecraft;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.event.world.BlockEvent;
 import tehnut.redstonearmory.ConfigHandler;
 import tehnut.redstonearmory.items.ItemRegistry;
 import tehnut.redstonearmory.items.tools.gelidenderium.ItemPickaxeGelidEnderium;
 import tehnut.redstonearmory.network.HoldJumpPacket;
 import tehnut.redstonearmory.network.PacketHandler;
-import net.minecraft.client.Minecraft;
-import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import tterrag.core.common.Handlers;
-
-import java.util.List;
 
 @Handlers.Handler
 public class EventHandler {
@@ -81,7 +79,7 @@ public class EventHandler {
     @SubscribeEvent
     public void onToolTip(ItemTooltipEvent event) {
 
-        Item[] removeItems = new Item[] {
+        Item[] removeItems = new Item[]{
                 ItemRegistry.armorEnderiumHelm,
                 ItemRegistry.armorEnderiumChestplate,
                 ItemRegistry.armorEnderiumLeggings,

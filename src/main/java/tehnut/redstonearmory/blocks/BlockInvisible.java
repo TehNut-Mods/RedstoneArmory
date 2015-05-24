@@ -1,6 +1,5 @@
 package tehnut.redstonearmory.blocks;
 
-import tehnut.redstonearmory.ModInformation;
 import net.minecraft.block.BlockContainer;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.EntityPlayer;
@@ -10,6 +9,7 @@ import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.world.Explosion;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import tehnut.redstonearmory.ModInformation;
 
 import java.util.ArrayList;
 import java.util.List;

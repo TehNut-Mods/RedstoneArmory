@@ -1,11 +1,11 @@
 package tehnut.redstonearmory.blocks;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import tehnut.redstonearmory.util.RecipeUtils;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
 import net.minecraftforge.oredict.ShapelessOreRecipe;
+import tehnut.redstonearmory.util.RecipeUtils;
 
 @SuppressWarnings("all")
 public class BlockRecipeRegistry {

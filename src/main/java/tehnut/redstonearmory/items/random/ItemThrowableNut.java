@@ -2,11 +2,11 @@ package tehnut.redstonearmory.items.random;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import tehnut.redstonearmory.ModInformation;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemSnowball;
 import net.minecraft.item.ItemStack;
+import tehnut.redstonearmory.ModInformation;
 
 import java.util.List;
 

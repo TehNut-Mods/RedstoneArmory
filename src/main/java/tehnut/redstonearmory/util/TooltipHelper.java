@@ -4,12 +4,12 @@ import cofh.core.util.KeyBindingEmpower;
 import cofh.lib.util.helpers.EnergyHelper;
 import cofh.lib.util.helpers.MathHelper;
 import cofh.lib.util.helpers.StringHelper;
-import net.minecraft.util.EnumChatFormatting;
-import tehnut.redstonearmory.items.baubles.CapacitorType;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 import org.lwjgl.input.Keyboard;
+import tehnut.redstonearmory.items.baubles.CapacitorType;
 
 import java.util.List;
 
@@ -76,7 +76,7 @@ public class TooltipHelper {
     public static void doDamageTip(ItemStack stack, List list, int energyPerUse, int damage, int damageCharged) {
         list.add("");
         if (stack.stackTagCompound.getInteger("Energy") >= energyPerUse) {
-            list.add(EnumChatFormatting.BLUE+ Utils.localizeFormatted("info.RArm.tooltip.damage", damage));
+            list.add(EnumChatFormatting.BLUE + Utils.localizeFormatted("info.RArm.tooltip.damage", damage));
             if (isEmpowered(stack))
                 list.add(EnumChatFormatting.GREEN + Utils.localizeFormatted("info.RArm.tooltip.damage.flux", damageCharged));
         } else {

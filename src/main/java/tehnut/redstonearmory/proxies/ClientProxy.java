@@ -1,8 +1,8 @@
 package tehnut.redstonearmory.proxies;
 
 import cpw.mods.fml.common.FMLCommonHandler;
-import tehnut.redstonearmory.util.KeyHandler;
 import net.minecraft.client.Minecraft;
+import tehnut.redstonearmory.util.KeyHandler;
 
 public class ClientProxy extends CommonProxy {
 
