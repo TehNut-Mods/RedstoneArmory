@@ -38,9 +38,10 @@ public class TextHelper {
 
     /**
      * @param key - Unlocalized string to localize.
+     * @param info - Info to inject into key
      * @return - Localized String.
      */
-    public static String localizeFormatted(String key, String keyFormat) {
-        return String.format(localize(key), localize(keyFormat));
+    public static String localizeFormatted(String key, Object ... info) {
+        return String.format(localize(key), info);
     }
 }

@@ -76,6 +76,8 @@ info.RArm.tooltip.empower=Press %s to Empower
 info.RArm.tooltip.damage=+%s Attack Damage
 info.RArm.tooltip.damage.flux=+%s Flux Damage
 info.RArm.tooltip.durability=Durability
+info.RArm.tooltip.bound=Bound Block: %d, %d, %d
+info.RArm.tooltip.side=Insert Side: %s
 
 info.RArm.capacitor.slot=Must remain in the amulet slot.
 info.RArm.capacitor.armor=Activate to charge armor.
@@ -86,7 +88,9 @@ info.RArm.tooltip.armor.tuberous.clever.1=Congrats, you have smeared yourself wi
 info.RArm.tooltip.armor.tuberous.clever.2=potatoes. You have achieved "Protatotection".
 info.RArm.tooltip.armor.powersuit.ignore=This is currently unusable. Ignore it.
 info.RArm.tooltip.forModules=for Modules
+info.RArm.tooltip.forDetails=for Details
 info.RArm.tooltip.control=Control
+info.RArm.tooltip.hold=Hold
 
 #Powersuit Upgrade Tooltips
 info.RArm.tooltip.armor.powersuit.flight.t1=Flight Mk1

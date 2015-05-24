@@ -3,14 +3,23 @@ package tehnut.redstonearmory.util;
 import cofh.redstonearsenal.item.RAItems;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.event.world.BlockEvent;
 import tehnut.redstonearmory.ConfigHandler;
 import tehnut.redstonearmory.items.ItemRegistry;
+import tehnut.redstonearmory.items.tools.gelidenderium.ItemPickaxeGelidEnderium;
 import tehnut.redstonearmory.network.HoldJumpPacket;
 import tehnut.redstonearmory.network.PacketHandler;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import tterrag.core.common.Handlers;
+
+import java.util.List;
 
 @Handlers.Handler
 public class EventHandler {
@@ -28,6 +37,42 @@ public class EventHandler {
                 if (jumpState != lastKeyJumpHold) {
                     lastKeyJumpHold = jumpState;
                     PacketHandler.INSTANCE.sendToServer(new HoldJumpPacket(jumpState));
+                }
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public void onHarvestDrops(BlockEvent.HarvestDropsEvent event) {
+
+        if (!event.world.isRemote) {
+            if (event.harvester != null && event.harvester.getHeldItem() != null && event.harvester.getHeldItem().getItem() instanceof ItemPickaxeGelidEnderium) {
+                ItemStack pickaxe = event.harvester.getHeldItem();
+
+                if (isEmpowered(pickaxe)) {
+                    if (pickaxe.stackTagCompound == null)
+                        pickaxe.stackTagCompound = new NBTTagCompound();
+
+                    NBTTagCompound tag = pickaxe.stackTagCompound;
+                    int coordX = tag.getInteger("CoordX");
+                    int coordY = tag.getInteger("CoordY");
+                    int coordZ = tag.getInteger("CoordZ");
+                    int side = tag.getInteger("Side");
+
+                    if (event.world.getBlock(event.x, event.y, event.z) != event.world.getBlock(coordX, coordY, coordZ)) {
+                        TileEntity bound = event.world.getTileEntity(coordX, coordY, coordZ);
+                        IInventory inventory;
+
+                        if (bound instanceof IInventory)
+                            inventory = (IInventory) bound;
+                        else
+                            return;
+
+                        for (int drop = 0; drop < event.drops.size(); drop++)
+                            for (int slot = 0; slot < inventory.getSizeInventory(); slot++)
+                                if (inventory.isItemValidForSlot(slot, event.drops.get(drop)))
+                                    Utils.insertStackIntoInventory(event.drops.get(drop), inventory, ForgeDirection.getOrientation(side));
+                    }
                 }
             }
         }
@@ -65,5 +110,9 @@ public class EventHandler {
                     if (event.toolTip.get(i).contains(TextHelper.localize("info.RArm.tooltip.durability")))
                         event.toolTip.remove(i);
         }
+    }
+
+    public boolean isEmpowered(ItemStack stack) {
+        return stack.stackTagCompound != null && stack.stackTagCompound.getBoolean("Empowered");
     }
 }

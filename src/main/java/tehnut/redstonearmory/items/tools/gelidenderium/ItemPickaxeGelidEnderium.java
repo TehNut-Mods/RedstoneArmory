@@ -1,39 +1,36 @@
 package tehnut.redstonearmory.items.tools.gelidenderium;
 
-import cofh.lib.util.helpers.MathHelper;
 import cofh.lib.util.helpers.StringHelper;
 import cofh.redstonearsenal.item.tool.ItemPickaxeRF;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.minecraft.inventory.IInventory;
 import net.minecraft.item.EnumRarity;
-import tehnut.redstonearmory.ConfigHandler;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
 import tehnut.redstonearmory.ModInformation;
 import tehnut.redstonearmory.RedstoneArmory;
 import tehnut.redstonearmory.util.KeyboardHelper;
+import tehnut.redstonearmory.util.TextHelper;
 import tehnut.redstonearmory.util.TooltipHelper;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
+import tterrag.core.common.Handlers;
 
 import java.util.List;
-import java.util.Random;
 
-@SuppressWarnings("all")
+@Handlers.Handler
 public class ItemPickaxeGelidEnderium extends ItemPickaxeRF {
 
     public int damage = 6;
     public int damageCharged = 1;
     IIcon activeIcon;
     IIcon drainedIcon;
-    int range = 4;
-
-    Random random = new Random();
 
     public ItemPickaxeGelidEnderium(ToolMaterial toolMaterial) {
         super(toolMaterial);
@@ -66,82 +63,32 @@ public class ItemPickaxeGelidEnderium extends ItemPickaxeRF {
     }
 
     @Override
-    public boolean onBlockDestroyed(ItemStack stack, World world, Block block, int x, int y, int z, EntityLivingBase entity) {
-
-        if (!(entity instanceof EntityPlayer))
+    public boolean onBlockStartBreak(ItemStack stack, int x, int y, int z, EntityPlayer player) {
+        if (!player.isSneaking())
+            return super.onBlockStartBreak(stack, x, y, z, player);
+        else
             return false;
+    }
 
-        EntityPlayer player = (EntityPlayer) entity;
+    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int hitSide, float hitX, float hitY, float hitZ) {
 
-        if (ConfigHandler.enablePickaxeEnderDislocation) {
-            if ((block == Blocks.cobblestone || block == Blocks.stone || block == Blocks.sandstone || block == Blocks.netherrack) && isEmpowered(stack)) {
-                for (int i = x - 1; i <= x + 1; i++) {
-                    for (int k = z - 1; k <= z + 1; k++) {
-                        for (int j = y - 1; j <= y + 1; j++) {
-                            if (world.getBlock(i, j, k) == Blocks.cobblestone || world.getBlock(i, j, k) == Blocks.stone || world.getBlock(i, j, k) == Blocks.sandstone || world.getBlock(i, j, k) == Blocks.netherrack) {
-                                int facing = MathHelper.floor(entity.rotationYaw * 4.0F / 360.0F + 0.5D) & 3;
+        if (!world.isRemote && player.isSneaking()) {
+            if (stack.stackTagCompound == null)
+                stack.stackTagCompound = new NBTTagCompound();
 
-                                if (facing == 0) {
-                                    int coordZ = z - range;
-                                    if (world.isAirBlock(i, j, coordZ)) {
-                                        world.setBlockToAir(i, j, z);
-                                        world.setBlock(i, j, coordZ, block);
-                                        for (int n = 0; n <= 5; n++)
-                                            world.spawnParticle("portal", i, j, z, 1, 1, 1);
-                                        if (random.nextInt(10) == 0)
-                                            world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
-                                    } else
-                                        harvestBlock(world, i, j, z, player);
-                                } else if (facing == 1) {
-                                    int coordX = x + range;
-                                    if (world.isAirBlock(coordX, j, k)) {
-                                        world.setBlockToAir(x, j, k);
-                                        world.setBlock(coordX, j, k, block);
-                                        for (int n = 0; n <= 5; n++)
-                                            world.spawnParticle("portal", x, j, k, 1, 1, 1);
-                                        if (random.nextInt(10) == 0)
-                                            world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
-                                    } else
-                                        harvestBlock(world, x, j, k, player);
-                                } else if (facing == 2) {
-                                    int coordZ = z + range;
-                                    if (world.isAirBlock(i, j, coordZ)) {
-                                        world.setBlockToAir(i, j, z);
-                                        world.setBlock(i, j, coordZ, block);
-                                        for (int n = 0; n <= 5; n++)
-                                            world.spawnParticle("portal", i, j, z, 1, 1, 1);
-                                        if (random.nextInt(10) == 0)
-                                            world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
-                                    } else
-                                        harvestBlock(world, i, j, z, player);
-                                } else if (facing == 3) {
-                                    int coordX = x - range;
-                                    if (world.isAirBlock(coordX, j, k)) {
-                                        world.setBlockToAir(x, j, k);
-                                        world.setBlock(coordX, j, k, block);
-                                        for (int n = 0; n <= 5; n++)
-                                            world.spawnParticle("portal", x, j, k, 1, 1, 1);
-                                        if (random.nextInt(10) == 0)
-                                            world.playSoundAtEntity(entity, "mob.endermen.portal", 1.0F, 1.0F);
-                                    } else
-                                        harvestBlock(world, x, j, k, player);
-                                }
-                            }
-                        }
-                    }
-                }
+            TileEntity tile = world.getTileEntity(x, y, z);
 
-                if (!player.capabilities.isCreativeMode)
-                    useEnergy(stack, false);
+            if (tile != null && tile instanceof IInventory) {
+                stack.stackTagCompound.setInteger("CoordX", x);
+                stack.stackTagCompound.setInteger("CoordY", y);
+                stack.stackTagCompound.setInteger("CoordZ", z);
+                stack.stackTagCompound.setInteger("Side", hitSide);
 
                 return true;
             }
         }
 
-        if (!player.capabilities.isCreativeMode)
-            useEnergy(stack, false);
-
-        return true;
+        return false;
     }
 
     @Override
@@ -156,16 +103,33 @@ public class ItemPickaxeGelidEnderium extends ItemPickaxeRF {
 
     @Override
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings("unchecked")
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean check) {
 
         if (StringHelper.displayShiftForDetail && !KeyboardHelper.isShiftDown())
             list.add(StringHelper.shiftForDetails());
 
-        if (!StringHelper.isShiftKeyDown())
-            return;
+        if (StringHelper.isShiftKeyDown()) {
+            TooltipHelper.doEnergyTip(stack, list, getMaxEnergyStored(stack), getEnergyStored(stack), getEnergyPerUse(stack), energyPerUseCharged);
+            TooltipHelper.doDamageTip(stack, list, getEnergyPerUse(stack), damage, damageCharged);
+        }
 
-        TooltipHelper.doEnergyTip(stack, list, getMaxEnergyStored(stack), getEnergyStored(stack), getEnergyPerUse(stack), energyPerUseCharged);
-        TooltipHelper.doDamageTip(stack, list, getEnergyPerUse(stack), damage, damageCharged);
+        if (stack.stackTagCompound == null)
+            stack.stackTagCompound = new NBTTagCompound();
+
+        int coordX = stack.stackTagCompound.getInteger("CoordX");
+        int coordY = stack.stackTagCompound.getInteger("CoordY");
+        int coordZ = stack.stackTagCompound.getInteger("CoordZ");
+        int side = stack.stackTagCompound.getInteger("Side");
+
+        String sideString = ForgeDirection.getOrientation(side).toString().toLowerCase();
+
+        if (KeyboardHelper.isControlDown()) {
+            list.add(TextHelper.localizeFormatted("info.RArm.tooltip.bound", coordX, coordY, coordZ));
+            list.add(TextHelper.localizeFormatted("info.RArm.tooltip.side", Character.toUpperCase(sideString.charAt(0)) + sideString.substring(1)));
+        } else {
+            list.add(TextHelper.localize("info.RArm.tooltip.hold") + " " + TextHelper.YELLOW + TextHelper.ITALIC + TextHelper.localize("info.RArm.tooltip.control") + " " + TextHelper.END + TextHelper.LIGHT_GRAY + TextHelper.localize("info.RArm.tooltip.forDetails"));
+        }
     }
 
     @Override
