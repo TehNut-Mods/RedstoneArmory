@@ -13,7 +13,7 @@ import net.minecraftforge.common.config.Configuration;
 import tehnut.redstonearmory.blocks.BlockRecipeRegistry;
 import tehnut.redstonearmory.blocks.BlockRegistry;
 import tehnut.redstonearmory.compat.CompatibilityBaubles;
-import tehnut.redstonearmory.gui.CreativeTabRArm;
+import tehnut.redstonearmory.client.gui.CreativeTabRArm;
 import tehnut.redstonearmory.items.ItemRecipeRegistry;
 import tehnut.redstonearmory.items.ItemRegistry;
 import tehnut.redstonearmory.proxies.CommonProxy;

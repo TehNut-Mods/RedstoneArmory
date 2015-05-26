@@ -1,4 +1,4 @@
-package tehnut.redstonearmory.gui;
+package tehnut.redstonearmory.client.gui;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;

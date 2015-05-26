@@ -1,4 +1,4 @@
-package tehnut.redstonearmory.gui;
+package tehnut.redstonearmory.client.gui;
 
 import net.minecraft.client.gui.GuiScreen;
 import tehnut.redstonearmory.ConfigHandler;
