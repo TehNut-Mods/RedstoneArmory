@@ -161,12 +161,12 @@ curseforge {
         apiKey = project.curse_key
  
     project {
-        id = '229339'
+        id = "${curse_id}"
         changelog = project.hasProperty('changelog') ? project.changelog : ''
         releaseType = 'release'
  
         mainArtifact(jar) {
-            displayName = "Redstone Armory - ${mod_version}-${build_number}"
+            displayName = "${mod_name} - ${mod_version}-${build_number}"
             relations curseRelations
         }
  
