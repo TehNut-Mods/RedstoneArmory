@@ -1,8 +1,8 @@
-package tehnut.redstonearmory.items.baubles;
+package tehnut.redstonearmory.enums;
 
 import java.util.Locale;
 
-public enum CapacitorType {
+public enum EnergyType {
 
     CREATIVE(100000, 0, 100000),
     TUBEROUS(160, 0, 32000),
@@ -15,7 +15,7 @@ public enum CapacitorType {
     public final int send;
     public final int recieve;
 
-    private CapacitorType(int send, int recieve, int capacity) {
+    EnergyType(int send, int recieve, int capacity) {
         this.send = send;
         this.recieve = recieve;
         this.capacity = capacity;

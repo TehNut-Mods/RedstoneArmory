@@ -20,19 +20,20 @@ import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 import tehnut.redstonearmory.ModInformation;
 import tehnut.redstonearmory.compat.CompatibilityBaubles;
+import tehnut.redstonearmory.enums.EnergyType;
 import tehnut.redstonearmory.util.TooltipHelper;
 
 import java.util.List;
 
 public class ItemCapacitorAmulet extends ItemBaubleBase implements IEnergyContainerItem {
 
-    private IIcon[] icon = new IIcon[CapacitorType.values().length + 1];
+    private IIcon[] icon = new IIcon[EnergyType.values().length + 1];
 
     public ItemCapacitorAmulet() {
         super("capacitor.", BaubleType.AMULET);
     }
 
-    public static ItemStack getStackItem(CapacitorType type) {
+    public static ItemStack getStackItem(EnergyType type) {
         return new ItemStack(CompatibilityBaubles.capacitorBauble, 1, type.ordinal());
     }
 
@@ -61,7 +62,7 @@ public class ItemCapacitorAmulet extends ItemBaubleBase implements IEnergyContai
 
     @Override
     public boolean showDurabilityBar(ItemStack stack) {
-        return stack.getItemDamage() != CapacitorType.CREATIVE.ordinal();
+        return stack.getItemDamage() != EnergyType.CREATIVE.ordinal();
     }
 
     @Override
@@ -71,31 +72,31 @@ public class ItemCapacitorAmulet extends ItemBaubleBase implements IEnergyContai
 
         int currentEnergy = stack.stackTagCompound.getInteger("Energy");
 
-        return 1.0 - ((double) currentEnergy / (double) CapacitorType.values()[stack.getItemDamage()].capacity);
+        return 1.0 - ((double) currentEnergy / (double) EnergyType.values()[stack.getItemDamage()].capacity);
     }
 
     @SuppressWarnings("unchecked")
     public void getSubItems(Item item, CreativeTabs tabs, List list) {
 
-        list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, CapacitorType.CREATIVE.ordinal()), CapacitorType.CREATIVE.capacity));
-        list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, CapacitorType.TUBEROUS.ordinal()), CapacitorType.TUBEROUS.capacity));
+        list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, EnergyType.CREATIVE.ordinal()), EnergyType.CREATIVE.capacity));
+        list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, EnergyType.TUBEROUS.ordinal()), EnergyType.TUBEROUS.capacity));
 
-        for (int i = 2; i < CapacitorType.values().length; ++i) {
+        for (int i = 2; i < EnergyType.values().length; ++i) {
             list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, i), 0));
-            list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, i), CapacitorType.values()[i].capacity));
+            list.add(EnergyHelper.setDefaultEnergyTag(new ItemStack(item, 1, i), EnergyType.values()[i].capacity));
         }
     }
 
     public String getUnlocalizedName(ItemStack stack) {
-        return super.getUnlocalizedName(stack) + CapacitorType.values()[stack.getItemDamage()].toString();
+        return super.getUnlocalizedName(stack) + EnergyType.values()[stack.getItemDamage()].toString();
     }
 
     public EnumRarity getRarity(ItemStack stack) {
-        if (stack.getItemDamage() == CapacitorType.CREATIVE.ordinal())
+        if (stack.getItemDamage() == EnergyType.CREATIVE.ordinal())
             return EnumRarity.epic;
-        else if (stack.getItemDamage() == CapacitorType.REINFORCED.ordinal())
+        else if (stack.getItemDamage() == EnergyType.REINFORCED.ordinal())
             return EnumRarity.uncommon;
-        else if (stack.getItemDamage() == CapacitorType.RESONANT.ordinal())
+        else if (stack.getItemDamage() == EnergyType.RESONANT.ordinal())
             return EnumRarity.rare;
 
         return EnumRarity.common;
@@ -157,7 +158,7 @@ public class ItemCapacitorAmulet extends ItemBaubleBase implements IEnergyContai
             EnergyHelper.setDefaultEnergyTag(stack, 0);
 
         int energy = stack.stackTagCompound.getInteger("Energy");
-        int energyReceived = Math.min(i, Math.min(CapacitorType.values()[stack.getItemDamage()].capacity - energy, CapacitorType.values()[stack.getItemDamage()].recieve));
+        int energyReceived = Math.min(i, Math.min(EnergyType.values()[stack.getItemDamage()].capacity - energy, EnergyType.values()[stack.getItemDamage()].recieve));
 
         if (!simulate) {
             energy += energyReceived;
@@ -173,7 +174,7 @@ public class ItemCapacitorAmulet extends ItemBaubleBase implements IEnergyContai
             EnergyHelper.setDefaultEnergyTag(stack, 0);
 
         int energy = stack.stackTagCompound.getInteger("Energy");
-        int energyExtracted = Math.min(extract, Math.min(energy, CapacitorType.values()[stack.getItemDamage()].send));
+        int energyExtracted = Math.min(extract, Math.min(energy, EnergyType.values()[stack.getItemDamage()].send));
 
         if (!simulate) {
             energy -= energyExtracted;
@@ -193,7 +194,7 @@ public class ItemCapacitorAmulet extends ItemBaubleBase implements IEnergyContai
 
     @Override
     public int getMaxEnergyStored(ItemStack stack) {
-        return CapacitorType.values()[stack.getItemDamage()].capacity;
+        return EnergyType.values()[stack.getItemDamage()].capacity;
     }
 
     // Baubley Stuff
@@ -202,7 +203,7 @@ public class ItemCapacitorAmulet extends ItemBaubleBase implements IEnergyContai
     public void onWornTick(ItemStack stack, EntityLivingBase entityLivingBase) {
         if (this.isActive(stack) && !entityLivingBase.worldObj.isRemote) {
             InventoryPlayer inventory = ((EntityPlayer) entityLivingBase).inventory;
-            int toSend = Math.min(this.getEnergyStored(stack), CapacitorType.values()[stack.getItemDamage()].send);
+            int toSend = Math.min(this.getEnergyStored(stack), EnergyType.values()[stack.getItemDamage()].send);
             ItemStack currentItem = inventory.getCurrentItem();
             if (EnergyHelper.isEnergyContainerItem(currentItem)) {
                 IEnergyContainerItem containerItem = (IEnergyContainerItem) currentItem.getItem();
@@ -217,7 +218,7 @@ public class ItemCapacitorAmulet extends ItemBaubleBase implements IEnergyContai
                 }
             }
 
-            if (stack.getItemDamage() == CapacitorType.TUBEROUS.ordinal() && getEnergyStored(stack) <= 0) {
+            if (stack.getItemDamage() == EnergyType.TUBEROUS.ordinal() && getEnergyStored(stack) <= 0) {
                 BaublesApi.getBaubles((EntityPlayer) entityLivingBase).decrStackSize(0, 1);
                 ((EntityPlayer) entityLivingBase).inventory.addItemStackToInventory(new ItemStack(Items.baked_potato, 1, 0));
             }
