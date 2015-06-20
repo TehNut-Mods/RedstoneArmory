@@ -1,5 +1,6 @@
 package tehnut.redstonearmory.util;
 
+import cpw.mods.fml.common.Loader;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.ISidedInventory;
 import net.minecraft.item.ItemStack;
@@ -120,5 +121,20 @@ public class Utils {
             return false;
 
         return initial.getItem() == merge.getItem() && initial.getItemDamage() == merge.getItemDamage() && ItemStack.areItemStackTagsEqual(initial, merge);
+    }
+
+    /**
+     *
+     * @param clazz - Class to load
+     * @param modid - Modid required to load class
+     */
+    public static void registerCompat(Class clazz, String modid) {
+        if (Loader.isModLoaded(modid)) {
+            try {
+                Class.forName(clazz.getCanonicalName());
+            } catch (ClassNotFoundException e) {
+                LogHelper.error("Could not find compatibility class for mod { " + modid + " }. Please report this.");
+            }
+        }
     }
 }

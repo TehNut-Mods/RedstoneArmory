@@ -17,12 +17,12 @@ import tehnut.redstonearmory.util.annot.Register;
 import tehnut.redstonearmory.util.annot.Registerer;
 import tterrag.core.common.compat.ICompatability;
 
-public class CompatibilityBaubles implements ICompatability {
+public class CompatibilityBaubles {
 
     @Register
     public static Item capacitorBauble = new ItemCapacitorAmulet();
 
-    public static void load() {
+    static {
         LogHelper.info("Baubles Detected: Adding compatibility.");
         Registerer.scan(CompatibilityBaubles.class);
         addRecipes();

@@ -18,6 +18,7 @@ import tehnut.redstonearmory.items.ItemRecipeRegistry;
 import tehnut.redstonearmory.items.ItemRegistry;
 import tehnut.redstonearmory.proxies.CommonProxy;
 import tehnut.redstonearmory.util.OreDictHandler;
+import tehnut.redstonearmory.util.Utils;
 import tehnut.redstonearmory.util.annot.Registerer;
 import tterrag.core.common.Handlers;
 
@@ -31,7 +32,6 @@ public class RedstoneArmory {
 
     @Mod.Instance
     public static RedstoneArmory instance;
-    public static Configuration config;
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
@@ -41,8 +41,7 @@ public class RedstoneArmory {
         Registerer.scan(ItemRegistry.class);
         Registerer.scan(BlockRegistry.class);
 
-        if (Loader.isModLoaded("Baubles"))
-            CompatibilityBaubles.load();
+        Utils.registerCompat(CompatibilityBaubles.class, "Baubles");
 
         OreDictHandler.registerOreDict();
         Handlers.addPackage("tehnut.redstonearmory");
