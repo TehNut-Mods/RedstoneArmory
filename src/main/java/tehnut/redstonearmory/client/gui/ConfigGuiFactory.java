@@ -1,9 +1,10 @@
 package tehnut.redstonearmory.client.gui;
 
+import com.enderio.core.common.config.BaseConfigFactory;
 import net.minecraft.client.gui.GuiScreen;
-import tterrag.core.common.config.BaseConfigFactory;
 
 public class ConfigGuiFactory extends BaseConfigFactory {
+
     @Override
     public Class<? extends GuiScreen> mainConfigGuiClass() {
         return ConfigGui.class;

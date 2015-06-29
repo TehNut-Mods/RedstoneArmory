@@ -1,11 +1,11 @@
 package tehnut.redstonearmory.util;
 
+import com.enderio.core.common.OreDict;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import tehnut.redstonearmory.ConfigHandler;
 import tehnut.redstonearmory.blocks.BlockRegistry;
 import tehnut.redstonearmory.items.ItemRegistry;
-import tterrag.core.common.OreDict;
 
 public class OreDictHandler {
 
@@ -59,8 +59,7 @@ public class OreDictHandler {
         //blocks
         //storage
         OreDict.safeRegister(blockGelidEnderium, new ItemStack(BlockRegistry.ingotStorage, 1, 0));
-        if (ConfigHandler.addNutsToys) {
+        if (ConfigHandler.addNutsToys)
             OreDict.safeRegister(blockLapisPurple, new ItemStack(BlockRegistry.randomBlocks, 1, 0));
-        }
     }
 }

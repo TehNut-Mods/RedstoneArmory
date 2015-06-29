@@ -14,7 +14,6 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.client.IItemRenderer;
 import net.minecraftforge.client.MinecraftForgeClient;
 import tehnut.redstonearmory.util.LogHelper;
-import tterrag.core.common.util.TTFileUtils;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
@@ -65,10 +64,9 @@ public class Registerer {
             if (!registerAnnotation.unlocalizedName().isEmpty())
                 item.setUnlocalizedName(registerAnnotation.unlocalizedName());
 
-            if (isEnabled(registerAnnotation.enabled()))
-                GameRegistry.registerItem(item, getName(registerAnnotation, item));
+            GameRegistry.registerItem(item, getName(registerAnnotation, item));
 
-            if (side == Side.CLIENT && isEnabled(registerAnnotation.enabled())) {
+            if (side == Side.CLIENT) {
                 if (registerAnnotation.IItemRenderer() != IItemRenderer.class)
                     MinecraftForgeClient.registerItemRenderer(item, registerAnnotation.IItemRenderer().newInstance());
             }
@@ -92,13 +90,12 @@ public class Registerer {
             if (!registerAnnotation.unlocalizedName().isEmpty())
                 block.setBlockName(registerAnnotation.unlocalizedName());
 
-            if (isEnabled(registerAnnotation.enabled()))
-                GameRegistry.registerBlock(block, registerAnnotation.itemBlock(), getName(registerAnnotation, block));
+            GameRegistry.registerBlock(block, registerAnnotation.itemBlock(), getName(registerAnnotation, block));
 
             if (registerAnnotation.tileEntity() != TileEntity.class)
                 GameRegistry.registerTileEntity(registerAnnotation.tileEntity(), getName(registerAnnotation, block));
 
-            if (side == Side.CLIENT && isEnabled(registerAnnotation.enabled())) {
+            if (side == Side.CLIENT) {
                 if (registerAnnotation.SBRH() != ISimpleBlockRenderingHandler.class)
                     RenderingRegistry.registerBlockHandler(block.getRenderType(), registerAnnotation.SBRH().newInstance());
                 else if (registerAnnotation.tileEntity() != TileEntity.class && registerAnnotation.TESR() != TileEntitySpecialRenderer.class)
@@ -129,12 +126,5 @@ public class Registerer {
         } catch (Exception e) {
             return null;
         }
-    }
-
-    private static boolean isEnabled(String bool) {
-        if (!TTFileUtils.manuallyGetConfigValue("RArm.cfg", bool).equals(""))
-            return Boolean.parseBoolean(TTFileUtils.manuallyGetConfigValue("RArm.cfg", bool));
-        else
-            return Boolean.parseBoolean(bool);
     }
 }

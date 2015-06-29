@@ -13,8 +13,8 @@ public class BlockRecipeRegistry {
     private static void registerShapedRecipes() {
 
         RecipeUtils.addStepUpRecipe(new ItemStack(BlockRegistry.ingotStorage, 1, 0), "ingotGelidEnderium");
-        if (BlockRegistry.tinkerTable != null)
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.tinkerTable), "PPP", "DCD", "PPP", 'P', "platingCraftFull", 'D', "gemDiamond", 'C', Blocks.crafting_table));
+//        if (BlockRegistry.tinkerTable != null)
+//            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(BlockRegistry.tinkerTable), "PPP", "DCD", "PPP", 'P', "platingCraftFull", 'D', "gemDiamond", 'C', Blocks.crafting_table));
     }
 
     private static void registerShaplessRecipes() {

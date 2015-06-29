@@ -44,8 +44,8 @@ public class ItemArmorPlating extends Item {
     @SuppressWarnings({"rawtypes", "unchecked"})
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item item, CreativeTabs creativeTabs, List list) {
-        for (int i = 0; i < names.length; i++)
-            list.add(new ItemStack(this, 1, i));
+//        for (int i = 0; i < names.length; i++)
+            list.add(new ItemStack(this, 1, 0));
     }
 
     public EnumRarity getRarity(ItemStack stack) {

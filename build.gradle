@@ -59,7 +59,7 @@ repositories {
 }
 
 dependencies {
-    compile "tterrag.core:ttCore:${ttCore_version}:deobf"
+    compile "com.enderio.core:EnderCore:${mc_version}-${endercore_version}:dev"
   	compile name: 'Baubles', version: "${baubles_version}", ext: 'jar'
   	compile name: 'CoFHCore', version: "[${mc_version}]${cofhcore_version}", ext: 'jar'
   	compile name: 'RedstoneArsenal', version: "[${mc_version}]${rars_version}", ext: 'jar'

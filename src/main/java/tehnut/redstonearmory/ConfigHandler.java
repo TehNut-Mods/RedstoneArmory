@@ -1,11 +1,11 @@
 package tehnut.redstonearmory;
 
-import tterrag.core.common.config.AbstractConfigHandler;
-import tterrag.core.common.config.ConfigProcessor;
-import tterrag.core.common.config.annot.Comment;
-import tterrag.core.common.config.annot.Config;
-import tterrag.core.common.config.annot.NoSync;
-import tterrag.core.common.config.annot.RestartReq;
+import com.enderio.core.common.config.AbstractConfigHandler;
+import com.enderio.core.common.config.ConfigProcessor;
+import com.enderio.core.common.config.annot.Comment;
+import com.enderio.core.common.config.annot.Config;
+import com.enderio.core.common.config.annot.NoSync;
+import com.enderio.core.common.config.annot.RestartReq;
 
 public class ConfigHandler extends AbstractConfigHandler {
 
@@ -21,7 +21,7 @@ public class ConfigHandler extends AbstractConfigHandler {
 
     // Settings
     @Config(crafting)
-    @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
+    @RestartReq(AbstractConfigHandler.RestartReqs.REQUIRES_MC_RESTART)
     public static boolean enableGelidAxeCrafting = true;
     @Config(crafting)
     @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
@@ -62,10 +62,6 @@ public class ConfigHandler extends AbstractConfigHandler {
     public static boolean enableRedstoneBootsCrafting = true;
 
     @Config(features)
-    @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
-    @Comment("This enables unfinished/broken features. For stable play, leave this disabled. Most of the things don't work, anyways.")
-    public static boolean enableTestingEnviro = false;
-    @Config(features)
     @RestartReq(RestartReqs.NONE)
     @Comment("Determines whether to allow the axe to clear weather.")
     public static boolean enableAxeWeatherClear = true;
@@ -77,10 +73,6 @@ public class ConfigHandler extends AbstractConfigHandler {
     @RestartReq(RestartReqs.NONE)
     @Comment("Determines whether to allow the axe to spawn lightning.")
     public static boolean enableAxeLightning = true;
-    @Config(features)
-    @RestartReq(RestartReqs.NONE)
-    @Comment("Determines whether to allow the pickaxe to teleport mundane Stone blocks.")
-    public static boolean enablePickaxeEnderDislocation = true;
     @Config(features)
     @RestartReq(RestartReqs.NONE)
     @Comment("Determines whether to add magnet mode while blocking with the sword.")
@@ -95,10 +87,6 @@ public class ConfigHandler extends AbstractConfigHandler {
     @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
     @Comment("Nut likes random things so Nut added random things. These won't change gameplay.")
     public static boolean addNutsToys = true;
-    @Config(general)
-    @RestartReq(RestartReqs.REQUIRES_MC_RESTART)
-    @Comment("You probably don't want to enable this...")
-    public static boolean enableDebugThingsAndStuff = false;
 
     private ConfigHandler() {
         super(ModInformation.ID);

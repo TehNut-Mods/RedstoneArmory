@@ -29,9 +29,6 @@ public class ItemRegistry {
     @Register
     public static Item armorPlating = new ItemArmorPlating();
 
-    @Register(enabled = "false")
-    public static Item nutThrowable = new ItemThrowableNut();
-
     @Register
     public static Item potahoe = new ItemPotahoeFluxed();
 
@@ -56,15 +53,6 @@ public class ItemRegistry {
     public static Item armorEnderiumLeggings = new ItemEnderiumArmor(2);
     @Register(name = "ItemEnderiumArmor.Boots")
     public static Item armorEnderiumBoots = new ItemEnderiumArmor(3);
-
-    @Register(name = "ItemPowersuit.Helm", enabled = "enableTestingEnviro")
-    public static Item armorPowersuitHelm = new ItemPowersuit(0);
-    @Register(name = "ItemPowersuit.Chestplate", enabled = "enableTestingEnviro")
-    public static Item armorPowersuitChestplate = new ItemPowersuit(1);
-    @Register(name = "ItemPowersuit.Leggings", enabled = "enableTestingEnviro")
-    public static Item armorPowersuitLeggings = new ItemPowersuit(2);
-    @Register(name = "ItemPowersuit.Boots", enabled = "enableTestingEnviro")
-    public static Item armorPowersuitBoots = new ItemPowersuit(3);
 
     @Register(name = "ItemLumiumArmor.Helm")
     public static Item armorLumiumHelm = new ItemLumiumArmor(0);

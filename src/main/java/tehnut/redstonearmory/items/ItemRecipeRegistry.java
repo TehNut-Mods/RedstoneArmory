@@ -6,6 +6,7 @@ import cofh.lib.util.helpers.EnergyHelper;
 import cofh.redstonearsenal.item.RAItems;
 import cofh.thermalexpansion.item.TEItems;
 import cofh.thermalfoundation.item.TFItems;
+import com.enderio.core.common.transform.EnderCorePlugin;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -15,7 +16,6 @@ import net.minecraftforge.oredict.ShapedOreRecipe;
 import tehnut.redstonearmory.ConfigHandler;
 import tehnut.redstonearmory.items.tools.ItemPotahoeFluxed;
 import tehnut.redstonearmory.util.RecipeUtils;
-import tterrag.core.common.transform.TTCorePlugin;
 
 public class ItemRecipeRegistry {
 
@@ -34,12 +34,12 @@ public class ItemRecipeRegistry {
             GameRegistry.addRecipe(new RecipeUpgrade(1, new ItemStack(ItemRegistry.armorEnderiumLeggings), new Object[]{"PLP", "P P", "P P", 'P', "platingEnderium", 'L', RAItems.armorFluxLegs}));
             GameRegistry.addRecipe(new RecipeUpgrade(7, new ItemStack(ItemRegistry.armorEnderiumBoots), new Object[]{"   ", "P P", "PBP", 'P', "platingEnderium", 'B', RAItems.armorFluxBoots}));
         }
-        if (!TTCorePlugin.runtimeDeobfEnabled && ConfigHandler.enableTestingEnviro && ItemRegistry.armorPowersuitChestplate != null) {
-            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorPowersuitHelm, "PPP", "P P", 'P', "platingCraftFull"));
-            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorPowersuitChestplate, "P P", "PPP", "PPP", 'P', "platingCraftFull"));
-            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorPowersuitLeggings, "PPP", "P P", "P P", 'P', "platingCraftFull"));
-            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorPowersuitBoots, "P P", "P P", 'P', "platingCraftFull"));
-        }
+//        if (!EnderCorePlugin.runtimeDeobfEnabled && ConfigHandler.enableTestingEnviro && ItemRegistry.armorPowersuitChestplate != null) {
+//            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorPowersuitHelm, "PPP", "P P", 'P', "platingCraftFull"));
+//            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorPowersuitChestplate, "P P", "PPP", "PPP", 'P', "platingCraftFull"));
+//            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorPowersuitLeggings, "PPP", "P P", "P P", 'P', "platingCraftFull"));
+//            GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorPowersuitBoots, "P P", "P P", 'P', "platingCraftFull"));
+//        }
         if (ConfigHandler.enableLumiumArmorCrafting) {
             GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorLumiumHelm, "PPP", "P P", 'P', "ingotLumium"));
             GameRegistry.addRecipe(new ShapedOreRecipe(ItemRegistry.armorLumiumChestplate, "P P", "PPP", "PPP", 'P', "ingotLumium"));
@@ -102,8 +102,8 @@ public class ItemRecipeRegistry {
 
         //armor plating
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 0), "NNN", "GIG", "NNN", 'N', "nuggetEnderium", 'G', "gemCrystalFlux", 'I', "ingotEnderium"));
-        if (!TTCorePlugin.runtimeDeobfEnabled && ConfigHandler.enableTestingEnviro && ItemRegistry.armorPowersuitChestplate != null)
-            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 1), "NNN", "GIG", "NNN", 'N', "chainLink", 'G', "dustRedstone", 'I', "ingotIron"));
+//        if (!EnderCorePlugin.runtimeDeobfEnabled && ConfigHandler.enableTestingEnviro && ItemRegistry.armorPowersuitChestplate != null)
+//            GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(ItemRegistry.armorPlating, 1, 1), "NNN", "GIG", "NNN", 'N', "chainLink", 'G', "dustRedstone", 'I', "ingotIron"));
 
         //temporary mana bucket recipe until CoFH add one
         GameRegistry.addShapelessRecipe(TFItems.bucketMana, TFItems.bucketCryotheum, TFItems.bucketEnder, TFItems.bucketPyrotheum, TFItems.bucketRedstone, TFItems.bucketCoal, TFItems.bucketGlowstone);

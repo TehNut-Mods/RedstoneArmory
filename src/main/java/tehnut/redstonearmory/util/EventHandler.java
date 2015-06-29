@@ -1,6 +1,7 @@
 package tehnut.redstonearmory.util;
 
 import cofh.redstonearsenal.item.RAItems;
+import com.enderio.core.common.Handlers;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.TickEvent;
 import net.minecraft.client.Minecraft;
@@ -19,28 +20,27 @@ import tehnut.redstonearmory.items.ItemRegistry;
 import tehnut.redstonearmory.items.tools.gelidenderium.ItemPickaxeGelidEnderium;
 import tehnut.redstonearmory.network.HoldJumpPacket;
 import tehnut.redstonearmory.network.PacketHandler;
-import tterrag.core.common.Handlers;
 
 @Handlers.Handler
 public class EventHandler {
 
-    public boolean lastKeyJumpHold;
-
-    @SubscribeEvent
-    public void onClientTick(TickEvent.ClientTickEvent event) {
-        if (ConfigHandler.enableTestingEnviro) {
-            if (event.phase != TickEvent.Phase.END)
-                return;
-            Minecraft mc = Minecraft.getMinecraft();
-            if (mc.thePlayer != null) {
-                boolean jumpState = mc.gameSettings.keyBindJump.getIsKeyPressed();
-                if (jumpState != lastKeyJumpHold) {
-                    lastKeyJumpHold = jumpState;
-                    PacketHandler.INSTANCE.sendToServer(new HoldJumpPacket(jumpState));
-                }
-            }
-        }
-    }
+//    public boolean lastKeyJumpHold;
+//
+//    @SubscribeEvent
+//    public void onClientTick(TickEvent.ClientTickEvent event) {
+//        if (ConfigHandler.enableTestingEnviro) {
+//            if (event.phase != TickEvent.Phase.END)
+//                return;
+//            Minecraft mc = Minecraft.getMinecraft();
+//            if (mc.thePlayer != null) {
+//                boolean jumpState = mc.gameSettings.keyBindJump.getIsKeyPressed();
+//                if (jumpState != lastKeyJumpHold) {
+//                    lastKeyJumpHold = jumpState;
+//                    PacketHandler.INSTANCE.sendToServer(new HoldJumpPacket(jumpState));
+//                }
+//            }
+//        }
+//    }
 
     @SubscribeEvent
     public void onHarvestDrops(BlockEvent.HarvestDropsEvent event) {

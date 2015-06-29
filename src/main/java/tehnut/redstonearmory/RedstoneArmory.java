@@ -1,5 +1,6 @@
 package tehnut.redstonearmory;
 
+import com.enderio.core.common.Handlers;
 import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -9,7 +10,6 @@ import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraftforge.common.config.Configuration;
 import tehnut.redstonearmory.blocks.BlockRecipeRegistry;
 import tehnut.redstonearmory.blocks.BlockRegistry;
 import tehnut.redstonearmory.compat.CompatibilityBaubles;
@@ -20,7 +20,6 @@ import tehnut.redstonearmory.proxies.CommonProxy;
 import tehnut.redstonearmory.util.OreDictHandler;
 import tehnut.redstonearmory.util.Utils;
 import tehnut.redstonearmory.util.annot.Registerer;
-import tterrag.core.common.Handlers;
 
 @Mod(modid = ModInformation.ID, name = ModInformation.NAME, version = ModInformation.VERSION, dependencies = ModInformation.REQUIRED, guiFactory = ModInformation.GUIFACTORY)
 public class RedstoneArmory {

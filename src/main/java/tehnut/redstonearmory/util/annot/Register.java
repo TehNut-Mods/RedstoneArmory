@@ -26,8 +26,6 @@ public @interface Register {
 
     public String dependency() default "";
 
-    public String enabled() default "true";
-
     public Class<? extends TileEntity> tileEntity() default TileEntity.class;
 
     @SideOnly(Side.CLIENT)

@@ -1,10 +1,10 @@
 package tehnut.redstonearmory.client.gui;
 
+import com.enderio.core.api.common.config.IConfigHandler;
+import com.enderio.core.client.config.BaseConfigGui;
 import net.minecraft.client.gui.GuiScreen;
 import tehnut.redstonearmory.ConfigHandler;
 import tehnut.redstonearmory.util.Utils;
-import tterrag.core.api.common.config.IConfigHandler;
-import tterrag.core.client.config.BaseConfigGui;
 
 public class ConfigGui extends BaseConfigGui {
     public ConfigGui(GuiScreen parentScreen) {
