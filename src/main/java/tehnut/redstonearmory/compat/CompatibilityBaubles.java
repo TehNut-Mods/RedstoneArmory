@@ -5,7 +5,6 @@ import cofh.lib.util.helpers.EnergyHelper;
 import cofh.thermalexpansion.item.ItemCapacitor;
 import cofh.thermalexpansion.item.TEItems;
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.ShapedOreRecipe;
@@ -13,6 +12,7 @@ import tehnut.redstonearmory.ConfigHandler;
 import tehnut.redstonearmory.enums.EnergyType;
 import tehnut.redstonearmory.items.baubles.ItemCapacitorAmulet;
 import tehnut.redstonearmory.util.LogHelper;
+import tehnut.redstonearmory.util.ShapelessRecipeUpgrade;
 import tehnut.redstonearmory.util.annot.Register;
 import tehnut.redstonearmory.util.annot.Registerer;
 
@@ -33,7 +33,7 @@ public class CompatibilityBaubles {
 
             for (int i = 2; i < EnergyType.values().length; i++) {
                 GameRegistry.addRecipe(new RecipeUpgrade(7, ItemCapacitorAmulet.getStackItem(EnergyType.values()[i]), new Object[]{" S ", "S S", " C ", 'S', "stringFluxed", 'C', new ItemStack(TEItems.itemCapacitor, 1, i)}));
-                GameRegistry.addRecipe(new RecipeUpgrade(new ItemStack(TEItems.itemCapacitor, 1, i), new Object[]{" S ", " C ", "   ", 'S', Items.shears.setContainerItem(Items.shears), 'C', ItemCapacitorAmulet.getStackItem(EnergyType.values()[i])}));
+                GameRegistry.addRecipe(new ShapelessRecipeUpgrade(new ItemStack(TEItems.itemCapacitor, 1, i), ItemCapacitorAmulet.getStackItem(EnergyType.values()[i])));
             }
         }
     }
