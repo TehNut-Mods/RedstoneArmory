@@ -43,7 +43,6 @@ public class RedstoneArmory {
         Utils.registerCompat(CompatibilityBaubles.class, "Baubles");
 
         OreDictHandler.registerOreDict();
-        Handlers.addPackage("tehnut.redstonearmory");
 
         proxy.load();
     }
