@@ -1,0 +1,122 @@
+#Creative Tab
+itemGroup.RArm.creativeTab=红石军械库
+
+#Items
+item.RArm.material.enderium.gelid.ingot.name=极寒末影锭
+item.RArm.material.enderium.gelid.nugget.name=极寒末影粒
+item.RArm.material.enderium.gelid.gem.name=极寒宝石
+item.RArm.material.enderium.gelid.rod.name=极寒手柄
+item.RArm.material.chainlink.name=锁链
+item.RArm.material.iron.nugget.name=铁粒
+item.RArm.material.string.fluxed.name=充能线
+
+item.RArm.random.nut.throwable.name=Throwable Nut
+
+item.RArm.bauble.capacitor.creative.name=创造通量护符
+item.RArm.bauble.capacitor.tuberous.name=土豆通量护符
+item.RArm.bauble.capacitor.leadstone.name=铅石通量护符
+item.RArm.bauble.capacitor.hardened.name=硬化通量护符
+item.RArm.bauble.capacitor.reinforced.name=强化通量护符
+item.RArm.bauble.capacitor.resonant.name=谐振通量护符
+
+item.RArm.plating.enderium.name=末影装甲镀层
+item.RArm.plating.power.empty.name=空装甲镀层
+item.RArm.plating.power.full.name=充能装甲镀层
+
+#Tools
+item.RArm.tool.enderium.gelid.axe.name=极寒末影斧
+item.RArm.tool.enderium.gelid.battlewrench.name=极寒末影战锤
+item.RArm.tool.enderium.gelid.pickaxe.name=极寒末影镐
+item.RArm.tool.enderium.gelid.shovel.name=极寒末影铲
+item.RArm.tool.enderium.gelid.sickle.name=极寒末影镰刀
+item.RArm.tool.enderium.gelid.sword.name=极寒末影剑
+item.RArm.tool.potato.hoe.name=充能土豆锄
+#Random Vanilla Fix
+entity.ItemFrame.name=物品框架
+
+#Armor
+item.RArm.armor.enderium.helm.name=充能末影头盔
+item.RArm.armor.enderium.chestplate.name=充能末影胸甲
+item.RArm.armor.enderium.leggings.name=充能末影护腿
+item.RArm.armor.enderium.boots.name=充能末影靴子
+item.RArm.armor.powersuit.helm.name=Powersuit头盔
+item.RArm.armor.powersuit.chestplate.name=Powersuit胸甲
+item.RArm.armor.powersuit.leggings.name=Powersuit护腿
+item.RArm.armor.powersuit.boots.name=Powersuit靴子
+item.RArm.armor.lumium.helm.name=流明头盔
+item.RArm.armor.lumium.chestplate.name=流明胸甲
+item.RArm.armor.lumium.leggings.name=流明护腿
+item.RArm.armor.lumium.boots.name=流明靴子
+item.RArm.armor.tuberous.helm.name=土豆头盔
+item.RArm.armor.tuberous.chestplate.name=土豆胸甲
+item.RArm.armor.tuberous.leggings.name=土豆护腿
+item.RArm.armor.tuberous.boots.name=土豆靴子
+item.RArm.armor.redstone.boots.name=红石除尘铁靴子
+
+#Blocks
+tile.RArm.storage.enderium.gelid.ingot.name=极寒末影块
+tile.RArm.storage.gem.gelid.name=极寒宝石块
+tile.RArm.storage.enderium.gelid.nothing.name=Anti-Derp协议块
+tile.RArm.random.lapis.purple.name=紫色青金石块
+tile.RArm.random.nothing.name=Anti-Derp协议
+tile.RArm.table.tinker.name=工匠桌
+tile.RArm.light.invisible.name=隐形光
+tile.RArm.solar.basic.name=太阳能板(基础)
+tile.RArm.solar.hardened.name=太阳能板(硬化)
+tile.RArm.solar.reinforced.name=太阳能板(强化)
+tile.RArm.solar.resonant.name=太阳能板(谐振)
+
+#Tooltips
+info.RArm.tooltip.getenergy=充能: %d / %d RF
+info.RArm.tooltip.peruse=%d RF/次使用
+info.RArm.tooltip.perdamage=%d RF/次使用
+info.RArm.tooltip.extinguish=按下 %s 关闭充能模式
+info.RArm.tooltip.empower=Press %s 打开充能模式
+info.RArm.tooltip.damage=+%d 攻击伤害
+info.RArm.tooltip.damage.flux=+%d RF伤害
+info.RArm.tooltip.durability=耐久
+info.RArm.tooltip.bound=绑定方块： %d, %d, %d, %d
+info.RArm.tooltip.side=侧面插入: %s
+
+info.RArm.capacitor.slot=必须留在护身符插槽。
+info.RArm.capacitor.armor=激活装甲充电。
+info.RArm.capacitor.armor.charging=充电装甲项目。
+
+info.RArm.tooltip.armor.lumium.shine=闪亮亮像石头一样发光
+info.RArm.tooltip.armor.tuberous.clever.1=恭喜，你已经涂抹一下
+info.RArm.tooltip.armor.tuberous.clever.2=土豆。你已经取得“Protatotection”。
+info.RArm.tooltip.armor.powersuit.ignore=当前不可用。忽略它。
+info.RArm.tooltip.forModules=对于模块
+info.RArm.tooltip.forDetails=为细节
+info.RArm.tooltip.control=控制
+info.RArm.tooltip.hold=持有
+
+#Powersuit Upgrade Tooltips
+info.RArm.tooltip.armor.powersuit.flight.t1=飞行 Mk1
+info.RArm.tooltip.armor.powersuit.flight.t2=飞行 Mk2
+info.RArm.tooltip.armor.powersuit.flight.t3=飞行 Mk3
+info.RArm.tooltip.armor.powersuit.flight.t4=飞行 Mk4
+info.RArm.tooltip.armor.powersuit.flight.t5=飞行 Mk5
+info.RArm.tooltip.armor.powersuit.fall.prevention=预防坠落
+info.RArm.tooltip.armor.powersuit.speed.t1=速度 Mk1
+info.RArm.tooltip.armor.powersuit.speed.t2=速度 Mk2
+info.RArm.tooltip.armor.powersuit.speed.t3=速度 Mk3
+info.RArm.tooltip.armor.powersuit.speed.t4=速度 Mk4
+info.RArm.tooltip.armor.powersuit.step.assist=步骤协助
+info.RArm.tooltip.armor.powersuit.water.breathing=水下呼吸
+info.RArm.tooltip.armor.powersuit.potion.nullification=药水湮灭
+
+#Chat Messages
+info.RArm.chat.table.tinker.instruct=右键点击顶部Powersuit开始升级。
+info.RArm.chat.armor.powersuit.active=活动：
+
+#Keybinding
+key.RArm.bind.powersuitActivate=激活Powersuit
+
+#Console
+info.RArm.console.recipes.remove=删除合成
+info.RArm.console.recipes.remove.vanilla.armor=香草护甲
+info.RArm.console.compat.thermalexpansion=注册热力膨胀的兼容性。
+
+#Config
+config.RArm.title=红石军械库配置
